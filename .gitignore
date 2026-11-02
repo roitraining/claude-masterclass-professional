@@ -12,3 +12,6 @@ Thumbs.db
 
 # Office lock files
 ~$*
+
+# CCK Stage 2.5 validation output (derived, regenerate via validate_content.py)
+validation/
