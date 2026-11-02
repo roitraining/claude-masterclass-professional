@@ -1,49 +1,163 @@
 # Lab 3 (Take-Home): Risk Register
 
+**Course:** Claude Governance, Compliance and Conformance Professional
+**Duration:** 90 to 120 minutes
+**Format:** Take-home lab, on your own after class. Paper only — you cite capabilities, you do not configure them
+
 > Part of **[Claude Governance, Compliance and Conformance Professional: Labs](README.md)**. `$FILES` is the `demo-files` folder your instructor gives you. Read the [guide preamble](README.md) for prerequisites, scenario notes and token-cost caps before you start.
 
 ---
 
-**Learning objective:** Build a risk-tiered register for a portfolio of 12 AI uses, with an owner, a tier, a control and evidence for each, and spot what the portfolio hides. Time: 90 to 120 minutes, on your own, after class.
+## Prerequisites
 
-**Files:** `$FILES/lab3_ai_use_portfolio.md`, `$FILES/lab3_risk_register_template.md`, `$FILES/lab3_risk_register_template.csv`, `$FILES/lab3_scoring_rubric.md`, `$FILES/risk_tier_scale.md`, `$FILES/technical_capabilities_card.md`, `$FILES/evidence_menu.md`.
+- [ ] Labs 1 and 2 completed — the register is what the program you designed runs on
+- [ ] `$FILES/lab3_ai_use_portfolio.md` — the 12 AI uses, with the owner on file and a note
+- [ ] `$FILES/lab3_risk_register_template.md` or `$FILES/lab3_risk_register_template.csv`
+- [ ] `$FILES/lab3_scoring_rubric.md`, `$FILES/risk_tier_scale.md`, `$FILES/technical_capabilities_card.md`, `$FILES/evidence_menu.md`
+- [ ] No account or tooling needed
 
-**Context:** Brightwater's 12 AI uses are listed with the owner on file and a note. Some owners are wrong, some uses have changed, and some data classes are hidden. The register is the working inventory the governance program runs on. Professional 4's controls are capabilities that exist. You cite them. You do not configure them.
+> **Note:** the controls from Professional 4 are capabilities that exist. You cite them. **You do not configure them.**
 
-**Steps:**
+---
 
-1. **Goal:** Read the portfolio. Mark anything that looks stale, hidden or missing. Allow 15 minutes.
-2. **Goal:** Complete a register row for each use, in the Markdown template or the CSV. Allow 60 minutes.
-3. **Acceptance criteria:**
-   - Every owner is a named current role that exists in the brief.
-   - Every tier follows the highest-risk fact and the deciding fact is stated.
-   - Every control is specific, fits the tier, and states its own limit.
-   - Every row cites an evidence ID from the menu, or a clearly described dated record.
-   - Every row has a next review date and a trigger for an earlier review.
-4. **Goal:** Count by tier. Rank your top three risks and give a reason for each. Allow 15 minutes.
-5. **Goal:** Write what looks wrong, stale or hidden in the portfolio. Score yourself with `lab3_scoring_rubric.md`. Allow 15 minutes.
+## Overview
 
-**Hints:**
+The 12 AI uses of Brightwater are listed with the owner on file and a note. **Some owners are wrong, some uses have changed, and some data classes are hidden.**
 
-- If the owner on file left the company, assign a current role and say why.
-- Check the data column against the notes. A note can contradict a data class.
-- A tool that added a feature has changed. Route it again.
-- A control that needs a setting you invented does not count.
-- Evidence you cannot produce today needs a first-available date.
+The register is the working inventory the governance program runs on. A row that looks complete but names a departed owner, or tiers from a data column that a note contradicts, is worse than a blank row — it reads as settled.
 
-**Checkpoint:** Twelve rows, no blank owner, a count by tier, three ranked risks, and a register review date with a trigger.
+---
 
-**Common problems:**
+## Part 1: Read the Portfolio
 
-- Putting a team as the owner.
-- Tiering by the data column alone and missing a note that changes it.
-- Naming a capability without saying what it does not reach.
-- Listing "policy" as evidence.
-- Ranking risks by how loud they sound rather than by who could be harmed.
+### Step 1: Mark Anything Stale, Hidden or Missing (about 15 minutes)
 
-**Scoring rubric:** `lab3_scoring_rubric.md`. 100 points: 7 points a row (12 rows) plus 16 for the whole portfolio. Bands: Gold 85 to 100, Silver 70 to 84, Bronze 50 to 69.
+Read the portfolio and mark every use that looks stale, hidden or missing something.
 
-**Facilitator note:** Share this key after the take-home is due.
+**Expected result:** a marked-up portfolio, before you fill in a single register row.
+
+> **Hint:** check the data column against the notes. A note can contradict a data class.
+
+> **Hint:** a tool that added a feature has changed. Route it again.
+
+---
+
+## Part 2: Build the Register
+
+### Step 2: Complete a Row for Each of the Twelve Uses (about 60 minutes)
+
+Work in the Markdown template or the CSV.
+
+**Acceptance criteria:**
+
+- Every owner is a named current role that exists in the brief.
+- Every tier follows the highest-risk fact, and the deciding fact is stated.
+- Every control is specific, fits the tier, and states its own limit.
+- Every row cites an evidence ID from the menu, or a clearly described dated record.
+- Every row has a next review date and a trigger for an earlier review.
+
+> **Hint:** if the owner on file left the company, assign a current role and say why.
+
+> **Common Pitfall:** a team is not an owner. Name a role.
+
+> **Common Pitfall:** a control that needs a setting you invented does not count.
+
+> **Common Pitfall:** evidence you cannot produce today needs a first-available date.
+
+---
+
+## Part 3: Count and Rank the Risks
+
+### Step 3: Count by Tier and Rank Your Top Three (about 15 minutes)
+
+**Acceptance criteria:** a count by tier, and three ranked risks each with a stated reason.
+
+> **Key Insight:** rank by who could be harmed, not by how loud the risk sounds.
+
+---
+
+## Part 4: Write What the Portfolio Hides
+
+### Step 4: Record What Looks Wrong, Stale or Hidden
+
+**Acceptance criteria:** a written note naming what the portfolio obscured, not just what it listed.
+
+---
+
+## Part 5: Score Yourself
+
+### Step 5: Apply the Rubric (about 15 minutes)
+
+Score yourself with `lab3_scoring_rubric.md`.
+
+**Expected result:** a score and a band, with your weakest rows identified.
+
+---
+
+## Part 6: Checkpoint
+
+### Step 6: Verify Your Progress
+
+- [ ] Twelve rows completed
+- [ ] No blank owner, and no team listed as an owner
+- [ ] Every owner is a current role that exists in the brief
+- [ ] Every tier states the deciding fact, taken from the highest-risk fact
+- [ ] No row is tiered from the data column alone where a note contradicts it
+- [ ] Every control is specific, fits its tier, and states its own limit
+- [ ] No control relies on a setting you invented
+- [ ] Every row cites an evidence ID, or a clearly described dated record
+- [ ] "Policy" is not listed as evidence anywhere
+- [ ] Evidence you cannot produce today has a first-available date
+- [ ] Every row has a next review date and a trigger for an earlier review
+- [ ] A count by tier is recorded
+- [ ] Three risks ranked, each with a reason based on who could be harmed
+- [ ] A written note records what the portfolio obscured
+- [ ] Scored against the rubric, with a band
+
+---
+
+## Troubleshooting Reference
+
+| Issue | Symptom | Solution |
+|---|---|---|
+| Owner is a team | "Owner: Finance" | A team cannot be accountable. Name a role |
+| Owner has left | The owner on file is gone | Assign a current role from the brief and say why you reassigned it |
+| Tier too low | A note contradicts the data column | Tier follows the highest-risk fact. State the deciding fact in the row |
+| Control overclaims | A capability named with no limit | Say what it does not reach. A control that cannot reach the use is not a control for it |
+| Evidence not real | "Policy" cited as evidence | A policy is a commitment, not evidence. Cite a record with a date and an owner |
+| Ranking by volume | Top three are the loudest risks | Rank by who could be harmed, and by whether an obligation is at stake |
+
+---
+
+## Scoring Rubric
+
+See `lab3_scoring_rubric.md`. 100 points: 7 points a row (12 rows) plus 16 for the whole portfolio.
+
+Bands: **Gold** 85 to 100, **Silver** 70 to 84, **Bronze** 50 to 69.
+
+---
+
+## What You Built
+
+In 90 to 120 minutes, you:
+
+- Turned a portfolio listing into a working register with a named current owner on every row
+- Tiered by the highest-risk fact and stated which fact decided it, so a reviewer can disagree with your reasoning rather than guess at it
+- Cited each control with its own limit, instead of naming a capability and implying full coverage
+- Found what the portfolio hid: a departed owner, a data class buried in a note, a tool that changed under you, and a consultation never done
+- Ranked your top three by who could be harmed, not by how alarming each sounded
+
+---
+
+## What's Next
+
+This is the final lab in Claude Governance, Compliance and Conformance Professional, and in the Professional track. Across the three labs you wrote the policy, designed the program that enforces it, and built the register it runs on. The register is the one that goes stale fastest — the review trigger on each row is what keeps it honest.
+
+---
+
+## Facilitator Notes
+
+Share this key after the take-home is due.
 
 | ID | Tier | Flag | Deciding fact | Strong control and evidence |
 |---|---|---|---|---|
@@ -60,4 +174,14 @@
 | BW-11 | 3 | Hold until consultation | EU personal data, recorded voices of staff and customers | Consultation with Dublin employee representatives (E20), vendor review (E16), named owner |
 | BW-12 | 2 | None | Confidential logs, a person reviews every report | Group-limited access, review sign-off; note the CISO also audits, so separate it |
 
-*Traps:* stale owner (BW-04), hidden data class (BW-06), changed use (BW-09), consultation not done (BW-11). Count by tier: Tier 1: 2, Tier 2: 4, Tier 3: 6. Accept a defensible variation if the reason is stated. The strongest top three are usually BW-05, BW-04 and BW-11, because people are harmed, a customer obligation is at stake, and owners are missing. Do not ask students to configure any capability. Cite the capability as an existing source of evidence only.
+*Traps:* stale owner (BW-04), hidden data class (BW-06), changed use (BW-09), consultation not done (BW-11).
+
+Count by tier: Tier 1: 2, Tier 2: 4, Tier 3: 6. Accept a defensible variation if the reason is stated.
+
+The strongest top three are usually BW-05, BW-04 and BW-11, because people are harmed, a customer obligation is at stake, and owners are missing.
+
+Do not ask students to configure any capability. Cite the capability as an existing source of evidence only.
+
+---
+
+*Lab 3 Complete*
