@@ -1,6 +1,6 @@
 # demo-files
 
-Everything the Professional 1 demos and labs use. In `demos.md` and `labs.md`, `$FILES` means this folder.
+Everything the Professional 1 demos and labs use. In `demos.md` and the lab guides in `labs/`, `$FILES` means this folder.
 
 - `starter-server/`: a working local MCP server template (Python standard library only), its self-test, an extension manifest, and a fallback packer.
 - `products/`: four plugin products. Each has `BRIEF.md`, a `data/` folder with a messy fictional dataset, and an `ANSWER-KEY.md` that lists the planted traps. Hand students the brief and the data. Keep the answer keys for the checkpoints.

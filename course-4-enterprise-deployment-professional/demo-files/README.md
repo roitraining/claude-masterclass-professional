@@ -1,6 +1,6 @@
 # Professional 4 demo-files
 
-Sample files for the Enterprise Deployment and Security Operations Professional labs. In `labs.md`, `$FILES` means this folder. Everything is fictional: people, companies, domains (`example.com` and similar), and data. Every secret is a placeholder such as `FAKE-TOKEN-DO-NOT-USE`. Nothing here touches a real tenant. Scripts need Python 3.11 or later and the standard library only.
+Sample files for the Enterprise Deployment and Security Operations Professional labs. In the lab guides in `labs/`, `$FILES` means this folder. Everything is fictional: people, companies, domains (`example.com` and similar), and data. Every secret is a placeholder such as `FAKE-TOKEN-DO-NOT-USE`. Nothing here touches a real tenant. Scripts need Python 3.11 or later and the standard library only.
 
 | Folder | Used by | Contents |
 |--------|---------|----------|
@@ -14,4 +14,4 @@ Instructor-only items: `lab1-identity/live_path_scorecard.md`, `lab2-compliance/
 
 The demos have no files; their sample snippets are inline in `demos.md`.
 
-Items that need rehearsal before class are listed in the Facilitator notes of `labs.md` and the Instructor notes of `demos.md`.
+Items that need rehearsal before class are listed in the Facilitator notes in `labs/` and the Instructor notes of `demos.md`.

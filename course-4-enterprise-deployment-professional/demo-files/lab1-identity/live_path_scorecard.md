@@ -1,6 +1,6 @@
 # Lab 1 Live Path Scorecard (instructor use)
 
-The live path runs on an instructor-provisioned sandbox Claude organization (Enterprise) and an identity provider test environment. Students work from the goal and acceptance criteria in `labs.md`. Menu paths and exact labels are not listed here because they are not in the verified course facts: rehearse them on the sandbox before class and give students a printed map.
+The live path runs on an instructor-provisioned sandbox Claude organization (Enterprise) and an identity provider test environment. Students work from the goal and acceptance criteria in `labs/lab-1-configure-identity-and-access.md`. Menu paths and exact labels are not listed here because they are not in the verified course facts: rehearse them on the sandbox before class and give students a printed map.
 
 ## Pre-planted traps (set these up before class)
 
