@@ -30,3 +30,10 @@ In this guide `$FILES` is the `demo-files` folder your instructor gives you. Wor
 - **[Lab 3: Multi-Step Agent With a Subagent](lab-3-multi-step-agent-with-a-subagent.md)**
 - **[Lab 4: Build an Evaluation Harness](lab-4-build-an-evaluation-harness.md)**
 - **[Lab 5 (take-home): Capstone](lab-5-capstone.md)**
+
+---
+
+## Related
+
+- **[Demos guide](../demos/README.md)** — the 8 instructor-led demos for this course, one file per demo.
+- **[Combined demos guide](../demos.md)** — all demos in a single document.

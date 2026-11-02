@@ -28,3 +28,10 @@ Claude Code can word things differently each time. Check your result against the
 - **[Lab 3: Build a Custom Plugin](lab-3-build-a-custom-plugin.md)**
 - **[Lab 4: Build a Language Server Plugin](lab-4-build-a-language-server-plugin.md)**
 - **[Lab 5 (take-home): Enterprise Migration Runbook](lab-5-enterprise-migration-runbook.md)**
+
+---
+
+## Related
+
+- **[Demos guide](../demos/README.md)** — the 9 instructor-led demos for this course, one file per demo.
+- **[Combined demos guide](../demos.md)** — all demos in a single document.

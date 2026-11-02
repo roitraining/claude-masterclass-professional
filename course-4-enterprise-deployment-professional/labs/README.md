@@ -26,3 +26,10 @@ In this guide `$FILES` is the `demo-files` folder your instructor gives you. Eve
 - **[Lab 3: Harden a Sample Repository](lab-3-harden-a-sample-repository.md)**
 - **[Lab 4: Prompt Injection Detection](lab-4-prompt-injection-detection.md)**
 - **[Lab 5: Credential Audit (take-home)](lab-5-credential-audit.md)**
+
+---
+
+## Related
+
+- **[Demos guide](../demos/README.md)** — the 8 instructor-led demos for this course, one file per demo.
+- **[Combined demos guide](../demos.md)** — all demos in a single document.

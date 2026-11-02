@@ -26,3 +26,10 @@ In this guide `$FILES` means the `demo-files` folder your instructor gives you.
 - **[Lab 1: Draft an Enforceable AI Usage Policy](lab-1-draft-an-enforceable-ai-usage-policy.md)**
 - **[Lab 2: Governance Program Design](lab-2-governance-program-design.md)**
 - **[Lab 3 (Take-Home): Risk Register](lab-3-risk-register.md)**
+
+---
+
+## Related
+
+- **[Demos guide](../demos/README.md)** — the 6 instructor-led demos for this course, one file per demo.
+- **[Combined demos guide](../demos.md)** — all demos in a single document.

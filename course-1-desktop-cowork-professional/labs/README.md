@@ -29,3 +29,10 @@ Claude can word things differently each time. Check your result against the Chec
 - **[Lab 1: Build the Plugin](lab-1-build-the-plugin.md)**
 - **[Lab 2: Autopsy, Then the Gauntlet](lab-2-autopsy-then-the-gauntlet.md)**
 - **[Lab 3 (take-home): Submit and Distribute](lab-3-submit-and-distribute.md)**
+
+---
+
+## Related
+
+- **[Demos guide](../demos/README.md)** — the 8 instructor-led demos for this course, one file per demo.
+- **[Combined demos guide](../demos.md)** — all demos in a single document.
