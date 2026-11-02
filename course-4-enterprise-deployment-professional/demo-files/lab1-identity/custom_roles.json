@@ -1,0 +1,21 @@
+{
+  "_comment": "Permission ids are PLACEHOLDERS for this exercise. The real permission names are UNVERIFIED and are not in the course facts. 'access' is the exercise's own field: read or write.",
+  "roles": [
+    {
+      "name": "SecOps Read-Only Auditor",
+      "description": "Read-only access to audit activity and the member directory. Must not change members, billing, or organization settings.",
+      "permissions": [
+        {"id": "PLACEHOLDER-VIEW-ACTIVITY", "access": "read"},
+        {"id": "PLACEHOLDER-VIEW-MEMBERS", "access": "read"},
+        {"id": "PLACEHOLDER-MANAGE-MEMBERS", "access": "write"}
+      ]
+    },
+    {
+      "name": "Spend Reviewer",
+      "description": "Read spend and usage reports only.",
+      "permissions": [
+        {"id": "PLACEHOLDER-VIEW-SPEND", "access": "read"}
+      ]
+    }
+  ]
+}

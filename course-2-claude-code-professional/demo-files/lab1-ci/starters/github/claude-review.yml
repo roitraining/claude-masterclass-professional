@@ -1,0 +1,34 @@
+name: Claude Review
+# Starter for Lab 1. This file works, and it is not safe. Find and fix what the security gate reports.
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Announce the pull request
+        run: echo "Reviewing ${{ github.event.pull_request.title }}"
+
+      - uses: anthropics/claude-code-action@main
+        with:
+          anthropic_api_key: sk-FAKE-TOKEN-DO-NOT-USE
+          allowed_bots: "*"
+          prompt: |
+            Review this pull request and commit any small fixes you find to the branch.
+            The author describes it like this:
+            ${{ github.event.pull_request.body }}
+          claude_args: |
+            --allowedTools "Bash(*),Read,Edit,Write"
+            --dangerously-skip-permissions

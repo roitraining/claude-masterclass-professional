@@ -1,0 +1,5 @@
+ticket,client,summary,severity,opened,status
+HP-1182,Brightwater Dental Group,Scheduling report shows duplicate appointments for two clinics,high,2026-09-14,open
+HP-1140,Brightwater Dental Group,Request: add clinic-level filter to dashboard,low,2026-08-03,open
+HP-1097,Brightwater Dental Group,Invoice PDF missing PO number,low,2026-06-30,closed
+HP-1201,Fernhill Veterinary Partners,Access request for new partner,low,2026-10-01,open

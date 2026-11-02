@@ -1,0 +1,23 @@
+diff --git a/lending/admin_api.py b/lending/admin_api.py
+index 9b09670..efc92d2 100644
+--- a/lending/admin_api.py
++++ b/lending/admin_api.py
+@@ -1,11 +1,18 @@
+ from lending.web import Router
+ 
+ # Every route registered here is guarded by the router (guard_role), not by the handler.
+ admin = Router(guard_role="librarian")
+ waived = []
+ 
+ 
+ @admin.route("POST", "/admin/waive")
+ def waive_fine(request):
+     waived.append(request.params["member_id"])
+     return {"waived": request.params["member_id"]}
++
++
++@admin.route("POST", "/admin/waive-many")
++def waive_many(request):
++    ids = request.params["member_ids"]
++    waived.extend(ids)
++    return {"waived": len(ids)}

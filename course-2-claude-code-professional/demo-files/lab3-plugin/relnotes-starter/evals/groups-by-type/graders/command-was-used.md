@@ -1,0 +1,6 @@
+---
+type: tool_used
+tool: Skill
+input_match: 'release-notes'
+weight: 2
+---

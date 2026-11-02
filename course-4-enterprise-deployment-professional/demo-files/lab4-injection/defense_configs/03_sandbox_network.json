@@ -1,0 +1,9 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "network": {
+      "allowedDomains": ["pypi.org"]
+    }
+  }
+}

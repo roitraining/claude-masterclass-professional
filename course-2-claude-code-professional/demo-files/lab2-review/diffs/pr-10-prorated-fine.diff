@@ -1,0 +1,19 @@
+diff --git a/lending/fines.py b/lending/fines.py
+index a11efdc..687ae42 100644
+--- a/lending/fines.py
++++ b/lending/fines.py
+@@ -1,9 +1,14 @@
+ from lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY
+ 
+ 
+ def days_late(due, returned):
+     return max(0, (returned - due).days)
+ 
+ 
+ def fine_cents(due, returned):
+     return min(FINE_CAP_CENTS, days_late(due, returned) * FINE_CENTS_PER_DAY)
++
++
++def prorated_fine_cents(days, rate_cents_per_day):
++    """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up."""
++    return int(days * rate_cents_per_day)

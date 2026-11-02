@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lab 2 review findings",
+  "type": "object",
+  "required": ["findings"],
+  "properties": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pr", "file", "severity", "title"],
+        "properties": {
+          "pr": { "type": "string", "description": "Branch name such as pr-03-delete-member, or its prefix pr-03" },
+          "file": { "type": "string", "description": "Path relative to the repository root, forward slashes" },
+          "line": { "type": ["integer", "null"], "description": "Line number in the file on the pull request branch" },
+          "severity": { "type": "string", "enum": ["important", "nit"] },
+          "title": { "type": "string" },
+          "detail": { "type": "string" }
+        }
+      }
+    }
+  }
+}

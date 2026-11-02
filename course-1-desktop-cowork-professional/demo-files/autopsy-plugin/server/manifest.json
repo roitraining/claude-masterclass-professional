@@ -1,0 +1,26 @@
+{
+  "manifest_version": "0.3",
+  "name": "expenses",
+  "version": "1.2.0",
+  "description": "Local expense connector for the expense-digest plugin.",
+  "author": { "name": "Fictional Finance Tools Team" },
+  "server": {
+    "type": "python",
+    "entry_point": "server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": ["${__dirname}/server.py"],
+      "env": {
+        "EXPENSE_DATA_DIR": "${user_config.data_dir}"
+      }
+    }
+  },
+  "user_config": {
+    "data_dir": {
+      "type": "string",
+      "title": "Expense data folder",
+      "description": "Full path to the folder that holds expenses.csv",
+      "required": true
+    }
+  }
+}

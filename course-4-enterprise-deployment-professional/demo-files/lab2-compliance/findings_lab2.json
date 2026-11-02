@@ -1,0 +1,14 @@
+{
+  "student": "Your name",
+  "analysis_script": "name of the script or query file you wrote",
+  "findings": [
+    {
+      "title": "short name for the finding",
+      "actor": "email of the account involved",
+      "event_ids": ["evt-0000"],
+      "severity": "high | medium | low | info",
+      "summary": "what happened, when, from where, and why it matters",
+      "recommended_action": "what you would do next"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "_comment": "Fictional data for Brightwater Outfitters, a made-up retailer. Every person, email, tracking number and amount is invented. The .test domain is reserved and never resolves.",
+  "as_of": "2026-10-19",
+  "return_window_days": 30,
+  "customers": {
+    "maya.ortiz@example.test": {"name": "Maya Ortiz", "tier": "gold", "orders": ["BW-1001", "BW-1004"]},
+    "devon.pryce@example.test": {"name": "Devon Pryce", "tier": "silver", "orders": ["BW-1002", "BW-1010"]},
+    "sana.whitfield@example.test": {"name": "Sana Whitfield", "tier": "standard", "orders": ["BW-1003", "BW-1006"]},
+    "tomas.lindqvist@example.test": {"name": "Tomas Lindqvist", "tier": "standard", "orders": ["BW-1005"]},
+    "priya.raman@example.test": {"name": "Priya Raman", "tier": "gold", "orders": ["BW-1007", "BW-1008"]},
+    "eli.brandt@example.test": {"name": "Eli Brandt", "tier": "standard", "orders": ["BW-1009"]}
+  },
+  "orders": {
+    "BW-1001": {"customer_email": "maya.ortiz@example.test", "items": [{"name": "Trailhead 2P Tent", "qty": 1, "unit_price": 189.00}], "total": 189.00, "status": "delivered", "carrier": "Northline", "tracking": "NL-55120", "delivered_on": "2026-09-02", "eta": null, "delay_reason": null},
+    "BW-1002": {"customer_email": "devon.pryce@example.test", "items": [{"name": "Ridgeline Daypack", "qty": 1, "unit_price": 79.50}, {"name": "Merino Socks", "qty": 2, "unit_price": 18.00}], "total": 115.50, "status": "shipped", "carrier": "Parcelry", "tracking": "PR-88231", "delivered_on": null, "eta": "2026-10-22", "delay_reason": null},
+    "BW-1003": {"customer_email": "sana.whitfield@example.test", "items": [{"name": "Summit Stove", "qty": 1, "unit_price": 64.00}], "total": 64.00, "status": "in_transit", "carrier": "Northline", "tracking": "NL-55377", "delivered_on": null, "eta": "2026-10-21", "delay_reason": null},
+    "BW-1004": {"customer_email": "maya.ortiz@example.test", "items": [{"name": "Alpine Headlamp", "qty": 2, "unit_price": 42.00}], "total": 84.00, "status": "processing", "carrier": null, "tracking": null, "delivered_on": null, "eta": null, "delay_reason": null},
+    "BW-1005": {"customer_email": "tomas.lindqvist@example.test", "items": [{"name": "Trailhead Sleeping Bag", "qty": 1, "unit_price": 129.00}], "total": 129.00, "status": "delivered", "carrier": "Northline", "tracking": "NL-55402", "delivered_on": "2026-09-28", "eta": null, "delay_reason": null},
+    "BW-1006": {"customer_email": "sana.whitfield@example.test", "items": [{"name": "Camp Mug", "qty": 4, "unit_price": 12.50}], "total": 50.00, "status": "delivered", "carrier": "Parcelry", "tracking": "PR-88455", "delivered_on": "2026-10-10", "eta": null, "delay_reason": null},
+    "BW-1007": {"customer_email": "priya.raman@example.test", "items": [{"name": "Ridgeline Daypack", "qty": 1, "unit_price": 79.50}, {"name": "Trail Poles", "qty": 1, "unit_price": 55.00}], "total": 134.50, "status": "delayed", "carrier": "Parcelry", "tracking": "PR-88790", "delivered_on": null, "eta": "2026-10-27", "delay_reason": "weather hold at regional hub"},
+    "BW-1008": {"customer_email": "priya.raman@example.test", "items": [{"name": "Summit Stove", "qty": 2, "unit_price": 64.00}], "total": 128.00, "status": "cancelled", "carrier": null, "tracking": null, "delivered_on": null, "eta": null, "delay_reason": null},
+    "BW-1009": {"customer_email": "eli.brandt@example.test", "items": [{"name": "Trailhead 2P Tent", "qty": 1, "unit_price": 189.00}, {"name": "Tent Footprint", "qty": 1, "unit_price": 35.00}], "total": 224.00, "status": "delivered", "carrier": "Northline", "tracking": "NL-55610", "delivered_on": "2026-10-15", "eta": null, "delay_reason": null},
+    "BW-1010": {"customer_email": "devon.pryce@example.test", "items": [{"name": "Alpine Headlamp", "qty": 1, "unit_price": 42.00}], "total": 42.00, "status": "delivered", "carrier": "Parcelry", "tracking": "PR-87002", "delivered_on": "2026-08-30", "eta": null, "delay_reason": null}
+  },
+  "policies": {
+    "returns": "Return window: 30 days from the delivery date. Items must be unused and in original packaging. Refunds go to the original payment method within 7 business days after the return is received. Final sale items cannot be returned.",
+    "shipping": "Standard shipping takes 3 to 5 business days. Express shipping takes 1 to 2 business days. Standard shipping is free on orders of 75.00 or more.",
+    "warranty": "Tents and sleeping bags have a 2-year warranty against manufacturing defects. Stoves and headlamps have a 1-year warranty. All other items have a 90-day warranty.",
+    "price_match": "Price match applies within 14 days of purchase against the listed price at an authorized retailer. Clearance items are excluded."
+  }
+}

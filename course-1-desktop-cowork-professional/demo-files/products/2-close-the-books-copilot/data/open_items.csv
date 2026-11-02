@@ -1,0 +1,7 @@
+account,item,amount,posted,age_days,status
+1000,Outstanding check 10482 to Cobalt Fabrics,14200,2026-09-26,4,outstanding
+1000,Deposit in transit 2026-09-30,22750,2026-09-30,0,in transit
+2100,Accrual: Summit Packaging freight,18750,2026-02-28,214,open; never reversed or cleared
+2100,Accrual: utilities September,6200,2026-09-30,0,open
+2100,Accrual: payroll September,58300,2026-09-30,0,open
+2100,Accrual: audit fee,13200,2026-09-30,0,open

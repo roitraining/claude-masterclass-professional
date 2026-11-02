@@ -1,0 +1,14 @@
+diff --git a/lending/catalog.py b/lending/catalog.py
+index 643778a..8d98011 100644
+--- a/lending/catalog.py
++++ b/lending/catalog.py
+@@ -1,3 +1,9 @@
+ def search_titles(conn, term):
+     sql = "SELECT id, title FROM books WHERE title LIKE ? ORDER BY title"
+     return conn.execute(sql, (f"%{term}%",)).fetchall()
++
++
++def books_by_ids(conn, ids):
++    placeholders = ",".join("?" * len(ids))
++    sql = f"SELECT id, title FROM books WHERE id IN ({placeholders})"
++    return conn.execute(sql, tuple(ids)).fetchall()

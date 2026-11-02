@@ -1,0 +1,11 @@
+{
+  "student": "Your name",
+  "path": "offline",
+  "findings": [
+    {
+      "file": "name of the file with the defect",
+      "issue": "what is wrong and who or what it affects",
+      "fix": "the change you made, or would make, to correct it"
+    }
+  ]
+}

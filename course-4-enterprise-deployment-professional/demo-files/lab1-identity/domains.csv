@@ -1,0 +1,3 @@
+domain,dns_txt_published,verified,sso_enforced,notes
+example.com,yes,yes,planned,Primary domain
+northwind-labs.example.net,no,no,planned,Acquired company domain; 140 users

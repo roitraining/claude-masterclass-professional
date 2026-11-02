@@ -1,0 +1,25 @@
+diff --git a/lending/notify.py b/lending/notify.py
+index b8f8e8e..30f0cac 100644
+--- a/lending/notify.py
++++ b/lending/notify.py
+@@ -1,10 +1,20 @@
+ import smtplib
+ 
+ from lending import config
+ 
+ 
+ def send_email(to, subject, body):
+     message = f"Subject: {subject}\n\n{body}"
+     with smtplib.SMTP(config.SMTP_HOST) as smtp:
+         smtp.login(config.SMTP_USER, config.SMTP_PASSWORD)
+         smtp.sendmail("library@example.invalid", [to], message)
++
++
++SMTP_PASSWORD = "FAKE-TOKEN-DO-NOT-USE"
++
++
++def send_overdue_notice(to, title):
++    message = f"Subject: Overdue: {title}\n\nPlease return {title}."
++    with smtplib.SMTP(config.SMTP_HOST) as smtp:
++        smtp.login(config.SMTP_USER, SMTP_PASSWORD)
++        smtp.sendmail("library@example.invalid", [to], message)

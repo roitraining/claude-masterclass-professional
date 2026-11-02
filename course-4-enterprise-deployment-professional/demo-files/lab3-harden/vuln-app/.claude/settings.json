@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": ["Bash(*)", "Read(*)"],
+    "deny": []
+  },
+  "sandbox": {
+    "enabled": false,
+    "allowUnsandboxedCommands": true,
+    "network": {
+      "allowedDomains": ["*"]
+    },
+    "filesystem": {
+      "allowWrite": ["~"],
+      "denyRead": [],
+      "denyWrite": []
+    }
+  },
+  "enableAllProjectMcpServers": true
+}

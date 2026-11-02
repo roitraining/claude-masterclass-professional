@@ -1,0 +1,54 @@
+diff --git a/lending/fines.py b/lending/fines.py
+index a11efdc..6bf652f 100644
+--- a/lending/fines.py
++++ b/lending/fines.py
+@@ -1,9 +1,17 @@
+-from lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY
++from lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY, WAIVER_THRESHOLD_CENTS
+ 
+ 
+ def days_late(due, returned):
+     return max(0, (returned - due).days)
+ 
+ 
+ def fine_cents(due, returned):
+     return min(FINE_CAP_CENTS, days_late(due, returned) * FINE_CENTS_PER_DAY)
++
++
++def fine_with_waiver(is_senior, due, returned):
++    """Senior members have fines under the waiver threshold waived. Everyone else pays in full."""
++    fee = fine_cents(due, returned)
++    if is_senior or fee < WAIVER_THRESHOLD_CENTS:
++        return 0
++    return fee
+diff --git a/tests/test_fines.py b/tests/test_fines.py
+index f89f8b6..8891cc5 100644
+--- a/tests/test_fines.py
++++ b/tests/test_fines.py
+@@ -1,22 +1,26 @@
+ import unittest
+ from datetime import date
+ 
+ from lending.fines import days_late, fine_cents
+ 
+ 
+ class FineTests(unittest.TestCase):
+     def test_on_time_is_free(self):
+         self.assertEqual(fine_cents(date(2026, 3, 1), date(2026, 3, 1)), 0)
+ 
+     def test_three_days_late(self):
+         self.assertEqual(fine_cents(date(2026, 3, 1), date(2026, 3, 4)), 75)
+ 
+     def test_cap(self):
+         self.assertEqual(fine_cents(date(2026, 3, 1), date(2026, 6, 1)), 1000)
+ 
+     def test_days_late_never_negative(self):
+         self.assertEqual(days_late(date(2026, 3, 5), date(2026, 3, 1)), 0)
+ 
++    def test_senior_small_fine_waived(self):
++        from lending.fines import fine_with_waiver
++        self.assertEqual(fine_with_waiver(True, date(2026, 3, 1), date(2026, 3, 3)), 0)
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

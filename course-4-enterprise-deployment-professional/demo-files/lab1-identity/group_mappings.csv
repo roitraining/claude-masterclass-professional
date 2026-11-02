@@ -1,0 +1,7 @@
+idp_group,idp_member_count,claude_group,claude_role,custom_role,seat_tier,provisioning
+claude-users-all,2900,,User,,standard,JIT
+claude-eng-premium,180,,User,,premium,JIT
+claude-secops-analysts,14,secops-analysts,Custom,SecOps Read-Only Auditor,standard,JIT
+claude-admins,6,,Admin,,standard,JIT
+claude-owners,3,,Owner,,standard,JIT
+it-operations,212,,Owner,,standard,JIT

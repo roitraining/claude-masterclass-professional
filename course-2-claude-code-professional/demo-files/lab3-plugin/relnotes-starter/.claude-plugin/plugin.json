@@ -1,0 +1,8 @@
+{
+  "name": "relnotes",
+  "version": "0.1.0",
+  "description": "Draft and check release notes from the git log.",
+  "author": {
+    "name": "Fictional Facilitator"
+  }
+}

@@ -1,0 +1,36 @@
+diff --git a/lending/api.py b/lending/api.py
+index 9c495b5..fe9d8ff 100644
+--- a/lending/api.py
++++ b/lending/api.py
+@@ -4,25 +4,31 @@ from lending.web import Router
+ 
+ router = Router()
+ store = MemberStore()
+ 
+ 
+ @router.route("POST", "/members")
+ def create_member(request):
+     require_role(request.user, "librarian")
+     member = Member(request.params["id"], request.params["name"])
+     store.add(member)
+     return {"id": member.member_id}
+ 
+ 
+ @router.route("PUT", "/members")
+ def update_member(request):
+     require_role(request.user, "librarian")
+     member = store.get(request.params["id"])
+     member.name = request.params["name"]
+     return {"id": member.member_id}
+ 
+ 
+ @router.route("GET", "/members")
+ def list_members(request):
+     require_role(request.user, "librarian")
+     return {"members": [m.member_id for m in store.all()]}
++
++
++@router.route("DELETE", "/members")
++def delete_member(request):
++    store.remove(request.params["id"])
++    return {"deleted": request.params["id"]}

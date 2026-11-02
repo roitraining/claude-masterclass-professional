@@ -1,0 +1,7 @@
+step,phase,action,owner,status
+1,Prepare,Create the Anthropic app in ExampleIdP,idp-admin,done
+2,Prepare,Configure attribute mapping per idp_sso_notes.md,idp-admin,done
+3,Prepare,Assign the five claude-* groups and it-operations to the Anthropic app,idp-admin,done
+4,Pilot,Test SSO with three pilot users,platform-team,done
+5,Cutover,Enforce SSO for all users of both email domains,claude-owner,planned
+6,Cutover,Announce to staff,comms,planned

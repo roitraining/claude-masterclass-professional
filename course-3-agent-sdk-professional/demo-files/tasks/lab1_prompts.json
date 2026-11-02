@@ -1,0 +1,13 @@
+{
+  "_comment": "Lab 1 task prompts with the answer key. Tool names are short names (no mcp__ prefix). A prompt passes the tool check when every tool in expect_tools was called and no tool in forbid_tools was called. An empty expect_tools means the agent must answer without calling any tool. answer_all: every string must appear. answer_any: at least one must appear. answer_none: none may appear. All comparisons ignore case.",
+  "tasks": [
+    {"id": "L1-1", "prompt": "Where is order BW-1003?", "expect_tools": ["order_lookup"], "forbid_tools": ["customer_lookup", "policy_lookup"], "answer_any": ["in transit", "in_transit", "NL-55377", "2026-10-21", "october 21"]},
+    {"id": "L1-2", "prompt": "What is your return window?", "expect_tools": ["policy_lookup"], "forbid_tools": ["order_lookup", "customer_lookup"], "answer_any": ["30 days", "30-day", "thirty"]},
+    {"id": "L1-3", "prompt": "Hi! What kinds of things can you help me with?", "expect_tools": [], "forbid_tools": ["order_lookup", "customer_lookup", "policy_lookup"]},
+    {"id": "L1-4", "prompt": "Which orders has maya.ortiz@example.test placed?", "expect_tools": ["customer_lookup"], "forbid_tools": ["policy_lookup"], "answer_all": ["BW-1001", "BW-1004"]},
+    {"id": "L1-5", "prompt": "What is 15 percent of 240?", "expect_tools": [], "forbid_tools": ["order_lookup", "customer_lookup", "policy_lookup"], "answer_all": ["36"]},
+    {"id": "L1-6", "prompt": "Can I still return order BW-1005?", "expect_tools": ["order_lookup", "policy_lookup"], "forbid_tools": ["customer_lookup"], "answer_any": ["yes", "eligible", "can return", "within"], "answer_none": ["not eligible", "no longer eligible"]},
+    {"id": "L1-7", "prompt": "Tell me the loyalty tier of the customer who placed order BW-1002.", "expect_tools": ["order_lookup", "customer_lookup"], "forbid_tools": ["policy_lookup"], "answer_any": ["silver"]},
+    {"id": "L1-8", "prompt": "Has order BW-9999 shipped?", "expect_tools": ["order_lookup"], "forbid_tools": ["customer_lookup", "policy_lookup"], "answer_any": ["not found", "no order", "couldn't find", "could not find", "can't find", "cannot find", "don't see", "do not see", "no record", "unable to find"], "answer_none": ["has shipped", "is on its way"]}
+  ]
+}

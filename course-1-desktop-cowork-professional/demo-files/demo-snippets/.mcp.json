@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "records": {
+      "command": "python",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/server.py"],
+      "env": { "STARTER_DATA": "${CLAUDE_PLUGIN_ROOT}/server/sample_data" }
+    }
+  }
+}

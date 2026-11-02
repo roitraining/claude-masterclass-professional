@@ -1,0 +1,6 @@
+{
+  "api_base": "https://expenses.example.invalid/api",
+  "api_token": "FAKE-TOKEN-DO-NOT-USE-0000",
+  "currency": "USD",
+  "page_size": 50
+}

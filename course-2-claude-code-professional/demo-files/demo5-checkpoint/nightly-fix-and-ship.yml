@@ -1,0 +1,56 @@
+name: Nightly Fix and Ship
+# Demo 5 sample pipeline for the "Find the Missing Checkpoint" exercise. Fictional project.
+on:
+  schedule:
+    - cron: "0 3 * * *"
+
+concurrency:
+  group: nightly-fix-and-ship
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BRANCH: nightly-fix
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Let Claude fix what is failing
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Run the test suite. For every failing test, fix the code until it passes.
+            Also move patch-level dependency versions forward.
+            Commit your work to the branch named in the BRANCH environment variable.
+          claude_args: |
+            --max-turns 20
+            --allowedTools "Read,Edit,Write,Bash(python -m pytest *),Bash(pip install *),Bash(git add *),Bash(git commit *),Bash(git push *)"
+
+      - name: Open the pull request and merge it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create --base main --head "$BRANCH" --fill
+          gh pr merge "$BRANCH" --squash --auto
+
+  deploy:
+    needs: fix
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Deploy to production
+        run: ./scripts/deploy.sh production

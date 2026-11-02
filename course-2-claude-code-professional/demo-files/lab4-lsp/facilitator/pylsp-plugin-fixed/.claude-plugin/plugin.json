@@ -1,0 +1,8 @@
+{
+  "name": "pylsp-lsp",
+  "version": "0.1.0",
+  "description": "Connects the Python language server pylsp for diagnostics and code navigation. Starter for Lab 4.",
+  "author": {
+    "name": "Fictional Facilitator"
+  }
+}

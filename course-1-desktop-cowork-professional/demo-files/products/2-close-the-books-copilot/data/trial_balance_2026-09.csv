@@ -1,0 +1,19 @@
+account,name,debit,credit
+1000,Cash,640200,
+1100,Accounts Receivable,512300,
+1200,Inventory,1284900,
+1500,Equipment,420000,
+1510,Accumulated Depreciation,,188000
+2000,Accounts Payable (control),,418600
+2100,Accrued Expenses,,96450
+2200,Sales Tax Payable,,41800
+2500,Line of Credit,,600000
+3000,Common Stock,,500000
+3100,Retained Earnings,,607350
+4000,Sales Revenue (YTD),,3394800
+5000,Cost of Goods Sold (YTD),1780500,
+6000,Payroll (YTD),860000,
+6100,Rent (YTD),108000,
+6200,Freight (YTD),94300,
+6300,Marketing (YTD),76800,
+6900,Other Operating Expense (YTD),70000,

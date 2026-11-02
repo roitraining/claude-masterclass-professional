@@ -1,0 +1,32 @@
+diff --git a/lending/catalog.py b/lending/catalog.py
+index 643778a..fd21211 100644
+--- a/lending/catalog.py
++++ b/lending/catalog.py
+@@ -1,3 +1,9 @@
+ def search_titles(conn, term):
+     sql = "SELECT id, title FROM books WHERE title LIKE ? ORDER BY title"
+     return conn.execute(sql, (f"%{term}%",)).fetchall()
++
++
++def page_of(items, page, size):
++    """Return one page of items. Pages are numbered from 1."""
++    start = (page - 1) * size
++    return items[start:start + size + 1]
+diff --git a/tests/test_catalog.py b/tests/test_catalog.py
+new file mode 100644
+index 0000000..73c1197
+--- /dev/null
++++ b/tests/test_catalog.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from lending.catalog import page_of
++
++
++class PagingTests(unittest.TestCase):
++    def test_first_page_has_items(self):
++        self.assertTrue(len(page_of(list(range(10)), 1, 3)) >= 3)
++
++
++if __name__ == "__main__":
++    unittest.main()

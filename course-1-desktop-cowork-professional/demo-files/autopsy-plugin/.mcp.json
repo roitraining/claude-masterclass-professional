@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "expenses": {
+      "command": "python",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/server.py"],
+      "env": {
+        "EXPENSE_DATA_DIR": "${user_config.data_dir}"
+      }
+    }
+  }
+}

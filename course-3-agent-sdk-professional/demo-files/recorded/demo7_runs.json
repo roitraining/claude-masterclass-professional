@@ -1,0 +1,47 @@
+{
+  "_comment": "Recorded agent runs for Demo 7. No model call is needed to grade them. FICTIONAL: written by hand to look like RunRecord output. Each run has the golden task id, the tools called, the final answer, and an optional recorded judge verdict (used when --live-judge is not passed).",
+  "runs": [
+    {
+      "task_id": "G05",
+      "prompt": "Can I still return order BW-1005?",
+      "tool_calls": ["order_lookup", "policy_lookup"],
+      "final_text": "Yes. Order BW-1005 was delivered on 2026-09-28, which is 21 days ago, inside the 30-day return window.",
+      "subtype": "success",
+      "num_turns": 4,
+      "cost_usd": 0.021
+    },
+    {
+      "task_id": "G05",
+      "prompt": "Can I still return order BW-1005?",
+      "tool_calls": ["policy_lookup"],
+      "final_text": "Yes, you can return it. Items can be returned within 30 days.",
+      "subtype": "success",
+      "num_turns": 3,
+      "cost_usd": 0.014
+    },
+    {
+      "task_id": "G07",
+      "prompt": "How long is the warranty on a stove?",
+      "tool_calls": ["policy_lookup"],
+      "final_text": "Stoves have a 2-year warranty.",
+      "subtype": "success",
+      "num_turns": 3,
+      "cost_usd": 0.013
+    },
+    {
+      "task_id": "G12",
+      "prompt": "Write a short, empathetic reply to the customer on order BW-1007, whose order is delayed. Include the new arrival date.",
+      "tool_calls": ["order_lookup"],
+      "final_text": "Order BW-1007 is delayed. It will arrive 2026-10-27.",
+      "subtype": "success",
+      "num_turns": 3,
+      "cost_usd": 0.015,
+      "recorded_judge": {"score": 2, "reason": "Accurate and brief, but does not acknowledge the inconvenience or offer a next step."}
+    }
+  ],
+  "golden": {
+    "G05": {"answer_all_of": [["yes", "eligible"]], "tools_require": ["order_lookup", "policy_lookup"], "tools_forbid": ["issue_refund"]},
+    "G07": {"answer_all_of": [["1 year", "one year", "1-year"]], "tools_require": ["policy_lookup"], "tools_forbid": ["order_lookup"]},
+    "G12": {"answer_all_of": [["2026-10-27", "october 27"]], "tools_require": ["order_lookup"], "tools_forbid": [], "judge_min": 4}
+  }
+}

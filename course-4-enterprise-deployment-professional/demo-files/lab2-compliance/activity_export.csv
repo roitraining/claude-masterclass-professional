@@ -1,0 +1,440 @@
+event_id,timestamp,actor,actor_type,event_type,surface,source_ip,country,resource,details
+evt-0001,2026-09-07T09:13:49Z,dana.whitfield@example.com,user,file_uploaded,desktop,198.51.100.21,US,Support Macros,{}
+evt-0002,2026-09-07T09:36:36Z,quinn.reyes@example.com,user,chat_created,claude.ai,192.0.2.27,US,Support Macros,{}
+evt-0003,2026-09-07T09:55:28Z,wen.zhao@example.com,user,chat_created,claude.ai,192.0.2.34,US,Support Macros,{}
+evt-0004,2026-09-07T09:59:27Z,ivan.petrov@example.com,user,api_key_used,api,192.0.2.19,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0005,2026-09-07T10:10:20Z,alice.moreau@example.com,user,login_sso_success,desktop,192.0.2.11,US,Quarterly Notes,{}
+evt-0006,2026-09-07T10:38:05Z,ivan.petrov@example.com,user,file_uploaded,claude.ai,192.0.2.19,US,Support Macros,{}
+evt-0007,2026-09-07T10:38:39Z,chloe.dubois@example.com,user,login_sso_success,claude-code,192.0.2.13,US,Support Macros,{}
+evt-0008,2026-09-07T10:40:00Z,vic.hale@example.com,user,chat_created,desktop,192.0.2.33,US,Onboarding FAQ,{}
+evt-0009,2026-09-07T11:01:56Z,evan.park@example.com,user,chat_created,claude.ai,192.0.2.15,US,Runbook Draft,{}
+evt-0010,2026-09-07T11:07:16Z,marcus.bell@example.com,user,claude_code_session_started,claude-code,198.51.100.17,US,Support Macros,{}
+evt-0011,2026-09-07T11:11:25Z,sam.okafor@example.com,user,file_downloaded,desktop,192.0.2.30,US,files/vendor-review.pdf,"{""bytes"":218026}"
+evt-0012,2026-09-07T11:14:10Z,quinn.reyes@example.com,user,login_sso_success,claude.ai,192.0.2.27,US,Quarterly Notes,{}
+evt-0013,2026-09-07T11:52:18Z,ben.alvarez@example.com,user,api_key_used,api,192.0.2.12,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0014,2026-09-07T11:54:14Z,priya.nair@example.com,user,api_key_used,api,192.0.2.26,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0015,2026-09-07T11:55:18Z,omar.haddad@example.com,user,chat_created,claude-code,192.0.2.25,US,Support Macros,{}
+evt-0016,2026-09-07T12:01:27Z,uma.rao@example.com,user,file_downloaded,claude-code,192.0.2.32,US,files/roadmap-q4.pdf,"{""bytes"":386271}"
+evt-0017,2026-09-07T12:01:41Z,tara.lund@example.com,user,api_key_used,api,192.0.2.31,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0018,2026-09-07T12:02:37Z,sam.okafor@example.com,user,login_sso_success,claude.ai,192.0.2.30,US,Quarterly Notes,{}
+evt-0019,2026-09-07T12:04:18Z,alice.moreau@example.com,user,login_sso_success,claude.ai,192.0.2.11,US,Quarterly Notes,{}
+evt-0020,2026-09-07T12:04:43Z,ivan.petrov@example.com,user,file_uploaded,desktop,192.0.2.19,US,Roadmap Q4,{}
+evt-0021,2026-09-07T12:58:27Z,jun.park@example.com,user,chat_created,claude-code,192.0.2.20,US,Onboarding FAQ,{}
+evt-0022,2026-09-07T13:01:56Z,ivan.petrov@example.com,user,api_key_used,api,192.0.2.19,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0023,2026-09-07T13:17:15Z,nia.owusu@example.com,user,chat_created,desktop,192.0.2.24,US,Vendor Review,{}
+evt-0024,2026-09-07T13:19:30Z,uma.rao@example.com,user,claude_code_session_started,claude-code,192.0.2.32,US,Roadmap Q4,{}
+evt-0025,2026-09-07T13:30:33Z,lee.ortega@example.com,user,login_sso_success,desktop,198.51.100.23,US,Quarterly Notes,{}
+evt-0026,2026-09-07T13:39:05Z,omar.haddad@example.com,user,login_sso_success,claude-code,192.0.2.25,US,Vendor Review,{}
+evt-0027,2026-09-07T13:42:59Z,evan.park@example.com,user,chat_created,claude.ai,192.0.2.15,US,Vendor Review,{}
+evt-0028,2026-09-07T13:44:11Z,omar.haddad@example.com,user,chat_created,claude-code,192.0.2.25,US,Test Plan,{}
+evt-0029,2026-09-07T13:44:21Z,lee.ortega@example.com,user,api_key_used,api,198.51.100.23,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0030,2026-09-07T13:55:09Z,alice.moreau@example.com,user,login_sso_success,claude-code,192.0.2.11,US,Runbook Draft,{}
+evt-0031,2026-09-07T13:59:36Z,xavi.ruiz@example.com,user,chat_created,desktop,192.0.2.35,US,Vendor Review,{}
+evt-0032,2026-09-07T14:07:22Z,vic.hale@example.com,user,login_sso_success,desktop,192.0.2.33,US,Test Plan,{}
+evt-0033,2026-09-07T14:19:38Z,nia.owusu@example.com,user,claude_code_session_started,claude-code,192.0.2.24,US,Vendor Review,{}
+evt-0034,2026-09-07T14:20:53Z,uma.rao@example.com,user,chat_created,claude-code,192.0.2.32,US,Onboarding FAQ,{}
+evt-0035,2026-09-07T14:40:53Z,farah.khan@example.com,user,project_shared,claude.ai,192.0.2.16,US,Quarterly Notes,"{""shared_with"":""team-support@example.com"",""external"":false,""permission"":""view""}"
+evt-0036,2026-09-07T14:49:53Z,farah.khan@example.com,user,claude_code_session_started,claude-code,192.0.2.16,US,Vendor Review,{}
+evt-0037,2026-09-07T14:51:23Z,xavi.ruiz@example.com,user,file_uploaded,claude.ai,192.0.2.35,US,Quarterly Notes,{}
+evt-0038,2026-09-07T15:14:34Z,priya.nair@example.com,user,login_sso_success,claude-code,192.0.2.26,US,Test Plan,{}
+evt-0039,2026-09-07T15:23:08Z,ivan.petrov@example.com,user,claude_code_session_started,claude-code,192.0.2.19,US,Quarterly Notes,{}
+evt-0040,2026-09-07T15:27:06Z,chloe.dubois@example.com,user,project_created,claude-code,192.0.2.13,US,Roadmap Q4,{}
+evt-0041,2026-09-07T15:48:02Z,quinn.reyes@example.com,user,chat_created,claude-code,192.0.2.27,US,Runbook Draft,{}
+evt-0042,2026-09-07T15:48:33Z,marcus.bell@example.com,user,chat_created,desktop,198.51.100.17,US,Support Macros,{}
+evt-0043,2026-09-07T15:58:16Z,sam.okafor@example.com,user,claude_code_session_started,claude-code,192.0.2.30,US,Roadmap Q4,{}
+evt-0044,2026-09-07T16:04:04Z,ivan.petrov@example.com,user,file_downloaded,claude.ai,192.0.2.19,US,files/support-macros.pdf,"{""bytes"":124751}"
+evt-0045,2026-09-07T16:20:39Z,alice.moreau@example.com,user,chat_created,desktop,192.0.2.11,US,Roadmap Q4,{}
+evt-0046,2026-09-07T16:22:18Z,marcus.bell@example.com,user,api_key_used,api,198.51.100.17,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0047,2026-09-07T16:29:28Z,lee.ortega@example.com,user,claude_code_session_started,claude-code,198.51.100.23,US,Roadmap Q4,{}
+evt-0048,2026-09-07T16:53:24Z,gus.lindqvist@example.com,user,project_shared,desktop,192.0.2.17,US,Test Plan,"{""shared_with"":""team-support@example.com"",""external"":false,""permission"":""view""}"
+evt-0049,2026-09-07T17:17:21Z,farah.khan@example.com,user,claude_code_session_started,claude-code,192.0.2.16,US,Test Plan,{}
+evt-0050,2026-09-07T17:22:54Z,dana.whitfield@example.com,user,chat_created,claude-code,198.51.100.21,US,Vendor Review,{}
+evt-0051,2026-09-07T17:26:25Z,lee.ortega@example.com,user,chat_created,claude-code,198.51.100.23,US,Test Plan,{}
+evt-0052,2026-09-07T17:40:28Z,tara.lund@example.com,user,file_uploaded,claude.ai,192.0.2.31,US,Vendor Review,{}
+evt-0053,2026-09-08T09:18:42Z,priya.nair@example.com,user,claude_code_session_started,claude-code,192.0.2.26,US,Roadmap Q4,{}
+evt-0054,2026-09-08T09:26:31Z,dana.whitfield@example.com,user,login_sso_success,claude-code,198.51.100.21,US,Vendor Review,{}
+evt-0055,2026-09-08T09:26:32Z,xavi.ruiz@example.com,user,chat_created,claude-code,192.0.2.35,US,Roadmap Q4,{}
+evt-0056,2026-09-08T09:27:23Z,chloe.dubois@example.com,user,claude_code_session_started,claude-code,192.0.2.13,US,Test Plan,{}
+evt-0057,2026-09-08T09:33:32Z,dana.whitfield@example.com,user,chat_created,claude-code,198.51.100.21,US,Vendor Review,{}
+evt-0058,2026-09-08T09:50:58Z,vic.hale@example.com,user,login_sso_success,desktop,192.0.2.33,US,Vendor Review,{}
+evt-0059,2026-09-08T10:02:47Z,nia.owusu@example.com,user,chat_created,claude-code,192.0.2.24,US,Vendor Review,{}
+evt-0060,2026-09-08T10:09:10Z,uma.rao@example.com,user,chat_created,claude-code,192.0.2.32,US,Support Macros,{}
+evt-0061,2026-09-08T10:13:17Z,vic.hale@example.com,user,file_uploaded,desktop,192.0.2.33,US,Onboarding FAQ,{}
+evt-0062,2026-09-08T10:14:37Z,omar.haddad@example.com,user,chat_created,claude-code,192.0.2.25,US,Quarterly Notes,{}
+evt-0063,2026-09-08T10:30:41Z,priya.nair@example.com,user,file_uploaded,claude.ai,192.0.2.26,US,Roadmap Q4,{}
+evt-0064,2026-09-08T10:57:43Z,chloe.dubois@example.com,user,cowork_session_started,cowork,192.0.2.13,US,Runbook Draft,{}
+evt-0065,2026-09-08T11:03:53Z,nia.owusu@example.com,user,claude_code_session_started,claude-code,192.0.2.24,US,Vendor Review,{}
+evt-0066,2026-09-08T11:06:44Z,omar.haddad@example.com,user,login_sso_success,claude-code,192.0.2.25,US,Runbook Draft,{}
+evt-0067,2026-09-08T11:18:03Z,marcus.bell@example.com,user,chat_created,desktop,198.51.100.17,US,Onboarding FAQ,{}
+evt-0068,2026-09-08T11:23:24Z,ben.alvarez@example.com,user,file_uploaded,claude-code,192.0.2.12,US,Onboarding FAQ,{}
+evt-0069,2026-09-08T11:52:42Z,ben.alvarez@example.com,user,claude_code_session_started,claude-code,192.0.2.12,US,Quarterly Notes,{}
+evt-0070,2026-09-08T11:54:04Z,xavi.ruiz@example.com,user,file_uploaded,claude-code,192.0.2.35,US,Support Macros,{}
+evt-0071,2026-09-08T11:54:06Z,jun.park@example.com,user,chat_created,claude-code,192.0.2.20,US,Onboarding FAQ,{}
+evt-0072,2026-09-08T12:03:11Z,ben.alvarez@example.com,user,login_sso_success,claude-code,192.0.2.12,US,Quarterly Notes,{}
+evt-0073,2026-09-08T12:09:58Z,lee.ortega@example.com,user,chat_created,claude.ai,198.51.100.23,US,Onboarding FAQ,{}
+evt-0074,2026-09-08T12:12:39Z,ivan.petrov@example.com,user,claude_code_session_started,claude-code,192.0.2.19,US,Onboarding FAQ,{}
+evt-0075,2026-09-08T12:14:46Z,uma.rao@example.com,user,chat_created,claude.ai,192.0.2.32,US,Vendor Review,{}
+evt-0076,2026-09-08T12:26:50Z,uma.rao@example.com,user,cowork_session_started,cowork,192.0.2.32,US,Quarterly Notes,{}
+evt-0077,2026-09-08T12:39:45Z,tara.lund@example.com,user,file_downloaded,claude-code,192.0.2.31,US,files/quarterly-notes.pdf,"{""bytes"":304040}"
+evt-0078,2026-09-08T12:44:33Z,farah.khan@example.com,user,file_downloaded,claude-code,192.0.2.16,US,files/vendor-review.pdf,"{""bytes"":297215}"
+evt-0079,2026-09-08T12:47:34Z,quinn.reyes@example.com,user,api_key_used,api,192.0.2.27,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0080,2026-09-08T12:53:56Z,vic.hale@example.com,user,file_uploaded,desktop,192.0.2.33,US,Test Plan,{}
+evt-0081,2026-09-08T13:29:21Z,tara.lund@example.com,user,api_key_used,api,192.0.2.31,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0082,2026-09-08T13:35:35Z,quinn.reyes@example.com,user,chat_created,claude-code,192.0.2.27,US,Onboarding FAQ,{}
+evt-0083,2026-09-08T13:47:05Z,wen.zhao@example.com,user,login_sso_success,claude-code,192.0.2.34,US,Runbook Draft,{}
+evt-0084,2026-09-08T13:58:06Z,ivan.petrov@example.com,user,claude_code_session_started,claude-code,192.0.2.19,US,Support Macros,{}
+evt-0085,2026-09-08T14:02:04Z,xavi.ruiz@example.com,user,chat_created,claude-code,192.0.2.35,US,Vendor Review,{}
+evt-0086,2026-09-08T14:02:53Z,wen.zhao@example.com,user,project_created,claude-code,192.0.2.34,US,Vendor Review,{}
+evt-0087,2026-09-08T14:03:48Z,rosa.silva@example.com,user,login_sso_success,claude-code,192.0.2.28,US,Runbook Draft,{}
+evt-0088,2026-09-08T14:05:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-01.csv,"{""bytes"":51000}"
+evt-0089,2026-09-08T14:05:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-02.csv,"{""bytes"":51017}"
+evt-0090,2026-09-08T14:05:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-03.csv,"{""bytes"":51034}"
+evt-0091,2026-09-08T14:06:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-04.csv,"{""bytes"":51051}"
+evt-0092,2026-09-08T14:06:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-05.csv,"{""bytes"":51068}"
+evt-0093,2026-09-08T14:06:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-06.csv,"{""bytes"":51085}"
+evt-0094,2026-09-08T14:07:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-07.csv,"{""bytes"":51102}"
+evt-0095,2026-09-08T14:07:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-08.csv,"{""bytes"":51119}"
+evt-0096,2026-09-08T14:07:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-09.csv,"{""bytes"":51136}"
+evt-0097,2026-09-08T14:08:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-10.csv,"{""bytes"":51153}"
+evt-0098,2026-09-08T14:08:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-11.csv,"{""bytes"":51170}"
+evt-0099,2026-09-08T14:08:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-12.csv,"{""bytes"":51187}"
+evt-0100,2026-09-08T14:09:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-13.csv,"{""bytes"":51204}"
+evt-0101,2026-09-08T14:09:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-14.csv,"{""bytes"":51221}"
+evt-0102,2026-09-08T14:09:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-15.csv,"{""bytes"":51238}"
+evt-0103,2026-09-08T14:10:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-16.csv,"{""bytes"":51255}"
+evt-0104,2026-09-08T14:10:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-17.csv,"{""bytes"":51272}"
+evt-0105,2026-09-08T14:10:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-18.csv,"{""bytes"":51289}"
+evt-0106,2026-09-08T14:11:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-19.csv,"{""bytes"":51306}"
+evt-0107,2026-09-08T14:11:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-20.csv,"{""bytes"":51323}"
+evt-0108,2026-09-08T14:11:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-21.csv,"{""bytes"":51340}"
+evt-0109,2026-09-08T14:12:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-22.csv,"{""bytes"":51357}"
+evt-0110,2026-09-08T14:12:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-23.csv,"{""bytes"":51374}"
+evt-0111,2026-09-08T14:12:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-24.csv,"{""bytes"":51391}"
+evt-0112,2026-09-08T14:12:59Z,rosa.silva@example.com,user,chat_created,claude.ai,192.0.2.28,US,Vendor Review,{}
+evt-0113,2026-09-08T14:13:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-25.csv,"{""bytes"":51408}"
+evt-0114,2026-09-08T14:17:27Z,sam.okafor@example.com,user,chat_created,desktop,192.0.2.30,US,Runbook Draft,{}
+evt-0115,2026-09-08T14:28:26Z,quinn.reyes@example.com,user,chat_created,claude-code,192.0.2.27,US,Onboarding FAQ,{}
+evt-0116,2026-09-08T15:00:21Z,dana.whitfield@example.com,user,chat_created,desktop,198.51.100.21,US,Quarterly Notes,{}
+evt-0117,2026-09-08T15:17:21Z,evan.park@example.com,user,chat_created,claude.ai,192.0.2.15,US,Support Macros,{}
+evt-0118,2026-09-08T15:29:22Z,uma.rao@example.com,user,chat_created,claude.ai,192.0.2.32,US,Test Plan,{}
+evt-0119,2026-09-08T15:32:35Z,lee.ortega@example.com,user,api_key_used,api,198.51.100.23,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0120,2026-09-08T15:45:32Z,farah.khan@example.com,user,login_sso_success,claude-code,192.0.2.16,US,Support Macros,{}
+evt-0121,2026-09-08T16:04:25Z,gus.lindqvist@example.com,user,cowork_session_started,cowork,192.0.2.17,US,Support Macros,{}
+evt-0122,2026-09-08T16:17:23Z,alice.moreau@example.com,user,claude_code_session_started,claude-code,192.0.2.11,US,Support Macros,{}
+evt-0123,2026-09-08T16:30:42Z,xavi.ruiz@example.com,user,claude_code_session_started,claude-code,192.0.2.35,US,Support Macros,{}
+evt-0124,2026-09-08T16:51:33Z,marcus.bell@example.com,user,claude_code_session_started,claude-code,198.51.100.17,US,Runbook Draft,{}
+evt-0125,2026-09-08T16:51:53Z,wen.zhao@example.com,user,login_sso_success,desktop,192.0.2.34,US,Roadmap Q4,{}
+evt-0126,2026-09-08T16:54:44Z,nia.owusu@example.com,user,claude_code_session_started,claude-code,192.0.2.24,US,Onboarding FAQ,{}
+evt-0127,2026-09-08T17:01:15Z,wen.zhao@example.com,user,file_downloaded,desktop,192.0.2.34,US,files/support-macros.pdf,"{""bytes"":62203}"
+evt-0128,2026-09-08T17:08:38Z,gus.lindqvist@example.com,user,login_sso_success,desktop,192.0.2.17,US,Runbook Draft,{}
+evt-0129,2026-09-08T17:38:03Z,chloe.dubois@example.com,user,chat_created,claude-code,192.0.2.13,US,Test Plan,{}
+evt-0130,2026-09-08T17:57:15Z,omar.haddad@example.com,user,api_key_used,api,192.0.2.25,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0131,2026-09-08T17:58:03Z,alice.moreau@example.com,user,chat_created,desktop,192.0.2.11,US,Runbook Draft,{}
+evt-0132,2026-09-09T09:08:14Z,ivan.petrov@example.com,user,login_sso_success,claude-code,192.0.2.19,US,Test Plan,{}
+evt-0133,2026-09-09T09:15:00Z,ben.alvarez@example.com,user,file_uploaded,claude.ai,192.0.2.12,US,Roadmap Q4,{}
+evt-0134,2026-09-09T09:17:24Z,kira.novak@example.com,user,login_sso_success,claude-code,192.0.2.22,US,Quarterly Notes,{}
+evt-0135,2026-09-09T09:21:31Z,quinn.reyes@example.com,user,login_sso_success,claude.ai,192.0.2.27,US,Support Macros,{}
+evt-0136,2026-09-09T09:23:46Z,rosa.silva@example.com,user,chat_created,claude-code,192.0.2.28,US,Onboarding FAQ,{}
+evt-0137,2026-09-09T09:27:19Z,chloe.dubois@example.com,user,chat_created,claude-code,192.0.2.13,US,Roadmap Q4,{}
+evt-0138,2026-09-09T09:34:55Z,tara.lund@example.com,user,cowork_session_started,cowork,192.0.2.31,US,Vendor Review,{}
+evt-0139,2026-09-09T09:38:53Z,xavi.ruiz@example.com,user,chat_created,desktop,192.0.2.35,US,Vendor Review,{}
+evt-0140,2026-09-09T09:59:15Z,chloe.dubois@example.com,user,chat_created,claude.ai,192.0.2.13,US,Support Macros,{}
+evt-0141,2026-09-09T10:12:00Z,sam.okafor@example.com,user,api_key_created,api,192.0.2.30,US,key-FAKE-0031,"{""key_id"":""key-FAKE-0031"",""scopes"":""messages""}"
+evt-0142,2026-09-09T10:13:23Z,omar.haddad@example.com,user,chat_created,desktop,192.0.2.25,US,Roadmap Q4,{}
+evt-0143,2026-09-09T10:21:26Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0144,2026-09-09T10:25:08Z,vic.hale@example.com,user,claude_code_session_started,claude-code,192.0.2.33,US,Runbook Draft,{}
+evt-0145,2026-09-09T10:30:00Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0031""}"
+evt-0146,2026-09-09T10:34:00Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0031""}"
+evt-0147,2026-09-09T10:34:42Z,rosa.silva@example.com,user,project_shared,claude-code,192.0.2.28,US,Quarterly Notes,"{""shared_with"":""team-finance@example.com"",""external"":false,""permission"":""view""}"
+evt-0148,2026-09-09T10:38:00Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0031""}"
+evt-0149,2026-09-09T10:42:00Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0031""}"
+evt-0150,2026-09-09T10:46:00Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0031""}"
+evt-0151,2026-09-09T10:50:00Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0031""}"
+evt-0152,2026-09-09T10:53:36Z,dana.whitfield@example.com,user,file_uploaded,claude.ai,198.51.100.21,US,Vendor Review,{}
+evt-0153,2026-09-09T10:54:34Z,marcus.bell@example.com,user,api_key_used,api,198.51.100.17,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0154,2026-09-09T11:10:07Z,omar.haddad@example.com,user,chat_created,claude.ai,192.0.2.25,US,Runbook Draft,{}
+evt-0155,2026-09-09T11:39:30Z,tara.lund@example.com,user,login_sso_success,claude-code,192.0.2.31,US,Test Plan,{}
+evt-0156,2026-09-09T11:40:02Z,rosa.silva@example.com,user,chat_created,claude.ai,192.0.2.28,US,Runbook Draft,{}
+evt-0157,2026-09-09T11:40:50Z,hana.kobayashi@example.com,user,api_key_used,api,198.51.100.18,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0158,2026-09-09T11:47:52Z,dana.whitfield@example.com,user,api_key_used,api,198.51.100.21,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0159,2026-09-09T11:50:02Z,farah.khan@example.com,user,api_key_used,api,192.0.2.16,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0160,2026-09-09T12:05:35Z,chloe.dubois@example.com,user,login_sso_success,claude.ai,192.0.2.13,US,Roadmap Q4,{}
+evt-0161,2026-09-09T12:11:06Z,dana.whitfield@example.com,user,claude_code_session_started,claude-code,198.51.100.21,US,Runbook Draft,{}
+evt-0162,2026-09-09T12:42:55Z,jun.park@example.com,user,login_sso_success,claude-code,192.0.2.20,US,Runbook Draft,{}
+evt-0163,2026-09-09T12:48:34Z,marcus.bell@example.com,user,login_sso_success,claude.ai,198.51.100.17,US,Support Macros,{}
+evt-0164,2026-09-09T12:49:33Z,kira.novak@example.com,user,file_downloaded,claude.ai,192.0.2.22,US,files/test-plan.pdf,"{""bytes"":252236}"
+evt-0165,2026-09-09T13:04:30Z,alice.moreau@example.com,user,project_created,desktop,192.0.2.11,US,Test Plan,{}
+evt-0166,2026-09-09T13:04:31Z,sam.okafor@example.com,user,claude_code_session_started,claude-code,192.0.2.30,US,Vendor Review,{}
+evt-0167,2026-09-09T13:04:37Z,wen.zhao@example.com,user,chat_created,desktop,192.0.2.34,US,Roadmap Q4,{}
+evt-0168,2026-09-09T13:10:45Z,uma.rao@example.com,user,api_key_used,api,192.0.2.32,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0169,2026-09-09T13:11:11Z,gus.lindqvist@example.com,user,api_key_used,api,192.0.2.17,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0170,2026-09-09T13:11:26Z,tara.lund@example.com,user,chat_created,claude.ai,192.0.2.31,US,Test Plan,{}
+evt-0171,2026-09-09T13:27:07Z,rosa.silva@example.com,user,api_key_used,api,192.0.2.28,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0172,2026-09-09T13:37:28Z,kira.novak@example.com,user,project_shared,claude.ai,192.0.2.22,US,Quarterly Notes,"{""shared_with"":""team-eng@example.com"",""external"":false,""permission"":""view""}"
+evt-0173,2026-09-09T13:46:25Z,dana.whitfield@example.com,user,chat_created,desktop,198.51.100.21,US,Runbook Draft,{}
+evt-0174,2026-09-09T13:52:54Z,alice.moreau@example.com,user,project_created,desktop,192.0.2.11,US,Onboarding FAQ,{}
+evt-0175,2026-09-09T13:56:45Z,tara.lund@example.com,user,api_key_used,api,192.0.2.31,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0176,2026-09-09T14:02:43Z,farah.khan@example.com,user,api_key_used,api,192.0.2.16,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0177,2026-09-09T14:05:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-01.csv,"{""bytes"":51000}"
+evt-0178,2026-09-09T14:05:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-02.csv,"{""bytes"":51017}"
+evt-0179,2026-09-09T14:05:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-03.csv,"{""bytes"":51034}"
+evt-0180,2026-09-09T14:06:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-04.csv,"{""bytes"":51051}"
+evt-0181,2026-09-09T14:06:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-05.csv,"{""bytes"":51068}"
+evt-0182,2026-09-09T14:06:40Z,alice.moreau@example.com,user,chat_created,desktop,192.0.2.11,US,Roadmap Q4,{}
+evt-0183,2026-09-09T14:06:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-06.csv,"{""bytes"":51085}"
+evt-0184,2026-09-09T14:07:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-07.csv,"{""bytes"":51102}"
+evt-0185,2026-09-09T14:07:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-08.csv,"{""bytes"":51119}"
+evt-0186,2026-09-09T14:07:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-09.csv,"{""bytes"":51136}"
+evt-0187,2026-09-09T14:08:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-10.csv,"{""bytes"":51153}"
+evt-0188,2026-09-09T14:08:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-11.csv,"{""bytes"":51170}"
+evt-0189,2026-09-09T14:08:40Z,xavi.ruiz@example.com,user,login_sso_success,claude-code,192.0.2.35,US,Quarterly Notes,{}
+evt-0190,2026-09-09T14:08:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-12.csv,"{""bytes"":51187}"
+evt-0191,2026-09-09T14:09:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-13.csv,"{""bytes"":51204}"
+evt-0192,2026-09-09T14:09:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-14.csv,"{""bytes"":51221}"
+evt-0193,2026-09-09T14:09:32Z,nia.owusu@example.com,user,chat_created,claude-code,192.0.2.24,US,Runbook Draft,{}
+evt-0194,2026-09-09T14:09:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-15.csv,"{""bytes"":51238}"
+evt-0195,2026-09-09T14:10:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-16.csv,"{""bytes"":51255}"
+evt-0196,2026-09-09T14:10:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-17.csv,"{""bytes"":51272}"
+evt-0197,2026-09-09T14:10:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-18.csv,"{""bytes"":51289}"
+evt-0198,2026-09-09T14:11:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-19.csv,"{""bytes"":51306}"
+evt-0199,2026-09-09T14:11:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-20.csv,"{""bytes"":51323}"
+evt-0200,2026-09-09T14:11:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-21.csv,"{""bytes"":51340}"
+evt-0201,2026-09-09T14:12:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-22.csv,"{""bytes"":51357}"
+evt-0202,2026-09-09T14:12:20Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-23.csv,"{""bytes"":51374}"
+evt-0203,2026-09-09T14:12:40Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-24.csv,"{""bytes"":51391}"
+evt-0204,2026-09-09T14:13:00Z,priya.nair@example.com,user,file_downloaded,claude.ai,192.0.2.26,US,files/weekly-metrics-25.csv,"{""bytes"":51408}"
+evt-0205,2026-09-09T14:13:08Z,gus.lindqvist@example.com,user,login_sso_success,claude.ai,192.0.2.17,US,Quarterly Notes,{}
+evt-0206,2026-09-09T14:18:10Z,rosa.silva@example.com,user,chat_created,claude-code,192.0.2.28,US,Quarterly Notes,{}
+evt-0207,2026-09-09T14:37:35Z,vic.hale@example.com,user,login_sso_success,claude-code,192.0.2.33,US,Vendor Review,{}
+evt-0208,2026-09-09T14:39:40Z,priya.nair@example.com,user,project_shared,claude-code,192.0.2.26,US,Test Plan,"{""shared_with"":""team-eng@example.com"",""external"":false,""permission"":""view""}"
+evt-0209,2026-09-09T14:43:43Z,hana.kobayashi@example.com,user,chat_created,desktop,198.51.100.18,US,Onboarding FAQ,{}
+evt-0210,2026-09-09T14:54:12Z,nia.owusu@example.com,user,file_uploaded,desktop,192.0.2.24,US,Vendor Review,{}
+evt-0211,2026-09-09T14:57:45Z,gus.lindqvist@example.com,user,api_key_used,api,192.0.2.17,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0212,2026-09-09T15:12:53Z,lee.ortega@example.com,user,chat_created,claude.ai,198.51.100.23,US,Support Macros,{}
+evt-0213,2026-09-09T15:18:12Z,hana.kobayashi@example.com,user,chat_created,desktop,198.51.100.18,US,Roadmap Q4,{}
+evt-0214,2026-09-09T15:29:39Z,nia.owusu@example.com,user,api_key_used,api,192.0.2.24,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0215,2026-09-09T15:30:41Z,quinn.reyes@example.com,user,file_downloaded,claude.ai,192.0.2.27,US,files/quarterly-notes.pdf,"{""bytes"":399831}"
+evt-0216,2026-09-09T15:33:58Z,sam.okafor@example.com,user,login_sso_success,claude-code,192.0.2.30,US,Quarterly Notes,{}
+evt-0217,2026-09-09T15:34:47Z,sam.okafor@example.com,user,api_key_used,api,192.0.2.30,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0218,2026-09-09T15:38:01Z,ben.alvarez@example.com,user,login_sso_success,claude-code,192.0.2.12,US,Vendor Review,{}
+evt-0219,2026-09-09T15:41:00Z,marcus.bell@example.com,user,api_key_created,api,203.0.113.55,RO,key-FAKE-0042,"{""key_id"":""key-FAKE-0042"",""scopes"":""messages,files""}"
+evt-0220,2026-09-09T15:52:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0221,2026-09-09T15:52:22Z,quinn.reyes@example.com,user,login_sso_success,desktop,192.0.2.27,US,Quarterly Notes,{}
+evt-0222,2026-09-09T15:57:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0223,2026-09-09T16:02:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0224,2026-09-09T16:02:59Z,ben.alvarez@example.com,user,api_key_used,api,192.0.2.12,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0225,2026-09-09T16:03:27Z,gus.lindqvist@example.com,user,chat_created,claude-code,192.0.2.17,US,Onboarding FAQ,{}
+evt-0226,2026-09-09T16:07:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0227,2026-09-09T16:10:04Z,ivan.petrov@example.com,user,chat_created,desktop,192.0.2.19,US,Support Macros,{}
+evt-0228,2026-09-09T16:12:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0229,2026-09-09T16:17:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0230,2026-09-09T16:19:31Z,quinn.reyes@example.com,user,claude_code_session_started,claude-code,192.0.2.27,US,Runbook Draft,{}
+evt-0231,2026-09-09T16:22:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0232,2026-09-09T16:25:15Z,ivan.petrov@example.com,user,chat_created,claude.ai,192.0.2.19,US,Onboarding FAQ,{}
+evt-0233,2026-09-09T16:27:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0234,2026-09-09T16:32:00Z,marcus.bell@example.com,user,api_key_used,api,203.0.113.55,RO,files,"{""key_id"":""key-FAKE-0042""}"
+evt-0235,2026-09-09T16:41:44Z,lee.ortega@example.com,user,file_uploaded,claude-code,198.51.100.23,US,Runbook Draft,{}
+evt-0236,2026-09-09T16:46:19Z,kira.novak@example.com,user,file_downloaded,claude-code,192.0.2.22,US,files/runbook-draft.pdf,"{""bytes"":117998}"
+evt-0237,2026-09-09T17:02:17Z,wen.zhao@example.com,user,claude_code_session_started,claude-code,192.0.2.34,US,Support Macros,{}
+evt-0238,2026-09-09T17:25:08Z,priya.nair@example.com,user,login_sso_success,claude.ai,192.0.2.26,US,Vendor Review,{}
+evt-0239,2026-09-09T17:26:43Z,evan.park@example.com,user,file_uploaded,desktop,192.0.2.15,US,Runbook Draft,{}
+evt-0240,2026-09-09T17:58:12Z,wen.zhao@example.com,user,login_sso_success,claude-code,192.0.2.34,US,Runbook Draft,{}
+evt-0241,2026-09-10T09:01:38Z,hana.kobayashi@example.com,user,claude_code_session_started,claude-code,198.51.100.18,US,Test Plan,{}
+evt-0242,2026-09-10T09:05:19Z,rosa.silva@example.com,user,login_sso_success,claude.ai,192.0.2.28,US,Onboarding FAQ,{}
+evt-0243,2026-09-10T09:11:07Z,ben.alvarez@example.com,user,chat_created,claude-code,192.0.2.12,US,Test Plan,{}
+evt-0244,2026-09-10T09:14:05Z,omar.haddad@example.com,user,login_sso_failed,claude.ai,192.0.2.25,US,,"{""reason"":""bad_password_or_assertion""}"
+evt-0245,2026-09-10T09:14:41Z,omar.haddad@example.com,user,login_sso_success,claude.ai,192.0.2.25,US,,{}
+evt-0246,2026-09-10T09:35:51Z,chloe.dubois@example.com,user,login_sso_success,desktop,192.0.2.13,US,Vendor Review,{}
+evt-0247,2026-09-10T09:43:02Z,xavi.ruiz@example.com,user,api_key_used,api,192.0.2.35,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0248,2026-09-10T09:47:56Z,hana.kobayashi@example.com,user,chat_created,claude.ai,198.51.100.18,US,Quarterly Notes,{}
+evt-0249,2026-09-10T09:49:25Z,rosa.silva@example.com,user,chat_created,claude-code,192.0.2.28,US,Vendor Review,{}
+evt-0250,2026-09-10T09:49:44Z,xavi.ruiz@example.com,user,file_uploaded,claude-code,192.0.2.35,US,Roadmap Q4,{}
+evt-0251,2026-09-10T09:53:23Z,jun.park@example.com,user,file_uploaded,claude-code,192.0.2.20,US,Test Plan,{}
+evt-0252,2026-09-10T10:05:15Z,farah.khan@example.com,user,chat_created,claude-code,192.0.2.16,US,Test Plan,{}
+evt-0253,2026-09-10T10:06:00Z,marcus.bell@example.com,user,login_sso_success,desktop,198.51.100.17,US,Support Macros,{}
+evt-0254,2026-09-10T10:12:32Z,ben.alvarez@example.com,user,chat_created,claude.ai,192.0.2.12,US,Roadmap Q4,{}
+evt-0255,2026-09-10T10:26:52Z,jun.park@example.com,user,chat_created,desktop,192.0.2.20,US,Runbook Draft,{}
+evt-0256,2026-09-10T10:41:51Z,tara.lund@example.com,user,api_key_used,api,192.0.2.31,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0257,2026-09-10T10:43:39Z,alice.moreau@example.com,user,api_key_used,api,192.0.2.11,US,messages,"{""key_id"":""key-FAKE-0013""}"
+evt-0258,2026-09-10T10:45:56Z,kira.novak@example.com,user,project_shared,claude.ai,192.0.2.22,US,Vendor Review,"{""shared_with"":""team-finance@example.com"",""external"":false,""permission"":""view""}"
+evt-0259,2026-09-10T10:50:57Z,nia.owusu@example.com,user,chat_created,claude.ai,192.0.2.24,US,Onboarding FAQ,{}
+evt-0260,2026-09-10T11:02:00Z,jun.park@example.com,user,project_shared,claude.ai,192.0.2.20,US,Project: Finance Close,"{""shared_with"":""team-finance@example.com"",""external"":false,""permission"":""edit""}"
+evt-0261,2026-09-10T11:17:37Z,hana.kobayashi@example.com,user,file_uploaded,claude-code,198.51.100.18,US,Vendor Review,{}
+evt-0262,2026-09-10T11:20:00Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0263,2026-09-10T11:20:38Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0264,2026-09-10T11:21:16Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0265,2026-09-10T11:21:54Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0266,2026-09-10T11:22:32Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0267,2026-09-10T11:23:10Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0268,2026-09-10T11:23:48Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0269,2026-09-10T11:24:26Z,lee.ortega@example.com,user,login_sso_failed,claude.ai,203.0.113.88,BR,,"{""reason"":""bad_password_or_assertion""}"
+evt-0270,2026-09-10T11:25:15Z,sam.okafor@example.com,user,file_uploaded,claude.ai,192.0.2.30,US,Vendor Review,{}
+evt-0271,2026-09-10T11:26:10Z,lee.ortega@example.com,user,login_sso_success,claude.ai,203.0.113.88,BR,,{}
+evt-0272,2026-09-10T11:28:05Z,lee.ortega@example.com,user,file_downloaded,claude.ai,203.0.113.88,BR,files/hr/payroll-extract-1.csv,"{""bytes"":120000}"
+evt-0273,2026-09-10T11:28:29Z,evan.park@example.com,user,chat_created,claude-code,192.0.2.15,US,Test Plan,{}
+evt-0274,2026-09-10T11:29:05Z,lee.ortega@example.com,user,file_downloaded,claude.ai,203.0.113.88,BR,files/hr/payroll-extract-2.csv,"{""bytes"":120000}"
+evt-0275,2026-09-10T11:30:05Z,lee.ortega@example.com,user,file_downloaded,claude.ai,203.0.113.88,BR,files/hr/payroll-extract-3.csv,"{""bytes"":120000}"
+evt-0276,2026-09-10T11:33:23Z,kira.novak@example.com,user,claude_code_session_started,claude-code,192.0.2.22,US,Vendor Review,{}
+evt-0277,2026-09-10T11:41:16Z,chloe.dubois@example.com,user,login_sso_success,claude.ai,192.0.2.13,US,Quarterly Notes,{}
+evt-0278,2026-09-10T12:11:54Z,kira.novak@example.com,user,login_sso_success,desktop,192.0.2.22,US,Onboarding FAQ,{}
+evt-0279,2026-09-10T12:28:18Z,chloe.dubois@example.com,user,chat_created,claude.ai,192.0.2.13,US,Onboarding FAQ,{}
+evt-0280,2026-09-10T12:38:59Z,nia.owusu@example.com,user,file_downloaded,claude-code,192.0.2.24,US,files/vendor-review.pdf,"{""bytes"":350758}"
+evt-0281,2026-09-10T12:44:26Z,chloe.dubois@example.com,user,claude_code_session_started,claude-code,192.0.2.13,US,Vendor Review,{}
+evt-0282,2026-09-10T12:46:26Z,rosa.silva@example.com,user,chat_created,claude.ai,192.0.2.28,US,Test Plan,{}
+evt-0283,2026-09-10T12:46:40Z,jun.park@example.com,user,chat_created,claude.ai,192.0.2.20,US,Onboarding FAQ,{}
+evt-0284,2026-09-10T13:05:12Z,farah.khan@example.com,user,api_key_used,api,192.0.2.16,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0285,2026-09-10T13:19:53Z,xavi.ruiz@example.com,user,cowork_session_started,cowork,192.0.2.35,US,Vendor Review,{}
+evt-0286,2026-09-10T13:20:18Z,chloe.dubois@example.com,user,api_key_used,api,192.0.2.13,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0287,2026-09-10T13:32:35Z,xavi.ruiz@example.com,user,project_created,desktop,192.0.2.35,US,Vendor Review,{}
+evt-0288,2026-09-10T13:36:36Z,uma.rao@example.com,user,chat_created,desktop,192.0.2.32,US,Support Macros,{}
+evt-0289,2026-09-10T13:37:36Z,vic.hale@example.com,user,login_sso_success,claude-code,192.0.2.33,US,Quarterly Notes,{}
+evt-0290,2026-09-10T14:03:14Z,nia.owusu@example.com,user,cowork_session_started,cowork,192.0.2.24,US,Roadmap Q4,{}
+evt-0291,2026-09-10T14:20:54Z,nia.owusu@example.com,user,claude_code_session_started,claude-code,192.0.2.24,US,Vendor Review,{}
+evt-0292,2026-09-10T14:24:08Z,alice.moreau@example.com,user,project_created,claude-code,192.0.2.11,US,Onboarding FAQ,{}
+evt-0293,2026-09-10T14:33:33Z,nia.owusu@example.com,user,cowork_session_started,cowork,192.0.2.24,US,Vendor Review,{}
+evt-0294,2026-09-10T14:44:48Z,lee.ortega@example.com,user,chat_created,claude-code,198.51.100.23,US,Runbook Draft,{}
+evt-0295,2026-09-10T14:54:58Z,farah.khan@example.com,user,claude_code_session_started,claude-code,192.0.2.16,US,Runbook Draft,{}
+evt-0296,2026-09-10T15:14:26Z,rosa.silva@example.com,user,file_downloaded,claude.ai,192.0.2.28,US,files/support-macros.pdf,"{""bytes"":159988}"
+evt-0297,2026-09-10T15:16:46Z,lee.ortega@example.com,user,chat_created,claude-code,198.51.100.23,US,Vendor Review,{}
+evt-0298,2026-09-10T15:17:30Z,kira.novak@example.com,user,api_key_used,api,192.0.2.22,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0299,2026-09-10T15:26:34Z,nia.owusu@example.com,user,chat_created,claude-code,192.0.2.24,US,Support Macros,{}
+evt-0300,2026-09-10T15:28:28Z,evan.park@example.com,user,chat_created,desktop,192.0.2.15,US,Test Plan,{}
+evt-0301,2026-09-10T15:59:03Z,hana.kobayashi@example.com,user,login_sso_success,claude-code,198.51.100.18,US,Vendor Review,{}
+evt-0302,2026-09-10T16:02:42Z,hana.kobayashi@example.com,user,login_sso_success,claude.ai,198.51.100.18,US,Support Macros,{}
+evt-0303,2026-09-10T16:17:11Z,wen.zhao@example.com,user,file_uploaded,desktop,192.0.2.34,US,Roadmap Q4,{}
+evt-0304,2026-09-10T16:34:55Z,rosa.silva@example.com,user,project_created,claude-code,192.0.2.28,US,Test Plan,{}
+evt-0305,2026-09-10T16:45:11Z,rosa.silva@example.com,user,chat_created,claude.ai,192.0.2.28,US,Runbook Draft,{}
+evt-0306,2026-09-10T16:52:32Z,omar.haddad@example.com,user,chat_created,desktop,192.0.2.25,US,Roadmap Q4,{}
+evt-0307,2026-09-10T17:06:06Z,priya.nair@example.com,user,file_downloaded,claude-code,192.0.2.26,US,files/vendor-review.pdf,"{""bytes"":151887}"
+evt-0308,2026-09-10T17:14:30Z,ben.alvarez@example.com,user,login_sso_success,claude.ai,192.0.2.12,US,Roadmap Q4,{}
+evt-0309,2026-09-10T17:16:26Z,omar.haddad@example.com,user,cowork_session_started,cowork,192.0.2.25,US,Runbook Draft,{}
+evt-0310,2026-09-10T17:21:19Z,tara.lund@example.com,user,login_sso_success,claude.ai,192.0.2.31,US,Runbook Draft,{}
+evt-0311,2026-09-10T17:41:32Z,chloe.dubois@example.com,user,file_downloaded,claude.ai,192.0.2.13,US,files/runbook-draft.pdf,"{""bytes"":147568}"
+evt-0312,2026-09-10T17:48:22Z,ben.alvarez@example.com,user,cowork_session_started,cowork,192.0.2.12,US,Quarterly Notes,{}
+evt-0313,2026-09-10T17:48:34Z,jun.park@example.com,user,claude_code_session_started,claude-code,192.0.2.20,US,Roadmap Q4,{}
+evt-0314,2026-09-10T17:49:31Z,evan.park@example.com,user,chat_created,claude-code,192.0.2.15,US,Runbook Draft,{}
+evt-0315,2026-09-10T17:49:33Z,gus.lindqvist@example.com,user,login_sso_success,claude.ai,192.0.2.17,US,Onboarding FAQ,{}
+evt-0316,2026-09-11T09:01:53Z,alice.moreau@example.com,user,claude_code_session_started,claude-code,192.0.2.11,US,Roadmap Q4,{}
+evt-0317,2026-09-11T09:12:20Z,evan.park@example.com,user,cowork_session_started,cowork,192.0.2.15,US,Vendor Review,{}
+evt-0318,2026-09-11T09:18:19Z,tara.lund@example.com,user,api_key_used,api,192.0.2.31,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0319,2026-09-11T09:25:10Z,omar.haddad@example.com,user,project_created,claude-code,192.0.2.25,US,Runbook Draft,{}
+evt-0320,2026-09-11T09:28:38Z,wen.zhao@example.com,user,chat_created,claude-code,192.0.2.34,US,Quarterly Notes,{}
+evt-0321,2026-09-11T09:36:01Z,wen.zhao@example.com,user,chat_created,desktop,192.0.2.34,US,Onboarding FAQ,{}
+evt-0322,2026-09-11T09:38:36Z,farah.khan@example.com,user,file_uploaded,claude-code,192.0.2.16,US,Test Plan,{}
+evt-0323,2026-09-11T09:58:43Z,ivan.petrov@example.com,user,login_sso_success,claude.ai,192.0.2.19,US,Test Plan,{}
+evt-0324,2026-09-11T10:01:01Z,kira.novak@example.com,user,chat_created,desktop,192.0.2.22,US,Runbook Draft,{}
+evt-0325,2026-09-11T10:03:47Z,priya.nair@example.com,user,login_sso_success,desktop,192.0.2.26,US,Test Plan,{}
+evt-0326,2026-09-11T10:14:34Z,chloe.dubois@example.com,user,login_sso_success,claude.ai,192.0.2.13,US,Onboarding FAQ,{}
+evt-0327,2026-09-11T10:22:52Z,marcus.bell@example.com,user,claude_code_session_started,claude-code,198.51.100.17,US,Support Macros,{}
+evt-0328,2026-09-11T10:35:18Z,evan.park@example.com,user,claude_code_session_started,claude-code,192.0.2.15,US,Vendor Review,{}
+evt-0329,2026-09-11T10:56:37Z,farah.khan@example.com,user,claude_code_session_started,claude-code,192.0.2.16,US,Vendor Review,{}
+evt-0330,2026-09-11T11:05:58Z,jun.park@example.com,user,login_sso_success,claude.ai,192.0.2.20,US,Runbook Draft,{}
+evt-0331,2026-09-11T11:22:00Z,nia.owusu@example.com,user,project_created,desktop,192.0.2.24,US,Quarterly Notes,{}
+evt-0332,2026-09-11T11:51:09Z,hana.kobayashi@example.com,user,chat_created,claude-code,198.51.100.18,US,Runbook Draft,{}
+evt-0333,2026-09-11T12:00:44Z,alice.moreau@example.com,user,login_sso_success,desktop,192.0.2.11,US,Onboarding FAQ,{}
+evt-0334,2026-09-11T12:12:34Z,dana.whitfield@example.com,user,project_created,claude-code,198.51.100.21,US,Runbook Draft,{}
+evt-0335,2026-09-11T12:14:22Z,farah.khan@example.com,user,api_key_used,api,192.0.2.16,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0336,2026-09-11T12:19:57Z,omar.haddad@example.com,user,project_created,desktop,192.0.2.25,US,Onboarding FAQ,{}
+evt-0337,2026-09-11T12:24:21Z,vic.hale@example.com,user,file_downloaded,claude.ai,192.0.2.33,US,files/runbook-draft.pdf,"{""bytes"":34996}"
+evt-0338,2026-09-11T12:33:35Z,ben.alvarez@example.com,user,api_key_used,api,192.0.2.12,US,messages,"{""key_id"":""key-FAKE-0014""}"
+evt-0339,2026-09-11T12:55:00Z,uma.rao@example.com,user,chat_created,desktop,192.0.2.32,US,Quarterly Notes,{}
+evt-0340,2026-09-11T13:00:08Z,wen.zhao@example.com,user,claude_code_session_started,claude-code,192.0.2.34,US,Roadmap Q4,{}
+evt-0341,2026-09-11T13:21:48Z,evan.park@example.com,user,api_key_used,api,192.0.2.15,US,messages,"{""key_id"":""key-FAKE-0012""}"
+evt-0342,2026-09-11T13:33:15Z,tara.lund@example.com,user,chat_created,claude-code,192.0.2.31,US,Roadmap Q4,{}
+evt-0343,2026-09-11T13:42:29Z,marcus.bell@example.com,user,chat_created,claude.ai,198.51.100.17,US,Runbook Draft,{}
+evt-0344,2026-09-11T14:00:12Z,quinn.reyes@example.com,user,claude_code_session_started,claude-code,192.0.2.27,US,Roadmap Q4,{}
+evt-0345,2026-09-11T14:22:35Z,rosa.silva@example.com,user,chat_created,claude.ai,192.0.2.28,US,Onboarding FAQ,{}
+evt-0346,2026-09-11T14:30:18Z,quinn.reyes@example.com,user,file_downloaded,desktop,192.0.2.27,US,files/onboarding-faq.pdf,"{""bytes"":168792}"
+evt-0347,2026-09-11T14:33:39Z,hana.kobayashi@example.com,user,chat_created,claude-code,198.51.100.18,US,Support Macros,{}
+evt-0348,2026-09-11T14:48:09Z,uma.rao@example.com,user,file_uploaded,claude-code,192.0.2.32,US,Support Macros,{}
+evt-0349,2026-09-11T15:00:08Z,kira.novak@example.com,user,claude_code_session_started,claude-code,192.0.2.22,US,Test Plan,{}
+evt-0350,2026-09-11T15:00:13Z,farah.khan@example.com,user,chat_created,claude.ai,192.0.2.16,US,Runbook Draft,{}
+evt-0351,2026-09-11T15:02:45Z,gus.lindqvist@example.com,user,claude_code_session_started,claude-code,192.0.2.17,US,Test Plan,{}
+evt-0352,2026-09-11T15:33:43Z,dana.whitfield@example.com,user,login_sso_success,claude-code,198.51.100.21,US,Quarterly Notes,{}
+evt-0353,2026-09-11T15:35:18Z,rosa.silva@example.com,user,claude_code_session_started,claude-code,192.0.2.28,US,Support Macros,{}
+evt-0354,2026-09-11T15:42:47Z,farah.khan@example.com,user,claude_code_session_started,claude-code,192.0.2.16,US,Runbook Draft,{}
+evt-0355,2026-09-11T15:48:55Z,kira.novak@example.com,user,file_downloaded,claude-code,192.0.2.22,US,files/vendor-review.pdf,"{""bytes"":245088}"
+evt-0356,2026-09-11T15:56:31Z,lee.ortega@example.com,user,login_sso_success,desktop,198.51.100.23,US,Vendor Review,{}
+evt-0357,2026-09-11T16:12:06Z,wen.zhao@example.com,user,api_key_used,api,192.0.2.34,US,messages,"{""key_id"":""key-FAKE-0011""}"
+evt-0358,2026-09-11T16:13:36Z,lee.ortega@example.com,user,cowork_session_started,cowork,198.51.100.23,US,Test Plan,{}
+evt-0359,2026-09-11T16:14:07Z,wen.zhao@example.com,user,file_uploaded,claude-code,192.0.2.34,US,Vendor Review,{}
+evt-0360,2026-09-11T16:22:00Z,hana.kobayashi@example.com,user,project_shared,claude.ai,198.51.100.18,US,Project: Q4 Pricing Strategy,"{""shared_with"":""consultant@outside-example.net"",""external"":true,""permission"":""edit""}"
+evt-0361,2026-09-11T16:22:16Z,quinn.reyes@example.com,user,chat_created,claude.ai,192.0.2.27,US,Runbook Draft,{}
+evt-0362,2026-09-11T16:27:45Z,dana.whitfield@example.com,user,login_sso_success,claude-code,198.51.100.21,US,Onboarding FAQ,{}
+evt-0363,2026-09-11T16:31:13Z,priya.nair@example.com,user,login_sso_success,desktop,192.0.2.26,US,Vendor Review,{}
+evt-0364,2026-09-11T16:42:01Z,jun.park@example.com,user,login_sso_success,desktop,192.0.2.20,US,Runbook Draft,{}
+evt-0365,2026-09-11T16:42:22Z,nia.owusu@example.com,user,claude_code_session_started,claude-code,192.0.2.24,US,Test Plan,{}
+evt-0366,2026-09-11T16:52:43Z,tara.lund@example.com,user,chat_created,claude.ai,192.0.2.31,US,Support Macros,{}
+evt-0367,2026-09-11T16:53:13Z,omar.haddad@example.com,user,chat_created,claude.ai,192.0.2.25,US,Vendor Review,{}
+evt-0368,2026-09-11T17:15:03Z,wen.zhao@example.com,user,login_sso_success,claude-code,192.0.2.34,US,Roadmap Q4,{}
+evt-0369,2026-09-11T17:19:39Z,evan.park@example.com,user,file_downloaded,claude-code,192.0.2.15,US,files/vendor-review.pdf,"{""bytes"":23224}"
+evt-0370,2026-09-11T17:32:54Z,jun.park@example.com,user,login_sso_success,claude.ai,192.0.2.20,US,Roadmap Q4,{}
+evt-0371,2026-09-11T17:34:08Z,farah.khan@example.com,user,chat_created,claude-code,192.0.2.16,US,Quarterly Notes,{}
+evt-0372,2026-09-11T17:56:57Z,lee.ortega@example.com,user,chat_created,desktop,198.51.100.23,US,Runbook Draft,{}
+evt-0373,2026-09-11T17:58:12Z,alice.moreau@example.com,user,login_sso_success,claude.ai,192.0.2.11,US,Support Macros,{}
+evt-0374,2026-09-12T02:14:00Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-01.pdf,"{""bytes"":800000}"
+evt-0375,2026-09-12T02:14:16Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-02.pdf,"{""bytes"":800311}"
+evt-0376,2026-09-12T02:14:32Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-03.pdf,"{""bytes"":800622}"
+evt-0377,2026-09-12T02:14:48Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-04.pdf,"{""bytes"":800933}"
+evt-0378,2026-09-12T02:15:04Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-05.pdf,"{""bytes"":801244}"
+evt-0379,2026-09-12T02:15:20Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-06.pdf,"{""bytes"":801555}"
+evt-0380,2026-09-12T02:15:36Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-07.pdf,"{""bytes"":801866}"
+evt-0381,2026-09-12T02:15:52Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-08.pdf,"{""bytes"":802177}"
+evt-0382,2026-09-12T02:16:08Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-09.pdf,"{""bytes"":802488}"
+evt-0383,2026-09-12T02:16:24Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-10.pdf,"{""bytes"":802799}"
+evt-0384,2026-09-12T02:16:40Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-11.pdf,"{""bytes"":803110}"
+evt-0385,2026-09-12T02:16:56Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-12.pdf,"{""bytes"":803421}"
+evt-0386,2026-09-12T02:17:12Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-13.pdf,"{""bytes"":803732}"
+evt-0387,2026-09-12T02:17:28Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-14.pdf,"{""bytes"":804043}"
+evt-0388,2026-09-12T02:17:44Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-15.pdf,"{""bytes"":804354}"
+evt-0389,2026-09-12T02:18:00Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-16.pdf,"{""bytes"":804665}"
+evt-0390,2026-09-12T02:18:16Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-17.pdf,"{""bytes"":804976}"
+evt-0391,2026-09-12T02:18:32Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-18.pdf,"{""bytes"":805287}"
+evt-0392,2026-09-12T02:18:48Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-19.pdf,"{""bytes"":805598}"
+evt-0393,2026-09-12T02:19:04Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-20.pdf,"{""bytes"":805909}"
+evt-0394,2026-09-12T02:19:20Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-21.pdf,"{""bytes"":806220}"
+evt-0395,2026-09-12T02:19:36Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-22.pdf,"{""bytes"":806531}"
+evt-0396,2026-09-12T02:19:52Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-23.pdf,"{""bytes"":806842}"
+evt-0397,2026-09-12T02:20:08Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-24.pdf,"{""bytes"":807153}"
+evt-0398,2026-09-12T02:20:24Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-25.pdf,"{""bytes"":807464}"
+evt-0399,2026-09-12T02:20:40Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-26.pdf,"{""bytes"":807775}"
+evt-0400,2026-09-12T02:20:56Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-27.pdf,"{""bytes"":808086}"
+evt-0401,2026-09-12T02:21:12Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-28.pdf,"{""bytes"":808397}"
+evt-0402,2026-09-12T02:21:28Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-29.pdf,"{""bytes"":808708}"
+evt-0403,2026-09-12T02:21:44Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-30.pdf,"{""bytes"":809019}"
+evt-0404,2026-09-12T02:22:00Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-31.pdf,"{""bytes"":809330}"
+evt-0405,2026-09-12T02:22:16Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-32.pdf,"{""bytes"":809641}"
+evt-0406,2026-09-12T02:22:32Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-33.pdf,"{""bytes"":809952}"
+evt-0407,2026-09-12T02:22:48Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-34.pdf,"{""bytes"":810263}"
+evt-0408,2026-09-12T02:23:04Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-35.pdf,"{""bytes"":810574}"
+evt-0409,2026-09-12T02:23:20Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-36.pdf,"{""bytes"":810885}"
+evt-0410,2026-09-12T02:23:36Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-37.pdf,"{""bytes"":811196}"
+evt-0411,2026-09-12T02:23:52Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-38.pdf,"{""bytes"":811507}"
+evt-0412,2026-09-12T02:24:08Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-39.pdf,"{""bytes"":811818}"
+evt-0413,2026-09-12T02:24:24Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-40.pdf,"{""bytes"":812129}"
+evt-0414,2026-09-12T02:24:40Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-41.pdf,"{""bytes"":812440}"
+evt-0415,2026-09-12T02:24:56Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-42.pdf,"{""bytes"":812751}"
+evt-0416,2026-09-12T02:25:12Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-43.pdf,"{""bytes"":813062}"
+evt-0417,2026-09-12T02:25:28Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-44.pdf,"{""bytes"":813373}"
+evt-0418,2026-09-12T02:25:44Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-45.pdf,"{""bytes"":813684}"
+evt-0419,2026-09-12T02:26:00Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-46.pdf,"{""bytes"":813995}"
+evt-0420,2026-09-12T02:26:16Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-47.pdf,"{""bytes"":814306}"
+evt-0421,2026-09-12T02:26:32Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-48.pdf,"{""bytes"":814617}"
+evt-0422,2026-09-12T02:26:48Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-49.pdf,"{""bytes"":814928}"
+evt-0423,2026-09-12T02:27:04Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-50.pdf,"{""bytes"":815239}"
+evt-0424,2026-09-12T02:27:20Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-51.pdf,"{""bytes"":815550}"
+evt-0425,2026-09-12T02:27:36Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-52.pdf,"{""bytes"":815861}"
+evt-0426,2026-09-12T02:27:52Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-53.pdf,"{""bytes"":816172}"
+evt-0427,2026-09-12T02:28:08Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-54.pdf,"{""bytes"":816483}"
+evt-0428,2026-09-12T02:28:24Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-55.pdf,"{""bytes"":816794}"
+evt-0429,2026-09-12T02:28:40Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-56.pdf,"{""bytes"":817105}"
+evt-0430,2026-09-12T02:28:56Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-57.pdf,"{""bytes"":817416}"
+evt-0431,2026-09-12T02:29:12Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-58.pdf,"{""bytes"":817727}"
+evt-0432,2026-09-12T02:29:28Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-59.pdf,"{""bytes"":818038}"
+evt-0433,2026-09-12T02:29:44Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-60.pdf,"{""bytes"":818349}"
+evt-0434,2026-09-12T02:30:00Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-61.pdf,"{""bytes"":818660}"
+evt-0435,2026-09-12T02:30:16Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-62.pdf,"{""bytes"":818971}"
+evt-0436,2026-09-12T02:30:32Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-63.pdf,"{""bytes"":819282}"
+evt-0437,2026-09-12T02:30:48Z,dana.whitfield@example.com,user,file_downloaded,claude.ai,198.51.100.21,US,files/finance/board-pack-64.pdf,"{""bytes"":819593}"
+evt-0438,2026-09-12T10:03:00Z,gus.lindqvist@example.com,user,chat_created,claude.ai,192.0.2.17,US,Weekend Notes,{}
+evt-0439,2026-09-13T20:41:00Z,tara.lund@example.com,user,chat_created,claude.ai,192.0.2.31,US,Side Project Ideas,{}

@@ -1,0 +1,16 @@
+diff --git a/lending/reports.py b/lending/reports.py
+index ec2e378..f894390 100644
+--- a/lending/reports.py
++++ b/lending/reports.py
+@@ -1,2 +1,11 @@
+ def overdue_titles(loans, today):
+     return sorted(loan["title"] for loan in loans if loan["due"] < today)
++
++
++def longest_gap_days(due_dates):
++    """Largest number of days between two consecutive due dates, or 0 for fewer than two."""
++    dates = sorted(due_dates)
++    longest = 0
++    for i in range(len(dates) - 1):
++        longest = max(longest, (dates[i + 1] - dates[i]).days)
++    return longest

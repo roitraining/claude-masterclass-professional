@@ -1,0 +1,4 @@
+step,system,action,owner
+1,HR,Termination ticket approved,hr
+2,Claude,Remove the member from the Members list in Claude organization settings,claude-admin
+3,Ticketing,Close the offboarding ticket,it-help

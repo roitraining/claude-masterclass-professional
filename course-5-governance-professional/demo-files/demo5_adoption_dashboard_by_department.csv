@@ -1,0 +1,9 @@
+department,seats_licensed,weekly_active_users,active_percent,total_prompts_aug,intake_requests_submitted,exceptions_open,exceptions_past_expiry,tier3_uses_in_inventory,tier3_uses_with_evidence
+Sales,90,88,98,21400,2,14,9,1,0
+Engineering,70,66,94,15900,9,3,0,0,0
+Marketing,40,37,93,6100,3,1,0,0,0
+Support,80,39,49,3200,4,2,0,3,1
+Finance,30,24,80,2100,1,1,1,1,0
+Legal,15,8,53,400,2,0,0,0,0
+HR,20,18,90,900,2,2,1,2,1
+Operations,55,32,58,1300,2,0,0,0,0

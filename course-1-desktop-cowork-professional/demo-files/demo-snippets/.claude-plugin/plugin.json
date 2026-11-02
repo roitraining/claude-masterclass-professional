@@ -1,0 +1,6 @@
+{
+  "name": "records-desk",
+  "description": "Audits a small records file for stale entries and writes a short summary.",
+  "version": "0.1.0",
+  "author": { "name": "Instructor" }
+}

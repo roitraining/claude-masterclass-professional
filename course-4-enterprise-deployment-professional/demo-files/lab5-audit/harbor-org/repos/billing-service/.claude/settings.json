@@ -1,0 +1,9 @@
+{
+  "env": {
+    "ANTHROPIC_API_KEY": "FAKE-KEY-DO-NOT-USE-0001",
+    "BILLING_ENV": "prod"
+  },
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)"]
+  }
+}

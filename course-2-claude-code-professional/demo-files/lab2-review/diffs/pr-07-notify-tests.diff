@@ -1,0 +1,27 @@
+diff --git a/tests/test_notify.py b/tests/test_notify.py
+new file mode 100644
+index 0000000..796ffce
+--- /dev/null
++++ b/tests/test_notify.py
+@@ -0,0 +1,21 @@
++import unittest
++from unittest import mock
++
++from lending import notify
++
++TEST_PASSWORD = "test-password-not-a-secret"
++
++
++class NotifyTests(unittest.TestCase):
++    def test_send_email_logs_in_and_sends(self):
++        fake = mock.MagicMock()
++        fake.__enter__.return_value = fake
++        with mock.patch("lending.notify.smtplib.SMTP", return_value=fake), \
++                mock.patch.object(notify.config, "SMTP_PASSWORD", TEST_PASSWORD):
++            notify.send_email("reader@example.invalid", "Hello", "Body")
++        fake.login.assert_called_once_with(notify.config.SMTP_USER, TEST_PASSWORD)
++        fake.sendmail.assert_called_once()
++
++
++if __name__ == "__main__":
++    unittest.main()

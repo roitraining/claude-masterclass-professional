@@ -1,0 +1,3 @@
+# Packages are left unpinned on purpose. The instructor pins versions after rehearsing on the class image.
+claude-agent-sdk
+mcp[cli]

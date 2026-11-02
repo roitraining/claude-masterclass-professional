@@ -1,0 +1,5705 @@
+{
+ "export_meta": {
+  "source": "SYNTHETIC export for training. Not Compliance API output. Event type names and fields are invented for the lab.",
+  "timezone": "UTC",
+  "org_business_hours_utc": "09:00-18:00 Monday to Friday",
+  "org_known_locations": "US (192.0.2.0/24 and 198.51.100.0/24)",
+  "event_count": 439
+ },
+ "events": [
+  {
+   "event_id": "evt-0001",
+   "timestamp": "2026-09-07T09:13:49Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0002",
+   "timestamp": "2026-09-07T09:36:36Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0003",
+   "timestamp": "2026-09-07T09:55:28Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0004",
+   "timestamp": "2026-09-07T09:59:27Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0005",
+   "timestamp": "2026-09-07T10:10:20Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0006",
+   "timestamp": "2026-09-07T10:38:05Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0007",
+   "timestamp": "2026-09-07T10:38:39Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0008",
+   "timestamp": "2026-09-07T10:40:00Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0009",
+   "timestamp": "2026-09-07T11:01:56Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0010",
+   "timestamp": "2026-09-07T11:07:16Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0011",
+   "timestamp": "2026-09-07T11:11:25Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "files/vendor-review.pdf",
+   "details": {
+    "bytes": 218026
+   }
+  },
+  {
+   "event_id": "evt-0012",
+   "timestamp": "2026-09-07T11:14:10Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0013",
+   "timestamp": "2026-09-07T11:52:18Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0014",
+   "timestamp": "2026-09-07T11:54:14Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0015",
+   "timestamp": "2026-09-07T11:55:18Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0016",
+   "timestamp": "2026-09-07T12:01:27Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "files/roadmap-q4.pdf",
+   "details": {
+    "bytes": 386271
+   }
+  },
+  {
+   "event_id": "evt-0017",
+   "timestamp": "2026-09-07T12:01:41Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0018",
+   "timestamp": "2026-09-07T12:02:37Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0019",
+   "timestamp": "2026-09-07T12:04:18Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0020",
+   "timestamp": "2026-09-07T12:04:43Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0021",
+   "timestamp": "2026-09-07T12:58:27Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0022",
+   "timestamp": "2026-09-07T13:01:56Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0023",
+   "timestamp": "2026-09-07T13:17:15Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0024",
+   "timestamp": "2026-09-07T13:19:30Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0025",
+   "timestamp": "2026-09-07T13:30:33Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0026",
+   "timestamp": "2026-09-07T13:39:05Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0027",
+   "timestamp": "2026-09-07T13:42:59Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0028",
+   "timestamp": "2026-09-07T13:44:11Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0029",
+   "timestamp": "2026-09-07T13:44:21Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0030",
+   "timestamp": "2026-09-07T13:55:09Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0031",
+   "timestamp": "2026-09-07T13:59:36Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0032",
+   "timestamp": "2026-09-07T14:07:22Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0033",
+   "timestamp": "2026-09-07T14:19:38Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0034",
+   "timestamp": "2026-09-07T14:20:53Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0035",
+   "timestamp": "2026-09-07T14:40:53Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {
+    "shared_with": "team-support@example.com",
+    "external": false,
+    "permission": "view"
+   }
+  },
+  {
+   "event_id": "evt-0036",
+   "timestamp": "2026-09-07T14:49:53Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0037",
+   "timestamp": "2026-09-07T14:51:23Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0038",
+   "timestamp": "2026-09-07T15:14:34Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0039",
+   "timestamp": "2026-09-07T15:23:08Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0040",
+   "timestamp": "2026-09-07T15:27:06Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0041",
+   "timestamp": "2026-09-07T15:48:02Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0042",
+   "timestamp": "2026-09-07T15:48:33Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0043",
+   "timestamp": "2026-09-07T15:58:16Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0044",
+   "timestamp": "2026-09-07T16:04:04Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "files/support-macros.pdf",
+   "details": {
+    "bytes": 124751
+   }
+  },
+  {
+   "event_id": "evt-0045",
+   "timestamp": "2026-09-07T16:20:39Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0046",
+   "timestamp": "2026-09-07T16:22:18Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0047",
+   "timestamp": "2026-09-07T16:29:28Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0048",
+   "timestamp": "2026-09-07T16:53:24Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "desktop",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {
+    "shared_with": "team-support@example.com",
+    "external": false,
+    "permission": "view"
+   }
+  },
+  {
+   "event_id": "evt-0049",
+   "timestamp": "2026-09-07T17:17:21Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0050",
+   "timestamp": "2026-09-07T17:22:54Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0051",
+   "timestamp": "2026-09-07T17:26:25Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0052",
+   "timestamp": "2026-09-07T17:40:28Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0053",
+   "timestamp": "2026-09-08T09:18:42Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0054",
+   "timestamp": "2026-09-08T09:26:31Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0055",
+   "timestamp": "2026-09-08T09:26:32Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0056",
+   "timestamp": "2026-09-08T09:27:23Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0057",
+   "timestamp": "2026-09-08T09:33:32Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0058",
+   "timestamp": "2026-09-08T09:50:58Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0059",
+   "timestamp": "2026-09-08T10:02:47Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0060",
+   "timestamp": "2026-09-08T10:09:10Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0061",
+   "timestamp": "2026-09-08T10:13:17Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0062",
+   "timestamp": "2026-09-08T10:14:37Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0063",
+   "timestamp": "2026-09-08T10:30:41Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0064",
+   "timestamp": "2026-09-08T10:57:43Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0065",
+   "timestamp": "2026-09-08T11:03:53Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0066",
+   "timestamp": "2026-09-08T11:06:44Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0067",
+   "timestamp": "2026-09-08T11:18:03Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0068",
+   "timestamp": "2026-09-08T11:23:24Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0069",
+   "timestamp": "2026-09-08T11:52:42Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0070",
+   "timestamp": "2026-09-08T11:54:04Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0071",
+   "timestamp": "2026-09-08T11:54:06Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0072",
+   "timestamp": "2026-09-08T12:03:11Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0073",
+   "timestamp": "2026-09-08T12:09:58Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0074",
+   "timestamp": "2026-09-08T12:12:39Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0075",
+   "timestamp": "2026-09-08T12:14:46Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0076",
+   "timestamp": "2026-09-08T12:26:50Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0077",
+   "timestamp": "2026-09-08T12:39:45Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "files/quarterly-notes.pdf",
+   "details": {
+    "bytes": 304040
+   }
+  },
+  {
+   "event_id": "evt-0078",
+   "timestamp": "2026-09-08T12:44:33Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "files/vendor-review.pdf",
+   "details": {
+    "bytes": 297215
+   }
+  },
+  {
+   "event_id": "evt-0079",
+   "timestamp": "2026-09-08T12:47:34Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0080",
+   "timestamp": "2026-09-08T12:53:56Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0081",
+   "timestamp": "2026-09-08T13:29:21Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0082",
+   "timestamp": "2026-09-08T13:35:35Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0083",
+   "timestamp": "2026-09-08T13:47:05Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0084",
+   "timestamp": "2026-09-08T13:58:06Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0085",
+   "timestamp": "2026-09-08T14:02:04Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0086",
+   "timestamp": "2026-09-08T14:02:53Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0087",
+   "timestamp": "2026-09-08T14:03:48Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0088",
+   "timestamp": "2026-09-08T14:05:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-01.csv",
+   "details": {
+    "bytes": 51000
+   }
+  },
+  {
+   "event_id": "evt-0089",
+   "timestamp": "2026-09-08T14:05:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-02.csv",
+   "details": {
+    "bytes": 51017
+   }
+  },
+  {
+   "event_id": "evt-0090",
+   "timestamp": "2026-09-08T14:05:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-03.csv",
+   "details": {
+    "bytes": 51034
+   }
+  },
+  {
+   "event_id": "evt-0091",
+   "timestamp": "2026-09-08T14:06:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-04.csv",
+   "details": {
+    "bytes": 51051
+   }
+  },
+  {
+   "event_id": "evt-0092",
+   "timestamp": "2026-09-08T14:06:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-05.csv",
+   "details": {
+    "bytes": 51068
+   }
+  },
+  {
+   "event_id": "evt-0093",
+   "timestamp": "2026-09-08T14:06:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-06.csv",
+   "details": {
+    "bytes": 51085
+   }
+  },
+  {
+   "event_id": "evt-0094",
+   "timestamp": "2026-09-08T14:07:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-07.csv",
+   "details": {
+    "bytes": 51102
+   }
+  },
+  {
+   "event_id": "evt-0095",
+   "timestamp": "2026-09-08T14:07:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-08.csv",
+   "details": {
+    "bytes": 51119
+   }
+  },
+  {
+   "event_id": "evt-0096",
+   "timestamp": "2026-09-08T14:07:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-09.csv",
+   "details": {
+    "bytes": 51136
+   }
+  },
+  {
+   "event_id": "evt-0097",
+   "timestamp": "2026-09-08T14:08:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-10.csv",
+   "details": {
+    "bytes": 51153
+   }
+  },
+  {
+   "event_id": "evt-0098",
+   "timestamp": "2026-09-08T14:08:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-11.csv",
+   "details": {
+    "bytes": 51170
+   }
+  },
+  {
+   "event_id": "evt-0099",
+   "timestamp": "2026-09-08T14:08:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-12.csv",
+   "details": {
+    "bytes": 51187
+   }
+  },
+  {
+   "event_id": "evt-0100",
+   "timestamp": "2026-09-08T14:09:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-13.csv",
+   "details": {
+    "bytes": 51204
+   }
+  },
+  {
+   "event_id": "evt-0101",
+   "timestamp": "2026-09-08T14:09:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-14.csv",
+   "details": {
+    "bytes": 51221
+   }
+  },
+  {
+   "event_id": "evt-0102",
+   "timestamp": "2026-09-08T14:09:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-15.csv",
+   "details": {
+    "bytes": 51238
+   }
+  },
+  {
+   "event_id": "evt-0103",
+   "timestamp": "2026-09-08T14:10:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-16.csv",
+   "details": {
+    "bytes": 51255
+   }
+  },
+  {
+   "event_id": "evt-0104",
+   "timestamp": "2026-09-08T14:10:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-17.csv",
+   "details": {
+    "bytes": 51272
+   }
+  },
+  {
+   "event_id": "evt-0105",
+   "timestamp": "2026-09-08T14:10:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-18.csv",
+   "details": {
+    "bytes": 51289
+   }
+  },
+  {
+   "event_id": "evt-0106",
+   "timestamp": "2026-09-08T14:11:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-19.csv",
+   "details": {
+    "bytes": 51306
+   }
+  },
+  {
+   "event_id": "evt-0107",
+   "timestamp": "2026-09-08T14:11:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-20.csv",
+   "details": {
+    "bytes": 51323
+   }
+  },
+  {
+   "event_id": "evt-0108",
+   "timestamp": "2026-09-08T14:11:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-21.csv",
+   "details": {
+    "bytes": 51340
+   }
+  },
+  {
+   "event_id": "evt-0109",
+   "timestamp": "2026-09-08T14:12:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-22.csv",
+   "details": {
+    "bytes": 51357
+   }
+  },
+  {
+   "event_id": "evt-0110",
+   "timestamp": "2026-09-08T14:12:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-23.csv",
+   "details": {
+    "bytes": 51374
+   }
+  },
+  {
+   "event_id": "evt-0111",
+   "timestamp": "2026-09-08T14:12:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-24.csv",
+   "details": {
+    "bytes": 51391
+   }
+  },
+  {
+   "event_id": "evt-0112",
+   "timestamp": "2026-09-08T14:12:59Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0113",
+   "timestamp": "2026-09-08T14:13:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-25.csv",
+   "details": {
+    "bytes": 51408
+   }
+  },
+  {
+   "event_id": "evt-0114",
+   "timestamp": "2026-09-08T14:17:27Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0115",
+   "timestamp": "2026-09-08T14:28:26Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0116",
+   "timestamp": "2026-09-08T15:00:21Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0117",
+   "timestamp": "2026-09-08T15:17:21Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0118",
+   "timestamp": "2026-09-08T15:29:22Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0119",
+   "timestamp": "2026-09-08T15:32:35Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0120",
+   "timestamp": "2026-09-08T15:45:32Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0121",
+   "timestamp": "2026-09-08T16:04:25Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0122",
+   "timestamp": "2026-09-08T16:17:23Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0123",
+   "timestamp": "2026-09-08T16:30:42Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0124",
+   "timestamp": "2026-09-08T16:51:33Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0125",
+   "timestamp": "2026-09-08T16:51:53Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0126",
+   "timestamp": "2026-09-08T16:54:44Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0127",
+   "timestamp": "2026-09-08T17:01:15Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "files/support-macros.pdf",
+   "details": {
+    "bytes": 62203
+   }
+  },
+  {
+   "event_id": "evt-0128",
+   "timestamp": "2026-09-08T17:08:38Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0129",
+   "timestamp": "2026-09-08T17:38:03Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0130",
+   "timestamp": "2026-09-08T17:57:15Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0131",
+   "timestamp": "2026-09-08T17:58:03Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0132",
+   "timestamp": "2026-09-09T09:08:14Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0133",
+   "timestamp": "2026-09-09T09:15:00Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0134",
+   "timestamp": "2026-09-09T09:17:24Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0135",
+   "timestamp": "2026-09-09T09:21:31Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0136",
+   "timestamp": "2026-09-09T09:23:46Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0137",
+   "timestamp": "2026-09-09T09:27:19Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0138",
+   "timestamp": "2026-09-09T09:34:55Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0139",
+   "timestamp": "2026-09-09T09:38:53Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0140",
+   "timestamp": "2026-09-09T09:59:15Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0141",
+   "timestamp": "2026-09-09T10:12:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_created",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "key-FAKE-0031",
+   "details": {
+    "key_id": "key-FAKE-0031",
+    "scopes": "messages"
+   }
+  },
+  {
+   "event_id": "evt-0142",
+   "timestamp": "2026-09-09T10:13:23Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0143",
+   "timestamp": "2026-09-09T10:21:26Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0144",
+   "timestamp": "2026-09-09T10:25:08Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0145",
+   "timestamp": "2026-09-09T10:30:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0031"
+   }
+  },
+  {
+   "event_id": "evt-0146",
+   "timestamp": "2026-09-09T10:34:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0031"
+   }
+  },
+  {
+   "event_id": "evt-0147",
+   "timestamp": "2026-09-09T10:34:42Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {
+    "shared_with": "team-finance@example.com",
+    "external": false,
+    "permission": "view"
+   }
+  },
+  {
+   "event_id": "evt-0148",
+   "timestamp": "2026-09-09T10:38:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0031"
+   }
+  },
+  {
+   "event_id": "evt-0149",
+   "timestamp": "2026-09-09T10:42:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0031"
+   }
+  },
+  {
+   "event_id": "evt-0150",
+   "timestamp": "2026-09-09T10:46:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0031"
+   }
+  },
+  {
+   "event_id": "evt-0151",
+   "timestamp": "2026-09-09T10:50:00Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0031"
+   }
+  },
+  {
+   "event_id": "evt-0152",
+   "timestamp": "2026-09-09T10:53:36Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0153",
+   "timestamp": "2026-09-09T10:54:34Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0154",
+   "timestamp": "2026-09-09T11:10:07Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0155",
+   "timestamp": "2026-09-09T11:39:30Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0156",
+   "timestamp": "2026-09-09T11:40:02Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0157",
+   "timestamp": "2026-09-09T11:40:50Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0158",
+   "timestamp": "2026-09-09T11:47:52Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0159",
+   "timestamp": "2026-09-09T11:50:02Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0160",
+   "timestamp": "2026-09-09T12:05:35Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0161",
+   "timestamp": "2026-09-09T12:11:06Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0162",
+   "timestamp": "2026-09-09T12:42:55Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0163",
+   "timestamp": "2026-09-09T12:48:34Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0164",
+   "timestamp": "2026-09-09T12:49:33Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "files/test-plan.pdf",
+   "details": {
+    "bytes": 252236
+   }
+  },
+  {
+   "event_id": "evt-0165",
+   "timestamp": "2026-09-09T13:04:30Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0166",
+   "timestamp": "2026-09-09T13:04:31Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0167",
+   "timestamp": "2026-09-09T13:04:37Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0168",
+   "timestamp": "2026-09-09T13:10:45Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0169",
+   "timestamp": "2026-09-09T13:11:11Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0170",
+   "timestamp": "2026-09-09T13:11:26Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0171",
+   "timestamp": "2026-09-09T13:27:07Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0172",
+   "timestamp": "2026-09-09T13:37:28Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {
+    "shared_with": "team-eng@example.com",
+    "external": false,
+    "permission": "view"
+   }
+  },
+  {
+   "event_id": "evt-0173",
+   "timestamp": "2026-09-09T13:46:25Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0174",
+   "timestamp": "2026-09-09T13:52:54Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0175",
+   "timestamp": "2026-09-09T13:56:45Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0176",
+   "timestamp": "2026-09-09T14:02:43Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0177",
+   "timestamp": "2026-09-09T14:05:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-01.csv",
+   "details": {
+    "bytes": 51000
+   }
+  },
+  {
+   "event_id": "evt-0178",
+   "timestamp": "2026-09-09T14:05:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-02.csv",
+   "details": {
+    "bytes": 51017
+   }
+  },
+  {
+   "event_id": "evt-0179",
+   "timestamp": "2026-09-09T14:05:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-03.csv",
+   "details": {
+    "bytes": 51034
+   }
+  },
+  {
+   "event_id": "evt-0180",
+   "timestamp": "2026-09-09T14:06:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-04.csv",
+   "details": {
+    "bytes": 51051
+   }
+  },
+  {
+   "event_id": "evt-0181",
+   "timestamp": "2026-09-09T14:06:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-05.csv",
+   "details": {
+    "bytes": 51068
+   }
+  },
+  {
+   "event_id": "evt-0182",
+   "timestamp": "2026-09-09T14:06:40Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0183",
+   "timestamp": "2026-09-09T14:06:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-06.csv",
+   "details": {
+    "bytes": 51085
+   }
+  },
+  {
+   "event_id": "evt-0184",
+   "timestamp": "2026-09-09T14:07:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-07.csv",
+   "details": {
+    "bytes": 51102
+   }
+  },
+  {
+   "event_id": "evt-0185",
+   "timestamp": "2026-09-09T14:07:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-08.csv",
+   "details": {
+    "bytes": 51119
+   }
+  },
+  {
+   "event_id": "evt-0186",
+   "timestamp": "2026-09-09T14:07:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-09.csv",
+   "details": {
+    "bytes": 51136
+   }
+  },
+  {
+   "event_id": "evt-0187",
+   "timestamp": "2026-09-09T14:08:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-10.csv",
+   "details": {
+    "bytes": 51153
+   }
+  },
+  {
+   "event_id": "evt-0188",
+   "timestamp": "2026-09-09T14:08:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-11.csv",
+   "details": {
+    "bytes": 51170
+   }
+  },
+  {
+   "event_id": "evt-0189",
+   "timestamp": "2026-09-09T14:08:40Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0190",
+   "timestamp": "2026-09-09T14:08:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-12.csv",
+   "details": {
+    "bytes": 51187
+   }
+  },
+  {
+   "event_id": "evt-0191",
+   "timestamp": "2026-09-09T14:09:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-13.csv",
+   "details": {
+    "bytes": 51204
+   }
+  },
+  {
+   "event_id": "evt-0192",
+   "timestamp": "2026-09-09T14:09:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-14.csv",
+   "details": {
+    "bytes": 51221
+   }
+  },
+  {
+   "event_id": "evt-0193",
+   "timestamp": "2026-09-09T14:09:32Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0194",
+   "timestamp": "2026-09-09T14:09:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-15.csv",
+   "details": {
+    "bytes": 51238
+   }
+  },
+  {
+   "event_id": "evt-0195",
+   "timestamp": "2026-09-09T14:10:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-16.csv",
+   "details": {
+    "bytes": 51255
+   }
+  },
+  {
+   "event_id": "evt-0196",
+   "timestamp": "2026-09-09T14:10:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-17.csv",
+   "details": {
+    "bytes": 51272
+   }
+  },
+  {
+   "event_id": "evt-0197",
+   "timestamp": "2026-09-09T14:10:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-18.csv",
+   "details": {
+    "bytes": 51289
+   }
+  },
+  {
+   "event_id": "evt-0198",
+   "timestamp": "2026-09-09T14:11:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-19.csv",
+   "details": {
+    "bytes": 51306
+   }
+  },
+  {
+   "event_id": "evt-0199",
+   "timestamp": "2026-09-09T14:11:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-20.csv",
+   "details": {
+    "bytes": 51323
+   }
+  },
+  {
+   "event_id": "evt-0200",
+   "timestamp": "2026-09-09T14:11:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-21.csv",
+   "details": {
+    "bytes": 51340
+   }
+  },
+  {
+   "event_id": "evt-0201",
+   "timestamp": "2026-09-09T14:12:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-22.csv",
+   "details": {
+    "bytes": 51357
+   }
+  },
+  {
+   "event_id": "evt-0202",
+   "timestamp": "2026-09-09T14:12:20Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-23.csv",
+   "details": {
+    "bytes": 51374
+   }
+  },
+  {
+   "event_id": "evt-0203",
+   "timestamp": "2026-09-09T14:12:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-24.csv",
+   "details": {
+    "bytes": 51391
+   }
+  },
+  {
+   "event_id": "evt-0204",
+   "timestamp": "2026-09-09T14:13:00Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/weekly-metrics-25.csv",
+   "details": {
+    "bytes": 51408
+   }
+  },
+  {
+   "event_id": "evt-0205",
+   "timestamp": "2026-09-09T14:13:08Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0206",
+   "timestamp": "2026-09-09T14:18:10Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0207",
+   "timestamp": "2026-09-09T14:37:35Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0208",
+   "timestamp": "2026-09-09T14:39:40Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {
+    "shared_with": "team-eng@example.com",
+    "external": false,
+    "permission": "view"
+   }
+  },
+  {
+   "event_id": "evt-0209",
+   "timestamp": "2026-09-09T14:43:43Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0210",
+   "timestamp": "2026-09-09T14:54:12Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0211",
+   "timestamp": "2026-09-09T14:57:45Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0212",
+   "timestamp": "2026-09-09T15:12:53Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0213",
+   "timestamp": "2026-09-09T15:18:12Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0214",
+   "timestamp": "2026-09-09T15:29:39Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0215",
+   "timestamp": "2026-09-09T15:30:41Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "files/quarterly-notes.pdf",
+   "details": {
+    "bytes": 399831
+   }
+  },
+  {
+   "event_id": "evt-0216",
+   "timestamp": "2026-09-09T15:33:58Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0217",
+   "timestamp": "2026-09-09T15:34:47Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0218",
+   "timestamp": "2026-09-09T15:38:01Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0219",
+   "timestamp": "2026-09-09T15:41:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_created",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "key-FAKE-0042",
+   "details": {
+    "key_id": "key-FAKE-0042",
+    "scopes": "messages,files"
+   }
+  },
+  {
+   "event_id": "evt-0220",
+   "timestamp": "2026-09-09T15:52:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0221",
+   "timestamp": "2026-09-09T15:52:22Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0222",
+   "timestamp": "2026-09-09T15:57:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0223",
+   "timestamp": "2026-09-09T16:02:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0224",
+   "timestamp": "2026-09-09T16:02:59Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0225",
+   "timestamp": "2026-09-09T16:03:27Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0226",
+   "timestamp": "2026-09-09T16:07:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0227",
+   "timestamp": "2026-09-09T16:10:04Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0228",
+   "timestamp": "2026-09-09T16:12:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0229",
+   "timestamp": "2026-09-09T16:17:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0230",
+   "timestamp": "2026-09-09T16:19:31Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0231",
+   "timestamp": "2026-09-09T16:22:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0232",
+   "timestamp": "2026-09-09T16:25:15Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0233",
+   "timestamp": "2026-09-09T16:27:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0234",
+   "timestamp": "2026-09-09T16:32:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "203.0.113.55",
+   "country": "RO",
+   "resource": "files",
+   "details": {
+    "key_id": "key-FAKE-0042"
+   }
+  },
+  {
+   "event_id": "evt-0235",
+   "timestamp": "2026-09-09T16:41:44Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0236",
+   "timestamp": "2026-09-09T16:46:19Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "files/runbook-draft.pdf",
+   "details": {
+    "bytes": 117998
+   }
+  },
+  {
+   "event_id": "evt-0237",
+   "timestamp": "2026-09-09T17:02:17Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0238",
+   "timestamp": "2026-09-09T17:25:08Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0239",
+   "timestamp": "2026-09-09T17:26:43Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0240",
+   "timestamp": "2026-09-09T17:58:12Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0241",
+   "timestamp": "2026-09-10T09:01:38Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0242",
+   "timestamp": "2026-09-10T09:05:19Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0243",
+   "timestamp": "2026-09-10T09:11:07Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0244",
+   "timestamp": "2026-09-10T09:14:05Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0245",
+   "timestamp": "2026-09-10T09:14:41Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0246",
+   "timestamp": "2026-09-10T09:35:51Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0247",
+   "timestamp": "2026-09-10T09:43:02Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0248",
+   "timestamp": "2026-09-10T09:47:56Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0249",
+   "timestamp": "2026-09-10T09:49:25Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0250",
+   "timestamp": "2026-09-10T09:49:44Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0251",
+   "timestamp": "2026-09-10T09:53:23Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0252",
+   "timestamp": "2026-09-10T10:05:15Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0253",
+   "timestamp": "2026-09-10T10:06:00Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0254",
+   "timestamp": "2026-09-10T10:12:32Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0255",
+   "timestamp": "2026-09-10T10:26:52Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0256",
+   "timestamp": "2026-09-10T10:41:51Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0257",
+   "timestamp": "2026-09-10T10:43:39Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0013"
+   }
+  },
+  {
+   "event_id": "evt-0258",
+   "timestamp": "2026-09-10T10:45:56Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {
+    "shared_with": "team-finance@example.com",
+    "external": false,
+    "permission": "view"
+   }
+  },
+  {
+   "event_id": "evt-0259",
+   "timestamp": "2026-09-10T10:50:57Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0260",
+   "timestamp": "2026-09-10T11:02:00Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Project: Finance Close",
+   "details": {
+    "shared_with": "team-finance@example.com",
+    "external": false,
+    "permission": "edit"
+   }
+  },
+  {
+   "event_id": "evt-0261",
+   "timestamp": "2026-09-10T11:17:37Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0262",
+   "timestamp": "2026-09-10T11:20:00Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0263",
+   "timestamp": "2026-09-10T11:20:38Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0264",
+   "timestamp": "2026-09-10T11:21:16Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0265",
+   "timestamp": "2026-09-10T11:21:54Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0266",
+   "timestamp": "2026-09-10T11:22:32Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0267",
+   "timestamp": "2026-09-10T11:23:10Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0268",
+   "timestamp": "2026-09-10T11:23:48Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0269",
+   "timestamp": "2026-09-10T11:24:26Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_failed",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {
+    "reason": "bad_password_or_assertion"
+   }
+  },
+  {
+   "event_id": "evt-0270",
+   "timestamp": "2026-09-10T11:25:15Z",
+   "actor": "sam.okafor@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.30",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0271",
+   "timestamp": "2026-09-10T11:26:10Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0272",
+   "timestamp": "2026-09-10T11:28:05Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "files/hr/payroll-extract-1.csv",
+   "details": {
+    "bytes": 120000
+   }
+  },
+  {
+   "event_id": "evt-0273",
+   "timestamp": "2026-09-10T11:28:29Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0274",
+   "timestamp": "2026-09-10T11:29:05Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "files/hr/payroll-extract-2.csv",
+   "details": {
+    "bytes": 120000
+   }
+  },
+  {
+   "event_id": "evt-0275",
+   "timestamp": "2026-09-10T11:30:05Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "203.0.113.88",
+   "country": "BR",
+   "resource": "files/hr/payroll-extract-3.csv",
+   "details": {
+    "bytes": 120000
+   }
+  },
+  {
+   "event_id": "evt-0276",
+   "timestamp": "2026-09-10T11:33:23Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0277",
+   "timestamp": "2026-09-10T11:41:16Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0278",
+   "timestamp": "2026-09-10T12:11:54Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0279",
+   "timestamp": "2026-09-10T12:28:18Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0280",
+   "timestamp": "2026-09-10T12:38:59Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "files/vendor-review.pdf",
+   "details": {
+    "bytes": 350758
+   }
+  },
+  {
+   "event_id": "evt-0281",
+   "timestamp": "2026-09-10T12:44:26Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0282",
+   "timestamp": "2026-09-10T12:46:26Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0283",
+   "timestamp": "2026-09-10T12:46:40Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0284",
+   "timestamp": "2026-09-10T13:05:12Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0285",
+   "timestamp": "2026-09-10T13:19:53Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0286",
+   "timestamp": "2026-09-10T13:20:18Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0287",
+   "timestamp": "2026-09-10T13:32:35Z",
+   "actor": "xavi.ruiz@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.35",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0288",
+   "timestamp": "2026-09-10T13:36:36Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0289",
+   "timestamp": "2026-09-10T13:37:36Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0290",
+   "timestamp": "2026-09-10T14:03:14Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0291",
+   "timestamp": "2026-09-10T14:20:54Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0292",
+   "timestamp": "2026-09-10T14:24:08Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0293",
+   "timestamp": "2026-09-10T14:33:33Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0294",
+   "timestamp": "2026-09-10T14:44:48Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0295",
+   "timestamp": "2026-09-10T14:54:58Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0296",
+   "timestamp": "2026-09-10T15:14:26Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "files/support-macros.pdf",
+   "details": {
+    "bytes": 159988
+   }
+  },
+  {
+   "event_id": "evt-0297",
+   "timestamp": "2026-09-10T15:16:46Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0298",
+   "timestamp": "2026-09-10T15:17:30Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0299",
+   "timestamp": "2026-09-10T15:26:34Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0300",
+   "timestamp": "2026-09-10T15:28:28Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0301",
+   "timestamp": "2026-09-10T15:59:03Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0302",
+   "timestamp": "2026-09-10T16:02:42Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0303",
+   "timestamp": "2026-09-10T16:17:11Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0304",
+   "timestamp": "2026-09-10T16:34:55Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0305",
+   "timestamp": "2026-09-10T16:45:11Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0306",
+   "timestamp": "2026-09-10T16:52:32Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0307",
+   "timestamp": "2026-09-10T17:06:06Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "files/vendor-review.pdf",
+   "details": {
+    "bytes": 151887
+   }
+  },
+  {
+   "event_id": "evt-0308",
+   "timestamp": "2026-09-10T17:14:30Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0309",
+   "timestamp": "2026-09-10T17:16:26Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0310",
+   "timestamp": "2026-09-10T17:21:19Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0311",
+   "timestamp": "2026-09-10T17:41:32Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "files/runbook-draft.pdf",
+   "details": {
+    "bytes": 147568
+   }
+  },
+  {
+   "event_id": "evt-0312",
+   "timestamp": "2026-09-10T17:48:22Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0313",
+   "timestamp": "2026-09-10T17:48:34Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0314",
+   "timestamp": "2026-09-10T17:49:31Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0315",
+   "timestamp": "2026-09-10T17:49:33Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0316",
+   "timestamp": "2026-09-11T09:01:53Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0317",
+   "timestamp": "2026-09-11T09:12:20Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0318",
+   "timestamp": "2026-09-11T09:18:19Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0319",
+   "timestamp": "2026-09-11T09:25:10Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0320",
+   "timestamp": "2026-09-11T09:28:38Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0321",
+   "timestamp": "2026-09-11T09:36:01Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0322",
+   "timestamp": "2026-09-11T09:38:36Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0323",
+   "timestamp": "2026-09-11T09:58:43Z",
+   "actor": "ivan.petrov@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.19",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0324",
+   "timestamp": "2026-09-11T10:01:01Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0325",
+   "timestamp": "2026-09-11T10:03:47Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0326",
+   "timestamp": "2026-09-11T10:14:34Z",
+   "actor": "chloe.dubois@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.13",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0327",
+   "timestamp": "2026-09-11T10:22:52Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0328",
+   "timestamp": "2026-09-11T10:35:18Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0329",
+   "timestamp": "2026-09-11T10:56:37Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0330",
+   "timestamp": "2026-09-11T11:05:58Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0331",
+   "timestamp": "2026-09-11T11:22:00Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0332",
+   "timestamp": "2026-09-11T11:51:09Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0333",
+   "timestamp": "2026-09-11T12:00:44Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0334",
+   "timestamp": "2026-09-11T12:12:34Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0335",
+   "timestamp": "2026-09-11T12:14:22Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0336",
+   "timestamp": "2026-09-11T12:19:57Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "project_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0337",
+   "timestamp": "2026-09-11T12:24:21Z",
+   "actor": "vic.hale@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.33",
+   "country": "US",
+   "resource": "files/runbook-draft.pdf",
+   "details": {
+    "bytes": 34996
+   }
+  },
+  {
+   "event_id": "evt-0338",
+   "timestamp": "2026-09-11T12:33:35Z",
+   "actor": "ben.alvarez@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.12",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0014"
+   }
+  },
+  {
+   "event_id": "evt-0339",
+   "timestamp": "2026-09-11T12:55:00Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0340",
+   "timestamp": "2026-09-11T13:00:08Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0341",
+   "timestamp": "2026-09-11T13:21:48Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0012"
+   }
+  },
+  {
+   "event_id": "evt-0342",
+   "timestamp": "2026-09-11T13:33:15Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0343",
+   "timestamp": "2026-09-11T13:42:29Z",
+   "actor": "marcus.bell@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.17",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0344",
+   "timestamp": "2026-09-11T14:00:12Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0345",
+   "timestamp": "2026-09-11T14:22:35Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0346",
+   "timestamp": "2026-09-11T14:30:18Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "desktop",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "files/onboarding-faq.pdf",
+   "details": {
+    "bytes": 168792
+   }
+  },
+  {
+   "event_id": "evt-0347",
+   "timestamp": "2026-09-11T14:33:39Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0348",
+   "timestamp": "2026-09-11T14:48:09Z",
+   "actor": "uma.rao@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.32",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0349",
+   "timestamp": "2026-09-11T15:00:08Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0350",
+   "timestamp": "2026-09-11T15:00:13Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0351",
+   "timestamp": "2026-09-11T15:02:45Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0352",
+   "timestamp": "2026-09-11T15:33:43Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0353",
+   "timestamp": "2026-09-11T15:35:18Z",
+   "actor": "rosa.silva@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.28",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0354",
+   "timestamp": "2026-09-11T15:42:47Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0355",
+   "timestamp": "2026-09-11T15:48:55Z",
+   "actor": "kira.novak@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.22",
+   "country": "US",
+   "resource": "files/vendor-review.pdf",
+   "details": {
+    "bytes": 245088
+   }
+  },
+  {
+   "event_id": "evt-0356",
+   "timestamp": "2026-09-11T15:56:31Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0357",
+   "timestamp": "2026-09-11T16:12:06Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "api_key_used",
+   "surface": "api",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "messages",
+   "details": {
+    "key_id": "key-FAKE-0011"
+   }
+  },
+  {
+   "event_id": "evt-0358",
+   "timestamp": "2026-09-11T16:13:36Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "cowork_session_started",
+   "surface": "cowork",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0359",
+   "timestamp": "2026-09-11T16:14:07Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "file_uploaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0360",
+   "timestamp": "2026-09-11T16:22:00Z",
+   "actor": "hana.kobayashi@example.com",
+   "actor_type": "user",
+   "event_type": "project_shared",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.18",
+   "country": "US",
+   "resource": "Project: Q4 Pricing Strategy",
+   "details": {
+    "shared_with": "consultant@outside-example.net",
+    "external": true,
+    "permission": "edit"
+   }
+  },
+  {
+   "event_id": "evt-0361",
+   "timestamp": "2026-09-11T16:22:16Z",
+   "actor": "quinn.reyes@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.27",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0362",
+   "timestamp": "2026-09-11T16:27:45Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "Onboarding FAQ",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0363",
+   "timestamp": "2026-09-11T16:31:13Z",
+   "actor": "priya.nair@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.26",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0364",
+   "timestamp": "2026-09-11T16:42:01Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "desktop",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0365",
+   "timestamp": "2026-09-11T16:42:22Z",
+   "actor": "nia.owusu@example.com",
+   "actor_type": "user",
+   "event_type": "claude_code_session_started",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.24",
+   "country": "US",
+   "resource": "Test Plan",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0366",
+   "timestamp": "2026-09-11T16:52:43Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0367",
+   "timestamp": "2026-09-11T16:53:13Z",
+   "actor": "omar.haddad@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.25",
+   "country": "US",
+   "resource": "Vendor Review",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0368",
+   "timestamp": "2026-09-11T17:15:03Z",
+   "actor": "wen.zhao@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.34",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0369",
+   "timestamp": "2026-09-11T17:19:39Z",
+   "actor": "evan.park@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.15",
+   "country": "US",
+   "resource": "files/vendor-review.pdf",
+   "details": {
+    "bytes": 23224
+   }
+  },
+  {
+   "event_id": "evt-0370",
+   "timestamp": "2026-09-11T17:32:54Z",
+   "actor": "jun.park@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.20",
+   "country": "US",
+   "resource": "Roadmap Q4",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0371",
+   "timestamp": "2026-09-11T17:34:08Z",
+   "actor": "farah.khan@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude-code",
+   "source_ip": "192.0.2.16",
+   "country": "US",
+   "resource": "Quarterly Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0372",
+   "timestamp": "2026-09-11T17:56:57Z",
+   "actor": "lee.ortega@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "desktop",
+   "source_ip": "198.51.100.23",
+   "country": "US",
+   "resource": "Runbook Draft",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0373",
+   "timestamp": "2026-09-11T17:58:12Z",
+   "actor": "alice.moreau@example.com",
+   "actor_type": "user",
+   "event_type": "login_sso_success",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.11",
+   "country": "US",
+   "resource": "Support Macros",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0374",
+   "timestamp": "2026-09-12T02:14:00Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-01.pdf",
+   "details": {
+    "bytes": 800000
+   }
+  },
+  {
+   "event_id": "evt-0375",
+   "timestamp": "2026-09-12T02:14:16Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-02.pdf",
+   "details": {
+    "bytes": 800311
+   }
+  },
+  {
+   "event_id": "evt-0376",
+   "timestamp": "2026-09-12T02:14:32Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-03.pdf",
+   "details": {
+    "bytes": 800622
+   }
+  },
+  {
+   "event_id": "evt-0377",
+   "timestamp": "2026-09-12T02:14:48Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-04.pdf",
+   "details": {
+    "bytes": 800933
+   }
+  },
+  {
+   "event_id": "evt-0378",
+   "timestamp": "2026-09-12T02:15:04Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-05.pdf",
+   "details": {
+    "bytes": 801244
+   }
+  },
+  {
+   "event_id": "evt-0379",
+   "timestamp": "2026-09-12T02:15:20Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-06.pdf",
+   "details": {
+    "bytes": 801555
+   }
+  },
+  {
+   "event_id": "evt-0380",
+   "timestamp": "2026-09-12T02:15:36Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-07.pdf",
+   "details": {
+    "bytes": 801866
+   }
+  },
+  {
+   "event_id": "evt-0381",
+   "timestamp": "2026-09-12T02:15:52Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-08.pdf",
+   "details": {
+    "bytes": 802177
+   }
+  },
+  {
+   "event_id": "evt-0382",
+   "timestamp": "2026-09-12T02:16:08Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-09.pdf",
+   "details": {
+    "bytes": 802488
+   }
+  },
+  {
+   "event_id": "evt-0383",
+   "timestamp": "2026-09-12T02:16:24Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-10.pdf",
+   "details": {
+    "bytes": 802799
+   }
+  },
+  {
+   "event_id": "evt-0384",
+   "timestamp": "2026-09-12T02:16:40Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-11.pdf",
+   "details": {
+    "bytes": 803110
+   }
+  },
+  {
+   "event_id": "evt-0385",
+   "timestamp": "2026-09-12T02:16:56Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-12.pdf",
+   "details": {
+    "bytes": 803421
+   }
+  },
+  {
+   "event_id": "evt-0386",
+   "timestamp": "2026-09-12T02:17:12Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-13.pdf",
+   "details": {
+    "bytes": 803732
+   }
+  },
+  {
+   "event_id": "evt-0387",
+   "timestamp": "2026-09-12T02:17:28Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-14.pdf",
+   "details": {
+    "bytes": 804043
+   }
+  },
+  {
+   "event_id": "evt-0388",
+   "timestamp": "2026-09-12T02:17:44Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-15.pdf",
+   "details": {
+    "bytes": 804354
+   }
+  },
+  {
+   "event_id": "evt-0389",
+   "timestamp": "2026-09-12T02:18:00Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-16.pdf",
+   "details": {
+    "bytes": 804665
+   }
+  },
+  {
+   "event_id": "evt-0390",
+   "timestamp": "2026-09-12T02:18:16Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-17.pdf",
+   "details": {
+    "bytes": 804976
+   }
+  },
+  {
+   "event_id": "evt-0391",
+   "timestamp": "2026-09-12T02:18:32Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-18.pdf",
+   "details": {
+    "bytes": 805287
+   }
+  },
+  {
+   "event_id": "evt-0392",
+   "timestamp": "2026-09-12T02:18:48Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-19.pdf",
+   "details": {
+    "bytes": 805598
+   }
+  },
+  {
+   "event_id": "evt-0393",
+   "timestamp": "2026-09-12T02:19:04Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-20.pdf",
+   "details": {
+    "bytes": 805909
+   }
+  },
+  {
+   "event_id": "evt-0394",
+   "timestamp": "2026-09-12T02:19:20Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-21.pdf",
+   "details": {
+    "bytes": 806220
+   }
+  },
+  {
+   "event_id": "evt-0395",
+   "timestamp": "2026-09-12T02:19:36Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-22.pdf",
+   "details": {
+    "bytes": 806531
+   }
+  },
+  {
+   "event_id": "evt-0396",
+   "timestamp": "2026-09-12T02:19:52Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-23.pdf",
+   "details": {
+    "bytes": 806842
+   }
+  },
+  {
+   "event_id": "evt-0397",
+   "timestamp": "2026-09-12T02:20:08Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-24.pdf",
+   "details": {
+    "bytes": 807153
+   }
+  },
+  {
+   "event_id": "evt-0398",
+   "timestamp": "2026-09-12T02:20:24Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-25.pdf",
+   "details": {
+    "bytes": 807464
+   }
+  },
+  {
+   "event_id": "evt-0399",
+   "timestamp": "2026-09-12T02:20:40Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-26.pdf",
+   "details": {
+    "bytes": 807775
+   }
+  },
+  {
+   "event_id": "evt-0400",
+   "timestamp": "2026-09-12T02:20:56Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-27.pdf",
+   "details": {
+    "bytes": 808086
+   }
+  },
+  {
+   "event_id": "evt-0401",
+   "timestamp": "2026-09-12T02:21:12Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-28.pdf",
+   "details": {
+    "bytes": 808397
+   }
+  },
+  {
+   "event_id": "evt-0402",
+   "timestamp": "2026-09-12T02:21:28Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-29.pdf",
+   "details": {
+    "bytes": 808708
+   }
+  },
+  {
+   "event_id": "evt-0403",
+   "timestamp": "2026-09-12T02:21:44Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-30.pdf",
+   "details": {
+    "bytes": 809019
+   }
+  },
+  {
+   "event_id": "evt-0404",
+   "timestamp": "2026-09-12T02:22:00Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-31.pdf",
+   "details": {
+    "bytes": 809330
+   }
+  },
+  {
+   "event_id": "evt-0405",
+   "timestamp": "2026-09-12T02:22:16Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-32.pdf",
+   "details": {
+    "bytes": 809641
+   }
+  },
+  {
+   "event_id": "evt-0406",
+   "timestamp": "2026-09-12T02:22:32Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-33.pdf",
+   "details": {
+    "bytes": 809952
+   }
+  },
+  {
+   "event_id": "evt-0407",
+   "timestamp": "2026-09-12T02:22:48Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-34.pdf",
+   "details": {
+    "bytes": 810263
+   }
+  },
+  {
+   "event_id": "evt-0408",
+   "timestamp": "2026-09-12T02:23:04Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-35.pdf",
+   "details": {
+    "bytes": 810574
+   }
+  },
+  {
+   "event_id": "evt-0409",
+   "timestamp": "2026-09-12T02:23:20Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-36.pdf",
+   "details": {
+    "bytes": 810885
+   }
+  },
+  {
+   "event_id": "evt-0410",
+   "timestamp": "2026-09-12T02:23:36Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-37.pdf",
+   "details": {
+    "bytes": 811196
+   }
+  },
+  {
+   "event_id": "evt-0411",
+   "timestamp": "2026-09-12T02:23:52Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-38.pdf",
+   "details": {
+    "bytes": 811507
+   }
+  },
+  {
+   "event_id": "evt-0412",
+   "timestamp": "2026-09-12T02:24:08Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-39.pdf",
+   "details": {
+    "bytes": 811818
+   }
+  },
+  {
+   "event_id": "evt-0413",
+   "timestamp": "2026-09-12T02:24:24Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-40.pdf",
+   "details": {
+    "bytes": 812129
+   }
+  },
+  {
+   "event_id": "evt-0414",
+   "timestamp": "2026-09-12T02:24:40Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-41.pdf",
+   "details": {
+    "bytes": 812440
+   }
+  },
+  {
+   "event_id": "evt-0415",
+   "timestamp": "2026-09-12T02:24:56Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-42.pdf",
+   "details": {
+    "bytes": 812751
+   }
+  },
+  {
+   "event_id": "evt-0416",
+   "timestamp": "2026-09-12T02:25:12Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-43.pdf",
+   "details": {
+    "bytes": 813062
+   }
+  },
+  {
+   "event_id": "evt-0417",
+   "timestamp": "2026-09-12T02:25:28Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-44.pdf",
+   "details": {
+    "bytes": 813373
+   }
+  },
+  {
+   "event_id": "evt-0418",
+   "timestamp": "2026-09-12T02:25:44Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-45.pdf",
+   "details": {
+    "bytes": 813684
+   }
+  },
+  {
+   "event_id": "evt-0419",
+   "timestamp": "2026-09-12T02:26:00Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-46.pdf",
+   "details": {
+    "bytes": 813995
+   }
+  },
+  {
+   "event_id": "evt-0420",
+   "timestamp": "2026-09-12T02:26:16Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-47.pdf",
+   "details": {
+    "bytes": 814306
+   }
+  },
+  {
+   "event_id": "evt-0421",
+   "timestamp": "2026-09-12T02:26:32Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-48.pdf",
+   "details": {
+    "bytes": 814617
+   }
+  },
+  {
+   "event_id": "evt-0422",
+   "timestamp": "2026-09-12T02:26:48Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-49.pdf",
+   "details": {
+    "bytes": 814928
+   }
+  },
+  {
+   "event_id": "evt-0423",
+   "timestamp": "2026-09-12T02:27:04Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-50.pdf",
+   "details": {
+    "bytes": 815239
+   }
+  },
+  {
+   "event_id": "evt-0424",
+   "timestamp": "2026-09-12T02:27:20Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-51.pdf",
+   "details": {
+    "bytes": 815550
+   }
+  },
+  {
+   "event_id": "evt-0425",
+   "timestamp": "2026-09-12T02:27:36Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-52.pdf",
+   "details": {
+    "bytes": 815861
+   }
+  },
+  {
+   "event_id": "evt-0426",
+   "timestamp": "2026-09-12T02:27:52Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-53.pdf",
+   "details": {
+    "bytes": 816172
+   }
+  },
+  {
+   "event_id": "evt-0427",
+   "timestamp": "2026-09-12T02:28:08Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-54.pdf",
+   "details": {
+    "bytes": 816483
+   }
+  },
+  {
+   "event_id": "evt-0428",
+   "timestamp": "2026-09-12T02:28:24Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-55.pdf",
+   "details": {
+    "bytes": 816794
+   }
+  },
+  {
+   "event_id": "evt-0429",
+   "timestamp": "2026-09-12T02:28:40Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-56.pdf",
+   "details": {
+    "bytes": 817105
+   }
+  },
+  {
+   "event_id": "evt-0430",
+   "timestamp": "2026-09-12T02:28:56Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-57.pdf",
+   "details": {
+    "bytes": 817416
+   }
+  },
+  {
+   "event_id": "evt-0431",
+   "timestamp": "2026-09-12T02:29:12Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-58.pdf",
+   "details": {
+    "bytes": 817727
+   }
+  },
+  {
+   "event_id": "evt-0432",
+   "timestamp": "2026-09-12T02:29:28Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-59.pdf",
+   "details": {
+    "bytes": 818038
+   }
+  },
+  {
+   "event_id": "evt-0433",
+   "timestamp": "2026-09-12T02:29:44Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-60.pdf",
+   "details": {
+    "bytes": 818349
+   }
+  },
+  {
+   "event_id": "evt-0434",
+   "timestamp": "2026-09-12T02:30:00Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-61.pdf",
+   "details": {
+    "bytes": 818660
+   }
+  },
+  {
+   "event_id": "evt-0435",
+   "timestamp": "2026-09-12T02:30:16Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-62.pdf",
+   "details": {
+    "bytes": 818971
+   }
+  },
+  {
+   "event_id": "evt-0436",
+   "timestamp": "2026-09-12T02:30:32Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-63.pdf",
+   "details": {
+    "bytes": 819282
+   }
+  },
+  {
+   "event_id": "evt-0437",
+   "timestamp": "2026-09-12T02:30:48Z",
+   "actor": "dana.whitfield@example.com",
+   "actor_type": "user",
+   "event_type": "file_downloaded",
+   "surface": "claude.ai",
+   "source_ip": "198.51.100.21",
+   "country": "US",
+   "resource": "files/finance/board-pack-64.pdf",
+   "details": {
+    "bytes": 819593
+   }
+  },
+  {
+   "event_id": "evt-0438",
+   "timestamp": "2026-09-12T10:03:00Z",
+   "actor": "gus.lindqvist@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.17",
+   "country": "US",
+   "resource": "Weekend Notes",
+   "details": {}
+  },
+  {
+   "event_id": "evt-0439",
+   "timestamp": "2026-09-13T20:41:00Z",
+   "actor": "tara.lund@example.com",
+   "actor_type": "user",
+   "event_type": "chat_created",
+   "surface": "claude.ai",
+   "source_ip": "192.0.2.31",
+   "country": "US",
+   "resource": "Side Project Ideas",
+   "details": {}
+  }
+ ]
+}

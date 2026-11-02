@@ -1,0 +1,15 @@
+{
+  "name": "expense-digest",
+  "description": "Summarizes employee expense reports and checks them against policy.",
+  "version": "1.4.0",
+  "author": {
+    "name": "Fictional Finance Tools Team"
+  },
+  "userConfig": {
+    "data_dir": {
+      "type": "string",
+      "title": "Expense data folder",
+      "description": "Full path to the folder that holds expenses.csv"
+    }
+  }
+}

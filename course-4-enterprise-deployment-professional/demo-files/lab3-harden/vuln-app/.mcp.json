@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "docs-search": {"command": "npx", "args": ["-y", "@example/docs-search-mcp"]},
+    "ticket-bridge": {"command": "python", "args": ["tools/ticket_bridge.py"]},
+    "shadow-sync": {"command": "npx", "args": ["-y", "@example-unvetted/shadow-sync"]}
+  }
+}

@@ -1,0 +1,32 @@
+# Starter for the GitLab track of Lab 1. This job works, and it is not safe.
+# Find and fix what the security gate reports.
+stages:
+  - ai
+
+claude:
+  stage: ai
+  image: node:24-alpine3.21
+  variables:
+    GIT_STRATEGY: fetch
+    ANTHROPIC_API_KEY: "FAKE-TOKEN-DO-NOT-USE"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  before_script:
+    - apk update
+    - apk add --no-cache git curl bash
+    - curl -fsSL https://claude.ai/install.sh | bash
+    - export PATH="$HOME/.local/bin:$PATH"
+  script:
+    - echo "Using key $ANTHROPIC_API_KEY for $AI_FLOW_EVENT"
+    - env | sort
+    - >
+      claude
+      -p "Fix the problem described here and push to the merge request branch.
+      Title: $CI_MERGE_REQUEST_TITLE
+      Description: $CI_MERGE_REQUEST_DESCRIPTION
+      Request: $AI_FLOW_INPUT"
+      --permission-mode acceptEdits
+      --allowedTools "Bash Read Edit Write mcp__gitlab"
+      --debug

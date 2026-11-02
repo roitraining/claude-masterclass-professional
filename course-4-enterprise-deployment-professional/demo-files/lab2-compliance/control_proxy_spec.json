@@ -1,0 +1,9 @@
+{
+  "track": "proxy",
+  "header_name": "",
+  "header_value": "",
+  "applies_to_hosts": [],
+  "tls_inspection_required": null,
+  "auth_methods_covered": [],
+  "rollout_notes": ""
+}

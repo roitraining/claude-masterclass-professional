@@ -1,0 +1,14 @@
+{
+  "name": "team-tools",
+  "description": "Developer tools for a git-based workflow",
+  "owner": {
+    "name": "Your Name"
+  },
+  "plugins": [
+    {
+      "name": "release-notes",
+      "source": "./plugins/relnotes",
+      "description": "Draft and check release notes from the git log"
+    }
+  ]
+}

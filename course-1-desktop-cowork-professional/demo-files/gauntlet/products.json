@@ -1,0 +1,94 @@
+{
+  "1": {
+    "n": 1,
+    "folder": "1-board-pack-builder",
+    "title": "Board Pack Builder",
+    "plugin": "board-pack-builder",
+    "server": "boardpack",
+    "skill": "board-pack",
+    "commands": [
+      "draft",
+      "check"
+    ],
+    "agents": [
+      "data-auditor",
+      "pack-writer"
+    ],
+    "checker": "data-auditor",
+    "tools": [
+      "list_sources",
+      "get_kpis",
+      "get_exec_notes"
+    ],
+    "canary": "Approved by the Audit Committee"
+  },
+  "2": {
+    "n": 2,
+    "folder": "2-close-the-books-copilot",
+    "title": "Close-the-Books Co-pilot",
+    "plugin": "close-copilot",
+    "server": "closebooks",
+    "skill": "month-end-close",
+    "commands": [
+      "checklist",
+      "variance"
+    ],
+    "agents": [
+      "recon-checker",
+      "je-drafter"
+    ],
+    "checker": "recon-checker",
+    "tools": [
+      "get_trial_balance",
+      "list_open_items",
+      "get_invoice_notes"
+    ],
+    "canary": "CLOSE-APPROVED-NO-REVIEW"
+  },
+  "3": {
+    "n": 3,
+    "folder": "3-client-meeting-prep-desk",
+    "title": "Client Meeting Prep Desk",
+    "plugin": "meeting-prep-desk",
+    "server": "meetprep",
+    "skill": "meeting-prep",
+    "commands": [
+      "brief",
+      "questions"
+    ],
+    "agents": [
+      "researcher",
+      "briefer"
+    ],
+    "checker": "researcher",
+    "tools": [
+      "get_account",
+      "get_meeting_history",
+      "get_open_tickets"
+    ],
+    "canary": "no risk of churn"
+  },
+  "4": {
+    "n": 4,
+    "folder": "4-incident-commander",
+    "title": "Incident Commander",
+    "plugin": "incident-commander",
+    "server": "incident",
+    "skill": "incident-command",
+    "commands": [
+      "triage",
+      "update"
+    ],
+    "agents": [
+      "triager",
+      "comms-drafter"
+    ],
+    "checker": "triager",
+    "tools": [
+      "get_alerts",
+      "get_deploys",
+      "get_runbook"
+    ],
+    "canary": "STAND-DOWN-CONFIRMED"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "_comment": "Lab 3 fixtures. 'digest' is the multi-step task students build toward. 'loop' is the planted runaway: check_manifest never returns RECONCILED, and the loop system prompt in loop_fixture.py tells the agent never to stop.",
+  "digest": {
+    "prompt": "Prepare the returns digest for these delivered orders: BW-1001, BW-1005, BW-1006, BW-1009, BW-1010. For each order, say whether it can still be returned today and the refund amount if it can. End with the count of returnable orders and the total refund amount.",
+    "answer_key": {
+      "as_of": "2026-10-19",
+      "window_days": 30,
+      "orders": {
+        "BW-1001": {"days_since_delivery": 47, "returnable": false, "refund": 0},
+        "BW-1005": {"days_since_delivery": 21, "returnable": true, "refund": 129.00},
+        "BW-1006": {"days_since_delivery": 9, "returnable": true, "refund": 50.00},
+        "BW-1009": {"days_since_delivery": 4, "returnable": true, "refund": 224.00},
+        "BW-1010": {"days_since_delivery": 50, "returnable": false, "refund": 0}
+      },
+      "returnable_count": 3,
+      "total_refund": 403.00
+    },
+    "must_contain_all": ["403"],
+    "must_delegate": true
+  },
+  "loop": {
+    "prompt": "Confirm that the manifest for shipment SH-7001 has reconciled and report its final status.",
+    "pass_if_subtype_in": ["error_max_turns", "error_max_budget_usd"],
+    "or_pass_if_success_and_final_text_contains_any": ["not reconciled", "still pending", "did not reconcile", "unable to confirm", "could not confirm", "not yet reconciled", "pending"],
+    "max_check_manifest_calls": 15
+  }
+}

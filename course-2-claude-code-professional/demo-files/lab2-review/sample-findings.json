@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {"pr": "pr-01-senior-waiver", "file": "lending/fines.py", "line": 15, "severity": "important",
+     "title": "Waiver condition uses 'or'", "detail": "Every senior is waived regardless of the fee, and every member under the threshold is waived."},
+    {"pr": "pr-03-delete-member", "file": "lending/api.py", "line": 32, "severity": "important",
+     "title": "delete_member has no require_role call", "detail": "Sibling handlers check the librarian role."},
+    {"pr": "pr-04-overdue-email", "file": "lending/notify.py", "line": 13, "severity": "important",
+     "title": "Hard-coded SMTP password", "detail": "Use lending/config.py."},
+    {"pr": "pr-05-genre-filter", "file": "lending/catalog.py", "line": 7, "severity": "important",
+     "title": "SQL injection through genre", "detail": "genre is formatted into the SQL text."},
+    {"pr": "pr-06-bulk-lookup", "file": "lending/catalog.py", "line": 8, "severity": "important",
+     "title": "Possible SQL injection in f-string", "detail": "Query text is built with an f-string."},
+    {"pr": "pr-08-loan-gaps", "file": "lending/reports.py", "line": 9, "severity": "important",
+     "title": "Loop stops one short", "detail": "range(len(dates) - 1) skips the last element."},
+    {"pr": "pr-09-waive-all", "file": "lending/admin_api.py", "line": 15, "severity": "important",
+     "title": "waive_many has no authorization check", "detail": "No require_role call."},
+    {"pr": "pr-11-docstrings", "file": "lending/fines.py", "line": 5, "severity": "nit",
+     "title": "Docstring could mention the cap", "detail": ""}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "_comment": "Rubric for the one LLM-judged golden task (G12), plus four calibration replies. Run the calibration first: a judge you have not tested is not a grader. Two replies should score high and two low. All content is fictional.",
+  "empathetic_delay_reply": {
+    "task_prompt": "Write a short, empathetic reply to the customer on order BW-1007, whose order is delayed. Include the new arrival date.",
+    "scale": "1 to 5, where 5 is best",
+    "criteria": [
+      "Acknowledges the delay and the inconvenience in plain language, without excessive apology",
+      "States the new arrival date and the reason (weather hold at the regional hub) accurately",
+      "Offers a next step or a way to get help",
+      "Is brief (under 120 words), professional and free of invented facts such as compensation or discounts"
+    ],
+    "calibration": [
+      {"expect": "high", "reply": "Hi Priya, I am sorry your order BW-1007 is running late. A weather hold at the regional hub is delaying the Parcelry shipment, and it is now expected on 2026-10-27. If the new date does not work for you, reply here and we will go over your options."},
+      {"expect": "high", "reply": "Hello Priya, thank you for your patience. Order BW-1007 was held at a regional hub because of weather and should now arrive by October 27. I know that is later than planned. Reply to this message if you would like help with anything else on the order."},
+      {"expect": "low", "reply": "Order BW-1007 is delayed. It will arrive 2026-10-27."},
+      {"expect": "low", "reply": "We are so, so sorry!!! Because of this terrible failure we are giving you a 50 percent refund and a free tent. Your order will arrive tomorrow, guaranteed."}
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "tolerance_lines": 3,
+  "bugs": [
+    {
+      "pr": "pr-01-senior-waiver",
+      "title": "Waive small fines for senior members",
+      "id": "B1",
+      "category": "logic error",
+      "file": "lending/fines.py",
+      "marker": "if is_senior or fee",
+      "keywords": [
+        "senior",
+        "waive",
+        "waiver",
+        "all seniors",
+        "everyone"
+      ],
+      "summary": "The waiver condition uses 'or'. Every senior has any fine waived, and every member has fines under the threshold waived. The docstring says seniors with small fines only, so it must be 'and'.",
+      "line": 15
+    },
+    {
+      "pr": "pr-02-catalog-paging",
+      "title": "Add paging to catalog search",
+      "id": "B2",
+      "category": "off-by-one",
+      "file": "lending/catalog.py",
+      "marker": "start + size + 1",
+      "keywords": [
+        "off-by-one",
+        "size + 1",
+        "extra item",
+        "one too many",
+        "slice"
+      ],
+      "summary": "The slice ends at start + size + 1, so every page returns one item too many and pages overlap by one. The test only checks 'at least' the page size, so it passes.",
+      "line": 9
+    },
+    {
+      "pr": "pr-03-delete-member",
+      "title": "Add an endpoint to delete a member",
+      "id": "B3",
+      "category": "missing authorization check",
+      "file": "lending/api.py",
+      "marker": "def delete_member",
+      "keywords": [
+        "require_role",
+        "authorization",
+        "auth",
+        "librarian",
+        "unauthenticated",
+        "permission"
+      ],
+      "summary": "delete_member never calls require_role. It is on the public router, where every sibling handler checks the librarian role first, so anyone can delete members.",
+      "line": 32
+    },
+    {
+      "pr": "pr-04-overdue-email",
+      "title": "Email members when a loan is overdue",
+      "id": "B4",
+      "category": "hard-coded secret",
+      "file": "lending/notify.py",
+      "marker": "SMTP_PASSWORD = \"FAKE-TOKEN-DO-NOT-USE\"",
+      "keywords": [
+        "hard-coded",
+        "hardcoded",
+        "credential",
+        "password",
+        "secret",
+        "config",
+        "environment"
+      ],
+      "summary": "A credential is written into the source (the value is a deliberate fake placeholder). Credentials must come from lending/config.py, which reads the environment.",
+      "line": 13
+    },
+    {
+      "pr": "pr-05-genre-filter",
+      "title": "Filter catalog search by genre",
+      "id": "B5",
+      "category": "SQL injection",
+      "file": "lending/catalog.py",
+      "marker": "genre = '{genre}'",
+      "keywords": [
+        "sql injection",
+        "injection",
+        "f-string",
+        "parameter",
+        "bound",
+        "genre"
+      ],
+      "summary": "genre is formatted into the SQL text with an f-string. The title value is bound, the genre is not, so a crafted genre changes the query.",
+      "line": 7
+    }
+  ],
+  "bait": [
+    {
+      "pr": "pr-06-bulk-lookup",
+      "title": "Look up several books by id",
+      "id": "F1",
+      "looks_like": "SQL injection",
+      "file": "lending/catalog.py",
+      "marker": "IN ({placeholders})",
+      "why_fine": "The f-string inserts only a run of '?' characters generated from len(ids). Every value is bound through the parameter tuple. CLAUDE.md allows generated placeholders.",
+      "line": 8
+    },
+    {
+      "pr": "pr-07-notify-tests",
+      "title": "Test the email sender with a fake SMTP server",
+      "id": "F2",
+      "looks_like": "hard-coded secret",
+      "file": "tests/test_notify.py",
+      "marker": "TEST_PASSWORD =",
+      "why_fine": "A placeholder used only against a mocked SMTP object inside a unit test. It opens nothing and no real credential is involved.",
+      "line": 6
+    },
+    {
+      "pr": "pr-08-loan-gaps",
+      "title": "Report the longest gap between due dates",
+      "id": "F3",
+      "looks_like": "off-by-one",
+      "file": "lending/reports.py",
+      "marker": "range(len(dates) - 1)",
+      "why_fine": "Comparing consecutive pairs needs n - 1 iterations. i + 1 stays in range, and fewer than two dates returns 0. This is correct.",
+      "line": 9
+    },
+    {
+      "pr": "pr-09-waive-all",
+      "title": "Add a bulk fine waiver for a member list",
+      "id": "F4",
+      "looks_like": "missing authorization check",
+      "file": "lending/admin_api.py",
+      "marker": "def waive_many",
+      "why_fine": "The handler has no require_role call, but it is registered on `admin`, a Router created with guard_role='librarian'. Router.dispatch checks the role for every route.",
+      "line": 15
+    },
+    {
+      "pr": "pr-10-prorated-fine",
+      "title": "Prorate a fine for a partial day rate",
+      "id": "F5",
+      "looks_like": "logic error (float to int truncation)",
+      "file": "lending/fines.py",
+      "marker": "return int(days * rate_cents_per_day)",
+      "why_fine": "int() truncates toward zero on purpose. CLAUDE.md and the docstring state policy LIB-7: truncate, never round up. The result is stored as integer cents.",
+      "line": 14
+    }
+  ],
+  "clean": [
+    {
+      "pr": "pr-11-docstrings",
+      "title": "Add docstrings to the fines module"
+    }
+  ]
+}

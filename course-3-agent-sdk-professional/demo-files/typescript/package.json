@@ -1,0 +1,16 @@
+{
+  "name": "brightwater-agent-ts",
+  "private": true,
+  "type": "module",
+  "description": "TypeScript starter for the Agent SDK Professional labs. Install with the commands in README.md; versions are pinned by the instructor after rehearsal.",
+  "scripts": {
+    "preflight": "tsx src/preflight.ts",
+    "lab1": "tsx src/lab1Agent.ts",
+    "check1": "tsx src/checkPrompts.ts lab1",
+    "lab2": "tsx src/lab2Agent.ts",
+    "check2": "tsx src/checkPrompts.ts lab2",
+    "lab3": "tsx src/lab3Agent.ts",
+    "check3": "tsx src/lab3Check.ts",
+    "eval": "tsx src/evalHarness.ts"
+  }
+}

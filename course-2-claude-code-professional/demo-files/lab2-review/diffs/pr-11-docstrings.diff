@@ -1,0 +1,16 @@
+diff --git a/lending/fines.py b/lending/fines.py
+index a11efdc..33604a8 100644
+--- a/lending/fines.py
++++ b/lending/fines.py
+@@ -1,9 +1,11 @@
+ from lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY
+ 
+ 
+ def days_late(due, returned):
++    """Whole days between the due date and the return date, never negative."""
+     return max(0, (returned - due).days)
+ 
+ 
+ def fine_cents(due, returned):
++    """Fine in cents for a loan, capped at FINE_CAP_CENTS."""
+     return min(FINE_CAP_CENTS, days_late(due, returned) * FINE_CENTS_PER_DAY)

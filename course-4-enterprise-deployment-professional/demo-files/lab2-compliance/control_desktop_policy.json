@@ -1,0 +1,25 @@
+{
+  "track": "desktop",
+  "macos": {
+    "delivery": "",
+    "installer": "",
+    "preference_domain": "",
+    "keys": [
+      {"purpose": "auto_update", "name": "UNVERIFIED: describe the key", "value": ""},
+      {"purpose": "desktop_extensions", "name": "UNVERIFIED: describe the key", "value": ""},
+      {"purpose": "local_dev_mcp", "name": "UNVERIFIED: describe the key", "value": ""}
+    ]
+  },
+  "windows": {
+    "delivery": "",
+    "installer": "",
+    "hive_precedence": "",
+    "keys": [
+      {"purpose": "auto_update", "name": "UNVERIFIED: describe the key", "value": ""},
+      {"purpose": "desktop_extensions", "name": "UNVERIFIED: describe the key", "value": ""},
+      {"purpose": "local_dev_mcp", "name": "UNVERIFIED: describe the key", "value": ""}
+    ]
+  },
+  "extension_allowlist_note": "",
+  "rollout_notes": ""
+}

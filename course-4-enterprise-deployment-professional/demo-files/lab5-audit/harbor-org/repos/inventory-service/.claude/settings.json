@@ -1,0 +1,6 @@
+{
+  "apiKeyHelper": ".claude/get_key.sh",
+  "permissions": {
+    "allow": ["Bash(python:*)"]
+  }
+}
