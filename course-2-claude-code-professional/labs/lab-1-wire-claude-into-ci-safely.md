@@ -10,6 +10,11 @@
 
 ## Prerequisites
 
+<!-- setup-ref:start -->
+> **New to this course, or on a fresh machine?** Install and sign in to Claude Code first: **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)**. About 10 minutes, Linux and Windows. Courses can be taken in any order, so this lab does not assume another course set it up.
+>
+> **This course needs a paid account** — the free plan does not include Claude Code. Confirm with `claude --version` and `claude auth status`.
+<!-- setup-ref:end -->
 - [ ] Python 3.11 or later
 - [ ] Git 2.31 or later, with your name and email set
 - [ ] `claude` signed in to a paid Anthropic account

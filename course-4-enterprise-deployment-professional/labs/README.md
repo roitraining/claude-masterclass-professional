@@ -7,6 +7,9 @@
 
 ## About this guide
 
+<!-- setup-ref:start -->
+> **Setting up for the first time?** See **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)** before Lab 1. Courses can be taken in any order, so none of them assumes another course installed it.
+<!-- setup-ref:end -->
 These labs are written at Professional level. Each states a goal, acceptance criteria, and hints. It does not give click-by-click steps. Each plants traps and is scored out of 100. They do not re-teach Associate content (settings precedence basics, admin consent basics).
 
 In this guide `$FILES` is the `demo-files` folder your instructor gives you. Every name, company, domain, and figure is fictional. No lab needs a real tenant, key, or token. Every secret is an obvious placeholder such as `FAKE-TOKEN-DO-NOT-USE`. Commit locally only. Nothing in this course pushes to a remote.

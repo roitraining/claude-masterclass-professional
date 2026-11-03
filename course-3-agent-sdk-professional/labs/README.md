@@ -7,6 +7,9 @@
 
 ## About this guide
 
+<!-- setup-ref:start -->
+> **Setting up for the first time?** See **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)** before Lab 1. Courses can be taken in any order, so none of them assumes another course installed it.
+<!-- setup-ref:end -->
 These are 300-level labs. Each states a goal, acceptance criteria and hints, and does not give click-by-click steps. Each plants a trap, and each is scored. You work solo and locally, in Python or TypeScript. Pick a language on Day 1 and keep it. Python is the primary starter and is complete. The TypeScript starter has the same structure and file purposes.
 
 In this guide `$FILES` is the `demo-files` folder your instructor gives you. Work in your own copy. Everything is local and every name, order and amount is fictional. The labs do not re-teach Associate content: subagent team design and hooks basics are assumed.

@@ -7,6 +7,9 @@
 
 ## About this guide
 
+<!-- setup-ref:start -->
+> **Setting up for the first time?** See **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)** before Lab 1. Courses can be taken in any order, so none of them assumes another course installed it.
+<!-- setup-ref:end -->
 You run these labs yourself, solo, on your own machine, in the order below. They assume Associate 1 and Associate 2: what a Skill is, how to install a plugin, and how to schedule a task are not retaught. This is a Professional course, so the steps state a goal and the acceptance criteria and give hints. How you get there is yours to work out.
 
 In this guide `$FILES` is the `demo-files` folder your instructor gives you. Everything is local and uses fictional data. No lab needs a credential or a cloud account. Anything that publishes or uploads to a shared account is done by the instructor on the ROI sandbox account, not by you.

@@ -7,6 +7,9 @@
 
 ## About this guide
 
+<!-- setup-ref:start -->
+> **Setting up for the first time?** See **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)** before Lab 1. Courses can be taken in any order, so none of them assumes another course installed it.
+<!-- setup-ref:end -->
 These are 300-level labs. Each gives a goal, acceptance criteria and hints, not click-by-click steps. Each hides planted traps, and each is scored. The Associate course taught worktrees, subagent teams, hooks and policy precedence, so none of that is retaught here.
 
 In this guide `$FILES` is the `demo-files` folder your instructor gives you. Everything runs on your own personal or sample GitHub or GitLab project plus local files. You do not depend on another student, and you do not need to share an organization with anyone. Use a project that holds no real work. Every name, company and figure is fictional. No file holds a real secret.

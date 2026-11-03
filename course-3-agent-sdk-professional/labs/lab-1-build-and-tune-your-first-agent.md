@@ -10,6 +10,11 @@
 
 ## Prerequisites
 
+<!-- setup-ref:start -->
+> **New to this course, or on a fresh machine?** Install Claude Code first: **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)**. About 10 minutes, Linux and Windows. Courses can be taken in any order, so this lab does not assume another course set it up.
+>
+> **This course authenticates with `ANTHROPIC_API_KEY`, not a subscription login** — see section 6 of the setup guide. If you are taking another Claude Code course the same week, read section 7 too: a key left exported in your shell profile makes the other courses bill against it silently.
+<!-- setup-ref:end -->
 - [ ] `ANTHROPIC_API_KEY` set in the shell you will run from. The SDK does not read `.env` files
 - [ ] Python 3.11 or later, or Node with `npx tsx` if you take the TypeScript track
 - [ ] Pick a language track before you start and stay on it

@@ -10,6 +10,11 @@
 
 ## Prerequisites
 
+<!-- setup-ref:start -->
+> **New to this course, or on a fresh machine?** Install and sign in to Claude Code first: **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)**. About 10 minutes, Linux and Windows. Courses can be taken in any order, so this lab does not assume another course set it up.
+>
+> Already set up? Confirm with `claude --version` and `claude auth status`.
+<!-- setup-ref:end -->
 - [ ] Python 3.11 or later, for the offline scorer
 - [ ] `$FILES/lab1-identity` from your instructor: `idp_sso_notes.md`, `group_mappings.csv`, `claude_groups.csv`, `custom_roles.json`, `offboarding_steps.csv`, `rollout_plan.csv`, `domains.csv`, `findings_lab1.json`, `check_lab1.py`
 - [ ] Live path only: sandbox organization access and the printed menu map from your instructor
