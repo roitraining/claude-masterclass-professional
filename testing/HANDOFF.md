@@ -4,8 +4,8 @@
 
 You are a Claude Code session running inside the ROI Virtual Classroom (RVC)
 virtual machine. Your job is to work through this repository's labs as a student
-would, record what actually happens, and commit the results so a reviewer
-outside the VM can read them.
+would, record what actually happens, and write the results to files a reviewer
+outside the VM can read.
 
 You are **testing the labs**, not completing a course. Nobody is grading your
 lab output. The deliverable is the log.
@@ -36,16 +36,17 @@ a **BLOCKED**, with the deviation recorded.
 
 These are hard limits. Do not exceed them.
 
-- **Never commit a credential.** Not an API key, not a token, not a password.
-  If a log would contain one, replace it with `REDACTED`. Before every commit,
-  check your diff.
+- **Never write a credential into a result file.** Not an API key, not a
+  token, not a password.
+  If a log would contain one, replace it with `REDACTED`. Check every file you
+  write before you save it.
 - **Never raise a spend cap.** Several labs run model evaluations and set turn
   and budget limits (`LAB_MAX_TURNS`, `LAB_BUDGET_USD`, and caps inside the
   Gauntlet script). If a lab stops because it hit a cap, that is a result —
   log it and move on. Do not increase the cap to get further.
-- **Never push to `main`.** You work on the testing branch only. See section 6.
-- **Do not push to any remote other than this repository's `origin`.** Labs
-  that say to commit locally mean locally.
+- **Never push to any remote.** You do not have permission to, and must not
+  try. Results are local files only — see section 6. Labs that say to commit
+  locally mean locally.
 - **Stop and report rather than improvise** if a step would change an
   organization, a tenant, or a shared account. Those are instructor-only
   actions. Log them as NOT TESTED with the reason.
@@ -103,7 +104,7 @@ image. Answer them:
 4. What account tier is the class account? (`claude auth status`)
 
 Record the answers in `testing/results/00-setup.md`. **If setup fails, stop
-and commit that log before doing anything else** — it is the most valuable
+and write that log before doing anything else** — it is the most valuable
 result in the run.
 
 **Phase 1 — Course 3, Agent SDK (5 labs).** API-key authentication, a
@@ -159,33 +160,41 @@ Also record, for every lab:
 
 ---
 
-## 6. Committing results
+## 6. Recording results — local files only
 
-You are on branch `lab-testing/rvc-2026-11`. Confirm before you start:
+**You do not have permission to push to GitHub. Do not try.** No `git push`,
+no pull request, no remote of any kind. Everything you produce stays on this
+VM as files.
 
-```
-git rev-parse --abbrev-ref HEAD
-```
-
-Commit after **each** lab rather than batching, so a reviewer sees progress and
-nothing is lost if the VM dies:
+Write each result to:
 
 ```
-git add testing/results/
-git diff --cached        # check for credentials before every push
-git commit -m "Test result: <course> <lab> — <VERDICT>"
-git push origin lab-testing/rvc-2026-11
+testing/results/<course-folder>-<lab-file-slug>.md
 ```
 
-Never commit anything outside `testing/results/`. If a lab told you to create
-project files, those belong in a scratch directory outside this repository, or
-in the local-only commits the lab itself describes.
+**Save after each lab, not at the end.** If the VM dies or the session ends,
+anything you have not written to disk is gone. Finish a lab, write its file,
+then start the next one.
 
-If the push is rejected because the remote moved, pull with rebase and retry:
+Keep a running index at `testing/results/00-INDEX.md` and update it after every
+lab, so the state of the run is readable from one file:
 
+```markdown
+| Lab | Verdict | Tested | Result file |
+|---|---|---|---|
+| Course 3 Lab 1 | FAIL | 2026-11-03 14:20 | course-3-...-lab-1-....md |
 ```
-git pull --rebase origin lab-testing/rvc-2026-11
-```
+
+Before you write anything, check it for credentials — API keys, tokens,
+passwords — and replace them with `REDACTED`. These files get read and shared
+outside the VM.
+
+Write **only** inside `testing/results/`. Do not edit any lab, demo, or
+`SETUP-CLAUDE-CODE.md`. If a lab told you to create project files, put them in
+a scratch directory outside this repository.
+
+To hand the results back, the operator collects the `testing/results/` folder
+from the VM. You do not need to transmit anything.
 
 ---
 
@@ -193,13 +202,13 @@ git pull --rebase origin lab-testing/rvc-2026-11
 
 Write `testing/results/99-summary.md` with:
 
-- A table of every lab and its verdict
+- A table of every lab and its verdict (the same table as `00-INDEX.md`)
 - The blockers, in the order they should be fixed
 - Anything about the RVC image itself that the setup guide should say and
   does not
 
 If you hit something you cannot resolve — ambiguous instructions, a step that
 needs an account you do not have, a failure you cannot interpret — **stop,
-write it up, commit, and say so plainly in the summary.** Do not guess your way
+write it up to a file, and say so plainly in the summary.** Do not guess your way
 forward and do not loop on a failing command. A clear blocker is a useful
 result; a fabricated pass is worse than no result.
