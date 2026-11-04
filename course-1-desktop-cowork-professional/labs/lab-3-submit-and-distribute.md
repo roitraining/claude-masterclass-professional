@@ -12,7 +12,7 @@
 
 - [ ] Labs 1 and 2 completed — you need your finished plugin and its latest Gauntlet score
 - [ ] `claude` signed in to a paid Anthropic account
-- [ ] Claude Desktop installed, for the extension reinstall in Part 5
+- [ ] Claude Desktop installed **and signed in to the same account as Claude Code**, for the extension reinstall in Part 5. This is the one place in the course where the accounts must match: a plugin is saved to an account, so a mismatch means the one you packed will not appear. Parts 1 to 4 and 6 to 9 do not need Desktop
 - [ ] `$FILES/templates` and `$FILES/gauntlet/SECURITY-CHECKLIST.md` from your instructor
 - [ ] No directory submission required. You prepare and test everything locally
 

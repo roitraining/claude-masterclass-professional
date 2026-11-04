@@ -19,9 +19,9 @@ Claude can word things differently each time. Check your result against the Chec
 **Before Lab 1:**
 
 - Python 3.11 or later and Git 2.31 or later. Check with `python3 --version` and `git --version`.
-- `claude` (Claude Code 2.1.269 or later), signed in to the same account as Claude Desktop. Check with `claude --version`.
+- `claude` (Claude Code 2.1.269 or later). Check with `claude --version`.
 - Node.js and the MCPB tool for packaging an extension: `npm install -g @anthropic-ai/mcpb`. If Node is not available, use `pack_mcpb.py` in the starter server instead.
-- Claude Desktop signed in, with Cowork and plugins enabled.
+- Claude Desktop, with plugins enabled, **signed in to the same account as Claude Code** — needed only for Lab 1 Part 8 (optional) and Lab 3 Part 5. A plugin is saved to an account, so a mismatch means the plugin you packed will not appear in Desktop. Everything else in this course is command line: without Desktop you can still complete Lab 1 Parts 1 to 7 and all of Lab 2.
 
 > **Model credits.** Lab 2 Part 2 runs evals, which spend model credits. The Gauntlet script caps spend. Do not raise the cap without asking.
 

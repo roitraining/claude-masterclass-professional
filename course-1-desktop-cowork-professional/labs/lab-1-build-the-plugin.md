@@ -13,7 +13,12 @@
 <!-- setup-ref:start -->
 > **New to this course, or on a fresh machine?** Install and sign in to Claude Code first: **[Setup: Install and Sign In to Claude Code](../../SETUP-CLAUDE-CODE.md)**. About 10 minutes, Linux and Windows. Courses can be taken in any order, so this lab does not assume another course set it up.
 >
-> **This course needs Claude Code 2.1.269 or later, signed in to the same account as Claude Desktop.** Confirm with `claude --version` and `claude auth status`.
+> **This course needs Claude Code 2.1.269 or later.** Confirm with `claude --version`.
+>
+> Claude Desktop is needed only for **Part 8**, which is optional, and it must be
+> signed in to the **same account** as Claude Code for a plugin built here to
+> appear there. Parts 1 to 7 are entirely command line: if Desktop is missing or
+> on another account, do Parts 1 to 7 and skip Part 8.
 <!-- setup-ref:end -->
 - [ ] Python 3.11 or later
 - [ ] `claude` signed in to a paid Anthropic account

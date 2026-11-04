@@ -533,3 +533,44 @@ applied without re-verification. The Course 5 items are handled separately in
   the lab before Part 3 and in the facilitator rubric.
 
 All Python compiles and all JSON validates: 0 failures.
+
+---
+
+## Batch 8c — Course 1's Desktop requirement was overstated, causing an over-block
+
+**Finding this corrects:** the test report blocked **all three** Course 1 labs on
+the Desktop/CLI account mismatch. Checking what the labs actually need, that was
+too broad — and the overstated prerequisite was partly mine.
+
+What Course 1 really needs Desktop for:
+
+| Lab | Desktop dependency | Runnable without it |
+|---|---|---|
+| Lab 1 | Part 8's extension install, which the lab itself calls *"optional if time is short"* | **Yes** — Parts 1 to 7 build and pack the plugin entirely in the CLI |
+| Lab 2 | **None.** Desktop appears only in the course title and the boilerplate "Part of…" line | **Yes, entirely** |
+| Lab 3 | Part 5's extension reinstall genuinely needs it | Parts 1 to 4 and 6 to 9 yes |
+
+So the account mismatch blocks **one part of one lab**, plus an optional part of
+Lab 1 — not a course.
+
+The cause was wording. The course preamble said "`claude` … signed in to the
+same account as Claude Desktop" as a flat prerequisite, and the setup pointer I
+added to Lab 1 repeated it as "**This course needs** … signed in to the same
+account as Claude Desktop". Read as a gate, that blocks everything.
+
+Reworded in three places so the requirement appears where it applies:
+
+- **Lab 1's setup pointer** now states the version requirement on its own, then
+  says Desktop is needed only for the optional Part 8, and that Parts 1 to 7 are
+  entirely command line — skip Part 8 if Desktop is missing or on another
+  account.
+- **Lab 3's prerequisite** names Part 5 as the one place the accounts must match,
+  and says why: a plugin is saved to an account, so a mismatch means the plugin
+  you packed will not appear.
+- **The course preamble** separates the Claude Code version from the Desktop
+  requirement, and states what remains runnable without Desktop.
+
+The mismatch itself is a misconfigured image, not a design problem: both should
+be signed in to the same class account. It stays on the image list as item 5
+because a script cannot log in. But it should no longer stop a retest of Labs 1
+and 2.
