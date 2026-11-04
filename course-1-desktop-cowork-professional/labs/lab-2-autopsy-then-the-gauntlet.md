@@ -49,6 +49,11 @@ claude --plugin-dir ~/work/expense-digest plugin details expense-digest
 
 **Expected result:** validation passes, and you have the always-on token figure written down. A passing validator here is the lesson, not the goal.
 
+Validation also prints advisory lines about files wanted for **directory
+submission**, such as a `README` and a `LICENSE`. Those are not defects and are
+not among the six. This plugin is not being submitted anywhere; Lab 3 covers
+submission. Treat them as noise for this lab.
+
 ### Step 3: Find the Six Defects
 
 There is one defect in each area on the worksheet: trigger, permissions, setup, context cost, secrets, and versioning. For each, write down the file and the evidence **before** you fix it.

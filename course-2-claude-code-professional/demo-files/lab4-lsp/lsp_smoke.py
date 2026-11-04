@@ -127,7 +127,12 @@ def main(argv):
     diag = wait_for(q, lambda m: m.get("method") == "textDocument/publishDiagnostics"
                     and m["params"]["uri"].lower() == uri.lower() and m["params"]["diagnostics"], wait)
     if diag is None:
-        print("No diagnostics published within the wait. The file may be clean, the server may need more time (--wait 15), or the server may lack the plugin that produces diagnostics (for pylsp: pip install \"python-lsp-server[pyflakes,pycodestyle]\").")
+        print("No diagnostics published within the wait.")
+        print("Most likely, in order: the file is clean, so there is nothing to report;")
+        print("the server needed more time (retry with --wait 15);")
+        print("or the server lacks the check plugins (pip install \"python-lsp-server[pyflakes,pycodestyle]\").")
+        print("Check the file first. A clean file reporting nothing is correct behaviour,")
+        print("not a broken install.")
     else:
         for d in diag["params"]["diagnostics"]:
             print(f"  diagnostic {d['range']['start']['line'] + 1}:{d['range']['start']['character'] + 1}  {d['message']}")

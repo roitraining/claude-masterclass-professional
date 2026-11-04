@@ -67,6 +67,14 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 
 ---
 
+> **Two findings can share one credential.** The shared CI secret and the
+> departed owner's long-lived credential are **separate findings**, scored
+> separately, even though they involve the same credential in the inventory.
+> One is about **scope** — a secret used by more than one repository — and the
+> other is about **ownership and lifecycle** — who holds it, whether it expires,
+> whether it was rotated, and whether it was used after they left. Merging them
+> into a single row loses the points for the one you did not state.
+
 ## Part 3: Write the Findings
 
 ### Step 5: Write One Finding Block per Issue

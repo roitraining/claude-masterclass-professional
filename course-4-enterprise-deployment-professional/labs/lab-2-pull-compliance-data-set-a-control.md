@@ -53,7 +53,7 @@ Write a short script or query in any language that surfaces activity worth a sec
 
 > **Common Pitfall:** do not report every large download. Ask whether the pattern repeats at the same time on other days, and who the user is.
 
-> **Common Pitfall:** citing only the first event of a sequence is not enough. Cite several so a reviewer can reproduce the finding.
+> **Common Pitfall:** citing only the first event of a sequence is not enough. Cite **every event in the sequence** so a reviewer can reproduce the finding. One anomaly is a single event; for that one, citing it is citing all of it.
 
 ### Step 3: Record the Findings
 
@@ -91,7 +91,19 @@ Read `control_ticket.md` and choose Track A or Track B.
 
 **Track A — Tenant Restrictions proxy rule**, in `control_proxy_spec.json`.
 
+Facts you need, from the course's verified set:
+
+- The header is `anthropic-allowed-org-ids`
+- Its value is comma-separated organization UUIDs, **no spaces**
+- It is added to traffic for `claude.ai`, `api.anthropic.com`, `claude.com` and
+  `anthropic.com`
+- TLS inspection is required
+- Web, desktop, API key and OAuth token authentication are all covered
+
 **Acceptance criteria:** it names the request header, gives the value in the required format, lists the hosts and the authentication methods covered, states what the proxy must be able to do, and allows only the approved organizations.
+
+> **Hint:** the facts above are given. The work is deciding *which* organizations
+> belong in the value, from the ticket, and reading that list as a reviewer.
 
 **Track B — Claude Desktop managed policy**, in `control_desktop_policy.json`.
 
@@ -120,7 +132,7 @@ deliberate — ask rather than looking for it.
 
 - [ ] Timestamps were treated as UTC throughout
 - [ ] Four anomalies found, each naming the account
-- [ ] Each finding cites several event ids, not just the first of a sequence
+- [ ] Each finding cites every event id in its sequence, not just the first (one anomaly is a single event)
 - [ ] Each finding gives a severity and explains why the pattern matters
 - [ ] No benign account rated medium or high
 - [ ] The analysis script is saved and referenced in `findings_lab2.json`
@@ -139,7 +151,7 @@ deliberate — ask rather than looking for it.
 |---|---|---|
 | Phantom anomalies | Everything looks out of hours | The CSV timestamps are UTC, as is the business-hours definition. Do not convert to local time |
 | Over-reporting downloads | Many large-download findings | Ask whether the pattern repeats at the same time on other days, and who the user is. Recurring business-hours activity is a decoy |
-| Finding not reproducible | A reviewer cannot confirm it | You cited only the first event. Cite several across the sequence |
+| Finding not reproducible | A reviewer cannot confirm it | You cited only the first event. Cite every event in the sequence |
 | Control value rejected | Track A header value fails the check | The organization list was pasted from a chat message. Check for spaces, a trailing comma, and the retired entry |
 | Invented key names | Track B loses the no-invention points | Do not write key names from memory. Use `UNVERIFIED:` placeholders |
 

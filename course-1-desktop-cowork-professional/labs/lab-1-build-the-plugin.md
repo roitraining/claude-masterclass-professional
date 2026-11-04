@@ -17,7 +17,7 @@
 <!-- setup-ref:end -->
 - [ ] Python 3.11 or later
 - [ ] `claude` signed in to a paid Anthropic account
-- [ ] `mcpb` available for packing the connector
+- [ ] `mcpb` available for packing the connector (`npm install -g @anthropic-ai/mcpb`), **or** `$FILES/starter-server/pack_mcpb.py` if Node is not installed — the fallback needs no Node and produces the same `.mcpb`
 - [ ] Claude Desktop installed, for the optional extension install in Part 8
 - [ ] `$FILES` from your instructor: `products/<your product>/BRIEF.md` and the `data` folder beside it, `starter-server/`, `templates/`
 - [ ] On Windows, use forward slashes or an environment variable for data paths, never a hard-coded backslash path
@@ -147,7 +147,7 @@ claude --plugin-dir ~/work/<plugin name> plugin details <plugin name>
 
 ### Step 12: Pack the Connector as an Extension
 
-Copy `$FILES/starter-server/manifest.json` to `server/manifest.json`, then edit it: set the name, version, description, and the tool-specific environment variable name, and remove sample data you do not need. Pack it into `dist/<plugin name>-<version>.mcpb` with `mcpb pack`.
+Copy `$FILES/starter-server/manifest.json` to `server/manifest.json`, then edit it: set the name, version, description, and the tool-specific environment variable name, and remove sample data you do not need. Pack it into `dist/<plugin name>-<version>.mcpb` with `mcpb pack`. Without Node, use the fallback instead: `python3 pack_mcpb.py . dist/<plugin name>-<version>.mcpb`.
 
 **Acceptance criteria:** a packed `.mcpb` file exists.
 

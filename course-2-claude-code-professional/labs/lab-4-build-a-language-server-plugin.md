@@ -114,7 +114,15 @@ Goal: show that the server and your config work before you blame Claude Code.
 python3 lsp_smoke.py pylsp-plugin-starter sample-project/app/report.py
 ```
 
-Then ask for a definition with `--definition LINE:COL` at a use of `rate_for` in `app/billing.py`.
+Then ask for a definition at a use of `rate_for` in `app/billing.py`:
+
+```bash
+python3 lsp_smoke.py pylsp-plugin-starter sample-project/app/billing.py --definition 6:40
+```
+
+Columns are **1-based**, and the position must sit on the name itself. `6:40` is
+inside `rate_for`; `6:39` lands on the character before it and returns
+`none found`.
 
 **Acceptance criteria:** diagnostics for `app/report.py` include an unused import and an undefined name. A definition lookup for `rate_for` points at `app/tax.py`.
 
@@ -136,7 +144,17 @@ Restart the session with `claude --plugin-dir`. Ask Claude to make an edit that 
 
 Ask where `rate_for` is defined and what calls it.
 
-**Acceptance criteria:** the transcript shows Claude using the `LSP` tool instead of searching text. Capture it.
+Ask explicitly for the language server, for example: "use the LSP tool to find
+where `rate_for` is defined and what calls it".
+
+**Acceptance criteria:** the transcript shows Claude using the `LSP` tool.
+Capture it.
+
+> **Note:** without being asked explicitly, Claude may answer correctly using
+> `Grep` instead — the answer is right but it does not demonstrate the server.
+> If that happens, ask again naming the tool. Either tool answering correctly is
+> acceptable evidence that navigation works; only the `LSP` tool is evidence
+> that **your plugin** is working.
 
 ---
 
@@ -176,7 +194,7 @@ Add a second entry that claims `.py` and read the warning the Errors tab shows. 
 |---|---|---|
 | Server not found | No diagnostics and no error line | The server is not on the PATH of the shell that started `claude`, or `pylsp` was installed without its checks. `claude --debug` logs `LSP server <name> failed to start` when the binary is missing |
 | PATH mismatch | `Executable not found in $PATH` in the Errors tab | Install the server, then start a new session from a shell where it is found |
-| Whole file skipped | `Invalid LSP server config for ".lsp.json"` in the Errors tab | An entry is invalid and the entire file was skipped. Fix the entry |
+| Whole file skipped | `Invalid LSP server config for ".lsp.json"` in the Errors tab, or `LSP config validation failed for .lsp.json` in the debug log | An entry is invalid and the entire file was skipped. Fix the entry. The two surfaces word it differently; either means the same thing |
 | Validator is no help | `claude plugin validate` passes and nothing works | It does not read `.lsp.json`. Use `check_lsp.py` and the Errors tab |
 | Edits have no effect | Config changes do nothing | Restart the session, or run `/reload-plugins` where it applies |
 | Works outside, not inside | Diagnostics in the smoke test but not the session | The shell that started `claude` has a different PATH from the one you tested in |

@@ -41,7 +41,12 @@ python3 plugin_lint.py relnotes-starter --marketplace marketplace-template
 claude plugin validate relnotes-starter
 ```
 
-**Expected result:** both tools report findings. The two sets are not the same.
+**Expected result:** both tools report findings, and the two sets are not the same.
+
+`claude plugin validate` also prints suggestions about `README` and `LICENSE`
+files for directory submission. Those are **out of scope** for this lab — this
+plugin is not being submitted to the Anthropic directory. Note them and move on;
+they are not among the problems you fix in Part 2.
 
 ### Step 2: Explain Each Finding
 
@@ -125,6 +130,10 @@ Goal: a teammate can install it from a git marketplace.
 ### Step 7: Build the Marketplace
 
 Copy `marketplace-template` to a new folder, put your plugin at `plugins/relnotes`, and make the marketplace entry valid.
+
+Exclude `evals/results/` when you copy. Eval output is a record of your runs,
+not part of the plugin, and copying it ships your reports to anyone who installs
+from the marketplace.
 
 **Acceptance criteria:** `claude plugin validate` passes on the marketplace folder.
 

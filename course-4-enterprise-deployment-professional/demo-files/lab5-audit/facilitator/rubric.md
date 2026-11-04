@@ -20,6 +20,12 @@ Instructor use. Hold back until the audit is submitted.
 
 > **Defending the clean repository.** `cred-102` is team-owned (`payments-team@example.org`), has an expiry, and has been rotated since creation. Contrast it with `cred-101`, which is person-owned, never expires and has never been rotated. A student who argues that a setup token is person-tied in principle is reasoning correctly; the distinction here is ownership, expiry and rotation. Do not deduct for a student who asks the question and then concludes the repository is clean.
 
+> **C3 and C4 score separately** even though both involve `cred-101`'s CI use.
+> C3 is the shared scope across two repositories; C4 is the departed owner, the
+> missing expiry and the use after departure. A student who merges them into one
+> finding has stated only one of the two problems. Award the row they stated and
+> note the merge; the lab now warns against it explicitly.
+
 | Findings are prioritized with a stated reason (suggested order: C4, C3, C1, C2, C5, because C4 is a live credential tied to a former employee and C3 has the widest reach) | 10 |
 | Rotation and ownership plan covers every credential involved | 10 |
 

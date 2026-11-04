@@ -440,3 +440,96 @@ three checked:
 **One of three stood up.** The remaining ~28 Course 5 items are therefore
 treated as unverified leads, not findings, and each needs checking against the
 lab text before any change. That is the bulk of what is left in batch 8.
+
+---
+
+## Batch 8a — the verified Course 1, 2 and 4 tail
+
+These came from the tester directly, with verbatim evidence, so they were
+applied without re-verification. The Course 5 items are handled separately in
+8b because their source was less reliable.
+
+### Course 1
+
+| Lab | Fix |
+|---|---|
+| L1 | `pack_mcpb.py` named in the prerequisites and in the packing step. Only the README mentioned the no-Node fallback, so a student without Node had no documented path |
+| L2 | Step 2 now explains that `claude plugin validate` also prints advisory lines about `README` and `LICENSE` for **directory submission**. Those are not defects, are not among the six, and Lab 3 covers submission |
+
+### Course 2 Lab 1
+
+- **The gate detects GitLab by filename.** Added a troubleshooting row: any name
+  other than `.gitlab-ci.yml` is silently skipped with "No Claude step found",
+  even on a file that plainly has a `claude` job.
+- **T5 has a known blind spot, now stated.** Laundering outsider text through an
+  `env:` variable scores 100/100 while the prompt still contains
+  attacker-controlled text. The lab now says a passing gate is **not** proof the
+  prompt is clean, and tells students to trace where every value comes from.
+  Flagged as a limit of the gate, not a planted trap.
+
+### Course 2 Lab 3
+
+- Step 1's expected result now covers the out-of-scope `README`/`LICENSE`
+  suggestions from `validate`.
+- Step 7 now says to exclude `evals/results/` when copying to the marketplace,
+  so students do not publish their own eval reports to anyone installing the
+  plugin.
+
+### Course 2 Lab 4
+
+- **Step 6 gives the coordinates.** `--definition 6:40` with the note that
+  columns are **1-based** and the position must sit on the name: `6:39` lands one
+  character early and returns `none found`.
+- **Step 8 asks for the tool explicitly.** In a headless run Claude answered
+  correctly with `Grep` instead of `LSP`. The step now says to name the tool, and
+  explains the distinction: either tool answering proves navigation works, but
+  only `LSP` proves *the student's plugin* works.
+- **The Errors tab wording.** Troubleshooting now carries both forms — `Invalid
+  LSP server config for ".lsp.json"` in the Errors tab and `LSP config
+  validation failed for .lsp.json` in the debug log — and says they mean the same
+  thing.
+- **The smoke test no longer leads with "reinstall".** `lsp_smoke.py` now lists
+  causes in likelihood order and closes with "A clean file reporting nothing is
+  correct behaviour, not a broken install", so a student with a clean file does
+  not go reinstalling for no reason.
+
+### Course 4 Lab 1
+
+- **An empty `claude_group` is not automatically a defect.** Under JIT, rows with
+  a built-in role (`User`, `Admin`, `Owner`) need no named group — most rows are
+  like that, including `claude-eng-premium`. Only a **Custom** role must name a
+  group that exists, which is what defect D1 is. Stated at Step 2 so students
+  stop churning on a correct row.
+
+### Course 4 Lab 2
+
+- **Track A's facts are now in the student step.** The header name
+  (`anthropic-allowed-org-ids`), the no-spaces value format, the four hosts and
+  the covered authentication methods lived **only in the Facilitator Notes**,
+  while Step 6 scored students on naming them. Supplied in Step 6, with a hint
+  that the work is deciding *which* organizations belong in the value.
+- **"Cite several events" was impossible for one anomaly.** A3 is a single
+  event, so "several" could not be met. Reworded to "every event in its
+  sequence", with the single-event case called out, in all three places.
+
+### Course 4 Lab 4
+
+- **Guidance for when every run is refused.** The lab already handled a refusal
+  well — record it as `model`, not as a control — but not the case the tester
+  hit, where *all eight* runs refused and no configured control was exercised.
+  Added: record the refusals, then write a reasoned pass naming which control
+  **would** have stopped each effect and which effect would have landed anyway,
+  using the Facilitator Notes SAMPLE outline as the shape, and say plainly in the
+  account that the conclusions are reasoned rather than observed.
+- **`/status` is not available in `-p` mode.** Corrected in all four places,
+  with `permissionMode` from the init JSON as the headless equivalent.
+
+### Course 4 Lab 5
+
+- **C3 and C4 score separately** even though both involve `cred-101`'s CI use.
+  One is about **scope** (a secret shared across two repositories), the other
+  about **ownership and lifecycle** (departed owner, no expiry, used after
+  departure). A student merging them loses the row they did not state. Noted in
+  the lab before Part 3 and in the facilitator rubric.
+
+All Python compiles and all JSON validates: 0 failures.

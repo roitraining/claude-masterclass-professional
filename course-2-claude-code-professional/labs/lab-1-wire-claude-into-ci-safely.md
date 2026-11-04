@@ -251,6 +251,7 @@ Track C substitutes a passed gate plus the written notes from Step 4, Step 11 an
 |---|---|---|
 | Missing dependency | `PyYAML is required` | Activate the lab venv, then run `pip install pyyaml` in the environment you run the gate from |
 | Gate skips the file | "No Claude step found. Skipped." | The file has no `anthropics/claude-code-action` step, or no `claude` command in a GitLab job. Deleting the Claude step to pass is not a fix |
+| GitLab file always skipped | "No Claude step found. Skipped." on a file that clearly has a `claude` job | The gate identifies GitLab config **by filename**. Name it `.gitlab-ci.yml`; any other name is not recognised as GitLab and is skipped |
 | Claude ignores the mention | No response to `@claude` | The app is missing, the secret is missing, the comment says `@claude-bot` or `/claude` instead of `@claude`, or the commenter lacks write access |
 | Authentication breaks after hardening | Run fails at authentication | Default GitHub App authentication needs `id-token: write`. Restore it |
 | CI silent on Claude's commit | No CI run appears | The default `GITHUB_TOKEN` was passed in. Remove the input, or use a custom app token |
@@ -304,6 +305,14 @@ A good result is small diffs to each starter, a gate score of 100 or close, a re
 | A secret echoed into a log | `claude.yml` lines 23 and 24, an echo of the secret and a `printenv` dump; `claude-review.yml` line 26, a literal key (placeholder value) | T3 |
 | A bot loop | `claude-review.yml` line 27, `allowed_bots: "*"` on a workflow that triggers on `synchronize` while Claude pushes to the branch, with no `concurrency` group | T4 |
 | Injection hidden in outsider text | `claude-review.yml` line 22 (the title in a shell step) and line 31 (the description in the prompt); the live fixtures `fixtures/issue-body-injection.md` and `fixtures/pr-description-injection.md` | T5, plus T6 as the defense for the interactive workflow |
+
+> **T5 has a known blind spot.** The check looks for outsider text used
+> directly. Passing it through an `env:` variable first and referencing the
+> variable scores 100/100 while the prompt still contains attacker-controlled
+> text. A passing gate is therefore **not** proof that your prompt is clean —
+> it proves the direct form is gone. Read the prompt yourself and trace where
+> every value in it comes from. This is a limit of the gate, not a trap in the
+> starter files.
 | Tools and limits | `claude.yml` line 32, bare `Bash`; `claude-review.yml` lines 33 and 34, `Bash(*)` and `--dangerously-skip-permissions`; no `--max-turns` and no `timeout-minutes` in either file; line 24, `@main` | T6, T7, T8 |
 | A push that will not start CI | `claude.yml` line 29, `github_token: ${{ secrets.GITHUB_TOKEN }}` | T9 |
 

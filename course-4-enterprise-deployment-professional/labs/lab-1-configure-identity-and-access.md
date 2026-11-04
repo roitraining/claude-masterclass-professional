@@ -48,6 +48,13 @@ Everyone can do this path. If you are taking the live path instead, continue at 
 
 ### Step 2: Find Every Defect in the Configuration
 
+> **An empty `claude_group` is not automatically a defect.** Under JIT, a row
+> whose `claude_role` is a built-in role (`User`, `Admin`, `Owner`) needs no
+> named Claude group — most rows in `group_mappings.csv` are like that, and
+> `claude-eng-premium` is one of them. A **Custom** role is different: it must
+> name a group that actually exists in `claude_groups.csv`. Check the role
+> column before you flag a blank group.
+
 **Hints:**
 
 - Compare each mapping row with `claude_groups.csv`.
