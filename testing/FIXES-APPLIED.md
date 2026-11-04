@@ -574,3 +574,30 @@ The mismatch itself is a misconfigured image, not a design problem: both should
 be signed in to the same class account. It stays on the image list as item 5
 because a script cannot log in. But it should no longer stop a retest of Labs 1
 and 2.
+
+## Batch 8d — Course 2's hosted-project requirement was also overstated
+
+Same shape as Course 1. The preamble listed "administrative access to a personal
+or sample GitHub or GitLab project" as a flat prerequisite for the whole course.
+Only **Lab 1** needs one:
+
+| Lab | References to push/remote/hosted | Reality |
+|---|---:|---|
+| L1 | 32 | Tracks A and B trigger a real CI run and need a remote. Track C needs none |
+| L2 | 1 | False hit — no remote needed |
+| L3 | 1 | A single **optional** step: "For a remote check, push the marketplace…" |
+| L4 | 0 | None |
+| L5 | 2 | Paper lab, scenario text only |
+
+The preamble now separates the two: the Claude Code and Git requirements apply
+to the course, and the hosted project is named as Lab 1 only, with an explicit
+"do not skip those labs for want of a hosted project". It also states that the
+free plan has no Claude Code access, which was the account-tier gap from the
+first run.
+
+**Pattern worth noting.** This is the second course where a *stated* prerequisite
+was stricter than the actual dependency, and both caused or risked a whole-course
+block. Courses 3, 4 and 5 were checked the same way: Course 3's preamble scopes
+its API key correctly, Course 4 Labs 1 and 2 already document live and offline
+paths while Labs 3 to 5 need neither, and Course 5 needs no tooling at all. No
+further changes needed there.

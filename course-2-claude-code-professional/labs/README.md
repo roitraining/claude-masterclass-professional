@@ -16,7 +16,9 @@ In this guide `$FILES` is the `demo-files` folder your instructor gives you. Eve
 
 Claude Code can word things differently each time. Check your result against the acceptance criteria, not against exact text.
 
-**Before Lab 1:** Python 3.11 or later, Git 2.31 or later with your name and email set, `claude` signed in to a paid Anthropic account, and administrative access to a personal or sample GitHub or GitLab project. On Windows, run the shell commands in Git Bash.
+**Before Lab 1:** Python 3.11 or later, Git 2.31 or later with your name and email set, and `claude` signed in to a paid Anthropic account — the free plan does not include Claude Code. On Windows, run the shell commands in Git Bash.
+
+**A hosted project is needed for Lab 1 only.** Lab 1 Tracks A and B need administrative access to a personal or sample GitHub or GitLab project, because they trigger a real CI run. Lab 1 **Track C** needs no remote and no API key. Labs 2, 3, 4 and 5 all work from local files: Lab 3 has a single optional step that publishes to a remote marketplace, and Lab 4 needs no remote at all. Do not skip those labs for want of a hosted project.
 
 > **Token cost.** CI runs, review runs and plugin evals use API credits or subscription usage. Every lab says where to cap them. Use the caps.
 
