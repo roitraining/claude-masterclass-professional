@@ -678,3 +678,39 @@ Worth carrying into the course content, not just the tooling: with
 had correctly refused**. Course 4 Lab 3 and Lab 4 both teach about sandbox
 enforcement, and that behaviour is directly relevant to what "the sandbox
 blocked it" means in the presence of a permissive permission mode.
+
+---
+
+## Analysis — does the Gauntlet actually need the sandbox? Probably not.
+
+Prompted by the tester's observation that all 10 Product 1 eval cases allow no
+Bash. Checked against the repo, and the answer looks like **no, for the thing
+Lab 2 actually asks students to do.**
+
+Three mechanisms can put a shell inside `claude plugin eval`:
+
+| Mechanism | Course 1 Gauntlet (Product 1) | Course 2 Lab 3 |
+|---|---|---|
+| `allowed_tools` includes `Bash` | **No** — all 10 cases are `[Read, Glob, Grep, Skill, Agent]` | **No** — same list |
+| `case.yaml` runs a `scaffold_script` | **No** — no case has one | **Yes** — `uses-auditor` has `scaffold_script: scaffold.sh` |
+| A subagent reached via `Agent` carries `Bash` | **No** for the reference agents: `record-auditor` is `Read, Grep, Glob` and `summary-writer` is `Read` | **Yes** — `changelog-auditor` is `Read, Grep, Glob, Edit, Write, Bash` |
+
+So **Course 2 Lab 3 genuinely needs the sandbox** — via its scaffold script and
+its Bash-carrying subagent. That explains "git can't run inside evals" without
+any eval case allowing Bash, which had looked contradictory.
+
+**Course 1's Gauntlet has none of the three**, as long as the plugin under test
+follows the reference agent pattern. Step 6 targets *the student's own plugin*,
+so a conforming plugin should score without a shell ever being needed.
+
+One caveat that matters for interpreting a test run: the **autopsy** plugin's
+agent is `Read, Grep, Glob, Bash, Write, Edit, WebFetch` — it does carry Bash.
+Over-broad tools is plausibly its planted "Permissions" defect. So a Gauntlet run
+pointed at the autopsy plugin can hit the sandbox, while a run pointed at a
+student's own plugin should not. The earlier report already noted that pointing
+the Gauntlet at the autopsy plugin gives a name error, because Step 6 expects the
+student's plugin.
+
+**If the smoke run confirms this, Lab 2's "blocked" was a misdiagnosis** and the
+lab should say the Gauntlet does not depend on the sandbox. That is a one-line
+change, pending the result.
