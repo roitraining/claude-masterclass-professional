@@ -101,10 +101,36 @@ knows AppArmor on Ubuntu 26.04. What we can supply is the exact denial above,
 which names the profile (`unpriv_bwrap`), the operation (`capable`) and the
 capability (`21`, `sys_admin`).
 
-The script no longer offers a fix here. It diagnoses: it reports the sysctl
-value as informational, detects the `bwrap-userns-restrict` profile, checks
-whether `unpriv_bwrap` is loaded via `aa-status`, and then **probes with the
-sandbox forced on**.
+`provision-rvc.sh` no longer offers a fix here — it only diagnoses and probes.
+
+### `sandbox-apparmor.sh` — find which change actually works
+
+There is now a harness for this, because the thing that went wrong last time was
+treating an *applied* change as a *working* one:
+
+```bash
+./sandbox-apparmor.sh --diagnose              # read-only: what is loaded, where the binary is, baseline probe
+./sandbox-apparmor.sh --try local-override    # least invasive, try first
+./sandbox-apparmor.sh --try claude-profile
+./sandbox-apparmor.sh --try disable-profile   # last resort, image-wide
+./sandbox-apparmor.sh --revert                # undo anything that did not work
+```
+
+Each `--try` probes **before** and **after** with the sandbox forced on, and
+says plainly whether the sandbox now starts. On success it prints the exact
+change for the team to bake into the image.
+
+| Option | What it does | Trade-off |
+|---|---|---|
+| `local-override` | Appends `capability sys_admin,` to `/etc/apparmor.d/local/bwrap-userns-restrict` and reloads | Narrowest, and upgrade-safe because it uses the shipped profile's local include rather than editing it. `--diagnose` reports whether that include exists |
+| `claude-profile` | Installs a profile naming the real Claude Code binary with `userns,` | Scoped to Claude Code. **Caveat: Claude Code auto-updates, so the binary path moves and the profile needs re-pointing** |
+| `disable-profile` | Disables `bwrap-userns-restrict` entirely | Works for everything on the image, Claude Code included. Removes the restriction broadly, so only use it if the narrower options fail |
+
+**None of the three has been tested.** They are the documented ways to grant
+unprivileged user-namespace creation under AppArmor, ordered least invasive
+first. The script exists to find out which one works on this image, with
+evidence. Everything it changes is backed up and undone by `--revert`, which
+also removes the leftover ineffective sysctl from the earlier run.
 
 ### Why this is the top priority
 
