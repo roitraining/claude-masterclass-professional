@@ -4,11 +4,11 @@ Sample files for the Enterprise Deployment and Security Operations Professional 
 
 | Folder | Used by | Contents |
 |--------|---------|----------|
-| `lab1-identity` | Lab 1 | IdP notes, group mapping and offboarding CSVs, custom roles, `check_lab1.py`, live path scorecard (instructor) |
-| `lab2-compliance` | Lab 2 | Synthetic activity export (JSON and CSV, 439 events), control ticket and templates, `check_lab2.py`, `instructor/` generator (instructor only) |
+| `lab1-identity` | Lab 1 | IdP notes, group mapping and offboarding CSVs, custom roles, `check_lab1.py`, and `facilitator/live_path_scorecard.md` (instructor only) |
+| `lab2-compliance` | Lab 2 | Synthetic activity export (JSON and CSV, 439 events), control ticket and templates, `check_lab2.py`, and `facilitator/make_activity_export.py` (instructor only) |
 | `lab3-harden` | Lab 3 | `lab3_brief.md`, `check_settings.py`, the `vuln-app` project with `attack_simulation.py` |
 | `lab4-injection` | Lab 4 | `shipping-notes` repository with the payload, `defense_configs`, `record_sheet.csv`, `check_record.py` |
-| `lab5-audit` | Lab 5 (take-home) | `harbor-org` tree with planted credential issues, `rubric.md` (instructor) |
+| `lab5-audit` | Lab 5 (take-home) | `harbor-org` tree with planted credential issues, and `facilitator/rubric.md` (instructor only) |
 
 Instructor-only items live in `facilitator/` folders and must be removed before the pack is given to students: `lab1-identity/facilitator/`, `lab2-compliance/facilitator/`, `lab5-audit/facilitator/`. The checker scripts also hold answer logic and must not ship with the student pack: `lab1-identity/check_lab1.py`, `lab2-compliance/check_lab2.py` and `lab4-injection/check_record.py` name planted items. Run them yourself, or hand them over only after students submit. The labs now tell students to ask rather than go looking.
 

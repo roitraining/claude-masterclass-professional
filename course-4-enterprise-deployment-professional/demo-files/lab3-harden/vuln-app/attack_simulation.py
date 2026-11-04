@@ -49,8 +49,17 @@ def attempt_network(net_target):
 
             def log_message(self, *a):
                 pass
+        class QuietServer(http.server.HTTPServer):
+            # The client closes as soon as it has its bytes, which makes
+            # socketserver print a ConnectionResetError traceback from the
+            # handler thread. That traceback is noise: it is not the attack
+            # result, and the main try/except below cannot catch it because it
+            # happens on another thread.
+            def handle_error(self, request, client_address):
+                pass
+
         try:
-            server = http.server.HTTPServer(("127.0.0.1", port), Quiet)
+            server = QuietServer(("127.0.0.1", port), Quiet)
         except OSError as exc:
             return "ERROR", "could not start the canary listener on %d: %s" % (port, exc)
         threading.Thread(target=server.serve_forever, daemon=True).start()

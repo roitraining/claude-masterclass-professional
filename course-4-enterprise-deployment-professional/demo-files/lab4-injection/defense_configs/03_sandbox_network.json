@@ -3,7 +3,10 @@
     "enabled": true,
     "failIfUnavailable": true,
     "network": {
-      "allowedDomains": ["pypi.org"]
-    }
+      "allowedDomains": [
+        "pypi.org"
+      ]
+    },
+    "allowUnsandboxedCommands": false
   }
 }

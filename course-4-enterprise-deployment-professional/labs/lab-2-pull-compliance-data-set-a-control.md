@@ -11,7 +11,8 @@
 ## Prerequisites
 
 - [ ] Any language you can group and filter data in — a script or a query is fine
-- [ ] `$FILES/lab2-compliance` from your instructor: `activity_export.json`, `activity_export.csv`, `findings_lab2.json`, `control_ticket.md`, `control_proxy_spec.json`, `control_desktop_policy.json`, `check_lab2.py`
+- [ ] `$FILES/lab2-compliance` from your instructor: `activity_export.json`, `activity_export.csv`, `findings_lab2.json`, `control_ticket.md`, `control_proxy_spec.json`, `control_desktop_policy.json`
+- [ ] `check_lab2.py` **only if your facilitator hands it out** — it contains the answer logic, so it is normally withheld until you submit. The lab says where it is used
 - [ ] Live path only: sandbox Compliance API access, and the request shape and pagination details from your instructor
 - [ ] Live path only: an API key read from an environment variable, never pasted into a file
 

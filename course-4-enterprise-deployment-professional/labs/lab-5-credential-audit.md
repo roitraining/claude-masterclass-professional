@@ -115,7 +115,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 - [ ] No placeholder value is reported as a real secret — the pattern is reported, not the value
 - [ ] The clean repository appears under "Not a finding", not as a defect
 - [ ] Findings are ordered by priority, each with a stated reason
-- [ ] A rotation and ownership plan names an owner for every credential involved
+- [ ] A rotation and ownership plan names an owner for **every credential in the inventory**, not only the ones you reported as findings — matching `findings-template.md` section 4
 - [ ] Anything you could not source is marked unverified rather than asserted
 
 ---
@@ -127,7 +127,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 | Placeholder reported as a breach | A finding quotes a `FAKE-KEY-DO-NOT-USE` value | Every secret here is fabricated. Report the pattern and the exposure, not the value |
 | Fix does not reduce exposure | A key moved from settings into another tracked file | The repository is the exposure. Move it out of the repository and rotate it |
 | Replacement is no better | A long-lived token recommended to replace a long-lived token | Choose a credential with a bounded lifetime, or a scoped CI credential |
-| Clean repository flagged | Points lost on `payments-gateway` | It is the decoy and it is correct. List it under "Not a finding" |
+| Clean repository flagged | Points lost for reporting a repository that has nothing wrong | One of the three repositories is clean. Judge each on its own evidence: owner, expiry, rotation date, scope, and whether a key sits in a settings file. List the clean one under "Not a finding" with your reason |
 | Rotation forgotten | Findings end at "remove the key" | A credential that has been committed or shared is compromised. Deleting it is not rotating it |
 
 ---
@@ -172,6 +172,8 @@ The tree and `lab5-audit/facilitator/rubric.md` are built. Planted issues:
 5. Missing deny rules for `.env` — `inventory-service` has a `.env` and no `permissions.deny`.
 
 Decoy: `payments-gateway` is clean (deny rules, a repository-scoped CI secret, no key in settings). All values are `FAKE-KEY-DO-NOT-USE-NNNN`.
+
+`cred-103` expires on 2026-11-02, three weeks after the 2026-10-12 audit date. That is **not** one of the five planted issues and carries no points either way. A student who raises it as a near-term rotation to schedule is reasoning well: credit it in the rotation plan if they place it there, and do not deduct for leaving it out of the findings.
 
 Instructor note: the lifetime of a `claude setup-token` credential is not in the verified facts (UNVERIFIED). The inventory of the scenario states it as scenario data. Do not teach it as a product fact. The managed settings file in the tree may use `forceLoginOrgUUID` with an obviously fake UUID.
 

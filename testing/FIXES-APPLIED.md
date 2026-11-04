@@ -864,3 +864,107 @@ whose description does not fire.
 
 Either way the grader stands. Raised here so the disagreement is on the record
 rather than silently unresolved.
+
+---
+
+## Batch 12 — Course 4 retest (2026-11-04, at 47781a3): 4 of 5, and two bugs of mine
+
+**Result: Lab 1 100/100, Lab 2 100/100, Lab 4 pass with notes, Lab 5 reviewed,
+Lab 3 blocked at Step 6.** Both labs that failed for a single cause now score
+full marks, and every fix from the previous batches held.
+
+One correction to my own summary, from the tester: flagging `payments-gateway`
+**is** still penalised 10 points, as it should be, since it is the clean
+repository. What changed is that the penalty is now *fair*, because the repo is
+genuinely clean. My earlier wording said the flag should no longer be penalised,
+which was wrong.
+
+### 12.1 MY BUG: `is_verify` traded a false negative for a false positive
+
+My Course 4 Lab 1 fix widened the check to accept any row containing `verif`.
+The tester found that lets an unrelated row — "Verify the attribute mapping with
+the pilot users" — stand in for domain verification, so real verification could
+sit **after** enforcement and still score 100/100.
+
+I fixed a check that rejected correct answers and created one that accepts wrong
+ones, without testing the second direction. `is_verify` now anchors on the
+domain that defect D4 is actually about, excluding the enforce step.
+
+Tested both directions this time: the unrelated "verify" row is rejected, real
+domain verification accepted, the enforce step rejected, and a row saying
+"verification" while naming no domain rejected.
+
+### 12.2 MY BUG: Lab 3's prediction still misled, because I fixed the string not the condition
+
+I made attack 3's *message* conditional on the sandbox but left the condition
+itself as a deny-rule-OR-sandbox test. The OR meant a deny rule alone satisfied
+it, so with the sandbox disabled attack 3 printed "blocked if the OS sandbox
+starts" while attacks 1 and 2 correctly printed "will succeed" — and the
+fallback scoring, which reads those lines, awarded 5 points for it.
+
+`read_ok` now requires the sandbox, consistent with `net_ok` and `write_ok`, and
+consistent with the explanation already in the file: deny rules gate the Read
+tool, the OS sandbox stops Bash.
+
+### 12.3 Lab 3's two approved MCP servers both misbehaved
+
+- My `ticket_bridge.py` stub exited immediately, so a session reported
+  `status: failed` and students would chase a non-issue.
+- `docs-search` ran an unpinned package fetched **by name over the network**.
+  Harmless while Node was absent; a live fetch once the image gained Node. The
+  wrong thing to model in a hardening lab.
+
+Checked the brief first: both are on the **approved** list, and the planted
+defect is `shadow-sync` ("has not been vetted"). So neither was the lesson.
+
+Both now point at `tools/mcp_stub.py`, a dependency-free stdio stub that answers
+`initialize`, `tools/list` and `tools/call`, logs to stderr, and touches no
+network or files. Verified end to end. **`shadow-sync` keeps its unvetted
+command — the planted defect is intact.**
+
+### 12.4 Answer leaks
+
+- **Lab 5's Troubleshooting named the decoy outright** — it said of
+  `payments-gateway` that it is the decoy and correct, a direct 10-point
+  giveaway. Reworded to say one of the three is clean and to judge each on its
+  own evidence.
+- **Lab 1 and Lab 2 both listed their checker as a flat prerequisite** while
+  also saying it may be withheld. Both are now conditional: only if the
+  facilitator hands it out, because it contains the answer logic.
+
+### 12.5 My rubric note was factually wrong
+
+I wrote that `cred-102` had been rotated since creation. Its created and
+last-rotated dates are both 2026-08-20. Corrected: equal dates are normal for a
+credential inside its first rotation period, and the real distinction from
+`cred-101` is **ownership and expiry**.
+
+### 12.6 Lab 4
+
+- Defence 03 now sets `sandbox.allowUnsandboxedCommands: false`. The Course 1
+  retest showed the model stepping outside the sandbox after it had correctly
+  refused, so a defence config omitting this is not testing what it claims.
+- New guidance for the case the tester hit: narrowed tools blocked the command,
+  so the model used `Read` and obtained the payload anyway. Record the action as
+  stopped by narrowed tools, and note separately that the text still reached the
+  model. **Narrowing tools stops the effect, not the exposure.**
+- The "this guide has not been run against any model" note is replaced with what
+  the run showed: all eight runs refused by `claude-opus-5-5` on 2026-11-04.
+
+### 12.7 Smaller
+
+- Lab 3 Troubleshooting gained an AppArmor row, including that relaxing the
+  sysctl does not help because the profile carries an explicit deny.
+- The canary listener in `attack_simulation.py` no longer prints a
+  `ConnectionResetError` traceback. The socket block already caught `OSError`;
+  the traceback came from the handler **thread**, which the main try/except
+  cannot see. Fixed with `handle_error` on a server subclass.
+- `demo-files/README.md` rows now show the `facilitator/` layout.
+- Lab 5's Checkpoint now matches the template: an owner for every credential in
+  the inventory, not only reported findings.
+- `cred-103` expiring three weeks after the audit date is ruled on: not a
+  planted issue, no points either way, and credit it in the rotation plan if a
+  student schedules it.
+
+All Course 4 Python compiles and all JSON validates. Both planted defects
+verified intact.

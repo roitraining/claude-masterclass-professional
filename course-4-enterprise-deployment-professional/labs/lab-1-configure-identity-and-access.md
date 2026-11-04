@@ -16,7 +16,8 @@
 > Already set up? Confirm with `claude --version` and `claude auth status`.
 <!-- setup-ref:end -->
 - [ ] Python 3.11 or later, for the offline scorer
-- [ ] `$FILES/lab1-identity` from your instructor: `idp_sso_notes.md`, `group_mappings.csv`, `claude_groups.csv`, `custom_roles.json`, `offboarding_steps.csv`, `rollout_plan.csv`, `domains.csv`, `findings_lab1.json`, `check_lab1.py`
+- [ ] `$FILES/lab1-identity` from your instructor: `idp_sso_notes.md`, `group_mappings.csv`, `claude_groups.csv`, `custom_roles.json`, `offboarding_steps.csv`, `rollout_plan.csv`, `domains.csv`, `findings_lab1.json`
+- [ ] `check_lab1.py` **only if your facilitator hands it out** — it contains the answer logic, so it is normally withheld until you submit. The lab says where it is used
 - [ ] Live path only: sandbox organization access and the printed menu map from your instructor
 - [ ] Live path only: a browser that can open fresh private windows
 

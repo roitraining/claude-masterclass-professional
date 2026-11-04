@@ -18,7 +18,7 @@ Instructor use. Hold back until the audit is submitted.
 |------|--------|
 | `payments-gateway` is not reported as defective (it is the clean repository) | 10 |
 
-> **Defending the clean repository.** `cred-102` is team-owned (`payments-team@example.org`), has an expiry, and has been rotated since creation. Contrast it with `cred-101`, which is person-owned, never expires and has never been rotated. A student who argues that a setup token is person-tied in principle is reasoning correctly; the distinction here is ownership, expiry and rotation. Do not deduct for a student who asks the question and then concludes the repository is clean.
+> **Defending the clean repository.** `cred-102` is team-owned (`payments-team@example.org`) and has an expiry (2027-02-20). Its `last_rotated` equals its `created` date, which is normal for a credential inside its first rotation period, not a defect. Contrast it with `cred-101`, which is person-owned, never expires and has never been rotated. A student who argues that a setup token is person-tied in principle is reasoning correctly; the distinction here is **ownership and expiry**: team-owned with an expiry, against `cred-101` which is person-owned, never expires, has never been rotated, and was used after its owner left. Do not deduct for a student who asks the question and then concludes the repository is clean.
 
 > **C3 and C4 score separately** even though both involve `cred-101`'s CI use.
 > C3 is the shared scope across two repositories; C4 is the departed owner, the

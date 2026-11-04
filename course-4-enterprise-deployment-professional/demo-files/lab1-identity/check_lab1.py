@@ -120,23 +120,30 @@ def fix_d4():
     def num(r):  # order in the file, not the step label
         return rows.index(r)
 
-    # A verification row is one that names a domain and is not the enforce step.
-    # Requiring both "verif" and "domain" in one cell rejected correct rewordings.
+    # D4 is about ORDER: the acquired domain must be verified before SSO is
+    # enforced. Two earlier versions of this check were both wrong:
+    #   - requiring "verif" AND "domain" in one cell rejected correct rewordings
+    #   - accepting any row containing "verif" let an unrelated row such as
+    #     "Verify the attribute mapping with the pilot users" stand in, so real
+    #     domain verification could sit AFTER enforcement and still score 10/10
+    # Anchor on the domain itself, which is what D4 is actually about.
+    DOMAIN = "northwind-labs.example.net"
+
     def is_verify(r):
         a = low(r["action"])
         if "enforce" in a:
             return False
-        return "verif" in a or ".example.net" in a or ".example.org" in a
+        return DOMAIN in a
     verify = [r for r in rows if is_verify(r)]
     enforce = [r for r in rows if "enforce" in low(r["action"])]
     if not verify:
-        return False, "no domain verification step in rollout_plan.csv"
+        return False, ("no row verifies northwind-labs.example.net before enforcement. "
+                      "The row must name the domain; a general \"verify\" step is not enough")
     if not enforce:
         return False, "the enforce step was removed"
     if min(num(r) for r in verify) >= min(num(r) for r in enforce):
         return False, "domain verification comes after SSO enforcement"
-    if not any("northwind-labs.example.net" in low(r["action"]) for r in verify):
-        return False, "the verification step does not name northwind-labs.example.net"
+    # naming the domain is now part of is_verify, so reaching here means it is named
     return True, "domain verification precedes enforcement and names both domains"
 
 

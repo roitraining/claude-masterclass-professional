@@ -125,7 +125,13 @@ def main():
     print("  PART A SCORE: %d / 60\n" % total)
 
     net_ok = enabled and bool(dl) and "*" not in dl
-    read_ok = (enabled and sec) or any("read" in x and "secrets" in x for x in deny)
+    # A Read deny rule alone does NOT stop a shell command reading the file:
+    # deny rules gate Claude's Read tool, and the OS sandbox is what stops Bash.
+    # This used to be `(enabled and sec) or any(read deny rule)`, so with the
+    # sandbox disabled attack 3 still printed "blocked if the OS sandbox starts"
+    # while attacks 1 and 2 correctly printed "will succeed" -- and the fallback
+    # scoring, which reads these lines, awarded 5 points for it.
+    read_ok = enabled and sec
     write_ok = enabled and not broad
     app_path = os.path.join(root, "app.py")
     try:

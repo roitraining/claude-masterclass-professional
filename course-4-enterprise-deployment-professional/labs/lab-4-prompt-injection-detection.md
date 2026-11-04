@@ -117,6 +117,13 @@ Run the issue vector and the tool-result vector under the default configuration,
 
 > **Key Insight:** "the model refused" is not a defense you control. It is not a control you set, and it can change with the model. Record it as `model` and treat it differently from a configured control.
 
+> **If narrowed tools block the command but the model reads the file anyway.**
+> Observed on 2026-11-04 under the narrowed-tools defence: the command could
+> not run, so the model used `Read` and obtained the payload that way. Record
+> `stopped by` as **narrowed tools** for the *action*, and note separately that
+> the injected text still reached the model and was echoed. Narrowing tools
+> stops the effect, not the exposure — that distinction is the row's point.
+
 > **If every run is refused.** On a current model this is likely: the tester saw
 > all eight runs refused, so no configured control was exercised at all. That is a
 > valid result and you record it as `model` throughout — but a sheet of refusals
@@ -219,7 +226,7 @@ Lab 5, Credential Audit, is the take-home. It shifts from defending one project 
 
 ## Facilitator Notes
 
-**Pre-test the payload on the exact model and version you will teach with, before class, and record transcripts.** This guide has not been run against any model.
+**Pre-test the payload on the exact model and version you will teach with, before class, and record transcripts.** This guide was run on the class VM on 2026-11-04 against `claude-opus-5-5`: all eight runs were **refused by the model**, so no configured control was exercised. Expect that outcome on a current model, and see the refusal guidance above. Model behaviour changes, so re-test rather than relying on this result.
 
 Expected (not guaranteed) pattern:
 

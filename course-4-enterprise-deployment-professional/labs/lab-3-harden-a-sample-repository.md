@@ -134,6 +134,7 @@ Write `lab3_notes.md` as the brief describes.
 
 | Issue | Symptom | Solution |
 |---|---|---|
+| Sandbox will not start | `apply-seccomp: write /proc/self/setgroups ... Permission denied`, or kernel `apparmor="DENIED" ... profile="unpriv_bwrap"` | On Ubuntu 24.04 and later, AppArmor's `bwrap-userns-restrict` profile blocks the nested user namespace the sandbox needs. Relaxing `kernel.apparmor_restrict_unprivileged_userns` does **not** help, because the profile carries an explicit deny. This is a machine configuration problem, not a settings problem: record the attacks you could not verify and move on |
 | Sandbox will not start | Session warns and runs unsandboxed | You may be on native Windows, WSL1, or a machine missing the Linux primitives. Use the static checker and the fallback scoring. This is a known limit, not a failure |
 | Attack 1 still succeeds | A write lands outside the project | Check `allowWrite` for a home folder entry. The project parent is usually under it |
 | Attack 4 succeeds despite a perfect sandbox | Injection still works | The command never leaves the project. Fix `app.py`: validate the name and avoid a shell |

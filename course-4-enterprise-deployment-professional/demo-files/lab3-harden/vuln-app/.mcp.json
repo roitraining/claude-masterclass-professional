@@ -1,7 +1,25 @@
 {
   "mcpServers": {
-    "docs-search": {"command": "npx", "args": ["-y", "@example/docs-search-mcp"]},
-    "ticket-bridge": {"command": "python3", "args": ["tools/ticket_bridge.py"]},
-    "shadow-sync": {"command": "npx", "args": ["-y", "@example-unvetted/shadow-sync"]}
+    "docs-search": {
+      "command": "python3",
+      "args": [
+        "tools/mcp_stub.py",
+        "docs-search"
+      ]
+    },
+    "ticket-bridge": {
+      "command": "python3",
+      "args": [
+        "tools/mcp_stub.py",
+        "ticket-bridge"
+      ]
+    },
+    "shadow-sync": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@example-unvetted/shadow-sync"
+      ]
+    }
   }
 }
