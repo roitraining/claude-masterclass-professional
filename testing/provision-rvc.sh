@@ -264,6 +264,36 @@ c_man "Course 2 Lab 1 Tracks A and B need a remote GitHub/GitLab project with ad
 c_man "Course 4 Labs 1-2 live paths need an instructor-provisioned sandbox organization (offline path works without)"
 c_man "Course 3 Lab 4 Part 6 needs Claude Console access"
 
+hdr "10. Installed versions (for the image spec)"
+# The team needs exact versions to bake into the image, not just package names.
+# Paste this block into the change request.
+for pkg in python-is-python3 python3-venv python3-pip curl gnupg git nodejs npm; do
+  v="$(dpkg-query -W -f='${Version}' "$pkg" 2>/dev/null)"
+  if [ -n "$v" ]; then printf '  %-20s %s
+' "$pkg" "$v"
+  else printf '  %-20s NOT INSTALLED
+' "$pkg"; fi
+done
+printf '  %-20s %s
+' "ubuntu"  "$(. /etc/os-release 2>/dev/null; echo "${PRETTY_NAME:-unknown}")"
+printf '  %-20s %s
+' "kernel"  "$(uname -r 2>/dev/null)"
+printf '  %-20s %s
+' "claude"  "$(claude --version 2>/dev/null || echo 'not installed')"
+printf '  %-20s %s
+' "node"    "$(node --version 2>/dev/null || echo '-')"
+printf '  %-20s %s
+' "mcpb"    "$(npm ls -g --depth=0 2>/dev/null | grep -o 'mcpb@[0-9.]*' || echo '-')"
+printf '  %-20s %s
+' "pylsp"   "$($VENV_BASE/mc-lsp/bin/pylsp --version 2>/dev/null | head -1 || echo '-')"
+for v in mc-agent-sdk mc-ci mc-lsp; do
+  if [ -x "$VENV_BASE/$v/bin/pip" ]; then
+    printf '  venv %-15s %s
+' "$v" "$("$VENV_BASE/$v/bin/pip" list --format=freeze 2>/dev/null | tr '
+' ' ' | cut -c1-110)"
+  fi
+done
+
 hdr "Summary"
 printf '  OK %d   FAIL %d   WARN %d   HUMAN %d\n' "$PASS" "$FAIL" "$WARN" "$MANUAL"
 if [ ${#NOTES[@]} -gt 0 ]; then

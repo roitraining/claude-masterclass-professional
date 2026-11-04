@@ -31,6 +31,22 @@ image. Keep the before and after output as the evidence that provisioning works.
 The sandbox change is held back behind a separate flag because it alters the
 image's security posture — see item 1.
 
+**Capture the output.** Section 10 of the `--check` run after installing prints
+the exact versions of everything it installed, including OS, kernel, Claude Code
+and the contents of each venv. That block is what goes into the change request:
+it gives the team package names *and* versions rather than names alone.
+
+```bash
+./provision-rvc.sh --check   2>&1 | tee before.txt
+./provision-rvc.sh --install 2>&1 | tee install.txt
+./provision-rvc.sh --check   2>&1 | tee after.txt
+```
+
+The point of running it on a live VM first is to prove the installs work before
+anyone changes the image. Two items will still show FAIL afterwards and that is
+expected — a class API key (item 6) and the Claude Desktop account match
+(item 5) cannot be scripted.
+
 ---
 
 ## 1. Sandbox — needs a decision, not just an install
