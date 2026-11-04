@@ -27,6 +27,8 @@ The steps come from the course: provision seats and SCIM group mappings and sync
 
 Analytics and API keys do not carry over, so export Console reporting first. CLI session history is local and needs no migration. Spend limits are out of scope.
 
+Cut over a **pilot group before the whole team**, so a mistake in the sequence costs one group a morning rather than stopping everyone.
+
 **This lab is about the order of the steps and what breaks if you do them early.**
 
 ---
@@ -118,12 +120,18 @@ Bring the runbook to the next session, or send it to your instructor.
 
 ## Troubleshooting Reference
 
-| Issue | Symptom | Solution |
+> **These are reasoned consequences, not product documentation.** This is a
+> paper lab: nothing is migrated and nothing is observed. Each "risk" below is
+> what the course's sequencing reasoning predicts would go wrong, which is what
+> the rubric asks you to argue. Confirm actual behaviour against Anthropic's
+> current documentation before relying on any of it in a real migration.
+
+| Issue | Risk the sequence creates | What the runbook should do |
 |---|---|---|
 | Task list, not a runbook | Low score despite covering everything | The rubric gives its largest share to order and reasons. Sequence the steps and justify each position |
-| Console users removed too early | Reporting lost, CI breaks | Export Console reporting first. The Console organization may need to stay for CI until each pipeline has moved |
-| Sign-in locked too early | People cannot sign in | The `forceLoginOrgUUID` lock must follow seat provisioning and sync |
-| Old credential keeps working | New sign-in appears not to take effect | A leftover `ANTHROPIC_API_KEY` or `apiKeyHelper` can keep working instead. Remove them |
+| Console users removed too early | Reporting may be lost and CI may break | Export Console reporting first. The Console organization may need to stay for CI until each pipeline has moved |
+| Sign-in locked too early | Users may be unable to sign in before their seats exist | Place the `forceLoginOrgUUID` lock after seat provisioning and sync |
+| Old credential still present | A new sign-in may appear not to take effect | A leftover `ANTHROPIC_API_KEY` or `apiKeyHelper` outranks a subscription login in Claude Code's credential precedence. Remove them |
 | Scope creep | Deductions on the rubric | Spend caps are out of scope for this lab. Do not design them |
 
 ---

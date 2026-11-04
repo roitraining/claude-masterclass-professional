@@ -22,6 +22,10 @@ Author: ______  Date: ______  Cutover window: Saturday 06:00 to 12:00
 - What you remove from laptops and repositories (names of variables and settings keys only).
 
 ## 6. Cutover steps, in order
+
+_State where the pilot group cuts over relative to everyone else, and what you
+check before widening._
+
 A numbered list with a time for each step and an owner. Include the verification after the sign-in step, and the command or screen that proves it.
 
 ## 7. CI

@@ -376,3 +376,67 @@ it relaxes security and fixes nothing:
 sudo rm /etc/sysctl.d/99-claude-sandbox.conf
 sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=1   # or reboot
 ```
+
+---
+
+## Batch 6 — rubric rows that scored work no step asked for
+
+### 6.1 Course 2 Lab 1 — Track C was scored for two things it was never asked to do
+
+Track C (gate only, no hosted project) carried **35 of its 100 points** on work
+the lab never set.
+
+**20 points: "Written prediction of what a live run would do".** No step asked
+for a prediction. Added **Part 6b / Step 11b**, Track C only, asking for a
+per-file prediction: what starts the workflow, which actors it accepts and the
+line that decides, what it may do once running, what the planted trap would
+have allowed, and which injection fixtures each control stops. Every claim must
+cite a line or a gate finding — a prediction without a citation is a guess. The
+checkpoint and the rubric row now name the step.
+
+**15 points: "Settings audit".** Step 11 asks students to read *project
+settings* — write access, branch protection, secret scoping. Track C has no
+hosted project, so there was nothing to read. Added a **Track C alternative**:
+write the audit as a specification instead (what the correct setting is, what an
+incorrect one permits, and which hardened workflow line still holds if it is
+wrong), for the same 15 points.
+
+Also scoped **Step 1's push** to Tracks A and B, since the live trigger in Part
+4 is what needs a remote. Track C now commits locally and does not push.
+
+### 6.2 Course 2 Lab 5 — the pilot nobody mentioned
+
+The rubric awards 5 points for ordering "pilot before everyone", but no student
+file mentioned a pilot — it existed only in the facilitator outline. The
+Overview now states it, and template section 6 prompts for where the pilot cuts
+over relative to everyone else.
+
+### 6.3 Course 2 Lab 5 — troubleshooting rows stated product behaviour as fact
+
+Rows read like product documentation ("People cannot sign in") in a paper lab
+where nothing is migrated and nothing is observed. The Facilitator Notes say
+they must not read that way.
+
+The table is now headed "Risk the sequence creates" / "What the runbook should
+do", the symptoms are phrased as predictions ("Users **may** be unable to sign
+in before their seats exist"), and a note above states plainly that these are
+reasoned consequences rather than product documentation, to be confirmed against
+current docs before any real migration. The credential row also gained the
+actual reason: a leftover `ANTHROPIC_API_KEY` or `apiKeyHelper` **outranks a
+subscription login in Claude Code's credential precedence**.
+
+### 6.4 Course 5 — three claims checked, two rejected
+
+The Course 5 findings came from a helper agent with only two of its claims
+spot-checked, so each was verified against the lab text before acting. Of the
+three checked:
+
+| Claim | Verdict |
+|---|---|
+| "Halvern's 30-day notice is scored but no step mentions it" | **Rejected.** It is in `brightwater_org_brief.md` line 33, and Part 1 tells students to read the brief. The rubric row scores using the brief's facts, which is fair |
+| "Step 4 has no time; the other steps use all 75 minutes" | **Rejected.** The five timed parts are 5 + 40 + 15 + 10 + 5 = **exactly 75**, matching the stated duration. Every part has time |
+| "A register-level review date and trigger is scored but not asked for" | **Confirmed and fixed.** The rubric awards 4 points for a *register-level* review date while the lab only ever asked for *per-row* dates. Step 3 now asks for it, with the distinction explained, and the checkpoint lists it |
+
+**One of three stood up.** The remaining ~28 Course 5 items are therefore
+treated as unverified leads, not findings, and each needs checking against the
+lab text before any change. That is the bulk of what is left in batch 8.

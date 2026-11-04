@@ -72,6 +72,14 @@ Work in the Markdown template or the CSV.
 
 **Acceptance criteria:** a count by tier, and three ranked risks each with a stated reason.
 
+Then set a review date for the **register as a whole**, and a trigger that brings
+that review forward. This is separate from the per-row dates in Step 2: a row
+review checks one use, while the register review asks whether the inventory is
+still complete.
+
+**Acceptance criteria:** a register-level review date and a stated trigger for an
+earlier review.
+
 > **Key Insight:** rank by who could be harmed, not by how loud the risk sounds.
 
 ---
@@ -110,6 +118,7 @@ Score yourself with `lab3_scoring_rubric.md`.
 - [ ] Evidence you cannot produce today has a first-available date
 - [ ] Every row has a next review date and a trigger for an earlier review
 - [ ] A count by tier is recorded
+- [ ] A register-level review date and an earlier-review trigger are set, separate from the per-row dates
 - [ ] Three risks ranked, each with a reason based on who could be harmed
 - [ ] A written note records what the portfolio obscured
 - [ ] Scored against the rubric, with a band

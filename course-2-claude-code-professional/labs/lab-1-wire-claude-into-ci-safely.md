@@ -42,7 +42,7 @@ Goal: a project of your own that contains the `tallybook` sample, with its two f
 
 ### Step 1: Copy the Tallybook Sample into Your Own Project
 
-Copy `tallybook` into a new project you control, commit it, and push it to your own remote. Run the tests locally.
+Copy `tallybook` into a new project you control and commit it. **Tracks A and B** then push it to your own remote — the live trigger in Part 4 needs a hosted project. **Track C** commits locally and does not push. Run the tests locally.
 
 **Expected result:** the test run completes and two tests fail. Those two failures are what Claude fixes later in the lab.
 
@@ -180,6 +180,46 @@ Using the second list from Step 5, write a short note for your platform covering
 
 > **Hint:** these live in project settings, not in the file. Where each appears in your platform's screens is not covered by this course. Find them.
 
+**Track C alternative.** Track C has no hosted project, so there are no settings
+screens to read. Write the audit as a specification instead: for each of the
+five items, state what the correct setting is for a repository that runs Claude
+in CI, what an incorrect setting would permit, and which of your hardened
+workflow lines would still hold if that setting were wrong. This earns the same
+15 points.
+
+> **Hint for Track C:** the point is which risks the file can absorb and which
+> only a project setting can stop. Name at least one of each.
+
+---
+
+## Part 6b: Track C Only — Predict the Live Run (about 15 minutes)
+
+Skip this part on Tracks A and B: you ran the pipeline for real in Part 4.
+
+### Step 11b: Write What a Live Run Would Do on Your Hardened Files
+
+You have no hosted project, so you cannot trigger Claude. Predict it instead,
+from your hardened files and the gate output.
+
+For each of your Claude workflow files, write:
+
+- What event starts it, and what would **not** start it
+- Which actors it accepts and which it refuses, and the line that decides
+- What it is permitted to do once running: what it can write, push or open
+- What the planted trap would have allowed before you fixed it
+- Which of the Part 5 injection fixtures each control stops, and which it does
+  not
+
+**Acceptance criteria:** a written prediction covering every point above for
+each hardened file, each claim tied to a specific line in your file or a
+specific gate finding.
+
+> **Hint:** a prediction that does not cite a line is a guess. The gate output
+> from Step 6 and your baseline table from Step 4 are your evidence.
+
+> **Common Pitfall:** predicting what you intended rather than what the file
+> says. Read the file as a stranger would.
+
 ---
 
 ## Part 7: Checkpoint
@@ -199,7 +239,9 @@ Using the second list from Step 5, write a short note for your platform covering
 - [ ] You can name each planted trap and the fix that removed it
 - [ ] Gate output from your final files is saved
 
-Track C substitutes a passed gate plus the written notes from Step 4 and Step 11.
+- [ ] Track C: a written prediction from Step 11b for every hardened file, each claim tied to a line or a gate finding
+
+Track C substitutes a passed gate plus the written notes from Step 4, Step 11 and Step 11b.
 
 ---
 
@@ -228,7 +270,7 @@ Track C substitutes a passed gate plus the written notes from Step 4 and Step 11
 | Injection test evidence | 10 | 10 (written analysis of what each fixture tries and which control stops it) |
 | Settings audit | 10 | 15 |
 | Each planted trap named, with why it is dangerous and which fix removed it | 5 | 5 |
-| Written prediction of what a live run would do on the hardened files | | 20 |
+| Written prediction of what a live run would do on the hardened files (Step 11b) | | 20 |
 
 Each file earns its full share of the gate points when the score is 90 or more with every CRITICAL check ok, 60 percent of its share for 70 to 89 with every CRITICAL check ok, 20 percent when any CRITICAL check still fails, and 0 when the Claude step was removed.
 
