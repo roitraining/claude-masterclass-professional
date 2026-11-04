@@ -19,7 +19,7 @@
     "data_dir": {
       "type": "string",
       "title": "Data folder",
-      "description": "Full path to a folder that holds records.csv. Leave empty to use the sample data bundled with the extension.",
+      "description": "Full path to a folder holding your records file. Leave empty to use the sample_data folder bundled with the extension, if the bundle includes it — pack_mcpb.py includes it and fails if it is missing, but check your packer. If the extension starts with no records, set this to a folder you control.",
       "required": false
     }
   }

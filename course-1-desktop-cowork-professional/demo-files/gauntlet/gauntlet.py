@@ -491,7 +491,13 @@ def main():
             print(f"Workspace kept for inspection: {ws}")
             print("The transcript there shows which tools each case actually used.")
         smoke_doc = read_json(outdir / "smoke.json") or {}
-        _warn_timeout_scored(smoke_doc)
+        print(f"Report: {outdir / 'smoke.json'}")
+        if _warn_timeout_scored(smoke_doc):
+            # A timed-out case has not produced a result. Do not let the smoke
+            # run report success on it, whatever plugin eval's own exit code said.
+            print("Smoke run NOT complete: a case timed out. Re-run before trusting "
+                  "any score from it.", file=sys.stderr)
+            sys.exit(1)
         sys.exit(code)
 
     check_structure(plugin, c, have_claude)

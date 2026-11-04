@@ -797,3 +797,70 @@ and needs a decision.
 
 `IMAGE-REQUIREMENTS.md` item 1 is updated with this result so nobody retries the
 local override.
+
+---
+
+## Batch 11 — the Course 1 open-items doc (written at cf591e2)
+
+Two of its six items were already fixed in `ec8cce4`, which postdates that test
+run: the Lab 3 zip wording, and `--smoke` keeping its trace.
+
+### 11.1 Strengthened: a timed-out case no longer reports success
+
+`ec8cce4` warned on a timeout-with-score. The doc asked for more — don't count a
+timed-out case as complete. `--smoke` now **exits 1** when a case records a
+timeout, whatever `plugin eval`'s own exit code said, and prints the report path
+(which the doc noted was being printed and then deleted).
+
+### 11.2 `manifest.json` data_dir description
+
+Reworded to be true whichever packer was used. It now says the extension falls
+back to the bundled `sample_data` folder *if the bundle includes it*, notes that
+`pack_mcpb.py` includes it and now fails when it is missing, and tells the user
+to set the folder explicitly if the extension starts with no records.
+
+### 11.3 NOT DONE, needs the format confirmed: `mocks/<server>/_tools.json`
+
+The doc asks for `mocks/boardpack/_tools.json`, because without it the model sees
+a permissive schema and no tool descriptions. No product ships one.
+
+**I am not authoring this blind.** The mock tool files use `type: fixed`
+frontmatter and carry no schema, so `_tools.json` is a separate manifest whose
+shape `claude plugin eval` defines, and I do not know it. Three unverified fixes
+have already cost a cycle each in this effort — the sysctl, the sandbox probe,
+and `server.type` — and all three were me asserting a format or behaviour I had
+not checked.
+
+What is needed: the expected `_tools.json` schema. The tester has `plugin eval`
+available and can establish it cheaply. Once the shape is known, the content is
+straightforward, because each BRIEF already fixes the tool names and behaviours —
+for Product 1 that is `get_kpis`, `get_exec_notes` and `list_sources`.
+
+### 11.4 Still disputed: the trigger grader
+
+The doc repeats the request to "accept the contract commands too". I did not do
+that in `ec8cce4` and have not now, because the analysis says the grader is
+right:
+
+- its pattern already allows a namespace prefix
+- `trig-1-natural` allows `[Read, Glob, Grep, Skill, Agent]` and **no
+  `SlashCommand`**, so a slash command was not the route
+- the contract fixes the skill folder as `board-pack`; `draft` is a command
+
+`Skill called 0x` means the Skill tool was never invoked. The likeliest path is
+that the model read `commands/draft.md` with Read or Grep and followed it by
+hand. If so the skill genuinely did not trigger, which is exactly what
+`trig-1-natural` exists to detect, and accepting commands would mask a skill
+whose description does not fire.
+
+**One question decides it:** does the plugin under test contain
+`skills/board-pack/SKILL.md`?
+
+- **Yes** → the skill exists and did not fire. The 0 is correct and the lesson is
+  the skill description. Nothing to change in the grader.
+- **No** → the skill is misnamed, violating the contract. The 0 is still correct,
+  and the new `check_structure` warning in `ec8cce4` now predicts it for free
+  before any paid run.
+
+Either way the grader stands. Raised here so the disagreement is on the record
+rather than silently unresolved.
