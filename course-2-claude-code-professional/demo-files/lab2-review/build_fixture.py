@@ -445,11 +445,15 @@ PRS.append(dict(
         rep("lending/fines.py", None, '''
 
 def prorated_fine_cents(days, rate_cents_per_day):
-    """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up."""
-    return int(days * rate_cents_per_day)
+    """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up.
+
+    The round(..., 6) guards float representation error before truncating, so an
+    exact 29.00 does not become 28. It does not round up: 28.7 still truncates to 28.
+    """
+    return int(round(days * rate_cents_per_day, 6))
 '''),
     ],
-    bait=dict(id="F5", looks_like="logic error (float to int truncation)", file="lending/fines.py", marker="return int(days * rate_cents_per_day)",
+    bait=dict(id="F5", looks_like="logic error (float to int truncation)", file="lending/fines.py", marker="return int(round(days * rate_cents_per_day, 6))",
               why_fine="int() truncates toward zero on purpose. CLAUDE.md and the docstring state policy LIB-7: truncate, never round up. The result is stored as integer cents."),
 ))
 

@@ -198,3 +198,101 @@ README already said. Switching to option 2 is a one-line change in each lab.
 student-facing lab files, which is a larger restructure than a file move, and
 those findings came from a helper agent with only two claims spot-checked. It is
 handled in a later batch after verification.
+
+---
+
+## Batch 5 — defects that penalized correct student answers
+
+These are the two worst findings in the report: in both cases a student who
+reasoned correctly lost points.
+
+### 5.1 Course 2 Lab 2 — the `pr-10-prorated-fine` bait was genuinely wrong
+
+The branch is a **bait**: it should look like a float-truncation bug while
+actually being correct under policy LIB-7 ("truncate to whole cents, never round
+up"). It was not correct. `100 * 0.29` is `28.999999999999996` in float, so
+`int(...)` returned **28** when the exact answer is 29. A student flagging it
+was right, and the answer key marked them wrong.
+
+Fixed by guarding the float representation error before truncating:
+
+```python
+-    return int(days * rate_cents_per_day)
++    return int(round(days * rate_cents_per_day, 6))
+```
+
+This keeps the bait valid rather than removing it: the line still *looks* like
+truncation, and still truncates — verified `28.7 → 28`, `3 × 9.5 → 28`,
+`0.5 → 0` — but `100 × 0.29` now gives 29. Policy LIB-7 is preserved; nothing
+rounds up.
+
+Applied in three places plus the key: `build_fixture.py`,
+`diffs/pr-10-prorated-fine.diff`, and `facilitator/answer_key.json` (both the
+`marker`, which the scorer matches against, and `why_fine`, so a facilitator can
+defend the bait).
+
+### 5.2 Course 4 Lab 5 — the `payments-gateway` decoy contradicted itself
+
+`payments-gateway` is the clean repository and the rubric awards 10 points for
+*not* reporting it. But its credential `cred-102` was a **setup token owned by a
+person** (`a.mensah@example.org`) used for CI — which Course 2 Lab 5 teaches
+against. A careful student lost 10 points for spotting it.
+
+Fixed by making the repository genuinely clean rather than penalizing the flag.
+`cred-102` is now owned by `payments-team@example.org`, matching the
+`platform-team@example.org` convention already used by `cred-103`.
+
+The clean/defective distinction is now coherent:
+
+| Credential | Owner | Expires | Rotated | Verdict |
+|---|---|---|---|---|
+| `cred-101` | a person | **none** | **never** | defective |
+| `cred-102` | a team | 2027-02-20 | 2026-08-20 | clean |
+| `cred-103` | a team | 2026-11-02 | 2026-05-02 | clean |
+
+A note was added to the rubric so a facilitator can defend the 10 points, and it
+explicitly says **not** to deduct from a student who raises the
+person-tied-token question and then concludes the repository is clean. That
+reasoning is correct even though the conclusion is "clean".
+
+## Batch 7 — the false-safety prediction and two checker bugs
+
+### 7.1 Course 4 Lab 3 told students an attack was blocked when it was not
+
+The most serious finding in the report. `check_settings.py` printed attack 3 as
+unconditionally `blocked`, while attacks 1 and 2 correctly said "blocked **if
+the OS sandbox starts**". With the sandbox down the tester watched the secrets
+file get read anyway (`read 83 bytes from config/secrets.env`).
+
+Attack 3 is now conditional like the others, with two lines explaining why,
+because the reason is a real teaching point:
+
+> deny rules gate Claude's Read tool. A shell command run through Bash is
+> stopped by the OS sandbox, so with the sandbox down this file can still be read.
+
+A lab that reports a control as working when it is not is worse than a lab that
+fails, which is why this was prioritised over the wording backlog.
+
+### 7.2 Course 4 Lab 3 — `.mcp.json` pointed at a missing file
+
+The project registered a `ticket-bridge` MCP server at
+`tools/ticket_bridge.py`, which did not exist. Added as an explicit stub that
+documents itself as not part of the exercise and exits immediately, so the MCP
+configuration resolves instead of failing in a way that masked the real
+exercise.
+
+### 7.3 Course 4 Lab 1 — `fix_d4` scored a correct fix 0/10
+
+The check required the strings `verif` **and** `domain` in the same CSV cell, so
+a correctly reworded row failed. A verification row is now identified by naming
+a domain and not being the enforce step:
+
+```python
+def is_verify(r):
+    a = low(r["action"])
+    if "enforce" in a:
+        return False
+    return "verif" in a or ".example.net" in a or ".example.org" in a
+```
+
+All three scripts compile.

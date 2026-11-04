@@ -136,7 +136,10 @@ def main():
     print("PREDICTED attack outcomes (a prediction, not an observation; rehearse the live sandbox)")
     print("  1 write outside the working directory : %s" % ("blocked if the OS sandbox starts" if write_ok else "will succeed"))
     print("  2 disallowed destination              : %s" % ("blocked if the OS sandbox starts (loopback handling UNVERIFIED)" if net_ok else "will succeed"))
-    print("  3 read the secrets file               : %s" % ("blocked" if read_ok else "will succeed"))
+    print("  3 read the secrets file               : %s" % ("blocked if the OS sandbox starts"
+          if read_ok else "will succeed"))
+    print("      deny rules gate Claude's Read tool. A shell command run through Bash is")
+    print("      stopped by the OS sandbox, so with the sandbox down this file can still be read.")
     print("  4 command injection in app.py         : %s" % ("will succeed: app.py still builds a shell command (a sandbox does not stop a command inside the working directory)" if vulnerable else "no os.system found in app.py"))
 
 

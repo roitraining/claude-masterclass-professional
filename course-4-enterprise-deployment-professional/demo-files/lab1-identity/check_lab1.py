@@ -120,7 +120,14 @@ def fix_d4():
     def num(r):  # order in the file, not the step label
         return rows.index(r)
 
-    verify = [r for r in rows if "verif" in low(r["action"]) and "domain" in low(r["action"])]
+    # A verification row is one that names a domain and is not the enforce step.
+    # Requiring both "verif" and "domain" in one cell rejected correct rewordings.
+    def is_verify(r):
+        a = low(r["action"])
+        if "enforce" in a:
+            return False
+        return "verif" in a or ".example.net" in a or ".example.org" in a
+    verify = [r for r in rows if is_verify(r)]
     enforce = [r for r in rows if "enforce" in low(r["action"])]
     if not verify:
         return False, "no domain verification step in rollout_plan.csv"

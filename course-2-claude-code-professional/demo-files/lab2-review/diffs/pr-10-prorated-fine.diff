@@ -16,4 +16,4 @@ index a11efdc..687ae42 100644
 +
 +def prorated_fine_cents(days, rate_cents_per_day):
 +    """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up."""
-+    return int(days * rate_cents_per_day)
++    return int(round(days * rate_cents_per_day, 6))
