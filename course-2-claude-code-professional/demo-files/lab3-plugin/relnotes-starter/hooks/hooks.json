@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python C:/Users/student/plugins/relnotes/scripts/lint_notes.py"
+            "command": "python3 C:/Users/student/plugins/relnotes/scripts/lint_notes.py"
           }
         ]
       }

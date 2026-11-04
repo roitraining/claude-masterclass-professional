@@ -46,10 +46,10 @@ You need this in Part 2 and again in Part 3. The scorer reads this shape, which 
 
 Four ways to produce it, easiest first:
 
-- **Driver script.** `python run_reviews.py ~/work/lending-review --out findings.json`. It runs `claude -p` once per branch, passes the diff on standard input, allows only `Read,Grep,Glob`, sets `--max-turns` and `--max-budget-usd`, and merges the replies. `--dry-run` prints the commands and calls nothing.
+- **Driver script.** `python3 run_reviews.py ~/work/lending-review --out findings.json`. It runs `claude -p` once per branch, passes the diff on standard input, allows only `Read,Grep,Glob`, sets `--max-turns` and `--max-budget-usd`, and merges the replies. `--dry-run` prints the commands and calls nothing.
 - **By hand, one branch.** `git diff -U25 main...pr-03-delete-member | claude -p "<your prompt>" --allowedTools "Read,Grep,Glob" --max-turns 8`, with a prompt that asks for only the JSON object above.
 - **With a schema.** Print mode accepts `--json-schema` with a JSON Schema and returns validated JSON. Add `--output-format json` for the full result object. Look at what comes back once. `run_reviews.py` already accepts a top-level `findings` object, a `structured_output` field or a `result` field.
-- **No model at all.** `python score_review.py sample-findings.json` runs the scorer on a hand-written sample. Use it to learn the shape and the tier rules.
+- **No model at all.** `python3 score_review.py sample-findings.json` runs the scorer on a hand-written sample. Use it to learn the shape and the tier rules.
 
 ---
 
@@ -60,7 +60,7 @@ Goal: a local repository with `main` and the pull request branches.
 ### Step 1: Build the Lending Fixture
 
 ```bash
-python build_fixture.py ~/work/lending-review
+python3 build_fixture.py ~/work/lending-review
 git branch
 ```
 
@@ -70,7 +70,7 @@ git branch
 
 Copy `REVIEW.md` from `$FILES/lab2-review` into the repository root on `main` and commit it. Do not edit `CLAUDE.md`'s existing rules. You may add to it.
 
-**Acceptance criteria:** `python -m unittest` passes on `main`.
+**Acceptance criteria:** `python3 -m unittest` passes on `main`.
 
 > **Common Pitfall:** `REVIEW.md` must be on `main` for a run to read it. The driver runs from `main` and reads the diff of each branch, so editing `REVIEW.md` on a branch has no effect on the score.
 
@@ -89,7 +89,7 @@ Produce findings using any method from the reference section above. Change nothi
 ### Step 4: Score the Baseline and Write It Down
 
 ```bash
-python score_review.py findings.json
+python3 score_review.py findings.json
 ```
 
 **Acceptance criteria:** a baseline tier, a count of bugs caught, and a count of false positives, all written down.
@@ -158,7 +158,7 @@ Goal: show you understand the result, not just the score.
 
 ### Step 9: Verify Your Progress
 
-- [ ] The fixture is built and `python -m unittest` passes on `main`
+- [ ] The fixture is built and `python3 -m unittest` passes on `main`
 - [ ] `REVIEW.md` is committed on `main`, not on a branch
 - [ ] A baseline tier, bugs-caught count and false-positive count are written down
 - [ ] A round log shows at most three rounds, each with a change and a score before and after

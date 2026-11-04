@@ -69,7 +69,7 @@ Install the gate's dependency, then run it against the starter workflow files, o
 
 ```bash
 pip install pyyaml
-python security_gate.py <starter-workflow-file>
+python3 security_gate.py <starter-workflow-file>
 ```
 
 **Expected result:** the gate prints a score and a list of findings for each file you point it at.

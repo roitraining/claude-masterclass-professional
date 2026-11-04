@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/scripts/lint_notes.py\""
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/lint_notes.py\""
           }
         ]
       }

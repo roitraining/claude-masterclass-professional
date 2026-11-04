@@ -75,7 +75,7 @@ Create the manifest and the folders for the four components.
 
 Copy the starter server into `server/` and replace its sample tools with the three tools in the brief.
 
-**Acceptance criteria:** `python server/test_server.py server/server.py` prints PASS on every line with your data folder set; each tool returns the dataset text including the `as_of` or `last_updated` dates; an unknown or bad argument returns a clear error string and does not crash the server.
+**Acceptance criteria:** `python3 server/test_server.py server/server.py` prints PASS on every line with your data folder set; each tool returns the dataset text including the `as_of` or `last_updated` dates; an unknown or bad argument returns a clear error string and does not crash the server.
 
 > **Hint:** return the data as plain text and let the skill judge it. Do not have the server decide staleness — pass the dates through.
 
@@ -162,7 +162,7 @@ Copy `$FILES/starter-server/manifest.json` to `server/manifest.json`, then edit 
 - [ ] The plugin loads with `--plugin-dir`
 - [ ] `claude plugin validate` passes
 - [ ] Plugin, server key, skill, command, agent and tool names all match the brief exactly
-- [ ] `python server/test_server.py server/server.py` prints PASS on every line
+- [ ] `python3 server/test_server.py server/server.py` prints PASS on every line
 - [ ] `/mcp` lists your server with three tools
 - [ ] A bad or unknown argument returns a clear error and does not crash the server
 - [ ] The skill fires on user-phrased requests and stays quiet on unrelated ones
@@ -182,7 +182,7 @@ Now open `ANSWER-KEY.md` and score yourself on the three traps.
 
 | Issue | Symptom | Solution |
 |---|---|---|
-| Server will not start | `/mcp` shows the server failed or missing | Run `python server/test_server.py server/server.py` first. If that passes, check the path and command in `.mcp.json`. On macOS and Linux the command may need to be `python3` |
+| Server will not start | `/mcp` shows the server failed or missing | Run `python3 server/test_server.py server/server.py` first. If that passes, check the path and command in `.mcp.json`. On macOS and Linux the command may need to be `python3` |
 | Claude receives garbage | Server starts but responses are corrupt | Something printed to standard output. Print to stderr only |
 | Tool names do not match | Lab 2 fails mysteriously | Plugin tools are named `mcp__plugin_<plugin>_<server>__<tool>`. A plugin or server key that differs from the brief changes every tool name |
 | Skill never fires | Claude ignores the skill | The description is too vague or too narrow. Ask in the words a user would use, and make the description more specific rather than longer |

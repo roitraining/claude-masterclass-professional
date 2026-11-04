@@ -20,21 +20,21 @@
 
 ```
 cd $FILES/python
-python demo6_caps.py turns
+python3 demo6_caps.py turns
 ```
 
 2. Read the `RESULT` line. Show `subtype=error_max_turns` and the `poll_job calls` count. Point out the exception message printed under `ERROR`, and that the script still captured the result before the exception.
 3. Run with a spend cap:
 
 ```
-python demo6_caps.py budget
+python3 demo6_caps.py budget
 ```
 
 4. Show `subtype=error_max_budget_usd` and a cost at or slightly above the cap. State that the cap is a client-side estimate and can overshoot, so leave headroom.
 5. Run the concurrency case:
 
 ```
-python demo6_caps.py concurrency
+python3 demo6_caps.py concurrency
 ```
 
 6. Look for a tool result carrying `Concurrent subagent limit reached` in the printed limit lines. Show where depth and concurrency are set (the `env` option) and that Python merges `env` into the inherited environment while TypeScript replaces it, so TypeScript code must spread `process.env`.

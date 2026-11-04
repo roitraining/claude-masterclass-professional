@@ -37,7 +37,7 @@ Every person, company, order and amount is fictional. Agent output varies from r
 cd $FILES/python
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-python preflight.py
+python3 preflight.py
 ```
 
 On Windows PowerShell use `py -m venv .venv` and `.venv\Scripts\Activate.ps1`.
@@ -72,7 +72,7 @@ npx tsx src/preflight.ts
 
 ```
 cd $FILES/python
-python demo1_minimal.py
+python3 demo1_minimal.py
 ```
 
 3. Read the printed stream aloud: the `system` init message, the assistant `tool_use` for `Read`, the tool result, the assistant text, and the `result` line with `subtype`, `turns` and `cost_usd`.
@@ -87,7 +87,7 @@ npx tsx src/demo1Minimal.ts
 
 **Expected result:** The agent calls `Read` on `sample_notes.md`, lists the three action items, and ends with `subtype=success`. Both languages show the same shape of stream.
 
-> **Instructor note:** `tools`, `allowed_tools`, `setting_sources`, `max_turns`, `max_budget_usd` and `cwd` are confirmed in the Python reference, and the matching camelCase names in the TypeScript examples. In TypeScript, a message's content sits under `message.message.content`; in Python it is `message.content`. Say so once. Turn count and cost are estimates, and the spend cap can overshoot, so do not quote them as exact. **Fallback:** read the expected stream from the Expected result and run only `python preflight.py` live.
+> **Instructor note:** `tools`, `allowed_tools`, `setting_sources`, `max_turns`, `max_budget_usd` and `cwd` are confirmed in the Python reference, and the matching camelCase names in the TypeScript examples. In TypeScript, a message's content sits under `message.message.content`; in Python it is `message.content`. Say so once. Turn count and cost are estimates, and the spend cap can overshoot, so do not quote them as exact. **Fallback:** read the expected stream from the Expected result and run only `python3 preflight.py` live.
 
 > **Why this matters:** Every later demo is this loop with something added. A student who can read the stream can debug every agent in the course.
 
@@ -108,14 +108,14 @@ npx tsx src/demo1Minimal.ts
 
 ```
 cd $FILES/python
-python demo2_misuse.py vague
+python3 demo2_misuse.py vague
 ```
 
 3. Watch the `TOOL` lines for each prompt. Point out any call that returns `[error]` (`Unsupported unit pair` or `Unsupported currency pair`), which means the agent picked the wrong tool and had to recover.
 4. Run the clear variant:
 
 ```
-python demo2_misuse.py clear
+python3 demo2_misuse.py clear
 ```
 
 5. Compare the number of tool calls and the turn count between the two runs.
@@ -145,7 +145,7 @@ python demo2_misuse.py clear
 
 ```
 cd $FILES/python
-python demo3_agent.py
+python3 demo3_agent.py
 ```
 
 4. Read the `MCP servers at init` line. Point at the status for `rates`.
@@ -177,7 +177,7 @@ python demo3_agent.py
 
 ```
 cd $FILES/python
-python demo4_retrieval_agent.py
+python3 demo4_retrieval_agent.py
 ```
 
 4. For the first prompt, read the `TOOL` lines: `search_docs`, then `read_doc`, then the answer with a cited `doc_id`.
@@ -185,7 +185,7 @@ python demo4_retrieval_agent.py
 6. Run a question the knowledge base cannot answer and show the agent saying so:
 
 ```
-python demo4_retrieval_agent.py "What is the warranty on a canoe?"
+python3 demo4_retrieval_agent.py "What is the warranty on a canoe?"
 ```
 
 7. State plainly: retrieval here is an MCP integration the course supplies. It is a supported pattern, not a first-party Anthropic feature.
@@ -213,7 +213,7 @@ python demo4_retrieval_agent.py "What is the warranty on a canoe?"
 
 ```
 cd $FILES/python
-python demo5_subagent.py
+python3 demo5_subagent.py
 ```
 
 3. Read the output: the `Agent` tool call with its `subagent_type`, the prompt the subagent received, any `(inside subagent)` tool calls, and the parent's final answer.
@@ -242,21 +242,21 @@ python demo5_subagent.py
 
 ```
 cd $FILES/python
-python demo6_caps.py turns
+python3 demo6_caps.py turns
 ```
 
 2. Read the `RESULT` line. Show `subtype=error_max_turns` and the `poll_job calls` count. Point out the exception message printed under `ERROR`, and that the script still captured the result before the exception.
 3. Run with a spend cap:
 
 ```
-python demo6_caps.py budget
+python3 demo6_caps.py budget
 ```
 
 4. Show `subtype=error_max_budget_usd` and a cost at or slightly above the cap. State that the cap is a client-side estimate and can overshoot, so leave headroom.
 5. Run the concurrency case:
 
 ```
-python demo6_caps.py concurrency
+python3 demo6_caps.py concurrency
 ```
 
 6. Look for a tool result carrying `Concurrent subagent limit reached` in the printed limit lines. Show where depth and concurrency are set (the `env` option) and that Python merges `env` into the inherited environment while TypeScript replaces it, so TypeScript code must spread `process.env`.
@@ -285,7 +285,7 @@ python demo6_caps.py concurrency
 
 ```
 cd $FILES/python
-python demo7_grade.py
+python3 demo7_grade.py
 ```
 
 3. Walk through the four lines. Run 1 passes both graders. Run 2 answers correctly without calling `order_lookup` (the tool grader fails: the answer is right and the process is wrong). Run 3 gives a wrong warranty (the answer grader fails). Run 4 passes both code graders and fails the judge on tone.
@@ -293,7 +293,7 @@ python demo7_grade.py
 5. Optional, one model call: run the live judge and compare its score with the recorded one:
 
 ```
-python demo7_grade.py --live-judge
+python3 demo7_grade.py --live-judge
 ```
 
 6. State the rule: grade the final answer and the tool calls with code first, because code is fast and repeatable. Use a judge only for what code cannot see, and test the judge.
@@ -320,7 +320,7 @@ python demo7_grade.py --live-judge
 
 ```
 cd $FILES/python
-python demo8_scorecard.py
+python3 demo8_scorecard.py
 ```
 
 2. Stop after section 1. Ask the room whether they would ship. The answer-only score is 12 of 12.

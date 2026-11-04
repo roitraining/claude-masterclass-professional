@@ -36,4 +36,4 @@ cd ~/work/vuln-app
 git init -q && git add -A && git commit -qm "baseline"
 ```
 
-Commit locally only. Nothing in this course pushes to a remote. Run `python attack_simulation.py` from inside a Claude Code session started in `~/work/vuln-app`, so the Bash tool, not your shell, is what is tested.
+Commit locally only. Nothing in this course pushes to a remote. Run `python3 attack_simulation.py` from inside a Claude Code session started in `~/work/vuln-app`, so the Bash tool, not your shell, is what is tested.

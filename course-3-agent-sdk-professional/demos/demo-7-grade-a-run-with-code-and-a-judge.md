@@ -21,7 +21,7 @@
 
 ```
 cd $FILES/python
-python demo7_grade.py
+python3 demo7_grade.py
 ```
 
 3. Walk through the four lines. Run 1 passes both graders. Run 2 answers correctly without calling `order_lookup` (the tool grader fails: the answer is right and the process is wrong). Run 3 gives a wrong warranty (the answer grader fails). Run 4 passes both code graders and fails the judge on tone.
@@ -29,7 +29,7 @@ python demo7_grade.py
 5. Optional, one model call: run the live judge and compare its score with the recorded one:
 
 ```
-python demo7_grade.py --live-judge
+python3 demo7_grade.py --live-judge
 ```
 
 6. State the rule: grade the final answer and the tool calls with code first, because code is fast and repeatable. Use a judge only for what code cannot see, and test the judge.

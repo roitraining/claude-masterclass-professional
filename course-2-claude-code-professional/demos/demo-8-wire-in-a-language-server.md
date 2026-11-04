@@ -24,11 +24,11 @@ pylsp --help
 ```
 
 2. Show `.lsp.json` in `pylsp-plugin-fixed`. Point at the command, and the dots on the extensions. Run `claude plugin validate` on the plugin and note that it passes. Say it did not read this file.
-3. `python check_lsp.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed`
+3. `python3 check_lsp.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed`
 4. Test the server with no Claude involved:
 
 ```
-python lsp_smoke.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed $FILES/lab4-lsp/sample-project/app/report.py
+python3 lsp_smoke.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed $FILES/lab4-lsp/sample-project/app/report.py
 ```
 
 5. In `sample-project`, start `claude --plugin-dir $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed`. Ask Claude to add a line using an undefined name to `app/report.py`. Look for the `Found N new diagnostic issues` line and press Ctrl+O.

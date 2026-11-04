@@ -46,7 +46,7 @@ claude
 
 **Expected result:** A new commit on the pull request branch changes `monthly_total` so the tests pass, and the check turns green. Claude does not merge the pull request.
 
-**Instructor note:** Sandbox only, instructor only. The exact way `/autofix-pr` is pointed at a pull request, whether it asks you to choose one, and how long a fix takes are not in the verified facts. Rehearse once and time it. Fallback if it runs long or fails: a local simulation. In a local copy of `tallybook`, run `python -m pytest -q` to show the failures, tell Claude "make the failing tests pass and change nothing else", show the diff, and say the pipeline version of the same loop is the one you just described. A second fallback is a screenshot set of a previous run, taken during rehearsal.
+**Instructor note:** Sandbox only, instructor only. The exact way `/autofix-pr` is pointed at a pull request, whether it asks you to choose one, and how long a fix takes are not in the verified facts. Rehearse once and time it. Fallback if it runs long or fails: a local simulation. In a local copy of `tallybook`, run `python3 -m pytest -q` to show the failures, tell Claude "make the failing tests pass and change nothing else", show the diff, and say the pipeline version of the same loop is the one you just described. A second fallback is a screenshot set of a previous run, taken during rehearsal.
 
 **Why this matters:** Auto-fix is the first unattended action students meet. It acts on a signal (a red check) rather than on a request. That is exactly where permissions, who can trigger it, and a human review of the result need to be settled.
 
@@ -65,7 +65,7 @@ claude
 1. Build the fixture and move to a bug branch:
 
 ```
-python build_fixture.py ~/work/lending-demo
+python3 build_fixture.py ~/work/lending-demo
 cd ~/work/lending-demo
 git checkout pr-03-delete-member
 ```
@@ -73,11 +73,11 @@ git checkout pr-03-delete-member
 2. Start `claude` and run `/code-review`, naming the branch as the target.
 3. Compare the findings with the answer key for `pr-03-delete-member`: a handler that never calls `require_role`.
 4. Open `$FILES/demo2-review/claude-code-review.yml`. Point at the two lines that decide where the review goes: `--comment` and the `claude_args` line with `--allowedTools`. Say the workflow is the documented example and is not run in class.
-5. Optional: run `python $FILES/lab1-ci/security_gate.py $FILES/demo2-review/claude-code-review.yml`. It scores 85: no turn limit, no timeout and no concurrency group. A documented example is a start, not a finished pipeline.
+5. Optional: run `python3 $FILES/lab1-ci/security_gate.py $FILES/demo2-review/claude-code-review.yml`. It scores 85: no turn limit, no timeout and no concurrency group. A documented example is a start, not a finished pipeline.
 
 **Expected result:** The review reports the missing role check on the delete handler. It may also report extra items. Count them: they are the lead-in to Lab 2.
 
-**Instructor note:** The exact target and effort-level arguments `/code-review` accepts, and its output format, are unconfirmed. Rehearse and adjust step 2. The review uses credits. Fallback: show `$FILES/lab2-review/sample-findings.json` and run `python score_review.py sample-findings.json`, which needs no model. Do not demo the managed service live unless the sandbox organization is on a Team or Enterprise plan with the service turned on. If it is, `@claude review` on a sandbox pull request, by someone with write access, starts one. Zero Data Retention, HIPAA and customer-managed key configurations do not support it.
+**Instructor note:** The exact target and effort-level arguments `/code-review` accepts, and its output format, are unconfirmed. Rehearse and adjust step 2. The review uses credits. Fallback: show `$FILES/lab2-review/sample-findings.json` and run `python3 score_review.py sample-findings.json`, which needs no model. Do not demo the managed service live unless the sandbox organization is on a Team or Enterprise plan with the service turned on. If it is, `@claude review` on a sandbox pull request, by someone with write access, starts one. Zero Data Retention, HIPAA and customer-managed key configurations do not support it.
 
 **Why this matters:** A review is only worth running if you can say what it caught and what it raised in error. This demo sets up Lab 2, where students score that.
 
@@ -153,7 +153,7 @@ claude -p "Also add one line to the README describing the helper" --cloud <sessi
 **Steps:**
 
 1. Hand out `checkpoint-map.md`. Read `nightly-fix-and-ship.yml` with the class: a nightly schedule, Claude fixes failing tests and moves dependencies, a pull request is opened and set to merge itself, a deploy job follows.
-2. Run the gate: `python security_gate.py nightly-fix-and-ship.yml`. It scores 100. Ask what that tells you, and what it cannot tell you.
+2. Run the gate: `python3 security_gate.py nightly-fix-and-ship.yml`. It scores 100. Ask what that tells you, and what it cannot tell you.
 3. Let pairs mark the table for three minutes, then take answers.
 4. Settle the answers (see the instructor note).
 5. Ask the second question: which steps should not get a checkpoint, and why.
@@ -262,11 +262,11 @@ pylsp --help
 ```
 
 2. Show `.lsp.json` in `pylsp-plugin-fixed`. Point at the command, and the dots on the extensions. Run `claude plugin validate` on the plugin and note that it passes. Say it did not read this file.
-3. `python check_lsp.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed`
+3. `python3 check_lsp.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed`
 4. Test the server with no Claude involved:
 
 ```
-python lsp_smoke.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed $FILES/lab4-lsp/sample-project/app/report.py
+python3 lsp_smoke.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed $FILES/lab4-lsp/sample-project/app/report.py
 ```
 
 5. In `sample-project`, start `claude --plugin-dir $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed`. Ask Claude to add a line using an undefined name to `app/report.py`. Look for the `Found N new diagnostic issues` line and press Ctrl+O.
@@ -298,7 +298,7 @@ python lsp_smoke.py $FILES/lab4-lsp/facilitator/pylsp-plugin-fixed $FILES/lab4-l
 
 ```
 export ANTHROPIC_API_KEY="FAKE-TOKEN-DO-NOT-USE"
-python $FILES/demo9-cutover/leftover_credentials_check.py
+python3 $FILES/demo9-cutover/leftover_credentials_check.py
 unset ANTHROPIC_API_KEY
 ```
 

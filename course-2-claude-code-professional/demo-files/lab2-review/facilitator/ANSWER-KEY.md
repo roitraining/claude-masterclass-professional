@@ -30,7 +30,7 @@ pr-11-docstrings adds two docstrings and changes nothing else. Any important fin
 
 ## Scoring and tiers
 
-`python score_review.py findings.json` prints bugs caught, false positives, nits, precision and a tier.
+`python3 score_review.py findings.json` prints bugs caught, false positives, nits, precision and a tier.
 
 - Gold: all 5 bugs, at most 1 false positive, at most 6 nits.
 - Silver: at least 4 bugs, at most 3 false positives.

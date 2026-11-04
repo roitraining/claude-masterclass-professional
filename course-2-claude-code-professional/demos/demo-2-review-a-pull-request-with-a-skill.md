@@ -19,7 +19,7 @@
 1. Build the fixture and move to a bug branch:
 
 ```
-python build_fixture.py ~/work/lending-demo
+python3 build_fixture.py ~/work/lending-demo
 cd ~/work/lending-demo
 git checkout pr-03-delete-member
 ```
@@ -27,11 +27,11 @@ git checkout pr-03-delete-member
 2. Start `claude` and run `/code-review`, naming the branch as the target.
 3. Compare the findings with the answer key for `pr-03-delete-member`: a handler that never calls `require_role`.
 4. Open [`$FILES/demo2-review/claude-code-review.yml`](../demo-files/demo2-review/claude-code-review.yml). Point at the two lines that decide where the review goes: `--comment` and the `claude_args` line with `--allowedTools`. Say the workflow is the documented example and is not run in class.
-5. Optional: run `python $FILES/lab1-ci/security_gate.py $FILES/demo2-review/claude-code-review.yml`. It scores 85: no turn limit, no timeout and no concurrency group. A documented example is a start, not a finished pipeline.
+5. Optional: run `python3 $FILES/lab1-ci/security_gate.py $FILES/demo2-review/claude-code-review.yml`. It scores 85: no turn limit, no timeout and no concurrency group. A documented example is a start, not a finished pipeline.
 
 **Expected result:** The review reports the missing role check on the delete handler. It may also report extra items. Count them: they are the lead-in to Lab 2.
 
-**Instructor note:** The exact target and effort-level arguments `/code-review` accepts, and its output format, are unconfirmed. Rehearse and adjust step 2. The review uses credits. Fallback: show [`$FILES/lab2-review/sample-findings.json`](../demo-files/lab2-review/sample-findings.json) and run `python score_review.py sample-findings.json`, which needs no model. Do not demo the managed service live unless the sandbox organization is on a Team or Enterprise plan with the service turned on. If it is, `@claude review` on a sandbox pull request, by someone with write access, starts one. Zero Data Retention, HIPAA and customer-managed key configurations do not support it.
+**Instructor note:** The exact target and effort-level arguments `/code-review` accepts, and its output format, are unconfirmed. Rehearse and adjust step 2. The review uses credits. Fallback: show [`$FILES/lab2-review/sample-findings.json`](../demo-files/lab2-review/sample-findings.json) and run `python3 score_review.py sample-findings.json`, which needs no model. Do not demo the managed service live unless the sandbox organization is on a Team or Enterprise plan with the service turned on. If it is, `@claude review` on a sandbox pull request, by someone with write access, starts one. Zero Data Retention, HIPAA and customer-managed key configurations do not support it.
 
 **Why this matters:** A review is only worth running if you can say what it caught and what it raised in error. This demo sets up Lab 2, where students score that.
 

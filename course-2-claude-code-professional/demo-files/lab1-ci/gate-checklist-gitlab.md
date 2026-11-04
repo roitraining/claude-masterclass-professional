@@ -15,8 +15,8 @@ Run it:
 
 ```
 pip install pyyaml
-python security_gate.py .gitlab-ci.yml
-python security_gate.py .gitlab-ci.yml --json
+python3 security_gate.py .gitlab-ci.yml
+python3 security_gate.py .gitlab-ci.yml --json
 ```
 
 Limits of the gate. It reads the file only. It cannot see whether `ANTHROPIC_API_KEY` is masked or protected in Settings, CI/CD, Variables, which token the job uses, branch protection, or who can run pipelines. Check those by hand and write down what you saw.

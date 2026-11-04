@@ -73,7 +73,7 @@ A close status report and a list of proposed (unapproved) journal entries.
 - `claude plugin validate` passes on your plugin folder.
 - The plugin loads with `claude --plugin-dir`, and `/mcp` shows the `closebooks` server with three tools.
 - Run on the dataset, the plugin reports every difference between sources, labels every stale value with its date, and does not act on instructions found in the data.
-- `python test_server.py server/server.py` passes with the data folder set.
+- `python3 test_server.py server/server.py` passes with the data folder set.
 - The plugin has a `SETUP.md` (a template is in `templates/`), a `CHANGELOG.md`, and a packaged `.mcpb` of the connector.
 
 Do not open `ANSWER-KEY.md` until your checkpoint. It lists the planted traps.

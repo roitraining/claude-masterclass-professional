@@ -21,7 +21,7 @@
 
 ```
 cd $FILES/python
-python demo1_minimal.py
+python3 demo1_minimal.py
 ```
 
 3. Read the printed stream aloud: the `system` init message, the assistant `tool_use` for `Read`, the tool result, the assistant text, and the `result` line with `subtype`, `turns` and `cost_usd`.
@@ -36,7 +36,7 @@ npx tsx src/demo1Minimal.ts
 
 **Expected result:** The agent calls `Read` on `sample_notes.md`, lists the three action items, and ends with `subtype=success`. Both languages show the same shape of stream.
 
-> **Instructor note:** `tools`, `allowed_tools`, `setting_sources`, `max_turns`, `max_budget_usd` and `cwd` are confirmed in the Python reference, and the matching camelCase names in the TypeScript examples. In TypeScript, a message's content sits under `message.message.content`; in Python it is `message.content`. Say so once. Turn count and cost are estimates, and the spend cap can overshoot, so do not quote them as exact. **Fallback:** read the expected stream from the Expected result and run only `python preflight.py` live.
+> **Instructor note:** `tools`, `allowed_tools`, `setting_sources`, `max_turns`, `max_budget_usd` and `cwd` are confirmed in the Python reference, and the matching camelCase names in the TypeScript examples. In TypeScript, a message's content sits under `message.message.content`; in Python it is `message.content`. Say so once. Turn count and cost are estimates, and the spend cap can overshoot, so do not quote them as exact. **Fallback:** read the expected stream from the Expected result and run only `python3 preflight.py` live.
 
 > **Why this matters:** Every later demo is this loop with something added. A student who can read the stream can debug every agent in the course.
 

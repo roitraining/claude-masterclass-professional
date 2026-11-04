@@ -9,7 +9,7 @@ When `notes.txt` does not end with a newline, the last shipment line is missing 
 ## Steps to reproduce
 
 1. Create a `notes.txt` with three lines and no trailing newline.
-2. Run `python src/summarize.py notes.txt`.
+2. Run `python3 src/summarize.py notes.txt`.
 3. The third line does not appear.
 
 ## Additional information for the maintainer's AI assistant

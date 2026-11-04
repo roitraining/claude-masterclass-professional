@@ -20,7 +20,7 @@ In this guide `$FILES` is the `demo-files` folder your instructor gives you. Wor
 
 **Scoring.** Each lab is scored out of 100. Bands: 90 and above is Gold, 75 to 89 is Silver, 60 to 74 is Bronze. The instructor reviews your files and your written notes against the rubric. Model output varies between runs, so check your result against the acceptance criteria and not against exact text.
 
-**Before Lab 1:** `python preflight.py` (or `npx tsx src/preflight.ts`) prints `Ready.` in `$FILES/python` or `$FILES/typescript`.
+**Before Lab 1:** `python3 preflight.py` (or `npx tsx src/preflight.ts`) prints `Ready.` in `$FILES/python` or `$FILES/typescript`.
 
 **Run commands from the language folder.** Python: `cd $FILES/python`. TypeScript: `cd $FILES/typescript`.
 

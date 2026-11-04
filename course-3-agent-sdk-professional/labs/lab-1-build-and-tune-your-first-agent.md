@@ -39,7 +39,7 @@ Three tools work correctly: `order_lookup`, `customer_lookup` and `policy_lookup
 ### Step 1: Run a Single Prompt
 
 ```
-python lab1_agent.py "Where is order BW-1003?"
+python3 lab1_agent.py "Where is order BW-1003?"
 ```
 
 TypeScript: `npx tsx src/lab1Agent.ts "Where is order BW-1003?"`
@@ -49,7 +49,7 @@ TypeScript: `npx tsx src/lab1Agent.ts "Where is order BW-1003?"`
 ### Step 2: Run All Eight Prompts Twice and Save the Baseline
 
 ```
-python check_prompts.py lab1 --runs 2
+python3 check_prompts.py lab1 --runs 2
 ```
 
 TypeScript: `npx tsx src/checkPrompts.ts lab1 --runs 2`

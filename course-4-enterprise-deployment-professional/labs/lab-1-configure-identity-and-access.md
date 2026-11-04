@@ -82,7 +82,7 @@ Record each finding in `findings_lab1.json`: the file, the issue, and the fix.
 ### Step 5: Score Yourself
 
 ```
-python check_lab1.py <your-folder>
+python3 check_lab1.py <your-folder>
 ```
 
 **Acceptance criteria:** each defect shown as found and fixed.

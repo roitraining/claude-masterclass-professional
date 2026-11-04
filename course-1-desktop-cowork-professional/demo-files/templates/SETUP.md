@@ -6,7 +6,7 @@ Estimated time: <N> minutes. You do not need the author to finish this guide.
 
 ## Prerequisites
 
-- Python 3.11 or later. Check with `python --version` (macOS and Linux may need `python3`).
+- Python 3.11 or later. Check with `python3 --version` (macOS and Linux may need `python3`).
 - <Claude Desktop with Cowork enabled / Claude Code 2.1.x or later, signed in>
 - <Any folder, file, or account the plugin needs, and where to get it>
 

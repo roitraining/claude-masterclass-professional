@@ -81,7 +81,7 @@ Follow the copy steps in `lab3_brief.md`, then read the approved lists.
 ### Step 5: Run the Static Checker
 
 ```
-python <path>/check_settings.py ~/work/vuln-app
+python3 <path>/check_settings.py ~/work/vuln-app
 ```
 
 Run it repeatedly until Part A is as high as you can get it.
@@ -90,7 +90,7 @@ Run it repeatedly until Part A is as high as you can get it.
 
 ### Step 6: Run the Attack Script Through a Session
 
-Start Claude Code in `~/work/vuln-app` and run `python attack_simulation.py` through the session. Record the table.
+Start Claude Code in `~/work/vuln-app` and run `python3 attack_simulation.py` through the session. Record the table.
 
 **Acceptance criteria:** the attack table shows the attacks blocked.
 

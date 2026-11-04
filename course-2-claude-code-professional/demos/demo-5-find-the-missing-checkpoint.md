@@ -17,7 +17,7 @@
 **Steps:**
 
 1. Hand out `checkpoint-map.md`. Read `nightly-fix-and-ship.yml` with the class: a nightly schedule, Claude fixes failing tests and moves dependencies, a pull request is opened and set to merge itself, a deploy job follows.
-2. Run the gate: `python security_gate.py nightly-fix-and-ship.yml`. It scores 100. Ask what that tells you, and what it cannot tell you.
+2. Run the gate: `python3 security_gate.py nightly-fix-and-ship.yml`. It scores 100. Ask what that tells you, and what it cannot tell you.
 3. Let pairs mark the table for three minutes, then take answers.
 4. Settle the answers (see the instructor note).
 5. Ask the second question: which steps should not get a checkpoint, and why.

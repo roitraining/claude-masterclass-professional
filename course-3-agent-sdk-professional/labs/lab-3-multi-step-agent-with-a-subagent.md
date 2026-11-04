@@ -36,8 +36,8 @@ Two tasks:
 ### Step 1: Run the Digest and the Loop on the Starter
 
 ```
-python lab3_agent.py digest
-python lab3_agent.py loop
+python3 lab3_agent.py digest
+python3 lab3_agent.py loop
 ```
 
 **Expected result:** the digest fails early and the loop runs away. Both are planted.
@@ -76,7 +76,7 @@ The parent plans, fetches the five orders with its tools, delegates the eligibil
 
 ### Step 5: Cap the Loop Without Editing the Fixture
 
-**Acceptance criteria:** `python lab3_agent.py loop` ends with `error_max_turns` or `error_max_budget_usd`, or ends with a success result whose answer honestly says the manifest did not reconcile. The `check_manifest` count stays at or under 15 and the spend stays within the spend cap plus 50 percent headroom.
+**Acceptance criteria:** `python3 lab3_agent.py loop` ends with `error_max_turns` or `error_max_budget_usd`, or ends with a success result whose answer honestly says the manifest did not reconcile. The `check_manifest` count stays at or under 15 and the spend stays within the spend cap plus 50 percent headroom.
 
 > **Hint:** set `max_turns` and `max_budget_usd`. Limit subagent depth with `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` and concurrency with `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`, both through the `env` option.
 
@@ -109,7 +109,7 @@ The parent plans, fetches the five orders with its tools, delegates the eligibil
 ### Step 8: Run the Checker
 
 ```
-python lab3_check.py
+python3 lab3_check.py
 ```
 
 **Acceptance criteria:** all seven checks pass.
@@ -134,7 +134,7 @@ python lab3_check.py
 - [ ] Depth and concurrency limits are set through `env`, with a reason recorded for each value
 - [ ] The fixture was not edited to remove the loop
 - [ ] `NOTES.md` says what the user sees and who is alerted on a capped run
-- [ ] `python lab3_check.py` shows all seven checks passing
+- [ ] `python3 lab3_check.py` shows all seven checks passing
 
 ---
 

@@ -5,7 +5,7 @@ An automated scorecard out of 100. You run it on your own plugin, read where you
 ## Run it
 
 ```
-python gauntlet/gauntlet.py --plugin ~/work/<your-plugin-folder>
+python3 gauntlet/gauntlet.py --plugin ~/work/<your-plugin-folder>
 ```
 
 Useful options:

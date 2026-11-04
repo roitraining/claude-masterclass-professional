@@ -40,7 +40,7 @@ Use API-key authentication only. claude.ai login is not used in this course.
 cd python
 python3 -m venv .venv && . .venv/bin/activate          # Windows: py -m venv .venv ; .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-python preflight.py
+python3 preflight.py
 ```
 
 ## TypeScript setup

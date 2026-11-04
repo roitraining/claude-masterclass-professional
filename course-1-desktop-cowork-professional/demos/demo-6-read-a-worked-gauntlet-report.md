@@ -24,7 +24,7 @@
 6. Run the free checks on the flawed plugin to show a live report:
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --static-only --out ~/work/static-demo
+python3 $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --static-only --out ~/work/static-demo
 ```
 
 **Expected result:** Run 1 scores 64.4 and is Bronze. Run 3 scores 96.5 and is Gold. The live static report shows the secret in `server/config.json`, the unscoped tools on the reviewer agent, the version mismatch, and the always-on cost of about 2,000 tokens, and it ends with "Not rated" because the eval groups were not run. It scores about 10 of 100.

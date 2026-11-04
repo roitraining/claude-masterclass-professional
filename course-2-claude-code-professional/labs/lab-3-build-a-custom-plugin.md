@@ -37,7 +37,7 @@ Goal: a list of what is wrong with the starter before you change anything.
 ### Step 1: Run the Linter and the Validator
 
 ```bash
-python plugin_lint.py relnotes-starter --marketplace marketplace-template
+python3 plugin_lint.py relnotes-starter --marketplace marketplace-template
 claude plugin validate relnotes-starter
 ```
 
@@ -59,7 +59,7 @@ Goal: a plugin that is safe to install and loads cleanly.
 
 **Acceptance criteria:**
 
-- `python plugin_lint.py` reports no FAIL lines, and `claude plugin validate` passes.
+- `python3 plugin_lint.py` reports no FAIL lines, and `claude plugin validate` passes.
 - The hook finds its script wherever the plugin is installed.
 - The auditing agent can read and cannot change anything, and relies on no setting that plugin agents ignore.
 - The rules that matter are delivered in a way Claude Code actually loads.
@@ -160,7 +160,7 @@ claude plugin details relnotes
 ### Step 10: Verify Your Progress
 
 - [ ] You can explain every linter and validator finding, and which tool caught which
-- [ ] `python plugin_lint.py` reports no FAIL lines
+- [ ] `python3 plugin_lint.py` reports no FAIL lines
 - [ ] `claude plugin validate` passes on the plugin
 - [ ] The hook resolves its script path on any machine, not just yours
 - [ ] The auditing agent can read and cannot write

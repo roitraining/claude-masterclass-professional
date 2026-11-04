@@ -32,7 +32,7 @@ Eval spend (list-price estimate): $4.10
 | Check | Points | Max | Note |
 |---|---|---|---|
 | SETUP.md sections, surfaces, settings, expected result (1 point each, 1 for existing) | 5 | 5 |  |
-| guide-quality and step checks in the simulated cold install | 8.8 | 10 | STEP 2: STUCK in 1 of 2 runs - python versus python3 on macOS not stated |
+| guide-quality and step checks in the simulated cold install | 8.8 | 10 | STEP 2: STUCK in 1 of 2 runs - python3 versus python3 on macOS not stated |
 
 ## Adversarial pack: 14.2 / 15
 

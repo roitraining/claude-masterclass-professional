@@ -18,8 +18,8 @@ Run it:
 
 ```
 pip install pyyaml
-python security_gate.py .github/workflows
-python security_gate.py .github/workflows/claude.yml --json
+python3 security_gate.py .github/workflows
+python3 security_gate.py .github/workflows/claude.yml --json
 ```
 
 Limits of the gate. It reads the file only. It cannot see repository settings (branch protection, secret scope, who has write access, whether Actions can approve pull requests), so a passing file still needs those checked in the repository. Check them by hand and write down what you saw.

@@ -13,14 +13,14 @@ A small local MCP server for the Claude MasterClass Professional course. It uses
 ## Run it
 
 ```
-python test_server.py
+python3 test_server.py
 ```
 
 You should see PASS on every line. To run against your own data folder:
 
 ```
 # macOS or Linux
-STARTER_DATA=/path/to/folder python test_server.py
+STARTER_DATA=/path/to/folder python3 test_server.py
 # Windows PowerShell
 $env:STARTER_DATA = "C:\path\to\folder"; python test_server.py
 ```
@@ -59,4 +59,4 @@ mcpb validate manifest.json
 mcpb pack . starter-server-0.1.0.mcpb
 ```
 
-Then in Claude Desktop open Settings, Extensions, Advanced settings, Install Extension, and choose the file. The bundle runs `python` from the user's machine, so Python must be on the path. If Node.js is not available, `python pack_mcpb.py . starter-server-0.1.0.mcpb` makes a zip with the same layout. That route is a fallback and has not been confirmed to install cleanly, so rehearse it.
+Then in Claude Desktop open Settings, Extensions, Advanced settings, Install Extension, and choose the file. The bundle runs `python` from the user's machine, so Python must be on the path. If Node.js is not available, `python3 pack_mcpb.py . starter-server-0.1.0.mcpb` makes a zip with the same layout. That route is a fallback and has not been confirmed to install cleanly, so rehearse it.

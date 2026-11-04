@@ -22,7 +22,7 @@
 
 ```
 cd $FILES/python
-python demo4_retrieval_agent.py
+python3 demo4_retrieval_agent.py
 ```
 
 4. For the first prompt, read the `TOOL` lines: `search_docs`, then `read_doc`, then the answer with a cited `doc_id`.
@@ -30,7 +30,7 @@ python demo4_retrieval_agent.py
 6. Run a question the knowledge base cannot answer and show the agent saying so:
 
 ```
-python demo4_retrieval_agent.py "What is the warranty on a canoe?"
+python3 demo4_retrieval_agent.py "What is the warranty on a canoe?"
 ```
 
 7. State plainly: retrieval here is an MCP integration the course supplies. It is a supported pattern, not a first-party Anthropic feature.

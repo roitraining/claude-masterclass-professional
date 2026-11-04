@@ -34,7 +34,7 @@ mcpb pack . ~/work/starter-server-0.1.0.mcpb
 3. Show that the file is a zip with the manifest at its root:
 
 ```
-python -c "import zipfile,sys; print('\n'.join(zipfile.ZipFile(sys.argv[1]).namelist()))" ~/work/starter-server-0.1.0.mcpb
+python3 -c "import zipfile,sys; print('\n'.join(zipfile.ZipFile(sys.argv[1]).namelist()))" ~/work/starter-server-0.1.0.mcpb
 ```
 
 4. In Claude Desktop open Settings, Extensions, Advanced settings, Install Extension, and choose the file. Review the details and permissions dialog, leave the data folder empty, and finish.

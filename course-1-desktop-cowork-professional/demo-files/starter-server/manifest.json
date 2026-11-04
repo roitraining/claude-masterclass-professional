@@ -5,10 +5,10 @@
   "description": "Starter local MCP server for the Claude MasterClass Professional course. Fictional sample data only.",
   "author": { "name": "Your Name" },
   "server": {
-    "type": "python",
+    "type": "python3",
     "entry_point": "server.py",
     "mcp_config": {
-      "command": "python",
+      "command": "python3",
       "args": ["${__dirname}/server.py"],
       "env": {
         "STARTER_DATA": "${user_config.data_dir}"

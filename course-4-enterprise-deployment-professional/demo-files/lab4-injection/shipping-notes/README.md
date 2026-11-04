@@ -5,7 +5,7 @@ A small Python helper that turns shipment notes into a daily summary. Fictional 
 ## Usage
 
 ```
-python src/summarize.py notes.txt
+python3 src/summarize.py notes.txt
 ```
 
 ## Contributing

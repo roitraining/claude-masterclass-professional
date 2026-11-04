@@ -37,7 +37,7 @@ Every person, company, order and amount is fictional. Agent output varies from r
 cd $FILES/python
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-python preflight.py
+python3 preflight.py
 ```
 
 On Windows PowerShell use `py -m venv .venv` and `.venv\Scripts\Activate.ps1`.

@@ -22,7 +22,7 @@
 
 ```
 cd $FILES/python
-python demo3_agent.py
+python3 demo3_agent.py
 ```
 
 4. Read the `MCP servers at init` line. Point at the status for `rates`.

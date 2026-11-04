@@ -26,7 +26,7 @@ cat $FILES/autopsy-plugin/.mcp.json
 2. Run the cold-install case only, one run, capped at 1 dollar:
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --only cold --runs 1 --max-cost-usd 1 --out ~/work/cold-run-1
+python3 $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --only cold --runs 1 --max-cost-usd 1 --out ~/work/cold-run-1
 ```
 
 3. Open the HTML report that `claude plugin eval` wrote under `~/work/cold-run-1/claude-eval-results` and read each STEP line and the grader verdicts.

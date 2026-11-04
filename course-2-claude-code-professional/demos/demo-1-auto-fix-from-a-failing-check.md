@@ -31,7 +31,7 @@ claude
 
 **Expected result:** A new commit on the pull request branch changes `monthly_total` so the tests pass, and the check turns green. Claude does not merge the pull request.
 
-**Instructor note:** Sandbox only, instructor only. The exact way `/autofix-pr` is pointed at a pull request, whether it asks you to choose one, and how long a fix takes are not in the verified facts. Rehearse once and time it. Fallback if it runs long or fails: a local simulation. In a local copy of `tallybook`, run `python -m pytest -q` to show the failures, tell Claude "make the failing tests pass and change nothing else", show the diff, and say the pipeline version of the same loop is the one you just described. A second fallback is a screenshot set of a previous run, taken during rehearsal.
+**Instructor note:** Sandbox only, instructor only. The exact way `/autofix-pr` is pointed at a pull request, whether it asks you to choose one, and how long a fix takes are not in the verified facts. Rehearse once and time it. Fallback if it runs long or fails: a local simulation. In a local copy of `tallybook`, run `python3 -m pytest -q` to show the failures, tell Claude "make the failing tests pass and change nothing else", show the diff, and say the pipeline version of the same loop is the one you just described. A second fallback is a screenshot set of a previous run, taken during rehearsal.
 
 **Why this matters:** Auto-fix is the first unattended action students meet. It acts on a signal (a red check) rather than on a request. That is exactly where permissions, who can trigger it, and a human review of the result need to be settled.
 

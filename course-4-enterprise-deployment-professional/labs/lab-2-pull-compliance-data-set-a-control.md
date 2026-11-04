@@ -102,7 +102,7 @@ Read `control_ticket.md` and choose Track A or Track B.
 ### Step 7: Score Yourself
 
 ```
-python check_lab2.py --findings findings_lab2.json --control <your control file>
+python3 check_lab2.py --findings findings_lab2.json --control <your control file>
 ```
 
 **Acceptance criteria:** the findings report scores, and the control spec passes its checklist.

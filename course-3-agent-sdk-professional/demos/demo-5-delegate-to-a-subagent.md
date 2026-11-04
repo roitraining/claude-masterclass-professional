@@ -21,7 +21,7 @@
 
 ```
 cd $FILES/python
-python demo5_subagent.py
+python3 demo5_subagent.py
 ```
 
 3. Read the output: the `Agent` tool call with its `subagent_type`, the prompt the subagent received, any `(inside subagent)` tool calls, and the parent's final answer.

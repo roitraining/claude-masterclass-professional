@@ -54,7 +54,7 @@ git config --global user.email "you@example.com"
 ```
 
 **Python 3.11 or later** is required by Associate 3 and Professional 1, 2, 3
-and 4. Check with `python3 --version` on Linux or `python --version` on
+and 4. Check with `python3 --version` on Linux or `python3 --version` on
 Windows.
 
 ---
@@ -241,7 +241,7 @@ $env:ANTHROPIC_API_KEY = "sk-ant-..."
 without printing it:
 
 ```
-python preflight.py
+python3 preflight.py
 ```
 
 It prints `Ready.` and never echoes the key.

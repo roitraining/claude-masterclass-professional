@@ -75,7 +75,7 @@ There is one defect in each area on the worksheet: trigger, permissions, setup, 
 ```
 claude plugin validate ~/work/expense-digest
 claude --plugin-dir ~/work/expense-digest plugin details expense-digest
-python $FILES/gauntlet/gauntlet.py --plugin ~/work/expense-digest --product 1 --static-only --out ~/work/autopsy-check
+python3 $FILES/gauntlet/gauntlet.py --plugin ~/work/expense-digest --product 1 --static-only --out ~/work/autopsy-check
 ```
 
 **Acceptance criteria:** validation still passes, always-on tokens are under 1,000, and the free Gauntlet checks show full marks for the secret, tool-scoping and release-hygiene lines.
@@ -91,7 +91,7 @@ python $FILES/gauntlet/gauntlet.py --plugin ~/work/expense-digest --product 1 --
 Run the free checks on your own plugin from Lab 1, and read the notes column.
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --static-only
+python3 $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --static-only
 ```
 
 **Expected result:** a static score plus notes naming anything missing. No spend.
@@ -111,7 +111,7 @@ Start from `$FILES/templates`.
 Prove your set-up works with a single capped case before you spend on a full run.
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --smoke
+python3 $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --smoke
 ```
 
 **Expected result:** one case completes and is rated.
@@ -121,7 +121,7 @@ python $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --smoke
 Run the whole Gauntlet and read the report, notes first.
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --out ~/work/gauntlet-run-1
+python3 $FILES/gauntlet/gauntlet.py --plugin ~/work/<plugin name> --out ~/work/gauntlet-run-1
 ```
 
 **Expected result:** a scored report with a tier, and a notes column explaining each loss.

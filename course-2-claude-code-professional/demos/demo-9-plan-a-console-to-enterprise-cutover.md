@@ -23,7 +23,7 @@
 
 ```
 export ANTHROPIC_API_KEY="FAKE-TOKEN-DO-NOT-USE"
-python $FILES/demo9-cutover/leftover_credentials_check.py
+python3 $FILES/demo9-cutover/leftover_credentials_check.py
 unset ANTHROPIC_API_KEY
 ```
 

@@ -62,7 +62,7 @@ The server entry needs a `command` and `args`.
 ### Step 4: Confirm the Server Is Connected
 
 ```
-python lab2_agent.py "Does order BW-1002 have any delivery notes?"
+python3 lab2_agent.py "Does order BW-1002 have any delivery notes?"
 ```
 
 **Acceptance criteria:** the MCP server status prints at init, and the agent calls the notes tool and reports the delivery note.
@@ -76,7 +76,7 @@ python lab2_agent.py "Does order BW-1002 have any delivery notes?"
 ### Step 5: Run the Checker on the Starter and Record the Failures
 
 ```
-python check_prompts.py lab2 --runs 2
+python3 check_prompts.py lab2 --runs 2
 ```
 
 **Acceptance criteria:** you have recorded which prompts fail and why, before changing anything.

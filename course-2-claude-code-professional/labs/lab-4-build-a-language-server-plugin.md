@@ -81,7 +81,7 @@ Goal: a `.lsp.json` that loads.
 ### Step 4: Locate the Fault
 
 ```bash
-python check_lsp.py pylsp-plugin-starter
+python3 check_lsp.py pylsp-plugin-starter
 ```
 
 Use the output, the Errors tab and the documentation together.
@@ -105,7 +105,7 @@ Goal: show that the server and your config work before you blame Claude Code.
 ### Step 6: Run the Smoke Test
 
 ```bash
-python lsp_smoke.py pylsp-plugin-starter sample-project/app/report.py
+python3 lsp_smoke.py pylsp-plugin-starter sample-project/app/report.py
 ```
 
 Then ask for a definition with `--definition LINE:COL` at a use of `rate_for` in `app/billing.py`.

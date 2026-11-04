@@ -21,14 +21,14 @@
 
 ```
 cd $FILES/python
-python demo2_misuse.py vague
+python3 demo2_misuse.py vague
 ```
 
 3. Watch the `TOOL` lines for each prompt. Point out any call that returns `[error]` (`Unsupported unit pair` or `Unsupported currency pair`), which means the agent picked the wrong tool and had to recover.
 4. Run the clear variant:
 
 ```
-python demo2_misuse.py clear
+python3 demo2_misuse.py clear
 ```
 
 5. Compare the number of tool calls and the turn count between the two runs.

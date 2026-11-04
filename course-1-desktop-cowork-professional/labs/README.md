@@ -18,7 +18,7 @@ Claude can word things differently each time. Check your result against the Chec
 
 **Before Lab 1:**
 
-- Python 3.11 or later and Git 2.31 or later. Check with `python --version` and `git --version`.
+- Python 3.11 or later and Git 2.31 or later. Check with `python3 --version` and `git --version`.
 - `claude` (Claude Code 2.1.269 or later), signed in to the same account as Claude Desktop. Check with `claude --version`.
 - Node.js and the MCPB tool for packaging an extension: `npm install -g @anthropic-ai/mcpb`. If Node is not available, use `pack_mcpb.py` in the starter server instead.
 - Claude Desktop signed in, with Cowork and plugins enabled.

@@ -20,7 +20,7 @@
 
 ```
 cd $FILES/python
-python demo8_scorecard.py
+python3 demo8_scorecard.py
 ```
 
 2. Stop after section 1. Ask the room whether they would ship. The answer-only score is 12 of 12.

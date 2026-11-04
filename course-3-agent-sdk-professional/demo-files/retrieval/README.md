@@ -10,7 +10,7 @@ Tools it exposes:
 Run it by itself to check that it starts (it waits for a client on stdin, so stop it with Ctrl+C):
 
 ```
-python server.py
+python3 server.py
 ```
 
 An agent starts it as a child process through the `mcpServers` option. See `python/demo4_retrieval_agent.py`.

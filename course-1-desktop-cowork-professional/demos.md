@@ -38,7 +38,7 @@ Everything runs locally on your own machine. Demos 5 and 7 mention steps that pu
 ```
 mkdir -p ~/work && cd ~/work
 claude --version
-python --version
+python3 --version
 git --version
 ```
 
@@ -133,7 +133,7 @@ claude --plugin-dir ~/work/records-desk plugin list
 
 ```
 cp -r $FILES/starter-server ~/work/records-desk/server
-cd ~/work/records-desk/server && python test_server.py && cd ..
+cd ~/work/records-desk/server && python3 test_server.py && cd ..
 ```
 
 2. Add the connector declaration:
@@ -226,7 +226,7 @@ cat $FILES/autopsy-plugin/.mcp.json
 2. Run the cold-install case only, one run, capped at 1 dollar:
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --only cold --runs 1 --max-cost-usd 1 --out ~/work/cold-run-1
+python3 $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --only cold --runs 1 --max-cost-usd 1 --out ~/work/cold-run-1
 ```
 
 3. Open the HTML report that `claude plugin eval` wrote under `~/work/cold-run-1/claude-eval-results` and read each STEP line and the grader verdicts.
@@ -276,7 +276,7 @@ mcpb pack . ~/work/starter-server-0.1.0.mcpb
 3. Show that the file is a zip with the manifest at its root:
 
 ```
-python -c "import zipfile,sys; print('\n'.join(zipfile.ZipFile(sys.argv[1]).namelist()))" ~/work/starter-server-0.1.0.mcpb
+python3 -c "import zipfile,sys; print('\n'.join(zipfile.ZipFile(sys.argv[1]).namelist()))" ~/work/starter-server-0.1.0.mcpb
 ```
 
 4. In Claude Desktop open Settings, Extensions, Advanced settings, Install Extension, and choose the file. Review the details and permissions dialog, leave the data folder empty, and finish.
@@ -310,7 +310,7 @@ python -c "import zipfile,sys; print('\n'.join(zipfile.ZipFile(sys.argv[1]).name
 6. Run the free checks on the flawed plugin to show a live report:
 
 ```
-python $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --static-only --out ~/work/static-demo
+python3 $FILES/gauntlet/gauntlet.py --plugin $FILES/autopsy-plugin --product 1 --static-only --out ~/work/static-demo
 ```
 
 **Expected result:** Run 1 scores 64.4 and is Bronze. Run 3 scores 96.5 and is Gold. The live static report shows the secret in `server/config.json`, the unscoped tools on the reviewer agent, the version mismatch, and the always-on cost of about 2,000 tokens, and it ends with "Not rated" because the eval groups were not run. It scores about 10 of 100.

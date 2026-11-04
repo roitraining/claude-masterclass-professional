@@ -20,7 +20,7 @@
 
 ```
 cp -r $FILES/starter-server ~/work/records-desk/server
-cd ~/work/records-desk/server && python test_server.py && cd ..
+cd ~/work/records-desk/server && python3 test_server.py && cd ..
 ```
 
 2. Add the connector declaration:

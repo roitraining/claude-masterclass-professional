@@ -38,7 +38,7 @@ Everything runs locally on your own machine. Demos 5 and 7 mention steps that pu
 ```
 mkdir -p ~/work && cd ~/work
 claude --version
-python --version
+python3 --version
 git --version
 ```
 

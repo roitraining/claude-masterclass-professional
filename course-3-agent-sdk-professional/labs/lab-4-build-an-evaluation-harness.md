@@ -85,7 +85,7 @@ Do this before you touch any code.
 ### Step 5: Calibrate and Confirm PASS
 
 ```
-python eval_judge.py --calibrate
+python3 eval_judge.py --calibrate
 ```
 
 **Acceptance criteria:** PASS, meaning both high replies outscored both low replies. If it fails, fix the rubric wording and run it again.
@@ -99,7 +99,7 @@ python eval_judge.py --calibrate
 ### Step 6: Smoke Test Before Any Full Run
 
 ```
-python eval_harness.py --version A --out results/A.json --only G01,G09
+python3 eval_harness.py --version A --out results/A.json --only G01,G09
 ```
 
 **Expected result:** two tasks complete and the harness writes a result file.
@@ -109,9 +109,9 @@ python eval_harness.py --version A --out results/A.json --only G01,G09
 ### Step 7: Run Both Versions in Full and Compare
 
 ```
-python eval_harness.py --version A --out results/A.json
-python eval_harness.py --version B --out results/B.json --repeats 2 --cost-target 0.05
-python eval_compare.py results/A.json results/B.json
+python3 eval_harness.py --version A --out results/A.json
+python3 eval_harness.py --version B --out results/B.json --repeats 2 --cost-target 0.05
+python3 eval_compare.py results/A.json results/B.json
 ```
 
 **Acceptance criteria:** `results/A.json` and `results/B.json` exist, each with a summary and a tier, and the comparison prints a per-task table and a delta.
@@ -153,11 +153,11 @@ In the Evaluate tab of the Claude Console prompt editor, create two versions of 
 - [ ] `grade_limits` requires a `success` subtype and the turn cap
 - [ ] Every grader failure returns a reason, not just FAIL
 - [ ] `tier()` matches the rule, including the missing judge mean and missing cost target cases
-- [ ] `python eval_judge.py --calibrate` prints PASS
+- [ ] `python3 eval_judge.py --calibrate` prints PASS
 - [ ] The judge is used only for the open-ended task
 - [ ] A smoke run with `--only` was done before any full run
 - [ ] `results/A.json` and `results/B.json` both exist, from full runs, each with a tier
-- [ ] `python eval_compare.py` prints a per-task table and a delta
+- [ ] `python3 eval_compare.py` prints a per-task table and a delta
 - [ ] The Console comparison was run, and its limit stated correctly: it does not run the agent
 - [ ] `REPORT.md` names at least one task where the version with the better overall score is worse
 - [ ] `REPORT.md` says what a Gold score would still not tell you
