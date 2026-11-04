@@ -68,9 +68,15 @@ Goal: a written baseline of what the gate says about the starters, before you ch
 Install the gate's dependency, then run it against the starter workflow files, or against the GitLab starter.
 
 ```bash
+python3 -m venv ~/.venvs/mc-ci        # skip if the class image already has it
+. ~/.venvs/mc-ci/bin/activate
 pip install pyyaml
 python3 security_gate.py <starter-workflow-file>
 ```
+
+The virtual environment is required: the class image refuses a system-wide or
+`--user` install because its Python is externally managed (PEP 668). Keep this
+shell active for the rest of the lab.
 
 **Expected result:** the gate prints a score and a list of findings for each file you point it at.
 
@@ -201,7 +207,7 @@ Track C substitutes a passed gate plus the written notes from Step 4 and Step 11
 
 | Issue | Symptom | Solution |
 |---|---|---|
-| Missing dependency | `PyYAML is required` | Run `pip install pyyaml` in the environment you run the gate from |
+| Missing dependency | `PyYAML is required` | Activate the lab venv, then run `pip install pyyaml` in the environment you run the gate from |
 | Gate skips the file | "No Claude step found. Skipped." | The file has no `anthropics/claude-code-action` step, or no `claude` command in a GitLab job. Deleting the Claude step to pass is not a fix |
 | Claude ignores the mention | No response to `@claude` | The app is missing, the secret is missing, the comment says `@claude-bot` or `/claude` instead of `@claude`, or the commenter lacks write access |
 | Authentication breaks after hardening | Run fails at authentication | Default GitHub App authentication needs `id-token: write`. Restore it |

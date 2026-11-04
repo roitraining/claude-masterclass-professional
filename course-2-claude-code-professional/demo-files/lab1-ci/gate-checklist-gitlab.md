@@ -14,6 +14,7 @@
 Run it:
 
 ```
+. ~/.venvs/mc-ci/bin/activate   # or: python3 -m venv ~/.venvs/mc-ci && . ~/.venvs/mc-ci/bin/activate
 pip install pyyaml
 python3 security_gate.py .gitlab-ci.yml
 python3 security_gate.py .gitlab-ci.yml --json

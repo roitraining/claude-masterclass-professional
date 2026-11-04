@@ -80,3 +80,60 @@ grep -rnE '(^|[^a-zA-Z0-9_./-])python( |$)' --include='*.md' . | grep -v validat
 ```
 
 Returns exactly one hit: the PowerShell line above.
+
+---
+
+## Batch 2 — virtual environments before every `pip install` (shared blocker 3)
+
+**Finding:** PEP 668 makes the image's Python externally managed, so
+`pip install` is refused outside a venv — including `pip install --user`.
+
+Seven bare `pip install` calls now create and activate a venv first. The venv
+names match the ones `provision-rvc.sh` pre-creates (`~/.venvs/mc-ci`,
+`~/.venvs/mc-lsp`), so a provisioned image only needs the activate line and the
+commands still work on an unprovisioned one.
+
+| File | Change |
+|---|---|
+| `course-2/labs/lab-4-...language-server-plugin.md` Step 1 | venv commands added **before** pip, in the right order |
+| same, Step 2 hint | activation changed from conditional to required |
+| `course-2/labs/lab-1-wire-claude-into-ci-safely.md` Step 3 | venv commands added, plus a note to keep the shell active |
+| same, troubleshooting row | now says to activate the venv first |
+| `course-2/demo-files/lab1-ci/gate-checklist-github.md` | activate line added |
+| `course-2/demo-files/lab1-ci/gate-checklist-gitlab.md` | activate line added |
+| `course-2/demo-files/README.md` | activate line added |
+| `course-2/demos.md` and `demos/demo-8-wire-in-a-language-server.md` | activate line added |
+
+**Course 2 Lab 4 had its steps in the wrong order.** The venv was mentioned at
+line 55 — *after* the pip install at line 38 — and Step 1's expected result said
+the install completes "in a virtual environment **or your user environment**".
+The user environment does not work on this image. Step 1 now states that a venv
+is required and why.
+
+Course 3 and `tallybook/README.md` already created a venv immediately before
+their pip step and were left unchanged.
+
+## Batch 4 — git identity (shared blocker 6)
+
+**Finding:** no global git identity on the image; commits fail with
+`Author identity unknown`.
+
+Two places actually run `git commit`, and both now set an identity first:
+
+- `course-4/demo-files/lab3-harden/lab3_brief.md` — the baseline copy block
+  (the tester asked for this one specifically)
+- `course-4/labs/lab-4-prompt-injection-detection.md` — its baseline block
+
+The added lines are **guarded**, so a student working on their own machine does
+not get their real identity overwritten:
+
+```bash
+git config --global user.name  >/dev/null 2>&1 || git config --global user.name  "RVC Student"
+git config --global user.email >/dev/null 2>&1 || git config --global user.email "student@rvc.local"
+```
+
+Course 2's labs already name a set identity in their prerequisites and only run
+`git branch`, `git diff` and `git log`, so they need nothing.
+
+Verified: no `git commit` anywhere in the course material now lacks an identity
+step or prerequisite.

@@ -37,6 +37,7 @@ In the guides `$FILES` means this folder.
 Python 3.11 or later and Git 2.31 or later. `security_gate.py` needs PyYAML:
 
 ```
+. ~/.venvs/mc-ci/bin/activate   # or: python3 -m venv ~/.venvs/mc-ci && . ~/.venvs/mc-ci/bin/activate
 pip install pyyaml
 ```
 

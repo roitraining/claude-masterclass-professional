@@ -33,6 +33,9 @@ Everything else is not approved. `shadow-sync` has not been vetted.
 ```
 mkdir -p ~/work && cp -r $FILES/lab3-harden/vuln-app ~/work/vuln-app
 cd ~/work/vuln-app
+# Set a git identity if this machine has none, so the commit does not fail.
+git config --global user.name  >/dev/null 2>&1 || git config --global user.name  "RVC Student"
+git config --global user.email >/dev/null 2>&1 || git config --global user.email "student@rvc.local"
 git init -q && git add -A && git commit -qm "baseline"
 ```
 

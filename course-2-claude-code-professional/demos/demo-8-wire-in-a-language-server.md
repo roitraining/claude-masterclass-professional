@@ -19,6 +19,7 @@
 1. Install the server:
 
 ```
+. ~/.venvs/mc-lsp/bin/activate   # or: python3 -m venv ~/.venvs/mc-lsp && . ~/.venvs/mc-lsp/bin/activate
 pip install "python-lsp-server[pyflakes,pycodestyle]"
 pylsp --help
 ```

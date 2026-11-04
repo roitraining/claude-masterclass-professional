@@ -35,12 +35,18 @@ Goal: `pylsp` on the PATH of the shell you start `claude` from.
 ### Step 1: Install pylsp with Its Check Extras
 
 ```bash
+python3 -m venv ~/.venvs/mc-lsp       # skip if the class image already has it
+. ~/.venvs/mc-lsp/bin/activate
 pip install "python-lsp-server[pyflakes,pycodestyle]"
 ```
 
 The two extras add the checks that produce diagnostics. Without them the server starts and reports nothing.
 
-**Expected result:** the install completes in a virtual environment or your user environment.
+**A virtual environment is required, not optional.** The class image refuses a
+user-environment install, including `pip install --user`, because the system
+Python is externally managed (PEP 668).
+
+**Expected result:** the install completes inside the virtual environment.
 
 ### Step 2: Confirm It Is on the PATH
 
@@ -52,7 +58,7 @@ On Windows, check with `Get-Command pylsp` in PowerShell or `where pylsp`.
 
 **Acceptance criteria:** `pylsp --help` runs from the shell you will use for `claude`.
 
-> **Hint:** if you used a virtual environment, activate it in the same shell before you start `claude`.
+> **Hint:** activate the virtual environment in the same shell you start `claude` from. `pylsp` is only on the PATH while it is active, and Claude Code starts the server by name.
 
 ---
 
