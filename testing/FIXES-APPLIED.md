@@ -1154,3 +1154,35 @@ unilaterally**, since it changes what the lab rewards.
 
 All Course 2 Python compiles and JSON validates. Both planted defects verified
 intact: Lab 3's hardcoded hook path and Lab 4's wrong-binary variant.
+
+---
+
+## Batch 15 — decision taken: Lab 2's Gold band requires zero false positives
+
+Course owner's call on the open question from batch 14. Of the two options —
+tighten Gold, or add a harder bug needing a cross-file read — Gold is tightened.
+
+`TIERS` in `score_review.py` changes Gold's false-positive allowance from 1 to
+0. Silver still allows 3 and Bronze 5, so the ladder still rewards finding bugs
+while **Gold is now where precision is tested**.
+
+Verified against the real answer key:
+
+| Findings | Old tier | New tier |
+|---|---|---|
+| 5/5 bugs, 0 false positives | Gold | **Gold** |
+| 5/5 bugs, 1 false positive | Gold | **Silver** |
+| 5/5 bugs, 2 false positives | Silver | Silver |
+| 4/5 bugs, 0 false positives | Silver | Silver |
+
+So the 2026-11-04 run that reached Gold in one round with 0 false positives
+still would; its earlier attempt, which had 5/5 and one false positive, now lands
+Silver. That is the behaviour the tightening was for.
+
+Updated in three places so nothing contradicts: the `TIERS` constant and the
+docstring band in `score_review.py`, the band in
+`facilitator/ANSWER-KEY.md` with the date and reason, and the Facilitator Notes
+in the lab — where the open question is replaced by the decision.
+
+The lab's note now also states the intended lesson: a student who reaches Silver
+with everything caught is one careless finding away from Gold.

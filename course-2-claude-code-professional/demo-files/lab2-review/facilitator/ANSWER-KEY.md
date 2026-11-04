@@ -32,7 +32,7 @@ pr-11-docstrings adds two docstrings and changes nothing else. Any important fin
 
 `python3 score_review.py findings.json` prints bugs caught, false positives, nits, precision and a tier.
 
-- Gold: all 5 bugs, at most 1 false positive, at most 6 nits.
+- Gold: all 5 bugs, **no false positives**, at most 6 nits. Tightened from 'at most 1' on 2026-11-05: a 2026-11-04 test run reached Gold in one tuning round with 5/5 and 0 false positives, so the old band was easier than intended. Precision is now the thing Gold tests.
 - Silver: at least 4 bugs, at most 3 false positives.
 - Bronze: at least 3 bugs, at most 5 false positives.
 

@@ -21,7 +21,7 @@ Rules:
     pull request, or on a bug pull request but not at the bug.
 
 Tiers (a starting point, calibrate in rehearsal):
-    Gold    all bugs caught, at most 1 false positive, at most 6 nits
+    Gold    all bugs caught, NO false positives, at most 6 nits
     Silver  at least 4 bugs caught, at most 3 false positives
     Bronze  at least 3 bugs caught, at most 5 false positives
 Exit code 0 for Bronze or better, 1 otherwise, 2 for a usage error.
@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 DEFAULT_KEY = Path(__file__).parent / "facilitator" / "answer_key.json"
-TIERS = [("Gold", 99, 1, 6), ("Silver", 4, 3, 999), ("Bronze", 3, 5, 999)]
+TIERS = [("Gold", 99, 0, 6), ("Silver", 4, 3, 999), ("Bronze", 3, 5, 999)]
 
 
 def norm_pr(value):
