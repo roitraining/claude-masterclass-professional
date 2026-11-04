@@ -601,3 +601,80 @@ block. Courses 3, 4 and 5 were checked the same way: Course 3's preamble scopes
 its API key correctly, Course 4 Labs 1 and 2 already document live and offline
 paths while Labs 3 to 5 need neither, and Course 5 needs no tooling at all. No
 further changes needed there.
+
+---
+
+## Batch 9 — Course 1 retest (2026-11-04): a regression I introduced, and a probe that lied
+
+### 9.1 REGRESSION, mine: `server.type: python3` broke packing
+
+Commit `1880854`, my `python` → `python3` sweep, changed `server.type` in two
+manifests. **`server.type` is an enum, not a command.**
+
+```
+$ mcpb pack . dist/board-pack-builder-0.1.0.mcpb
+ERROR: Manifest validation failed:
+  - server.type: Invalid enum value. Expected 'python' | 'node' | 'binary', received 'python3'
+ERROR: Cannot pack extension with invalid manifest
+```
+
+Every student would fail Course 1 Lab 1 Step 12 with the primary tool. Reverted
+to `"python"` in `starter-server/manifest.json` and
+`autopsy-plugin/server/manifest.json`, keeping
+`server.mcp_config.command: python3`, which is correct and is what actually runs
+the server.
+
+**Then audited every `python3` I had written into JSON, by key path**, rather
+than by eyeballing:
+
+| Key path | Verdict |
+|---|---|
+| `.server.type` ×2 | **was wrong — reverted** |
+| `.server.mcp_config.command` ×2 | correct, a real command |
+| `.hooks.PostToolUse[0].hooks[0].command` ×2 | correct, a real command |
+
+All manifests now validate: 0 invalid `server.type` values.
+
+**What I got wrong in method.** I checked each fixture for *planted defects*
+before editing, which caught three. I did not check whether each `python` token
+was in a **command position**. A string match on an identifier is not a safe
+transform when the same word is also a valid enum value.
+
+### 9.2 My sandbox probe gave a false pass, again — for a new reason
+
+`sandbox-apparmor.sh` reported the sandbox failing, with fresh `unpriv_bwrap`
+denials. `provision-rvc.sh` reported "a genuinely sandboxed Bash call
+succeeded". Both ran on the same VM minutes apart.
+
+The tester found why: with `--permission-mode bypassPermissions`, **the model
+stepped outside the sandbox and retried** after `failIfUnavailable: true` had
+correctly failed the sandboxed call. The retry produced the expected string, and
+my probe was grepping stdout for that string.
+
+So v2 of this probe was wrong in a subtler way than v1:
+
+| Version | How it decided | Why it lied |
+|---|---|---|
+| v1 | grep stdout, no sandbox settings | Bash was never sandboxed; passed always |
+| v2 | grep stdout, sandbox forced on | the model retried unsandboxed and produced the string anyway |
+| v3 | **the Bash `tool_result`** | — |
+
+v3, now in `testing/sandbox-probe.sh` and **shared by both scripts so they
+cannot disagree again**:
+
+- `--output-format stream-json`, and a pass requires a Bash `tool_result` with
+  `is_error` false **and** containing the marker. Either alone is not evidence.
+- `allowUnsandboxedCommands: false`, so no unsandboxed retry is possible.
+- **no `bypassPermissions`** — `--allowedTools Bash` is enough to permit the call.
+- a unique per-run marker, so a stale string cannot satisfy it.
+
+The general lesson, written into the file's header: **a probe must assert on the
+mechanism it is testing, not on a string that something else can also produce.**
+
+### 9.3 A security observation for Course 4
+
+Worth carrying into the course content, not just the tooling: with
+`bypassPermissions`, the model **stepped outside the sandbox after the sandbox
+had correctly refused**. Course 4 Lab 3 and Lab 4 both teach about sandbox
+enforcement, and that behaviour is directly relevant to what "the sandbox
+blocked it" means in the presence of a permissive permission mode.

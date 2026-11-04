@@ -245,20 +245,17 @@ if [ -f /etc/sysctl.d/99-claude-sandbox.conf ]; then
   note "That file relaxes a security setting and fixes nothing. Remove it: sudo rm /etc/sysctl.d/99-claude-sandbox.conf && sudo sysctl -w $SYSCTL_KEY=1"
 fi
 
-# Probe with the sandbox FORCED ON. Without these settings Bash is not
-# sandboxed at all, so the probe passed on every run and reported a working
-# sandbox even with the restriction active. That produced false evidence.
-SANDBOX_SETTINGS='{"sandbox":{"enabled":true,"failIfUnavailable":true}}'
+# Probe via the shared helper, so this script and sandbox-apparmor.sh can never
+# report different answers. See sandbox-probe.sh for why this has been wrong twice.
+# shellcheck source=sandbox-probe.sh
+. "$(dirname "${BASH_SOURCE[0]}")/sandbox-probe.sh"
 if have claude; then
-  echo "  probing with sandbox forced on (failIfUnavailable: true)..."
-  PROBE="$(timeout 120 claude -p 'Run the bash command: echo SANDBOX_OK'              --allowedTools Bash --permission-mode bypassPermissions              --settings "$SANDBOX_SETTINGS" 2>&1)"
-  if printf '%s' "$PROBE" | grep -q 'SANDBOX_OK'; then
-    c_ok "a genuinely sandboxed Bash call succeeded"
-  else
-    c_bad "sandboxed Bash call failed — the sandbox is unavailable on this image"
-    printf '%s
-' "$PROBE" | grep -iE 'seccomp|setgroups|userns|CAP_SYS_ADMIN|denied'       | head -3 | sed 's/^/      /'
-  fi
+  echo "  probing (sandbox forced on, decided from the Bash tool result)..."
+  case "$(sandbox_probe)" in
+    PROBE_PASS) c_ok "a genuinely sandboxed Bash call succeeded" ;;
+    PROBE_FAIL) c_bad "sandboxed Bash call failed — the sandbox is unavailable on this image" ;;
+    *)          c_warn "probe skipped" ;;
+  esac
 else
   c_warn "claude not installed; cannot probe the sandbox"
 fi

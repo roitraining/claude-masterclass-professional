@@ -53,24 +53,12 @@ info() { printf '  \033[36m[INFO]\033[0m %s\n' "$1"; }
 hdr()  { printf '\n\033[1m== %s\033[0m\n' "$1"; }
 
 # ---------------------------------------------------------------- the probe
-# This is the only thing that decides success. It forces the sandbox on;
-# without failIfUnavailable the call silently runs unsandboxed and "passes".
-SANDBOX_SETTINGS='{"sandbox":{"enabled":true,"failIfUnavailable":true}}'
+# Shared with provision-rvc.sh. The two scripts disagreed on 2026-11-04 because
+# they judged differently; now there is one implementation. See sandbox-probe.sh.
+# shellcheck source=sandbox-probe.sh
+. "$(dirname "${BASH_SOURCE[0]}")/sandbox-probe.sh"
 
-probe() {
-  command -v claude >/dev/null 2>&1 || { echo "PROBE_SKIP"; return; }
-  local out
-  out="$(timeout 120 claude -p 'Run the bash command: echo SANDBOX_OK' \
-           --allowedTools Bash --permission-mode bypassPermissions \
-           --settings "$SANDBOX_SETTINGS" 2>&1)"
-  if printf '%s' "$out" | grep -q 'SANDBOX_OK'; then
-    echo "PROBE_PASS"
-  else
-    echo "PROBE_FAIL"
-    printf '%s\n' "$out" | grep -iE 'seccomp|setgroups|userns|CAP_SYS_ADMIN|denied' \
-      | head -3 | sed 's/^/        /' >&2
-  fi
-}
+probe() { sandbox_probe; }
 
 recent_denials() {
   if command -v journalctl >/dev/null 2>&1; then

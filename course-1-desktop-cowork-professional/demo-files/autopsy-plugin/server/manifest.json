@@ -5,7 +5,7 @@
   "description": "Local expense connector for the expense-digest plugin.",
   "author": { "name": "Fictional Finance Tools Team" },
   "server": {
-    "type": "python3",
+    "type": "python",
     "entry_point": "server.py",
     "mcp_config": {
       "command": "python3",
