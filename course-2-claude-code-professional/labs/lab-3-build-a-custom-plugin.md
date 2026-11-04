@@ -133,7 +133,12 @@ Copy `marketplace-template` to a new folder, put your plugin at `plugins/relnote
 
 Exclude `evals/results/` when you copy. Eval output is a record of your runs,
 not part of the plugin, and copying it ships your reports to anyone who installs
-from the marketplace.
+from the marketplace:
+
+```bash
+cp -r relnotes-starter <marketplace>/plugins/relnotes
+rm -rf <marketplace>/plugins/relnotes/evals/results
+```
 
 **Acceptance criteria:** `claude plugin validate` passes on the marketplace folder.
 
@@ -187,7 +192,6 @@ claude plugin details relnotes
 
 | Issue | Symptom | Solution |
 |---|---|---|
-| Python interpreter name | Hook runs `python` but your machine has only `python3` | Change the hook command to match your machine, and note that you did |
 | Eval asks for trust | Run pauses asking to trust the plugin | Confirm it for your own plugin. `--trust-plugin` answers for CI and should be used only for plugins you would run yourself |
 | Scaffold fails on Windows | `--scaffold` errors | The case scripts are Bash. Run the eval from Git Bash or WSL |
 | `no-invented-entries` scores low | Command is correct but the case fails | The case prompt lures Claude into a dark mode headline. The command must say what to do when asked for an entry the log does not support |
@@ -204,10 +208,16 @@ claude plugin details relnotes
 |---|---|
 | `claude plugin validate` passes with no errors | 10 |
 | `plugin_lint.py` has no FAIL lines | 15 |
-| Eval suite: exit 0 at 0.8 scores 35. Otherwise 35 times the fraction of cases at or above 0.8 | 35 |
-| Installs from a git marketplace you control, from a clean shell | 20 |
+| Eval suite: exit 0 at 0.8 scores 35. Otherwise 35 times the fraction of cases at or above 0.8. **See fallback scoring below if the sandbox cannot start** | 35 |
+| Installs from a git marketplace (local path or git) you control, from a clean shell | 20 |
 | Security note: hook, agent and command capabilities, and what you would check in someone else's plugin | 10 |
 | Always-on cost note names the largest component and a way to reduce it | 10 |
+
+**Fallback scoring (no OS sandbox).** Two of the six eval cases need a shell: `uses-auditor`, whose `case.yaml` runs a scaffold script, and any case that reaches the `changelog-auditor` subagent, which carries `Bash`. On a machine where Claude Code's sandbox cannot start, those two cannot produce a trustworthy score, and `git` failing inside the eval is the usual symptom.
+
+When that happens, score the eval suite out of the **four cases that need no shell** — 35 times the fraction of those at or above 0.8 — and record the other two as NOT SCORED with the reason. Do not score them as failures: a case that could not run has not produced a result. Your instructor will say before the lab whether the sandbox works on your image.
+
+> **Known platform limit, not a failure.** On Ubuntu 24.04 and later, AppArmor's `bwrap-userns-restrict` profile blocks the nested user namespace the sandbox needs. It is a machine configuration problem and nothing in your plugin causes it.
 
 ---
 

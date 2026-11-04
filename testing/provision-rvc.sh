@@ -195,7 +195,7 @@ mkdir -p "$VENV_BASE" 2>/dev/null
 # Course 3, Agent SDK — demo-files/python/requirements.txt (unpinned on purpose)
 provision_venv "mc-agent-sdk"  "claude-agent-sdk" "mcp[cli]"
 # Course 2 Lab 1, CI gate — demo-files/lab1-ci/requirements.txt
-provision_venv "mc-ci"         "pyyaml>=6.0"
+provision_venv "mc-ci"         "pyyaml>=6.0" "pytest"
 # Course 2 Lab 4, language server — the lab's own Step 1 command
 provision_venv "mc-lsp"        "python-lsp-server[pyflakes,pycodestyle]"
 

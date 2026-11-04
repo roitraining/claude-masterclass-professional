@@ -18,7 +18,7 @@
 - [ ] Python 3.11 or later
 - [ ] Git 2.31 or later, with your name and email set
 - [ ] `claude` signed in to a paid Anthropic account
-- [ ] Administrative access to a personal or sample GitHub or GitLab project that holds no real work
+- [ ] Administrative access to a personal or sample GitHub or GitLab project that holds no real work — **Tracks A and B only**; Track C needs no remote
 - [ ] `$FILES/lab1-ci` from your instructor: `tallybook/`, `starters/github/`, `starters/gitlab/`, `fixtures/`, `security_gate.py`, `gate-checklist-github.md`, `gate-checklist-gitlab.md`, `requirements.txt`
 - [ ] On Windows, run the shell commands in Git Bash
 
@@ -42,7 +42,7 @@ Goal: a project of your own that contains the `tallybook` sample, with its two f
 
 ### Step 1: Copy the Tallybook Sample into Your Own Project
 
-Copy `tallybook` into a new project you control and commit it. **Tracks A and B** then push it to your own remote — the live trigger in Part 4 needs a hosted project. **Track C** commits locally and does not push. Run the tests locally.
+Copy `tallybook` into a new project you control and commit it. Run its tests with the command in `tallybook/README.md`, which creates its own venv — the lab venv from Step 3 does not carry pytest. **Tracks A and B** then push it to your own remote — the live trigger in Part 4 needs a hosted project. **Track C** commits locally and does not push. Run the tests locally.
 
 **Expected result:** the test run completes and two tests fail. Those two failures are what Claude fixes later in the lab.
 
@@ -108,6 +108,14 @@ Work through the file-fixable findings. Run the gate after each fix, not once at
 - `claude.yml` still responds to `@claude` in an issue or pull request comment.
 - `claude-review.yml` still reviews pull requests from branches in your repository, and cannot be started by a stranger, pull request text, or a bot.
 - Nothing removed is just deleted without a replacement of the same intent. If you removed a permission, you can say what breaks without it.
+
+> **A passing gate is not proof your prompt is clean.** T5 looks for outsider
+> text used **directly**. Route the same text through an `env:` variable first —
+> at job, step or workflow level — or through a step **output**, and the gate
+> still scores 100/100 while the prompt carries attacker-controlled text. The
+> direct form scores 85, so the gate only tells you the direct form is gone.
+> Read your prompt yourself and trace where every value in it comes from. This
+> is a limit of the gate, not a trap planted in the starter files.
 
 > **Hint:** a secret that is never printed on purpose can still reach a log. What else prints?
 
@@ -192,7 +200,7 @@ workflow lines would still hold if that setting were wrong. This earns the same
 
 ---
 
-## Part 6b: Track C Only — Predict the Live Run (about 15 minutes)
+## Part 6b: Track C Only — Predict the Live Run (about 25 minutes)
 
 Skip this part on Tracks A and B: you ran the pipeline for real in Part 4.
 
@@ -207,12 +215,14 @@ For each of your Claude workflow files, write:
 - Which actors it accepts and which it refuses, and the line that decides
 - What it is permitted to do once running: what it can write, push or open
 - What the planted trap would have allowed before you fixed it
-- Which of the Part 5 injection fixtures each control stops, and which it does
-  not
+- For **each** of the two injection fixtures, `fixtures/issue-body-injection.md`
+  and `fixtures/pr-description-injection.md`: **what it tries to do**, and which
+  of your controls stops it, and which does not. Read both files — Track C skips
+  running them in Part 5, so this is where that analysis happens.
 
 **Acceptance criteria:** a written prediction covering every point above for
-each hardened file, each claim tied to a specific line in your file or a
-specific gate finding.
+each hardened file. **One citation per bullet is enough** — a line in your file
+or a gate finding — not one per sentence.
 
 > **Hint:** a prediction that does not cite a line is a guess. The gate output
 > from Step 6 and your baseline table from Step 4 are your evidence.
@@ -232,9 +242,9 @@ specific gate finding.
 - [ ] Every Claude file scores 90 or more with every CRITICAL check ok
 - [ ] `claude.yml` still answers `@claude`
 - [ ] `claude-review.yml` still reviews same-repository pull requests, and refuses strangers, pull request text and bots
-- [ ] Tracks A and B: a live run opened or updated a pull request
-- [ ] Tracks A and B: your CI ran on Claude's commit and the tests pass
-- [ ] Tracks A and B: injection evidence saved, showing no dump, secret, workflow edit or direct push
+- [ ] Tracks A and B only: a live run opened or updated a pull request (Track C cannot meet this)
+- [ ] Tracks A and B only: your CI ran on Claude's commit and the tests pass (Track C cannot meet this)
+- [ ] Tracks A and B only: injection evidence saved, showing no dump, secret, workflow edit or direct push (Track C does the written analysis in Step 11b instead)
 - [ ] Settings audit written for all five items
 - [ ] You can name each planted trap and the fix that removed it
 - [ ] Gate output from your final files is saved
@@ -251,12 +261,12 @@ Track C substitutes a passed gate plus the written notes from Step 4, Step 11 an
 |---|---|---|
 | Missing dependency | `PyYAML is required` | Activate the lab venv, then run `pip install pyyaml` in the environment you run the gate from |
 | Gate skips the file | "No Claude step found. Skipped." | The file has no `anthropics/claude-code-action` step, or no `claude` command in a GitLab job. Deleting the Claude step to pass is not a fix |
-| GitLab file always skipped | "No Claude step found. Skipped." on a file that clearly has a `claude` job | The gate identifies GitLab config **by filename**. Name it `.gitlab-ci.yml`; any other name is not recognised as GitLab and is skipped |
+| GitLab file always skipped | "No Claude step found. Skipped." on a file that clearly has a `claude` job, and the gate **exits 0** | The gate identifies GitLab config by filename, matching any name that **starts with** `.gitlab-ci` — so `.gitlab-ci.yml` and `.gitlab-ci.yaml` both work, while `gitlab-ci.yml`, `ci.yml` or `my-job.yml` are skipped. Either rename the file or pass `--platform gitlab` |
 | Claude ignores the mention | No response to `@claude` | The app is missing, the secret is missing, the comment says `@claude-bot` or `/claude` instead of `@claude`, or the commenter lacks write access |
 | Authentication breaks after hardening | Run fails at authentication | Default GitHub App authentication needs `id-token: write`. Restore it |
 | CI silent on Claude's commit | No CI run appears | The default `GITHUB_TOKEN` was passed in. Remove the input, or use a custom app token |
 | Fork pull request gets no secrets | Review workflow does nothing on a fork PR | GitHub behavior on public repositories. This is why the review workflow is for same-repository branches |
-| Gate passes but the run leaks | Clean score, bad behavior | The gate reads a single file. Settings and the other workflows are yours to check |
+| Gate passes but the run leaks | Clean score, bad behavior | The gate reads a single file, and T5 only catches outsider text used directly — an `env:` variable or a step output still scores 100/100. Settings, the other workflows, and where each value in your prompt comes from are yours to check |
 | Track B runner lacks tools | Install script fails | The job installs the CLI with the install script. If your runner image lacks `curl` or `bash`, install them as the starter does |
 
 ---
@@ -268,7 +278,7 @@ Track C substitutes a passed gate plus the written notes from Step 4, Step 11 an
 | Gate points, split evenly across the Claude files you hardened (two workflow files on GitHub, a single job on GitLab) | 50 | 50 |
 | Live trigger produced or updated a pull request | 15 | |
 | CI ran on Claude's commit (GitLab: a rule that stops Claude's own push from starting another run, shown working) | 10 | |
-| Injection test evidence | 10 | 10 (written analysis of what each fixture tries and which control stops it) |
+| Injection test evidence | 10 | 10 (Step 11b: what each fixture tries, and which control stops it) |
 | Settings audit | 10 | 15 |
 | Each planted trap named, with why it is dangerous and which fix removed it | 5 | 5 |
 | Written prediction of what a live run would do on the hardened files (Step 11b) | | 20 |
@@ -305,14 +315,6 @@ A good result is small diffs to each starter, a gate score of 100 or close, a re
 | A secret echoed into a log | `claude.yml` lines 23 and 24, an echo of the secret and a `printenv` dump; `claude-review.yml` line 26, a literal key (placeholder value) | T3 |
 | A bot loop | `claude-review.yml` line 27, `allowed_bots: "*"` on a workflow that triggers on `synchronize` while Claude pushes to the branch, with no `concurrency` group | T4 |
 | Injection hidden in outsider text | `claude-review.yml` line 22 (the title in a shell step) and line 31 (the description in the prompt); the live fixtures `fixtures/issue-body-injection.md` and `fixtures/pr-description-injection.md` | T5, plus T6 as the defense for the interactive workflow |
-
-> **T5 has a known blind spot.** The check looks for outsider text used
-> directly. Passing it through an `env:` variable first and referencing the
-> variable scores 100/100 while the prompt still contains attacker-controlled
-> text. A passing gate is therefore **not** proof that your prompt is clean —
-> it proves the direct form is gone. Read the prompt yourself and trace where
-> every value in it comes from. This is a limit of the gate, not a trap in the
-> starter files.
 | Tools and limits | `claude.yml` line 32, bare `Bash`; `claude-review.yml` lines 33 and 34, `Bash(*)` and `--dangerously-skip-permissions`; no `--max-turns` and no `timeout-minutes` in either file; line 24, `@main` | T6, T7, T8 |
 | A push that will not start CI | `claude.yml` line 29, `github_token: ${{ secrets.GITHUB_TOKEN }}` | T9 |
 

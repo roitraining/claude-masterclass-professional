@@ -72,7 +72,7 @@ Goal: see that the plugin loads and does nothing.
 claude plugin validate pylsp-plugin-starter
 ```
 
-Then start a session with `claude --plugin-dir pylsp-plugin-starter` in `sample-project`, ask Claude to add a line that uses an undefined name to `app/report.py`, and look for a diagnostics line.
+Then start a session with `claude --plugin-dir ../pylsp-plugin-starter` in `sample-project`, ask Claude to add a line that uses an undefined name to `app/report.py`, and look for a diagnostics line.
 
 **Acceptance criteria:** you can state what `validate` said, what the session did, and where the real error is shown — the `/plugin` Errors tab, and `claude --debug`.
 
@@ -137,6 +137,8 @@ Goal: diagnostics and navigation in Claude Code.
 Restart the session with `claude --plugin-dir`. Ask Claude to make an edit that introduces an error, then fix it.
 
 **Acceptance criteria:** after an edit, the conversation shows a `Found N new diagnostic issues` line. Open it with Ctrl+O and read the issue.
+
+> **Note:** diagnostics can arrive a turn later than the edit. If the line does not appear immediately, send another short message and look again before treating it as a failure.
 
 > **Hint:** the server starts the first time Claude edits a file with one of your extensions. If the binary was missing when the session started, start a new session from a shell where it is on the PATH.
 

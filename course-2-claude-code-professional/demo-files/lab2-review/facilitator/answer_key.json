@@ -138,9 +138,9 @@
       "id": "F5",
       "looks_like": "logic error (float to int truncation)",
       "file": "lending/fines.py",
-      "marker": "return int(round(days * rate_cents_per_day, 6))",
-      "why_fine": "int() truncates toward zero on purpose. CLAUDE.md and the docstring state policy LIB-7: truncate, never round up. The round(..., 6) guards float representation error before truncating, so 100 days at 0.29 gives 29 and not 28; it does not round up, and 28.7 still truncates to 28. The result is stored as integer cents.",
-      "line": 14
+      "marker": "return int(Decimal(str(days)) * Decimal(str(rate_cents_per_day)))",
+      "why_fine": "int() truncates toward zero on purpose. CLAUDE.md and the docstring state policy LIB-7: truncate, never round up. The result is stored as integer cents.",
+      "line": 23
     }
   ],
   "clean": [

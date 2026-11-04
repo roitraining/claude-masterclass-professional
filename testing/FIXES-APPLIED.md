@@ -1032,3 +1032,125 @@ installer or the account, not the bundle.**
 The `/mcp` screen is a Claude Code TUI and equally out of Playwright's reach.
 Its substance — the server is connected and exposes three tools — is what this
 script checks directly, without spending model credits.
+
+---
+
+## Batch 14 — Course 2 retest (2026-11-04, at eaaa97e): 4 of 5
+
+**Lab 1 Track C pass with notes (gate 100/100 on both files), Lab 2 pass with
+notes at GOLD with 5/5 bugs and 0 false positives, Lab 4 pass with notes, Lab 5
+reviewed, Lab 3 blocked at Step 6 only with 2 of 6 eval cases unreliable.**
+
+Lab 3 came out better than expected: blocked at one step rather than wholesale,
+with four of six eval cases trustworthy.
+
+### 14.1 Both falsifiable checks came back — and both notes needed work
+
+I had asked the tester to try to disprove two notes I added. Both earned their
+place, and both were imprecise.
+
+**T5 `env:` laundering — correct, and broader than I wrote.** Job, step **and**
+workflow `env:` all scored 100/100, and so did a **step output**, which my note
+did not mention. The direct form scores 85. Note extended to name all four
+routes.
+
+**GitLab by filename — true, but my wording was wrong.** The check is
+`startswith(".gitlab-ci")`, so `.gitlab-ci.yaml` is recognised too; my "any name
+other than `.gitlab-ci.yml`" was too strong. `gitlab-ci.yml`, `ci.yml` and
+`my-job.yml` are skipped, and the gate **exits 0**. And `--platform gitlab`
+solves it, which the lab never mentioned. Row rewritten with all of that.
+
+### 14.2 MY BUG: the T5 note broke a table and was in the wrong place
+
+I inserted the note **between two rows of the Facilitator Notes trap table**,
+which ended the table and left its last two rows rendering as stray text. It was
+also in the Facilitator Notes, so students never saw the thing it warns about.
+
+Moved into **Step 6**, where students read it, and the "Gate passes but the run
+leaks" troubleshooting row now points at the same limit. The table is whole
+again.
+
+### 14.3 MY BUG, third iteration: the pr-10 bait could still round up
+
+The float guard fixed the original defect — 100 at 0.29 gives 29, 28.7 gives 28,
+and 999,000 realistic combinations came out right — but the reviewer found
+`prorated_fine_cents(3, 9.66666666)` returns **29** where LIB-7 requires 28.
+`round(..., 6)` rounds up, which the docstring explicitly says it does not do.
+
+I had replaced a float-precision bug with a rounding bug. My own sweep had used
+only two-decimal rates, so it never reached the failing window.
+
+Now exact, with no rounding anywhere:
+
+```python
+return int(Decimal(str(days)) * Decimal(str(rate_cents_per_day)))
+```
+
+Verified against every case that broke the two earlier versions, plus a
+**400,000-combination sweep with zero mismatches**, and then run from the
+**actual generated fixture** rather than a copy of the snippet.
+
+Two further corrections while fixing it:
+
+- The import first landed **mid-file, after a function** — its own review smell,
+  which in a code-review lab would have created a new false positive. It is now
+  at the top of the generated file, grouped above the local import.
+- `diffs/` and `facilitator/answer_key.json` are **generated** by
+  `build_fixture.py --emit-key`, so they are regenerated rather than hand-edited.
+
+### 14.4 Lab 1: 10 Track C points still had no step
+
+The rubric scores "what each fixture tries **and** which control stops it", but
+my Step 11b asked only the second half, and pointed at Part 5 — which Track C is
+told to skip. Step 11b now names both fixture files, asks what each one tries,
+and says this is where that analysis happens for Track C. The rubric row names
+Step 11b.
+
+Also from the tester's review of Step 11b: a citation per *claim* was too much
+for 15 minutes. Changed to **one citation per bullet**, and the part is now 25
+minutes.
+
+### 14.5 Lab 1: three smaller gaps
+
+- The **prerequisites** still asked every track for a hosted project. Marked
+  Tracks A and B only.
+- Three **Checkpoint** items a Track C student cannot meet are now marked as
+  such, with a pointer to Step 11b for the injection one.
+- **Step 1's test command** came before the venv and failed with `No module
+  named pytest`, and `mc-ci` had no pytest. Step 1 now points at
+  `tallybook/README.md`, which creates its own venv, and **`pytest` was added to
+  the `mc-ci` venv** in the provisioning script.
+
+### 14.6 Lab 3: 23 of 35 points no longer ride on the image
+
+Two of the six eval cases need a shell — `uses-auditor` runs a scaffold script,
+and any case reaching `changelog-auditor` gets `Bash`. Without a working sandbox
+those two cannot produce a trustworthy score.
+
+Fallback scoring added, modelled on Course 4 Lab 3: score the suite out of the
+**four cases that need no shell**, and record the other two as NOT SCORED with
+the reason. Explicitly **not** as failures, because a case that could not run has
+not produced a result. The AppArmor cause is named as a platform limit.
+
+### 14.7 Lab 2: the thresholds are measurably too easy
+
+A run reached **Gold with 5/5 bugs and 0 false positives in one tuning round**,
+against 45 minutes budgeted. The "untested" note is replaced with that result and
+the two options — tighten Gold to require 0 false positives, or add a harder bug
+needing a read across files. **Left as a teaching decision rather than re-tuned
+unilaterally**, since it changes what the lab rewards.
+
+### 14.8 Smaller
+
+- **Lab 2 fixture now ships a `.gitignore`** (`__pycache__/`, `*.pyc`,
+  `.venv/`). A committed `__pycache__` aborted a branch checkout for the tester.
+  Verified by rebuilding and checking out `pr-10-prorated-fine` cleanly.
+- **Lab 3**: the stale `python` troubleshooting row removed, a concrete command
+  given for excluding `evals/results/`, and the 20-point rubric row says "local
+  path or git".
+- **Lab 4**: Step 3's `--plugin-dir pylsp-plugin-starter` corrected to `../` for
+  a shell in `sample-project`, and Step 7 now says diagnostics can arrive a turn
+  later so students do not treat a delay as failure.
+
+All Course 2 Python compiles and JSON validates. Both planted defects verified
+intact: Lab 3's hardcoded hook path and Lab 4's wrong-binary variant.

@@ -232,6 +232,10 @@ if __name__ == "__main__":
     unittest.main()
 '''
 
+BASE[".gitignore"] = """__pycache__/
+*.pyc
+.venv/
+"""
 BASE["README.md"] = "# Harborview Library lending service\n\nFictional fixture for Lab 2. Run `python3 -m unittest`.\n"
 
 
@@ -442,18 +446,24 @@ def waive_many(request):
 PRS.append(dict(
     branch="pr-10-prorated-fine", kind="bait", title="Prorate a fine for a partial day rate",
     changes=[
+        rep("lending/fines.py",
+            "from lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY",
+            "from decimal import Decimal\n\nfrom lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY"),
         rep("lending/fines.py", None, '''
 
 def prorated_fine_cents(days, rate_cents_per_day):
     """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up.
 
-    The round(..., 6) guards float representation error before truncating, so an
-    exact 29.00 does not become 28. It does not round up: 28.7 still truncates to 28.
+    Decimal(str(x)) converts each operand to its exact decimal value, so the
+    product is exact and int() truncates it. Float multiplication would make
+    100 days at 0.29 give 28 instead of 29, and rounding before truncating would
+    make 3 days at 9.66666666 give 29 instead of 28 -- rounding up, which LIB-7
+    forbids. Exact arithmetic avoids both.
     """
-    return int(round(days * rate_cents_per_day, 6))
+    return int(Decimal(str(days)) * Decimal(str(rate_cents_per_day)))
 '''),
     ],
-    bait=dict(id="F5", looks_like="logic error (float to int truncation)", file="lending/fines.py", marker="return int(round(days * rate_cents_per_day, 6))",
+    bait=dict(id="F5", looks_like="logic error (float to int truncation)", file="lending/fines.py", marker="return int(Decimal(str(days)) * Decimal(str(rate_cents_per_day)))",
               why_fine="int() truncates toward zero on purpose. CLAUDE.md and the docstring state policy LIB-7: truncate, never round up. The result is stored as integer cents."),
 ))
 

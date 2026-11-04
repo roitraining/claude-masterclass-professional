@@ -1,8 +1,10 @@
 diff --git a/lending/fines.py b/lending/fines.py
-index a11efdc..687ae42 100644
+index a11efdc..1b078e3 100644
 --- a/lending/fines.py
 +++ b/lending/fines.py
-@@ -1,9 +1,14 @@
+@@ -1,9 +1,23 @@
++from decimal import Decimal
++
  from lending.config import FINE_CAP_CENTS, FINE_CENTS_PER_DAY
  
  
@@ -15,5 +17,12 @@ index a11efdc..687ae42 100644
 +
 +
 +def prorated_fine_cents(days, rate_cents_per_day):
-+    """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up."""
-+    return int(round(days * rate_cents_per_day, 6))
++    """Fine for a fractional rate. Policy LIB-7: truncate to whole cents, never round up.
++
++    Decimal(str(x)) converts each operand to its exact decimal value, so the
++    product is exact and int() truncates it. Float multiplication would make
++    100 days at 0.29 give 28 instead of 29, and rounding before truncating would
++    make 3 days at 9.66666666 give 29 instead of 28 -- rounding up, which LIB-7
++    forbids. Exact arithmetic avoids both.
++    """
++    return int(Decimal(str(days)) * Decimal(str(rate_cents_per_day)))

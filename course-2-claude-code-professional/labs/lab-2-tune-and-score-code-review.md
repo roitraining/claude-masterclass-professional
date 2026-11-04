@@ -227,7 +227,9 @@ Traps to watch: students who excuse a bug because tests pass; a `REVIEW.md` that
 
 Remind the room that this scorer is a local teaching tool. The managed service does not return this JSON, and its check run never fails or approves a pull request.
 
-Unconfirmed, rehearse: the tier thresholds (they are untested against real model runs, and the numbers at the top of `score_review.py` are meant to be adjusted); the output envelope that `claude -p --output-format json` returns when `--json-schema` is used (the driver tolerates three shapes); the exact target and level arguments `/code-review` takes (the skill's description names a branch or pull request target and an effort level, and neither has been confirmed for this lab); and how many branches a student's account can review in the time allowed, which depends on rate limits.
+Tier thresholds, now tested: on 2026-11-04 a run reached **Gold with 5/5 bugs and 0 false positives in one tuning round**, against 45 minutes budgeted for tuning. The thresholds are therefore **easier than intended** on a current model, and the numbers at the top of `score_review.py` are meant to be adjusted. Two options, and this is a teaching decision: tighten Gold to require 0 false positives rather than 1, or add a harder bug that needs a read across files. Until one is chosen, expect strong students to reach Gold quickly.
+
+Unconfirmed, rehearse: the output envelope that `claude -p --output-format json` returns when `--json-schema` is used (the driver tolerates three shapes); the exact target and level arguments `/code-review` takes (the skill's description names a branch or pull request target and an effort level, and neither has been confirmed for this lab); and how many branches a student's account can review in the time allowed, which depends on rate limits.
 
 ---
 
