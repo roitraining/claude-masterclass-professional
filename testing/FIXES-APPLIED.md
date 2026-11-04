@@ -968,3 +968,67 @@ credential inside its first rotation period, and the real distinction from
 
 All Course 4 Python compiles and all JSON validates. Both planted defects
 verified intact.
+
+---
+
+## Batch 13 — verifying the Desktop steps without a GUI
+
+**The question was whether to write Playwright scripts for Course 1's Desktop
+steps. No: Playwright drives browser pages, and Claude Desktop is a native
+application.** Its experimental Electron support targets apps you launch from
+source, not a signed third-party install, so it would be brittle and
+unsupported.
+
+More usefully, GUI automation is not what those steps need. Three Course 1
+checks were listed as needing a person:
+
+| Check | What it asserts |
+|---|---|
+| Lab 1 Part 8 | install the extension in Desktop and ask a question that uses a tool. The step's own acceptance criteria is only that a packed `.mcpb` exists; the install is explicitly optional and unscored |
+| Lab 3 Part 5 | "it installs and a tool call works" — the scored one |
+| Lab 1 Step 10 | "`/mcp` lists your server with three tools" — this is **Claude Code**, not Desktop |
+
+All three are really one question about **our artifact**, not about Anthropic's
+installer: *does the bundle contain a server that starts and serves its tools?*
+
+### `testing/verify-mcpb.py`
+
+```
+python3 verify-mcpb.py path/to/plugin-0.1.0.mcpb --expect get_kpis,get_exec_notes,list_sources
+```
+
+It extracts the bundle, validates the manifest the way `mcpb` does — including
+the `server.type` enum that my own sweep once broke — then launches the server
+**exactly as the manifest says Desktop would**, expanding `${__dirname}` and
+passing an empty value for any unexpanded `${user_config.*}` so the server
+exercises its own default. Then it speaks MCP over stdio: `initialize`,
+`tools/list`, and a `tools/call` on the first tool.
+
+It also checks two things a student loses points for and would not otherwise
+see until a Desktop install:
+
+- every tool has a non-empty description, since a model cannot choose well
+  without one
+- `manifest.json` sits at the **top** of the archive, not nested under a wrapper
+  directory, which is the zip-layout failure the labs warn about
+
+Verified end to end against a freshly packed starter server: 8 checks, 0
+failures, `initialize` answered, `tools/list` returned its tools, and
+`tools/call` returned a result.
+
+One useful side effect: the run showed the server resolving its data directory
+to the **bundled `sample_data`**, which independently confirms the bundle
+carries the sample data and the no-config fallback works. That was an open
+question from the `data_dir` wording discussion.
+
+### What still needs a person, and why that is fine
+
+Claude Desktop's own install dialog, and whether Desktop renders the extension.
+That is Anthropic's software rather than course content. It is one click-through,
+once per content revision, and the script narrows what it proves: **if
+`verify-mcpb.py` passes and the Desktop install fails, the problem is the
+installer or the account, not the bundle.**
+
+The `/mcp` screen is a Claude Code TUI and equally out of Playwright's reach.
+Its substance — the server is connected and exposes three tools — is what this
+script checks directly, without spending model credits.
