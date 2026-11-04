@@ -24,7 +24,10 @@ for arg in "$@"; do
   case "$arg" in
     --check)              MODE="check" ;;
     --install)            MODE="install" ;;
-    --allow-sandbox-fix)  ALLOW_SANDBOX_FIX=1 ;;
+    --allow-sandbox-fix)  ALLOW_SANDBOX_FIX=1
+                          echo "note: --allow-sandbox-fix no longer does anything."
+                          echo "      The sysctl it used to set was proven ineffective on 2026-11-04;"
+                          echo "      AppArmor's unpriv_bwrap profile is the real block. See item 1." ;;
     -h|--help)            sed -n '2,30p' "$0"; exit 0 ;;
     *) echo "unknown argument: $arg (try --help)"; exit 2 ;;
   esac
@@ -154,7 +157,7 @@ if have npm; then
     c_bad "@anthropic-ai/mcpb missing — Course 1 Lab 1 packaging"
     if [ "$MODE" = "install" ]; then
       echo "  installing @anthropic-ai/mcpb"
-      npm install -g @anthropic-ai/mcpb
+      $SUDO npm install -g @anthropic-ai/mcpb
     fi
   fi
 else
@@ -217,45 +220,50 @@ else
   fi
 fi
 
-hdr "8. Sandbox (blocker 1) — the one that needs a decision"
+hdr "8. Sandbox (blocker 1) — diagnostic only, no fix available here"
+# PROVEN ON 2026-11-04: setting kernel.apparmor_restrict_unprivileged_userns=0
+# does NOT fix this. The bwrap-userns-restrict AppArmor profile stays loaded and
+# enforcing, moving everything bwrap launches into unpriv_bwrap, which carries
+# "audit deny capability". The kernel kept denying after the sysctl was relaxed:
+#   apparmor="DENIED" operation="capable" class="cap" profile="unpriv_bwrap" #     comm="3" capability=21 capname="sys_admin"
+# So this section no longer offers a fix. It diagnoses and reports.
 SYSCTL_KEY="kernel.apparmor_restrict_unprivileged_userns"
 CURRENT="$(sysctl -n "$SYSCTL_KEY" 2>/dev/null || echo "unset")"
-if [ "$CURRENT" = "0" ]; then
-  c_ok "$SYSCTL_KEY = 0 (unprivileged userns allowed; sandbox should start)"
-elif [ "$CURRENT" = "unset" ]; then
-  c_warn "$SYSCTL_KEY not present on this kernel — verify the sandbox directly"
-else
-  c_bad "$SYSCTL_KEY = $CURRENT — Claude Code's sandbox cannot start (blocks ~4 labs)"
-fi
+echo "  $SYSCTL_KEY = $CURRENT (informational: changing this does NOT fix the sandbox)"
 if [ -e /etc/apparmor.d/bwrap-userns-restrict ]; then
-  c_warn "AppArmor profile bwrap-userns-restrict present (ships with Ubuntu 26.04)"
+  c_bad "AppArmor profile bwrap-userns-restrict present — this is the actual block"
+else
+  c_warn "bwrap-userns-restrict not found; the block may be elsewhere on this image"
+fi
+if command -v aa-status >/dev/null 2>&1; then
+  if $SUDO aa-status 2>/dev/null | grep -q unpriv_bwrap; then
+    c_bad "profile unpriv_bwrap is loaded and enforcing"
+  fi
+fi
+if [ -f /etc/sysctl.d/99-claude-sandbox.conf ]; then
+  c_bad "/etc/sysctl.d/99-claude-sandbox.conf exists from an earlier run of this script"
+  note "That file relaxes a security setting and fixes nothing. Remove it: sudo rm /etc/sysctl.d/99-claude-sandbox.conf && sudo sysctl -w $SYSCTL_KEY=1"
 fi
 
-# Live proof, not inference: does a sandboxed call actually work?
+# Probe with the sandbox FORCED ON. Without these settings Bash is not
+# sandboxed at all, so the probe passed on every run and reported a working
+# sandbox even with the restriction active. That produced false evidence.
+SANDBOX_SETTINGS='{"sandbox":{"enabled":true,"failIfUnavailable":true}}'
 if have claude; then
-  echo "  probing the sandbox directly..."
-  if timeout 90 claude -p 'Run the bash command: echo SANDBOX_OK' \
-       --allowedTools Bash --permission-mode bypassPermissions 2>&1 \
-       | grep -q 'SANDBOX_OK'; then
-    c_ok "a sandboxed Bash call succeeded"
+  echo "  probing with sandbox forced on (failIfUnavailable: true)..."
+  PROBE="$(timeout 120 claude -p 'Run the bash command: echo SANDBOX_OK'              --allowedTools Bash --permission-mode bypassPermissions              --settings "$SANDBOX_SETTINGS" 2>&1)"
+  if printf '%s' "$PROBE" | grep -q 'SANDBOX_OK'; then
+    c_ok "a genuinely sandboxed Bash call succeeded"
   else
-    c_bad "sandboxed Bash call did not return SANDBOX_OK — capture the verbatim error"
-    note "Expected failure text on this image: 'apply-seccomp: write /proc/self/setgroups ... Permission denied'."
+    c_bad "sandboxed Bash call failed — the sandbox is unavailable on this image"
+    printf '%s
+' "$PROBE" | grep -iE 'seccomp|setgroups|userns|CAP_SYS_ADMIN|denied'       | head -3 | sed 's/^/      /'
   fi
+else
+  c_warn "claude not installed; cannot probe the sandbox"
 fi
 
-if [ "$MODE" = "install" ]; then
-  if [ "$ALLOW_SANDBOX_FIX" -eq 1 ]; then
-    if [ "$CURRENT" != "0" ] && [ "$CURRENT" != "unset" ]; then
-      echo "  applying: $SYSCTL_KEY = 0 (runtime + persisted)"
-      $SUDO sysctl -w "$SYSCTL_KEY=0"
-      echo "$SYSCTL_KEY=0" | $SUDO tee /etc/sysctl.d/99-claude-sandbox.conf >/dev/null
-      note "Sandbox sysctl relaxed image-wide. Revert: rm /etc/sysctl.d/99-claude-sandbox.conf and reboot."
-    fi
-  else
-    c_man "sandbox fix NOT applied — rerun with --allow-sandbox-fix, or have the team apply a targeted AppArmor profile"
-  fi
-fi
+note "No scripted fix for the sandbox. It needs an AppArmor change on the image: see IMAGE-REQUIREMENTS.md item 1."
 
 hdr "9. Needs a person (not scriptable)"
 c_man "Claude Desktop installed and signed in to the SAME account as the CLI (blocker 5, blocks all of Course 1)"
@@ -303,7 +311,7 @@ if [ ${#NOTES[@]} -gt 0 ]; then
 fi
 echo
 if [ "$MODE" = "check" ] && [ "$FAIL" -gt 0 ]; then
-  echo "  Not ready. Run: $0 --install    (add --allow-sandbox-fix for the sandbox)"
+  echo "  Not ready. Run: $0 --install"
   exit 1
 elif [ "$FAIL" -gt 0 ]; then
   echo "  Some items still failing after install — see FAIL lines above."

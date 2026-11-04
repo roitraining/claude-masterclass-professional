@@ -296,3 +296,83 @@ def is_verify(r):
 ```
 
 All three scripts compile.
+
+---
+
+## Batch 6 — fixes to the provisioning script itself (2026-11-04 test run)
+
+The provisioning test found three bugs in `provision-rvc.sh`. One of them was
+worse than a bug: the script was **manufacturing false evidence**.
+
+### 6.1 The sandbox probe gave a false pass — the serious one
+
+The probe ran `claude -p` with **no sandbox setting**, so Bash was never
+sandboxed. It printed `a sandboxed Bash call succeeded` on every run, including
+with the restriction fully active. The final `--check` therefore showed the
+sandbox as OK when it was broken.
+
+This is the opposite of what the script exists for. A verification tool that
+reports success regardless of state is worse than no tool, because its output
+gets handed to the team as proof.
+
+Fixed by forcing the sandbox on in the probe, using the settings the tester
+confirmed reproduce the real error:
+
+```
+--settings '{"sandbox":{"enabled":true,"failIfUnavailable":true}}'
+```
+
+The probe now also prints the matching lines from the failure output
+(`seccomp`, `setgroups`, `userns`, `CAP_SYS_ADMIN`, `denied`) so the evidence
+travels with the result.
+
+### 6.2 `npm install -g` ran without sudo
+
+Failed with `EACCES: permission denied, mkdir '/usr/local/lib/node_modules'`.
+The package itself is fine — the tester installed it to a temporary prefix
+successfully (`added 55 packages`). Changed to `$SUDO npm install -g`.
+
+### 6.3 The `--allow-sandbox-fix` hint printed when the sandbox was not the problem
+
+It appeared even when only the API key and `mcpb` remained outstanding. Removed,
+along with the flag's behaviour — see below.
+
+### 6.4 The sysctl "fix" was disproven, so it has been retired
+
+**This corrects a recommendation I made.** `IMAGE-REQUIREMENTS.md` offered
+relaxing `kernel.apparmor_restrict_unprivileged_userns` as the simple option.
+The tester applied it and **the error did not change**.
+
+The `bwrap-userns-restrict` AppArmor profile stays loaded and enforcing; the
+sysctl does not turn it off. It moves everything `bwrap` launches into
+`unpriv_bwrap`, which carries `audit deny capability`. The kernel kept denying
+after the sysctl was relaxed:
+
+```
+apparmor="DENIED" operation="capable" class="cap" profile="unpriv_bwrap"
+  comm="3" capability=21 capname="sys_admin"
+```
+
+Changes made:
+
+- `--allow-sandbox-fix` still parses but does nothing, and prints why. Leaving
+  the behaviour in would relax a security setting for no benefit.
+- Section 8 is now **diagnostic only**: it reports the sysctl as informational,
+  detects `bwrap-userns-restrict`, checks `aa-status` for `unpriv_bwrap`, and
+  flags a leftover `/etc/sysctl.d/99-claude-sandbox.conf` with the revert
+  commands.
+- `IMAGE-REQUIREMENTS.md` item 1 is rewritten: AppArmor is the only path, the
+  sysctl is documented as disproven with the kernel evidence, and the summary
+  table marks item 1 as not scriptable.
+- The expected-FAIL note now names **three** items that legitimately fail after
+  a good run, not two: the sandbox joins the API key and the Desktop account.
+
+### Action for the VM
+
+The sysctl change from the test run is still applied and should be reverted —
+it relaxes security and fixes nothing:
+
+```bash
+sudo rm /etc/sysctl.d/99-claude-sandbox.conf
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=1   # or reboot
+```

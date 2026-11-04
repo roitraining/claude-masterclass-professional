@@ -43,20 +43,18 @@ it gives the team package names *and* versions rather than names alone.
 ```
 
 The point of running it on a live VM first is to prove the installs work before
-anyone changes the image. Two items will still show FAIL afterwards and that is
-expected — a class API key (item 6) and the Claude Desktop account match
-(item 5) cannot be scripted.
+anyone changes the image. Three things will still show FAIL afterwards and that
+is expected, not a script failure: the sandbox (item 1, which has no scripted
+fix), a class API key (item 6) and the Claude Desktop account match (item 5).
 
 ---
 
-## 1. Sandbox — needs a decision, not just an install
+## 1. Sandbox — AppArmor, and only AppArmor
 
 **Unblocks:** Course 4 Lab 3 (its core exercise), Course 2 Lab 3 evals,
 Course 4 Lab 4 defences, probably the Course 1 Gauntlet.
 
-Ubuntu 26.04 sets `kernel.apparmor_restrict_unprivileged_userns = 1` and ships
-the `bwrap-userns-restrict` AppArmor profile. Every sandboxed Bash call from
-Claude Code fails with:
+Every sandboxed Bash call from Claude Code fails with:
 
 ```
 apply-seccomp: write /proc/self/setgroups
@@ -64,23 +62,57 @@ apply-seccomp: write /proc/self/setgroups
 Permission denied
 ```
 
-Two ways to fix it, and the choice is the team's:
+### The sysctl is NOT the fix — tested and disproven 2026-11-04
 
-| Option | Command | Trade-off |
-|---|---|---|
-| **A. Targeted AppArmor profile** | A profile granting `userns create` to the Claude Code binary | Narrower, preferred. **We have not written or tested this profile** — it needs someone who knows AppArmor |
-| **B. Relax the sysctl image-wide** | `provision-rvc.sh --install --allow-sandbox-fix` writes `kernel.apparmor_restrict_unprivileged_userns=0` to `/etc/sysctl.d/99-claude-sandbox.conf` | Simple and reversible, but weakens unprivileged user-namespace restrictions for everything on the image |
+An earlier version of this document offered relaxing
+`kernel.apparmor_restrict_unprivileged_userns` as a simple option. **It does not
+work.** The tester set it to 0 and the error did not change.
 
-Option B is what the script can do unattended. **If option A is viable, prefer
-it** — we are asking for a security relaxation on a training VM, and a targeted
-profile is the better answer if your team can produce one.
+The `bwrap-userns-restrict` AppArmor profile stays loaded and enforcing, and the
+sysctl does not turn it off. It moves everything `bwrap` launches into the
+`unpriv_bwrap` profile, which carries `audit deny capability`. The kernel kept
+denying *after* the sysctl was relaxed:
 
-Why this matters beyond "a lab fails": with the sandbox down, **Course 4 Lab 3
-tells students an attack is blocked when it is not.** The tester confirmed the
-secrets file was read (`read 83 bytes from config/secrets.env`) despite the deny
-rules. That is worse than a broken lab.
+```
+apparmor="DENIED" operation="capable" class="cap" profile="unpriv_bwrap"
+  comm="3" capability=21 capname="sys_admin"
+```
 
-Revert option B with: `sudo rm /etc/sysctl.d/99-claude-sandbox.conf` and reboot.
+Two consequences:
+
+- **`provision-rvc.sh --allow-sandbox-fix` has been retired.** It still parses,
+  but prints a notice and does nothing. Leaving it in would relax a security
+  setting for no benefit.
+- **If an earlier run already applied it, revert it:**
+  ```bash
+  sudo rm /etc/sysctl.d/99-claude-sandbox.conf
+  sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=1   # or reboot
+  ```
+  The script now detects that file and flags it.
+
+### What is actually needed
+
+An **AppArmor change** so the Claude Code sandbox can create a nested user
+namespace — either a profile that grants `userns create` to the Claude Code
+binary, or an adjustment to how `unpriv_bwrap` applies to it.
+
+**We have not written or tested such a profile**, and this needs someone who
+knows AppArmor on Ubuntu 26.04. What we can supply is the exact denial above,
+which names the profile (`unpriv_bwrap`), the operation (`capable`) and the
+capability (`21`, `sys_admin`).
+
+The script no longer offers a fix here. It diagnoses: it reports the sysctl
+value as informational, detects the `bwrap-userns-restrict` profile, checks
+whether `unpriv_bwrap` is loaded via `aa-status`, and then **probes with the
+sandbox forced on**.
+
+### Why this is the top priority
+
+With the sandbox down, **Course 4 Lab 3 tells students an attack was blocked
+when it was not.** The tester confirmed the secrets file was read
+(`read 83 bytes from config/secrets.env`) despite the deny rules. The lab's
+checker has since been corrected to say "blocked if the OS sandbox starts", so
+it no longer lies — but the exercise still cannot be run as designed.
 
 ## 2. `python` command and virtual environments
 
@@ -210,13 +242,14 @@ Code's credential precedence, so a globally exported key makes Courses 1, 2 and
 
 | # | Item | Scriptable | Unblocks |
 |---|---|---|---|
-| 1 | Sandbox (AppArmor or sysctl) | With `--allow-sandbox-fix` | ~4 labs, and fixes a lab that teaches something false |
+| 1 | Sandbox — **AppArmor only**, sysctl disproven | **No** | ~4 labs. Needs an AppArmor specialist |
 | 2 | `python-is-python3`, venvs | Yes | Nearly every lab |
 | 3 | Node + `@anthropic-ai/mcpb` | Yes | Course 1 packaging (has a fallback) |
 | 4 | Git identity | Yes | 16 labs |
 | 5 | Desktop same-account | **No** | All of Course 1 |
 | 6 | Class API keys + Console access | **No** | All of Course 3 |
 
-Items 2, 3 and 4 are routine and safe. Item 1 needs a security judgement.
+Items 2, 3 and 4 are routine and safe. Item 1 cannot be scripted at all and
+needs an AppArmor specialist.
 Items 5 and 6 need a person with the right accounts — item 6 needs Console
 administration to mint keys and set spend limits.
