@@ -89,6 +89,12 @@ python3 $FILES/gauntlet/gauntlet.py --plugin ~/work/expense-digest --product 1 -
 
 ---
 
+> **The Gauntlet does not need the OS sandbox.** Verified on 2026-11-04: no
+> eval case allows `Bash`, no case runs a scaffold script, and the reference
+> subagents carry only read tools. A smoke run completed with no shell call,
+> no seccomp error and no kernel denial. If the sandbox is unavailable on your
+> machine, that does not block this lab.
+
 ## Part 2: The Gauntlet (about 40 minutes)
 
 ### Step 6: Run the Free Checks First (about 5 minutes)

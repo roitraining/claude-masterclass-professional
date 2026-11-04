@@ -122,11 +122,11 @@ change for the team to bake into the image.
 
 | Option | What it does | Trade-off |
 |---|---|---|
-| `local-override` | Appends `capability sys_admin,` to `/etc/apparmor.d/local/bwrap-userns-restrict` and reloads | Narrowest, and upgrade-safe because it uses the shipped profile's local include rather than editing it. `--diagnose` reports whether that include exists |
+| ~~`local-override`~~ | ~~Appends `capability sys_admin,`~~ | **TRIED 2026-11-04 AND FAILED.** `unpriv_bwrap` carries `audit deny capability`, and an AppArmor deny beats any allow, so this can never work. Reverted |
 | `claude-profile` | Installs a profile naming the real Claude Code binary with `userns,` | Scoped to Claude Code. **Caveat: Claude Code auto-updates, so the binary path moves and the profile needs re-pointing** |
 | `disable-profile` | Disables `bwrap-userns-restrict` entirely | Works for everything on the image, Claude Code included. Removes the restriction broadly, so only use it if the narrower options fail |
 
-**None of the three has been tested.** They are the documented ways to grant
+**`local-override` was tried on 2026-11-04 and failed** for the reason above. `claude-profile` is expected to fail the same way, since the deny is on the profile bwrap transitions into rather than on the calling binary. That leaves `disable-profile`, which is image-wide and needs a decision. Neither remaining option has been tested. They are the documented ways to grant
 unprivileged user-namespace creation under AppArmor, ordered least invasive
 first. The script exists to find out which one works on this image, with
 evidence. Everything it changes is backed up and undone by `--revert`, which

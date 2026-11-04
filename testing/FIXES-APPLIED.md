@@ -714,3 +714,86 @@ student's plugin.
 **If the smoke run confirms this, Lab 2's "blocked" was a misdiagnosis** and the
 lab should say the Gauntlet does not depend on the sandbox. That is a one-line
 change, pending the result.
+
+---
+
+## Batch 10 — the smoke run and AppArmor attempt (2026-11-04, $0.34)
+
+### 10.1 Lab 2's sandbox block was a misdiagnosis — confirmed and recorded
+
+The smoke run settled it: `Bash` was not in the session's tools, no call used a
+shell, and there were no seccomp errors or kernel denials. Lab 2 now states that
+the Gauntlet does not need the OS sandbox, with the evidence and the date.
+
+That matches the repo analysis: no eval case allows `Bash`, no case runs a
+scaffold script, and the reference subagents carry only read tools.
+
+### 10.2 The 12-point trigger failure was NOT a grader bug
+
+The tester reported the trigger grader as too strict, because the model reached
+the workflow through `board-pack-builder:draft` while the grader matches
+`board-pack`. **Checked, and the grader is right.**
+
+- The grader's pattern already allows a namespace prefix:
+  `"skill"\s*:\s*"(?:[\w-]+:)?board-pack"`.
+- The eval's `allowed_tools` are `[Read, Glob, Grep, Skill, Agent]` — there is no
+  `SlashCommand`, so a slash command was not the route.
+- The contract fixes the names: skill folder `board-pack`, slash commands
+  `draft.md` and `check.md`. So `…:draft` means the **skill itself is named
+  `draft`**, which violates the contract.
+
+Loosening the grader would have removed the name contract that lets the Gauntlet
+test any student's plugin at all. The 0 was correct.
+
+**The real defect is diagnostic, and it costs money.** `check_structure` already
+catches a misnamed skill for free, but only as a 3-point partial deduction with
+no hint that 12 more points will go the same way after a paid run.
+`gauntlet.py` now emits, in the free static pass:
+
+> WARNING: `skills/board-pack/SKILL.md` is missing, so the trigger eval group (12
+> points) will also score 0 — its graders match the contract skill name. Rename
+> the skill folder before paying for a full run.
+
+### 10.3 `--smoke` destroyed the evidence it was run to collect
+
+The `finally` block deleted the workspace, and the workspace holds the eval
+transcript. So a smoke run could not answer "which tools did it use?" without
+paying for a second run — which is exactly what happened, at $0.17.
+
+`--smoke` now keeps the workspace and prints its path, with a line saying the
+transcript shows which tools each case used. A `--keep-workspace` flag does the
+same for a full run.
+
+### 10.4 A timeout that still reported a score
+
+Run 1 scored 1.00 and exited 0 while its own record said it had timed out after
+300s. Run 2, the same case, finished in 67 seconds and scored 0. A timed-out case
+has not produced a result, so the 1.00 was not a number to trust.
+
+`gauntlet.py` now scans the result document and warns when any case records a
+timeout alongside a score above zero, telling the reader to re-run and use the
+run that completed. This cannot fix `plugin eval`'s own reporting, but it stops
+the contradiction passing silently into a scorecard.
+
+### 10.5 My Lab 3 zip claim was wrong
+
+I wrote that a zip made from inside the plugin folder "will not load". The tester
+found **both layouts loaded**. Corrected: the parent-directory form is the
+documented shape and the one to rely on, with a note that a nested layout may
+happen to work and must not be depended on. The Troubleshooting row no longer
+asserts the stricter claim, and now says a zip that works is not proof the layout
+is right.
+
+### 10.6 AppArmor `local-override` failed, and why it could never have worked
+
+`unpriv_bwrap` carries `audit deny capability`, and **a deny rule in AppArmor
+beats any allow**. So appending `capability sys_admin,` cannot grant what an
+explicit deny forbids. The attempt is reverted, the sysctl file is gone, and the
+sysctl is back to 1.
+
+The tester expects `claude-profile` to fail the same way, from reading the
+profile, which leaves **`disable-profile`** as the likely fix. That is image-wide
+and needs a decision.
+
+`IMAGE-REQUIREMENTS.md` item 1 is updated with this result so nobody retries the
+local override.

@@ -75,9 +75,13 @@ claude --plugin-dir ~/work/<plugin name>.zip
 ```
 
 Zipping the folder by name from its parent puts the folder holding
-`.claude-plugin/plugin.json` at the top of the archive, which is what the loader
-needs. Zipping from *inside* the folder, or zipping a path with extra directories
-above it, produces a layout that will not load.
+`.claude-plugin/plugin.json` at the top of the archive. Do it this way: it is the
+layout the publishing docs describe, and the one to rely on.
+
+Testing on 2026-11-04 found the loader also accepted a zip made from *inside* the
+folder, so a nested layout may happen to work. Do not depend on that — it is not
+the documented shape, and the Troubleshooting entry below assumes the documented
+one.
 
 If `zip` is not installed, Python makes the same archive:
 
@@ -219,7 +223,7 @@ Assemble a single folder containing: the plugin folder and zip, the `.mcpb`, `CH
 | Unknown manifest field | Strict validation fails | Remove the field or check its spelling in the manifest reference |
 | Update does nothing | `claude plugin update` reports you are already at the latest version | You did not change `version`. Bump it in every place that carries it |
 | Marketplace entry not found | Install fails by name | The entry `name` and the manifest `name` differ. They must match |
-| Zip will not load | Plugin not detected in the zip | The folder with `.claude-plugin/plugin.json` must be at the top of the zip |
+| Zip will not load | Plugin not detected in the zip | Put the folder holding `.claude-plugin/plugin.json` at the top of the zip. Some nested layouts load anyway, so a zip that works is not proof the layout is right |
 | Users lose the plugin | An installed plugin disappears after an update | The `name` was changed. Never rename a published plugin |
 
 ---

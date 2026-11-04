@@ -123,6 +123,14 @@ def check_structure(plugin, c, have_claude):
     got = sum(1 for ok, _ in needed if ok)
     missing = [lbl for ok, lbl in needed if not ok]
     add("Structure", "four components and contract names present", 3 * got / len(needed), 3, "missing: " + "; ".join(missing) if missing else "")
+    # A misnamed skill folder costs 3 points here and then silently costs 12 more
+    # in the trigger eval group, because those graders match the contract skill
+    # name. Say so now, before any paid eval runs.
+    if not (plugin / "skills" / c["skill"] / "SKILL.md").is_file():
+        add("Structure", f"WARNING: skills/{c['skill']}/SKILL.md is missing, so the "
+                         "trigger eval group (12 points) will also score 0 — its graders "
+                         "match the contract skill name. Rename the skill folder before "
+                         "paying for a full run", 0, 0)
 
 
 def check_context(plugin, manifest_name, have_claude):
@@ -348,6 +356,34 @@ def score_evals(docs, args, partial):
 
 
 # ------------------------------------------------------------------- report --
+def _warn_timeout_scored(doc):
+    """A case that records a timeout but still reports a score is not a result.
+
+    Observed 2026-11-04: one smoke run scored 1.00 and exited 0 while its own
+    record said it had timed out after 300s, and a clean 67-second re-run of the
+    same case scored 0. Treat the pair as untrustworthy rather than reporting the
+    first number.
+    """
+    def walk(o):
+        if isinstance(o, dict):
+            blob = " ".join(str(v) for v in o.values() if isinstance(v, (str, int, float)))
+            timed_out = "timed out" in blob.lower() or "timeout" in blob.lower()
+            score = o.get("score")
+            if timed_out and isinstance(score, (int, float)) and score > 0:
+                msg = ("WARNING: a case records a timeout AND a score of "
+                       f"{score}. A timed-out case has not produced a result, "
+                       "so this score cannot be trusted. Re-run the case and "
+                       "use the run that completed.")
+                print("", file=sys.stderr)
+                print(msg, file=sys.stderr)
+                return True
+            return any(walk(v) for v in o.values())
+        if isinstance(o, list):
+            return any(walk(v) for v in o)
+        return False
+    return walk(doc)
+
+
 def tier_for(total, secret, security_full, complete):
     if not complete:
         return "Not rated (the eval runs did not complete)"
@@ -405,6 +441,8 @@ def main():
     ap.add_argument("--static-only", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--smoke", action="store_true")
+    ap.add_argument("--keep-workspace", action="store_true",
+                    help="keep the eval workspace and its transcript after a full run")
     args = ap.parse_args()
 
     plugin = Path(args.plugin).resolve()
@@ -441,13 +479,19 @@ def main():
         if not (have_claude and git_ok):
             sys.exit(install_help())
         ws = build_workspace(plugin, c)
-        try:
-            cmd = eval_cmd(ws, "trig-1-natural", "none", 1, 1.0, outdir / "smoke.json", args.model)
-            print("Smoke test:", " ".join(cmd))
-            code, out = run(cmd, timeout=900)
-            print(out[-1500:])
-        finally:
-            shutil.rmtree(ws.parent, ignore_errors=True)
+        cmd = eval_cmd(ws, "trig-1-natural", "none", 1, 1.0, outdir / "smoke.json", args.model)
+        print("Smoke test:", " ".join(cmd))
+        code, out = run(cmd, timeout=900)
+        print(out[-1500:])
+        # The workspace holds the eval transcript. It used to be deleted here,
+        # which meant a smoke run could not answer "which tools did it use?"
+        # without paying for a second run. Keep it and say where it is.
+        if args.keep_workspace or True:
+            print("", file=sys.stdout)
+            print(f"Workspace kept for inspection: {ws}")
+            print("The transcript there shows which tools each case actually used.")
+        smoke_doc = read_json(outdir / "smoke.json") or {}
+        _warn_timeout_scored(smoke_doc)
         sys.exit(code)
 
     check_structure(plugin, c, have_claude)
