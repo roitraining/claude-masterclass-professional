@@ -105,6 +105,11 @@ Read `control_ticket.md` and choose Track A or Track B.
 python3 check_lab2.py --findings findings_lab2.json --control <your control file>
 ```
 
+The checker contains the answer key: it names the planted actors and the
+approved resource IDs. Your facilitator runs it for you, or hands it over once
+your findings file is written and submitted. If it is not in your pack, that is
+deliberate — ask rather than looking for it.
+
 **Acceptance criteria:** the findings report scores, and the control spec passes its checklist.
 
 ---

@@ -155,7 +155,7 @@ This is the final lab in Claude Enterprise Deployment and Security Operations Pr
 
 ## Facilitator Notes
 
-The tree and `lab5-audit/rubric.md` are built. Planted issues:
+The tree and `lab5-audit/facilitator/rubric.md` are built. Planted issues:
 
 1. A key in a settings file — `billing-service/.claude/settings.json` sets an API key variable in `env`.
 2. An `apiKeyHelper` script that only echoes a static key — `inventory-service/.claude/settings.json` points to `.claude/get_key.sh`.

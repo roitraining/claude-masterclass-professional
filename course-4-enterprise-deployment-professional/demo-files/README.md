@@ -10,7 +10,7 @@ Sample files for the Enterprise Deployment and Security Operations Professional 
 | `lab4-injection` | Lab 4 | `shipping-notes` repository with the payload, `defense_configs`, `record_sheet.csv`, `check_record.py` |
 | `lab5-audit` | Lab 5 (take-home) | `harbor-org` tree with planted credential issues, `rubric.md` (instructor) |
 
-Instructor-only items: `lab1-identity/live_path_scorecard.md`, `lab2-compliance/instructor/`, `lab5-audit/rubric.md`. The checker scripts hold answer logic: hand them out after students submit.
+Instructor-only items live in `facilitator/` folders and must be removed before the pack is given to students: `lab1-identity/facilitator/`, `lab2-compliance/facilitator/`, `lab5-audit/facilitator/`. The checker scripts also hold answer logic and must not ship with the student pack: `lab1-identity/check_lab1.py`, `lab2-compliance/check_lab2.py` and `lab4-injection/check_record.py` name planted items. Run them yourself, or hand them over only after students submit. The labs now tell students to ask rather than go looking.
 
 The demos have no files; their sample snippets are inline in `demos.md`.
 

@@ -89,8 +89,13 @@ Produce findings using any method from the reference section above. Change nothi
 ### Step 4: Score the Baseline and Write It Down
 
 ```bash
-python3 score_review.py findings.json
+python3 score_review.py findings.json --key <key your facilitator gives you>
 ```
+
+The scorer needs the answer key, which is **not** in your pack — it lists every
+planted bug. Your facilitator either hands you the key file at this point or
+runs the scorer for you. If the command reports `Answer key not found`, ask;
+do not go looking for it.
 
 **Acceptance criteria:** a baseline tier, a count of bugs caught, and a count of false positives, all written down.
 
@@ -123,7 +128,8 @@ Iterate on a single branch with `--only pr-03` while you work, and keep a log of
 
 ### Step 6: Confirm with a Fresh Full Run
 
-Run every pull request branch after your last edit, then score it.
+Run every pull request branch after your last edit, then score it the same way
+as Step 4, with the key your facilitator provides.
 
 **Acceptance criteria:** at least Silver on the scorer, from a fresh full run made after your last edit to `REVIEW.md`.
 

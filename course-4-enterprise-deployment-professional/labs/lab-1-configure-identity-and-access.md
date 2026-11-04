@@ -109,7 +109,7 @@ Only if your instructor has provisioned sandbox access. Otherwise take Part 2.
 
 **Acceptance criteria:** a user removed only in Claude is shown to return at next login, and is then unassigned in the identity provider so the removal holds.
 
-> **Note:** your instructor has pre-planted traps. They are listed in `live_path_scorecard.md`, which is instructor-only.
+> **Note:** your instructor has pre-planted traps. They are listed in `lab1-identity/facilitator/live_path_scorecard.md`, which is instructor-only and is not in your pack.
 
 ---
 
@@ -196,7 +196,7 @@ Answer key and where each trap is planted:
 
 `check_lab1.py` contains the answer logic: give it to students after they submit. It matches findings by keyword, so read borderline findings yourself.
 
-Instructor note: the real custom-role permission names, the group picker, and seat-tier labels (`standard` and `premium` here are labels belonging to this exercise) are not in the verified facts. For the live path, rehearse the full sequence on the sandbox and plant the four traps in `live_path_scorecard.md`.
+Instructor note: the real custom-role permission names, the group picker, and seat-tier labels (`standard` and `premium` here are labels belonging to this exercise) are not in the verified facts. For the live path, rehearse the full sequence on the sandbox and plant the four traps in `lab1-identity/facilitator/live_path_scorecard.md`.
 
 ---
 

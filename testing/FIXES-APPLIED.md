@@ -137,3 +137,64 @@ Course 2's labs already name a set identity in their prerequisites and only run
 
 Verified: no `git commit` anywhere in the course material now lacks an identity
 step or prerequisite.
+
+---
+
+## Batch 3 — leaked answer keys (shared blocker 4)
+
+**Finding:** answer keys ship inside student folders.
+
+Each case turned out to be different, so they were not treated alike. A blanket
+move would have broken two labs.
+
+### 3.1 Three clean moves into `facilitator/`
+
+`facilitator/` is the convention in every other course; Course 4 used
+`instructor/` for one folder. Standardised, with `git mv` so history survives.
+
+| Was | Now | Why it is safe to move |
+|---|---|---|
+| `lab1-identity/live_path_scorecard.md` | `lab1-identity/facilitator/` | Its own header says "(instructor use)", and the lab already told students it was instructor-only while shipping it anyway |
+| `lab5-audit/rubric.md` | `lab5-audit/facilitator/` | Titled "Rubric (100 points) **and Answer Key**", says "Instructor use. Hold back until the audit is submitted". Referenced only from facilitator notes, never a student step |
+| `lab2-compliance/instructor/make_activity_export.py` | `lab2-compliance/facilitator/` | Its docstring says verbatim: "Do not give this file to students: it contains the planted anomalies" — and it listed every DECOY and PLANTED marker |
+
+Four references updated; no stale paths remain.
+
+### 3.2 Two that could NOT be moved — the lab requires them
+
+**Course 2 Lab 2.** The tester's suggested fix was to move
+`facilitator/answer_key.json` out of `facilitator/`. That would hand students
+every planted bug: the key carries each bug's title, file, marker and keywords.
+
+The real problem was a documentation gap, not a path. `demo-files/README.md`
+already instructed facilitators correctly — *"give students the scorer and key
+together only after they have a findings file, or run the scorer yourself"* —
+but the **student-facing lab never said so**, so students and the tester hit a
+wall with no instruction. Steps 4 and 6 now state that the key comes from the
+facilitator, show the `--key` argument, and say to ask rather than go looking.
+No answer file moved.
+
+**Course 4 Lab 2.** Same shape. `check_lab2.py` names the planted actors and
+approved UUIDs, its docstring says to hand it out after submission, yet Step 7
+tells students to run it. Step 7 now says the facilitator runs it or hands it
+over after submission. `demo-files/README.md` now names all three Course 4
+checkers that hold answer logic.
+
+### Residual design question for the course owner
+
+Both labs ask students to **self-score**, and scoring inherently needs the real
+answers. So there are only two honest end states, and this is a teaching
+decision rather than a bug:
+
+1. **Facilitator-scored rounds** — preserves the exercise, costs facilitator
+   time during the iteration loop (Course 2 Lab 2 allows up to three rounds).
+2. **Hand the key over at scoring time** — self-service, but a student who
+   reads it has the answers.
+
+The fixes above implement option 1, because it matches what the facilitator
+README already said. Switching to option 2 is a one-line change in each lab.
+
+**Course 5 is not done.** Its Facilitator Notes are printed inside the
+student-facing lab files, which is a larger restructure than a file move, and
+those findings came from a helper agent with only two claims spot-checked. It is
+handled in a later batch after verification.
