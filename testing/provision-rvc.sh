@@ -126,22 +126,23 @@ case ":$PATH:" in
   *) c_bad "\$HOME/.local/bin not on PATH — add: echo 'export PATH=\"\$HOME/.local/bin:\$PATH\"' >> ~/.bashrc" ;;
 esac
 
-hdr "4. Credential for the Agent SDK (Course 3)"
-# Course 3 needs no API key: the SDK wraps the CLI and inherits its credential
-# precedence. A subscription-backed setup-token is the classroom path.
-CRED=""
-for v in CLAUDE_CODE_OAUTH_TOKEN ANTHROPIC_API_KEY ANTHROPIC_AUTH_TOKEN; do
-  [ -n "${!v:-}" ] && CRED="$v"
-done
-if [ -n "$CRED" ]; then
-  c_ok "credential present via \$$CRED"
-  [ "$CRED" = "ANTHROPIC_API_KEY" ] && \
-    c_warn "ANTHROPIC_API_KEY overrides subscription login for ALL courses — prefer CLAUDE_CODE_OAUTH_TOKEN"
-elif [ -f "$HOME/.claude/.credentials.json" ]; then
-  c_ok "stored login found (~/.claude/.credentials.json)"
-  note "Course 3 runs on this login once its require_api_key() guard is relaxed."
+hdr "4. Class API key for the Agent SDK (Course 3)"
+# Course 3 REQUIRES an API key. This is taught content, not an accident:
+# deck slide 11 is "Install, Authenticate, Run" and Module 2 spends 45 minutes
+# on it. Anthropic's Agent SDK overview states that claude.ai login is not
+# allowed for Agent SDK agents, so a subscription token is NOT a substitute.
+# Deck slide 6: "Each student gets a class API key with a spend limit."
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+  c_ok "ANTHROPIC_API_KEY set in this shell (Course 3 can run)"
+  note "Keep ANTHROPIC_API_KEY per-shell. Exported in ~/.bashrc it overrides subscription login for Courses 1, 2 and 4."
 else
-  c_bad "no credential — run: claude setup-token, then export CLAUDE_CODE_OAUTH_TOKEN=<token>"
+  c_bad "ANTHROPIC_API_KEY not set — all five Course 3 labs stop at the guard in agent_core.py"
+  note "Course 3 needs a class API key with a spend limit, handed out per student. A subscription token is not a valid substitute (see IMAGE-REQUIREMENTS.md item 6)."
+fi
+if [ -f "$HOME/.claude/.credentials.json" ]; then
+  c_ok "stored CLI login found (Courses 1, 2, 4)"
+else
+  c_bad "no stored CLI login — run: claude auth login"
 fi
 
 hdr "5. Node tooling (Course 1 packaging)"

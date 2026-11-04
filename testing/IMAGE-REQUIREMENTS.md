@@ -136,35 +136,47 @@ This one needs a person — it cannot be scripted. Note that Claude Code
 auto-updates, so the installed version drifts between runs; the script records
 it each time.
 
-## 6. A Claude credential — no API key or student payment needed
+## 6. Class API keys with spend limits (Course 3)
 
 **Unblocks:** all five Course 3 labs.
 
-The original finding was "no `ANTHROPIC_API_KEY` on the VM". On investigation,
-**Course 3 does not need one.** Its `require_api_key()` guard is course-authored,
-not an SDK requirement, and the course makes no direct API calls — everything
-goes through the Agent SDK, which wraps the Claude Code CLI and inherits its
-credential precedence.
+Course 3 needs an **Anthropic API key**, and this is deliberate taught content,
+not an oversight. Deck slide 11 is titled *"Install, Authenticate, Run"* and says
+*"Set `ANTHROPIC_API_KEY` as an environment variable"*; Module 2 spends 45
+minutes on it. The outline lists *"an Anthropic API key or Console access"* as a
+student requirement.
 
-The classroom path is a subscription-backed token:
+**A subscription login is not a substitute.** Anthropic's Agent SDK overview
+states:
 
-```bash
-claude setup-token                      # browser flow once, prints a 1-year token
-export CLAUDE_CODE_OAUTH_TOKEN=<token>
-```
+> Unless previously approved, Anthropic does not allow third party developers to
+> offer claude.ai login or rate limits for their products, including agents built
+> on the Claude Agent SDK. Use the API key authentication methods described in
+> the Quickstart instead.
 
-Per Anthropic's docs this "authenticates with your Claude subscription and
-requires a Pro, Max, Ultra, Team, or Enterprise plan" and "can only make model
-requests" — which is all the labs do. **No Console account, no API key, no
-student spend.** It also works headless, which fixes browser login on the VM.
+The deck already carries this as a verified source check, dated 19 October 2026.
+So the key is a policy requirement, not just a technical one.
 
-One caution: do **not** set `ANTHROPIC_API_KEY` image-wide. It overrides
-subscription login for *every* course, so Courses 1, 2 and 4 would silently bill
-against it.
+**Students should not be paying for this.** Deck slide 6 states the intended
+model: *"Each student gets a class API key with a spend limit."* The ask is
+therefore:
 
-A course-side change is still needed to relax the guard; that is ours, not yours.
+- **Class API keys**, one per student, each with a spend limit set in the Console
+- **An agreed handout channel.** Slide 6's instructor note says to *"hand out the
+  class keys through the agreed channel"* — as far as we can tell no channel has
+  been agreed yet, and that is the actual gap
+- **Console access** for Module 13 and Course 3 Lab 4 Part 6, which teach the
+  Console Evaluate tool. This is separate from the key and is also taught content
 
----
+The labs already cap spend themselves — 12 turns and 0.50 USD per run by
+default, overridable by the instructor through `LAB_MAX_TURNS` and
+`LAB_BUDGET_USD` — so a per-key Console spend limit is a second belt rather than
+the only control.
+
+**One thing to get right:** set the key **per shell**, not in `~/.bashrc` or a
+system-wide profile. `ANTHROPIC_API_KEY` outranks subscription login in Claude
+Code's credential precedence, so a globally exported key makes Courses 1, 2 and
+4 bill against it silently. `SETUP-CLAUDE-CODE.md` section 7 covers this.
 
 ## Not installable — needs a decision or a person
 
@@ -187,7 +199,8 @@ A course-side change is still needed to relax the guard; that is ours, not yours
 | 3 | Node + `@anthropic-ai/mcpb` | Yes | Course 1 packaging (has a fallback) |
 | 4 | Git identity | Yes | 16 labs |
 | 5 | Desktop same-account | **No** | All of Course 1 |
-| 6 | `claude setup-token` | Partly | All of Course 3 |
+| 6 | Class API keys + Console access | **No** | All of Course 3 |
 
 Items 2, 3 and 4 are routine and safe. Item 1 needs a security judgement.
-Items 5 and 6 need a person with the right accounts.
+Items 5 and 6 need a person with the right accounts — item 6 needs Console
+administration to mint keys and set spend limits.
