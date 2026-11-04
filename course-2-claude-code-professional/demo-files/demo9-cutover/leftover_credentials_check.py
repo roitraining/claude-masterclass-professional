@@ -2,7 +2,7 @@
 """List leftover Console credentials on this machine, by NAME only. Values are never printed.
 
 Usage:
-    python leftover_credentials_check.py [PROJECT_DIR ...]
+    python3 leftover_credentials_check.py [PROJECT_DIR ...]
 
 Looks for:
   * environment variables named ANTHROPIC_API_KEY or CLAUDE_CODE_OAUTH_TOKEN in this shell

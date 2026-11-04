@@ -1,6 +1,6 @@
 """Demo 1: the minimal agent. Prints every message so the loop is visible.
 
-    python demo1_minimal.py
+    python3 demo1_minimal.py
 """
 import asyncio
 from pathlib import Path

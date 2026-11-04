@@ -2,7 +2,7 @@
 """Lab 1 security gate: a static, local check of a CI workflow that runs Claude.
 
 Usage:
-    python security_gate.py PATH [PATH ...] [--json] [--platform github|gitlab]
+    python3 security_gate.py PATH [PATH ...] [--json] [--platform github|gitlab]
 
 PATH is a workflow file, a .gitlab-ci.yml, or a directory (every *.yml / *.yaml
 inside it is checked). No network, no GitHub or GitLab access, no model calls.
@@ -193,7 +193,7 @@ def check_github(path, text, data):
             if m:
                 for tool in re.split(r"[,\s]+", m.group(1).strip("\"'")):
                     if tool == "Bash" or tool in ("Bash(*)", "Bash(*:*)"):
-                        t6.fail(5, "Bare Bash grants any shell command. Scope it, for example Bash(python -m pytest *).",
+                        t6.fail(5, "Bare Bash grants any shell command. Scope it, for example Bash(python3 -m pytest *).",
                                 line_of(lines, r"allowedTools"))
                         break
             if "--dangerously-skip-permissions" in args or "bypassPermissions" in args:

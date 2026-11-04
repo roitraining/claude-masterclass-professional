@@ -1,6 +1,6 @@
 """Score Lab 3: the digest task and the runaway loop, against the limits you set in lab3_agent.py.
 
-    python lab3_check.py
+    python3 lab3_check.py
 
 Two model runs. Each carries the turn and spend limits from lab3_agent.py.
 """

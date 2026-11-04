@@ -1,6 +1,6 @@
 """Lab 1: the support agent. Run one prompt:
 
-    python lab1_agent.py "Where is order BW-1003?"
+    python3 lab1_agent.py "Where is order BW-1003?"
 """
 from __future__ import annotations
 

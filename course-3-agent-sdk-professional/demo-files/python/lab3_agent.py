@@ -1,7 +1,7 @@
 """Lab 3: a plan-delegate-incorporate agent with one subagent, plus the runaway loop fixture.
 
-    python lab3_agent.py digest
-    python lab3_agent.py loop
+    python3 lab3_agent.py digest
+    python3 lab3_agent.py loop
 
 Your tasks are marked TODO.
 """

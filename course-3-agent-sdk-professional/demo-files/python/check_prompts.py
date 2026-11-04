@@ -1,7 +1,7 @@
 """Run the Lab 1 or Lab 2 task prompts against your agent and score tool use and answers.
 
-    python check_prompts.py lab1 [--runs 2]
-    python check_prompts.py lab2 [--runs 2]
+    python3 check_prompts.py lab1 [--runs 2]
+    python3 check_prompts.py lab2 [--runs 2]
 
 Each prompt is a model call, so each run spends credits. The agent options carry turn and spend limits.
 """

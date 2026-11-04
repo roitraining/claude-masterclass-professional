@@ -1,7 +1,7 @@
 """Demo 2: a tool the agent misuses. Two converter tools, with vague or clear descriptions.
 
-    python demo2_misuse.py vague
-    python demo2_misuse.py clear
+    python3 demo2_misuse.py vague
+    python3 demo2_misuse.py clear
 
 Everything is local and fictional. The class rate table is invented.
 """
@@ -71,5 +71,5 @@ async def main(variant: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1] not in VARIANTS:
-        raise SystemExit("usage: python demo2_misuse.py vague|clear")
+        raise SystemExit("usage: python3 demo2_misuse.py vague|clear")
     asyncio.run(main(sys.argv[1]))

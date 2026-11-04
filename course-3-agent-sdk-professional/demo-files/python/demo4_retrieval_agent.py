@@ -1,7 +1,7 @@
 """Demo 4: retrieval behind a tool call. The agent talks to the local retrieval MCP server.
 
-    python demo4_retrieval_agent.py
-    python demo4_retrieval_agent.py "How long is the warranty on a sleeping bag, and which document says so?"
+    python3 demo4_retrieval_agent.py
+    python3 demo4_retrieval_agent.py "How long is the warranty on a sleeping bag, and which document says so?"
 """
 import asyncio
 import sys

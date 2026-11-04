@@ -263,7 +263,7 @@ fi
 note "No scripted fix for the sandbox. It needs an AppArmor change on the image: see IMAGE-REQUIREMENTS.md item 1."
 
 hdr "9. Needs a person (not scriptable)"
-c_man "Claude Desktop installed and signed in to the SAME account as the CLI (blocker 5, blocks all of Course 1)"
+c_man "Claude Desktop signed in to the SAME account as the CLI — needed only for the optional extension install in Course 1 Lab 1 Part 8 and for Lab 3 Part 5. It does NOT block the rest of Course 1"
 c_man "Decide the account tier for testing: Max, or a free account to observe free-tier limits"
 c_man "Course 2 Lab 1 Tracks A and B need a remote GitHub/GitLab project with admin access"
 c_man "Course 4 Labs 1-2 live paths need an instructor-provisioned sandbox organization (offline path works without)"

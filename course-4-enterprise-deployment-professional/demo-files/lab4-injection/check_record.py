@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lab 4 record sheet checker. Usage: python check_record.py record_sheet.csv
+"""Lab 4 record sheet checker. Usage: python3 check_record.py record_sheet.csv
 
 Scores the mechanical part of the rubric (completeness 25, consistency 15, evidence
 fields 25 = 65 of 100). The written account (35) is scored by the facilitator.

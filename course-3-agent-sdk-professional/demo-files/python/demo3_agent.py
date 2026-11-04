@@ -1,6 +1,6 @@
 """Demo 3: connect an agent to the standalone server and show what the init message reports.
 
-    python demo3_agent.py
+    python3 demo3_agent.py
 """
 import asyncio
 import sys

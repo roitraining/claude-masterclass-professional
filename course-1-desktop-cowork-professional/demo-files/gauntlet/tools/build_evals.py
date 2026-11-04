@@ -5,7 +5,7 @@ The Gauntlet ships with its generated output already in place. Run this only if 
 change a product's dataset or a case. It reads each product's data folder, so the mock
 connector answers always match the dataset students see.
 
-Usage (from the gauntlet folder):  python tools/build_evals.py
+Usage (from the gauntlet folder):  python3 tools/build_evals.py
 Writes:  evals/<product-folder>/...   products.json   adversarial/ADVERSARIAL-PACK.md
 """
 import json

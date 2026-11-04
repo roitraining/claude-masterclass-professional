@@ -1,6 +1,6 @@
 """Preflight: confirms the environment is ready. Makes no model call and never prints the key.
 
-Run from this folder:  python preflight.py
+Run from this folder:  python3 preflight.py
 """
 import importlib
 import os

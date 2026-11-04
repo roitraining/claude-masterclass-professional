@@ -1,6 +1,6 @@
 """Demo 5: delegate to a subagent defined in code. Follows the documented AgentDefinition pattern.
 
-    python demo5_subagent.py
+    python3 demo5_subagent.py
 """
 import asyncio
 from pathlib import Path

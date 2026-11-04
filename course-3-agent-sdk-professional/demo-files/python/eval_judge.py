@@ -1,6 +1,6 @@
 """LLM judge for the open-ended golden task. Uses the Agent SDK with no tools and a strict JSON reply.
 
-    python eval_judge.py --calibrate     # four fixed replies; confirms the judge ranks good above bad
+    python3 eval_judge.py --calibrate     # four fixed replies; confirms the judge ranks good above bad
 
 A judge is a grader you have not tested until you calibrate it. Set JUDGE_MODEL to use a different model from the agent.
 """

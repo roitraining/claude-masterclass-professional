@@ -1,8 +1,8 @@
 """Lab 4 harness: run golden tasks against one agent version, grade, and write results.
 
-    python eval_harness.py --version A --out results/A.json
-    python eval_harness.py --version B --out results/B.json --repeats 2 --cost-target 0.05
-    python eval_harness.py --version A --only G01,G09        # a quick smoke test
+    python3 eval_harness.py --version A --out results/A.json
+    python3 eval_harness.py --version B --out results/B.json --repeats 2 --cost-target 0.05
+    python3 eval_harness.py --version A --only G01,G09        # a quick smoke test
 
 Every run is a model call. Each agent run keeps the turn and spend limits from agent_core.make_options.
 """

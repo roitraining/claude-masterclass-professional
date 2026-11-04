@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Self-test for a stdio MCP server. Starts server.py as Claude would and calls it.
 
-Usage:  python test_server.py [path-to-server.py]
+Usage:  python3 test_server.py [path-to-server.py]
 Set the data folder first if your server needs one, for example STARTER_DATA.
 Prints PASS or FAIL for each check and exits non-zero on any failure.
 """

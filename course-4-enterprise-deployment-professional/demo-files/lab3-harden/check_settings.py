@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static settings checker for Lab 3. Works on any machine: it reads files and runs nothing.
 
-Usage:  python check_settings.py PATH_TO_PROJECT      (for example ~/work/vuln-app)
+Usage:  python3 check_settings.py PATH_TO_PROJECT      (for example ~/work/vuln-app)
 Reads PATH_TO_PROJECT/.claude/settings.json, .mcp.json and app.py.
 
 Scores 60 points (part A). Part B is the live attack script (40 points). It also prints

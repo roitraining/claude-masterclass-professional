@@ -1,6 +1,6 @@
 """Lab 2: the Lab 1 agent plus the standalone MCP server.
 
-    python lab2_agent.py "What do the notes on order BW-1002 say?"
+    python3 lab2_agent.py "What do the notes on order BW-1002 say?"
 """
 from __future__ import annotations
 

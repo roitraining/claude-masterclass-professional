@@ -2,8 +2,8 @@
 """Lab 2 offline checker.
 
 Usage:
-  python check_lab2.py --findings findings_lab2.json --control control_proxy_spec.json
-  python check_lab2.py --findings findings_lab2.json --control control_desktop_policy.json
+  python3 check_lab2.py --findings findings_lab2.json --control control_proxy_spec.json
+  python3 check_lab2.py --findings findings_lab2.json --control control_desktop_policy.json
   (--export defaults to activity_export.json next to this script)
 
 Scoring (100): four anomalies x 15 (actor 6, evidence event ids 5, explanation 4),

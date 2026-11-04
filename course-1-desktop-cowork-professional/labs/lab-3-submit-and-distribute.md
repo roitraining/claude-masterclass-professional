@@ -42,9 +42,16 @@ Fix every warning.
 claude plugin validate --strict ~/work/<plugin name>
 ```
 
-**Acceptance criteria:** a clean pass.
+**Acceptance criteria:** `claude plugin validate --strict` exits 0 with **no
+WARNING and no ERROR lines about your plugin's own files**.
 
-> **Hint:** warnings cover an unknown manifest field and a missing `version`.
+"Clean" does not mean no output. `validate` also prints advisory lines about
+files wanted for **directory submission**, such as a `README` or a `LICENSE`, and
+those are out of scope here — Step 3 onward is about distribution you control.
+Ignore them, and fix only the warnings that name your manifest or your plugin
+files.
+
+> **Hint:** the warnings to fix cover an unknown manifest field and a missing `version`.
 
 ### Step 2: Add the Distribution Metadata
 
@@ -58,11 +65,28 @@ Add `description`, `author`, `homepage`, and `repository` to `plugin.json` — u
 
 ### Step 3: Zip the Plugin and Load It
 
+The step is named for making the zip, so make it. Nothing earlier in the course
+produces one.
+
 ```
+cd ~/work
+zip -r <plugin name>.zip <plugin name> -x '*/__pycache__/*' '*.pyc' '*.mcpb'
 claude --plugin-dir ~/work/<plugin name>.zip
 ```
 
-**Acceptance criteria:** the zip loads and the skill and the connector work. Check the folder against the upload limits of 5,000 files and 200 MB.
+Zipping the folder by name from its parent puts the folder holding
+`.claude-plugin/plugin.json` at the top of the archive, which is what the loader
+needs. Zipping from *inside* the folder, or zipping a path with extra directories
+above it, produces a layout that will not load.
+
+If `zip` is not installed, Python makes the same archive:
+
+```
+cd ~/work
+python3 -c "import shutil; shutil.make_archive('<plugin name>', 'zip', '.', '<plugin name>')"
+```
+
+**Acceptance criteria:** the zip exists, loads with `--plugin-dir`, and the skill and the connector work. Check the folder against the upload limits of 5,000 files and 200 MB.
 
 > **Common Pitfall:** the folder holding `.claude-plugin/plugin.json` must be at the top of the zip. A nested layout will not load.
 
@@ -113,6 +137,14 @@ claude plugin update <plugin name>@my-class-marketplace
 ```
 
 **Acceptance criteria:** the new version loads, and you can explain in writing what would have happened if you had pushed the change without bumping `version`.
+
+> **A local marketplace will not show you this.** You built a local `./`
+> marketplace in Part 3, and `claude plugin update` reads it from disk, so an
+> unbumped change is picked up anyway and nothing appears to break. The
+> failure mode is real for a **git or hosted** marketplace, where clients cache
+> by version and an unbumped change is never fetched. So write the explanation
+> from that case, and say in one line that your local marketplace could not
+> demonstrate it. Do not record an observation you did not make.
 
 > **Common Pitfall:** never change the `name` of a published plugin. Users who installed it lose it.
 
@@ -226,7 +258,7 @@ This is the final lab in Claude Desktop Professional. Keep the distribution memo
 
 ## Facilitator Notes
 
-The commands for strict validation, a local marketplace (`claude plugin marketplace add`, `claude plugin install name@marketplace`, `claude plugin update`), the marketplace file shape, the zip route, and the directory requirements (a paid claude.ai plan and the developer portal) come from the Claude Code plugin publishing docs. The marketplace file validated in a scratch test here, and it warns in strict mode if the `description` is missing. `marketplace add`, `install`, and `update` were not run end to end, so rehearse them.
+The commands for strict validation, a local marketplace (`claude plugin marketplace add`, `claude plugin install name@marketplace`, `claude plugin update`), the marketplace file shape, the zip route, and the directory requirements (a paid claude.ai plan and the developer portal) come from the Claude Code plugin publishing docs. The marketplace file validated in a scratch test here, and it warns in strict mode if the `description` is missing. `marketplace add`, `install`, `update` and a new session were run end to end on the class VM on 2026-11-04 and all worked. The no-bump failure mode could not be demonstrated there, because a local `./` marketplace is read from disk; see Step 6.
 
 The portal applies directory rules that the command line does not check, so a clean local run does not guarantee acceptance, and the steps of the portal were not walked for this guide. Students do not submit. If you want to demonstrate a submission or a team upload of the extension, do it on the ROI sandbox account after rehearsal, because the Owner upload and allowlist steps were not verified.
 

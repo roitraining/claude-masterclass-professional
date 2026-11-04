@@ -200,7 +200,10 @@ The script sets those placeholders, overridable with `RVC_GIT_NAME` and
 
 ## 5. Claude Desktop, signed in to the same account as the CLI
 
-**Unblocks:** all three Course 1 labs.
+**Unblocks:** the optional extension install in Course 1 Lab 1 Part 8, and
+Lab 3 Part 5. **It does not block the rest of Course 1** — that was an
+over-block in the first report, since Lab 1 Parts 1 to 7 and all of Lab 2 are
+command line only.
 
 Claude Desktop and the `claude` CLI are currently signed in to **different
 accounts**, which blocks Course 1 entirely. Course 1 also requires Claude Code

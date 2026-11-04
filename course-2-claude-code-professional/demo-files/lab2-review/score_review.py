@@ -2,7 +2,7 @@
 """Score a set of review findings against the Lab 2 answer key.
 
 Usage:
-    python score_review.py findings.json [--key facilitator/answer_key.json] [--json]
+    python3 score_review.py findings.json [--key facilitator/answer_key.json] [--json]
 
 Findings file shape (see findings.schema.json):
     {"findings": [

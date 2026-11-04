@@ -2,7 +2,7 @@
 """INSTRUCTOR ONLY. Regenerates the SYNTHETIC activity export for Lab 2.
 
 Do not give this file to students: it contains the planted anomalies.
-Usage: python make_activity_export.py [OUTPUT_DIR]   (default: parent folder)
+Usage: python3 make_activity_export.py [OUTPUT_DIR]   (default: parent folder)
 Every person, address, key, and resource is fictional. IPs use the documentation
 ranges 192.0.2.0/24, 198.51.100.0/24 and 203.0.113.0/24. Event type names are
 SYNTHETIC and are NOT the Compliance API schema (UNVERIFIED).

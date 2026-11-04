@@ -1,7 +1,7 @@
 """Demo 7: grade recorded runs with code, then with a judge. Offline by default: no model call.
 
-    python demo7_grade.py                  # code graders and the recorded judge verdict
-    python demo7_grade.py --live-judge     # also asks a live judge (one model call)
+    python3 demo7_grade.py                  # code graders and the recorded judge verdict
+    python3 demo7_grade.py --live-judge     # also asks a live judge (one model call)
 
 Graders here are deliberately tiny. Lab 4 builds the full set.
 """

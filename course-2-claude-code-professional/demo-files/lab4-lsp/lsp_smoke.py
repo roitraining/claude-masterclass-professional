@@ -2,7 +2,7 @@
 """Talk to the language server your .lsp.json configures, without Claude Code.
 
 Usage:
-    python lsp_smoke.py PLUGIN_DIR_OR_LSP_JSON FILE [--definition LINE:COL] [--wait 8]
+    python3 lsp_smoke.py PLUGIN_DIR_OR_LSP_JSON FILE [--definition LINE:COL] [--wait 8]
 
 It picks the .lsp.json entry whose extensionToLanguage claims FILE's extension, starts
 that command, opens FILE over the Language Server Protocol, prints the diagnostics the

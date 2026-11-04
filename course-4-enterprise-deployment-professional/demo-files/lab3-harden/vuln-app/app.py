@@ -14,6 +14,6 @@ def checksum_report(name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("usage: python app.py <report-file-name>")
+        print("usage: python3 app.py <report-file-name>")
         sys.exit(2)
     sys.exit(checksum_report(sys.argv[1]))

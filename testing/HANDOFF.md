@@ -119,10 +119,12 @@ offer a LIVE path and an OFFLINE path. **Take the OFFLINE path** unless an
 instructor has provisioned a sandbox organization for you, and say which path
 you took.
 
-**Phase 4 — Course 1, Desktop (3 labs).** Needs Claude Desktop installed and
-signed in to the **same account** as Claude Code, and Claude Code 2.1.269 or
-later. If Claude Desktop is not on the VM, log all three as BLOCKED with that
-reason and do not attempt them.
+**Phase 4 — Course 1, Desktop (3 labs).** Needs Claude Code 2.1.269 or later.
+**Claude Desktop does NOT gate this course.** It is needed only for the optional
+extension install inside Lab 1 Part 8, and for Lab 3 Part 5, and for those it
+must be signed in to the same account as Claude Code because a plugin is saved
+to an account. If Desktop is missing or on another account, run all three labs
+and mark only those parts BLOCKED — never a whole lab.
 
 **Phase 5 — Course 5, Governance (3 labs).** Paper only — no software, account
 or credential. You can assess these by reading: confirm every file the lab

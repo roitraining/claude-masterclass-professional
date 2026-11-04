@@ -1,8 +1,8 @@
 """Demo 6: cap turns, subagent depth, concurrency and spend, and read the result when a cap is hit.
 
-    python demo6_caps.py turns          # max_turns=4
-    python demo6_caps.py budget         # max_budget_usd=0.03
-    python demo6_caps.py concurrency    # depth 1 and concurrency 2, asks for four parallel subagents
+    python3 demo6_caps.py turns          # max_turns=4
+    python3 demo6_caps.py budget         # max_budget_usd=0.03
+    python3 demo6_caps.py concurrency    # depth 1 and concurrency 2, asks for four parallel subagents
 
 The tool never finishes, so every run needs a cap. The caps below are demo values.
 """
@@ -65,5 +65,5 @@ async def main(mode: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1] not in ("turns", "budget", "concurrency"):
-        raise SystemExit("usage: python demo6_caps.py turns|budget|concurrency")
+        raise SystemExit("usage: python3 demo6_caps.py turns|budget|concurrency")
     asyncio.run(main(sys.argv[1]))

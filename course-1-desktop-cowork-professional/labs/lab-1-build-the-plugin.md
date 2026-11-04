@@ -15,10 +15,11 @@
 >
 > **This course needs Claude Code 2.1.269 or later.** Confirm with `claude --version`.
 >
-> Claude Desktop is needed only for **Part 8**, which is optional, and it must be
-> signed in to the **same account** as Claude Code for a plugin built here to
-> appear there. Parts 1 to 7 are entirely command line: if Desktop is missing or
-> on another account, do Parts 1 to 7 and skip Part 8.
+> Claude Desktop is needed only for the **optional extension install inside
+> Part 8**, and for that it must be signed in to the **same account** as Claude
+> Code, because a plugin is saved to an account. Everything else, including
+> packing the `.mcpb` that Part 8 requires, is command line. If Desktop is
+> missing or on another account, do the whole lab and skip only the install.
 <!-- setup-ref:end -->
 - [ ] Python 3.11 or later
 - [ ] `claude` signed in to a paid Anthropic account
@@ -156,7 +157,15 @@ Copy `$FILES/starter-server/manifest.json` to `server/manifest.json`, then edit 
 
 **Acceptance criteria:** a packed `.mcpb` file exists.
 
-> **Note:** optional if time is short. Install it in Claude Desktop from Settings, Extensions, Advanced settings, Install Extension, and ask a question that uses a tool.
+**Packing is required.** The Checkpoint and the rubric both need the `.mcpb`, so
+do not skip this step.
+
+> **Optional, and the only part that needs Claude Desktop:** install the
+> extension from Settings, Extensions, Advanced settings, Install Extension, and
+> ask a question that uses a tool. Skip this if time is short, or if Desktop is
+> unavailable or signed in to a different account than Claude Code — a plugin is
+> saved to an account, so a mismatch means yours will not appear. Skipping the
+> install costs you nothing on the Checkpoint or the rubric.
 
 ---
 

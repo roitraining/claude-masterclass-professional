@@ -11,7 +11,7 @@ How to adapt it:
      Schema describing its inputs.
   3. Log to stderr only. Anything else written to stdout breaks the protocol.
 
-Run the self-test (no Claude needed):  python test_server.py
+Run the self-test (no Claude needed):  python3 test_server.py
 """
 import csv
 import json

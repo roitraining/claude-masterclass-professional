@@ -1,6 +1,6 @@
 """Demo 8: what a passing score misses. Offline: reads recorded runs, no model call.
 
-    python demo8_scorecard.py
+    python3 demo8_scorecard.py
 """
 import json
 from pathlib import Path

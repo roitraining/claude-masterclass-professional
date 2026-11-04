@@ -3,7 +3,7 @@
 merge the results into one findings.json for score_review.py.
 
 Usage:
-    python run_reviews.py REPO [--out findings.json] [--max-turns 8] [--max-budget-usd 1.00]
+    python3 run_reviews.py REPO [--out findings.json] [--max-turns 8] [--max-budget-usd 1.00]
                           [--model NAME] [--only pr-03] [--dry-run] [--claude-cmd claude]
 
 REPO is the folder you built with build_fixture.py. Run it from any folder. The script

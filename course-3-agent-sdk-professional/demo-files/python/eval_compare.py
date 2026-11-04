@@ -1,6 +1,6 @@
 """Compare two result files and report the delta.
 
-    python eval_compare.py results/A.json results/B.json
+    python3 eval_compare.py results/A.json results/B.json
 """
 from __future__ import annotations
 
@@ -43,5 +43,5 @@ def main(a_path: str, b_path: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        raise SystemExit("usage: python eval_compare.py results/A.json results/B.json")
+        raise SystemExit("usage: python3 eval_compare.py results/A.json results/B.json")
     main(sys.argv[1], sys.argv[2])

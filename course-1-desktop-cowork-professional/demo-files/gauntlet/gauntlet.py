@@ -2,11 +2,11 @@
 """The Gauntlet: an automated scorecard out of 100 for a Claude MasterClass plugin.
 
 Usage:
-  python gauntlet.py --plugin PATH            full run (uses model credits)
-  python gauntlet.py --plugin PATH --static-only   free checks only
-  python gauntlet.py --plugin PATH --dry-run       print the eval commands, run nothing paid
-  python gauntlet.py --plugin PATH --smoke         one trivial eval case, capped at 1 dollar
-  python gauntlet.py --plugin PATH --only cold     run only some eval groups (trig,qual,adv,cold)
+  python3 gauntlet.py --plugin PATH            full run (uses model credits)
+  python3 gauntlet.py --plugin PATH --static-only   free checks only
+  python3 gauntlet.py --plugin PATH --dry-run       print the eval commands, run nothing paid
+  python3 gauntlet.py --plugin PATH --smoke         one trivial eval case, capped at 1 dollar
+  python3 gauntlet.py --plugin PATH --only cold     run only some eval groups (trig,qual,adv,cold)
 
 Options: --product N (1-4, default: detected from plugin.json name), --runs N (default 2), --concurrency N (default 4),
 --max-cost-usd X (default 5, total across all eval invocations), --model M, --out DIR.

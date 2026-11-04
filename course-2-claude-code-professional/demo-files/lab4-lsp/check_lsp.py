@@ -3,7 +3,7 @@
 and Claude Code skips the WHOLE file when any entry is invalid, so check it yourself.
 
 Usage:
-    python check_lsp.py PLUGIN_DIR_OR_LSP_JSON
+    python3 check_lsp.py PLUGIN_DIR_OR_LSP_JSON
 
 Checks (from the plugin components documentation):
   * the file is valid JSON and maps server names directly to configs, with no wrapper object

@@ -2,7 +2,7 @@
 """Cheap local checks for a Claude Code plugin, to run before you spend credits on an eval.
 
 Usage:
-    python plugin_lint.py PLUGIN_DIR [--marketplace MARKETPLACE_DIR]
+    python3 plugin_lint.py PLUGIN_DIR [--marketplace MARKETPLACE_DIR]
 
 This does NOT replace `claude plugin validate`, and it does not test behavior (that is
 what `claude plugin eval` is for). It checks the traps this lab plants: a hook that does

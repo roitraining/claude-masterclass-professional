@@ -3,8 +3,8 @@
 eleven pull request branches. All people and data are fictional.
 
 Usage:
-    python build_fixture.py TARGET_DIR
-    python build_fixture.py --emit-key DIR      # facilitator: (re)write diffs/ and facilitator/answer_key.json into DIR
+    python3 build_fixture.py TARGET_DIR
+    python3 build_fixture.py --emit-key DIR      # facilitator: (re)write diffs/ and facilitator/answer_key.json into DIR
 
 TARGET_DIR must not exist. The script runs `git init`, `git commit` and `git branch`
 inside TARGET_DIR only. It does not contact a remote and does not call a model.
@@ -30,7 +30,7 @@ Fictional example service for Lab 2.
   Routes on a `Router` created with `guard_role=...` are guarded by the router itself.
 - No credentials in code. Read them from `lending/config.py`, which reads the environment.
 - Database access uses bound parameters. Placeholders may be generated, values may not.
-- Tests use `unittest`. Run them with `python -m unittest`.
+- Tests use `unittest`. Run them with `python3 -m unittest`.
 '''
 
 BASE["lending/__init__.py"] = ""
@@ -232,7 +232,7 @@ if __name__ == "__main__":
     unittest.main()
 '''
 
-BASE["README.md"] = "# Harborview Library lending service\n\nFictional fixture for Lab 2. Run `python -m unittest`.\n"
+BASE["README.md"] = "# Harborview Library lending service\n\nFictional fixture for Lab 2. Run `python3 -m unittest`.\n"
 
 
 def rep(path, old, new):

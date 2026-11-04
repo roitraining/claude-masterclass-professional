@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Lab 1 offline checker: scores a student's findings and edited configuration.
 
-Usage:  python check_lab1.py [DIR]
+Usage:  python3 check_lab1.py [DIR]
 DIR holds the student's edited copies of the Lab 1 files and findings_lab1.json
 (default: the folder this script is in).
 
