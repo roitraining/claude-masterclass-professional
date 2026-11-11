@@ -90,14 +90,66 @@ Two consequences:
   ```
   The script now detects that file and flags it.
 
-### What is actually needed
+### ANSWERED 2026-11-11: the only change that works is disabling the profile
 
-An **AppArmor change** so the Claude Code sandbox can create a nested user
-namespace — either a profile that grants `userns create` to the Claude Code
-binary, or an adjustment to how `unpriv_bwrap` applies to it.
+All three options have now been tested on the image. **`disable-profile` works
+and the other two cannot.** Verbatim:
 
-**We have not written or tested such a profile**, and this needs someone who
-knows AppArmor on Ubuntu 26.04. What we can supply is the exact denial above,
+```
+== Before: probe with the sandbox forced on
+      apply-seccomp: write /proc/self/setgroups (nested userns is capability-restricted;
+      caller must provide CAP_SYS_ADMIN): Permission denied
+  result: PROBE_FAIL
+
+== Applying option: disable-profile
+  [ OK ] disabled bwrap-userns-restrict
+  [INFO] this removes the restriction for everything on the image, not just Claude Code
+
+== After: the same probe
+  result: PROBE_PASS
+
+== Verdict
+  [ OK ] option 'disable-profile' WORKS. The sandbox starts.
+```
+
+The change was **reverted immediately** (`[ OK ] re-enabled bwrap-userns-restrict`),
+so the image is unmodified. Nothing is deployed.
+
+**The ask is now a decision, not an investigation:**
+
+> Disable the `bwrap-userns-restrict` AppArmor profile on the classroom image.
+
+This is image-wide: it lifts the unprivileged-user-namespace restriction for
+everything on the machine, not only Claude Code. That is a real reduction in the
+image's security posture and it is the image owner's call, not ours. What we can
+say is that the two narrower options were tried and neither can work:
+
+- **`local-override`** (2026-11-04) — `unpriv_bwrap` carries `audit deny
+  capability`, and an AppArmor deny beats any allow. It can never work.
+- **`claude-profile`** (2026-11-11) — applied and reverted, not adopted. The
+  reason is structural: the profile names the `claude` binary, but the denial is
+  raised in `unpriv_bwrap`, which `/usr/bin/bwrap` transitions *into*. Confining
+  the caller does not change what the child transitions to.
+
+Mitigating context for the decision: these are short-lived, single-purpose
+classroom VMs, and the restriction being lifted is the one that stops
+unprivileged nested user namespaces — which is precisely the mechanism the course
+teaches students to rely on. If the posture change is refused, the fallback
+scoring already in the labs keeps every lab runnable; see "What it costs to say
+no" below.
+
+### What it costs to say no
+
+Nothing is blocked outright. What changes is the ceiling:
+
+| | With the profile disabled | As the image ships today |
+|---|---|---|
+| Course 4 Lab 3 | 100 | 85 (fallback scoring) |
+| Course 4 Lab 4 config 03 | exercisable | cannot be exercised; students use 04 as "strongest" |
+| Course 2 Lab 3 | full | fallback added in batch 14 |
+| Course 1 Gauntlet | unaffected | unaffected |
+
+The older note below is kept because the denial text is still the evidence:
 which names the profile (`unpriv_bwrap`), the operation (`capable`) and the
 capability (`21`, `sys_admin`).
 
@@ -123,10 +175,10 @@ change for the team to bake into the image.
 | Option | What it does | Trade-off |
 |---|---|---|
 | ~~`local-override`~~ | ~~Appends `capability sys_admin,`~~ | **TRIED 2026-11-04 AND FAILED.** `unpriv_bwrap` carries `audit deny capability`, and an AppArmor deny beats any allow, so this can never work. Reverted |
-| `claude-profile` | Installs a profile naming the real Claude Code binary with `userns,` | Scoped to Claude Code. **Caveat: Claude Code auto-updates, so the binary path moves and the profile needs re-pointing** |
-| `disable-profile` | Disables `bwrap-userns-restrict` entirely | Works for everything on the image, Claude Code included. Removes the restriction broadly, so only use it if the narrower options fail |
+| ~~`claude-profile`~~ | ~~Installs a profile naming the real Claude Code binary with `userns,`~~ | **TRIED 2026-11-11, NOT ADOPTED.** The denial is raised in `unpriv_bwrap`, which `/usr/bin/bwrap` transitions into — confining the caller does not change the child's transition. Reverted |
+| `disable-profile` | Disables `bwrap-userns-restrict` entirely | **TRIED 2026-11-11, CONFIRMED WORKING** (PROBE_FAIL → PROBE_PASS), then reverted. Image-wide, so it needs the image owner's decision |
 
-**`local-override` was tried on 2026-11-04 and failed** for the reason above. `claude-profile` is expected to fail the same way, since the deny is on the profile bwrap transitions into rather than on the calling binary. That leaves `disable-profile`, which is image-wide and needs a decision. Neither remaining option has been tested. They are the documented ways to grant
+**All three have now been tried.** `local-override` failed 2026-11-04, `claude-profile` was tried and not adopted 2026-11-11 for the same structural reason, and `disable-profile` was confirmed working the same day and reverted. They are the documented ways to grant
 unprivileged user-namespace creation under AppArmor, ordered least invasive
 first. The script exists to find out which one works on this image, with
 evidence. Everything it changes is backed up and undone by `--revert`, which
@@ -134,11 +186,15 @@ also removes the leftover ineffective sysctl from the earlier run.
 
 ### Why this is the top priority
 
-With the sandbox down, **Course 4 Lab 3 tells students an attack was blocked
-when it was not.** The tester confirmed the secrets file was read
+With the sandbox down, **Course 4 Lab 3 cannot run its core exercise as
+designed.** The tester confirmed the secrets file was read
 (`read 83 bytes from config/secrets.env`) despite the deny rules. The lab's
 checker has since been corrected to say "blocked if the OS sandbox starts", so
-it no longer lies — but the exercise still cannot be run as designed.
+it no longer lies, and batch 21 added the terminal fallback so a student reaches
+85 with no improvisation — confirmed in run 2.
+
+So this is no longer a blocker. It is a **ceiling**, and as of 2026-11-11 it is a
+decision waiting on the image owner rather than a problem waiting on a fix.
 
 ## 2. `python` command and virtual environments
 
@@ -271,14 +327,16 @@ Code's credential precedence, so a globally exported key makes Courses 1, 2 and
 
 | # | Item | Scriptable | Unblocks |
 |---|---|---|---|
-| 1 | Sandbox — **AppArmor only**, sysctl disproven | **No** | ~4 labs. Needs an AppArmor specialist |
+| 1 | Sandbox — **disable `bwrap-userns-restrict`**; all three options now tested | **Decision** | Raises Lab 3's ceiling 85 → 100 and makes Lab 4 config 03 exercisable. Blocks nothing |
 | 2 | `python-is-python3`, venvs | Yes | Nearly every lab |
 | 3 | Node + `@anthropic-ai/mcpb` | Yes | Course 1 packaging (has a fallback) |
 | 4 | Git identity | Yes | 16 labs |
 | 5 | Desktop same-account | **No** | All of Course 1 |
 | 6 | Class API keys + Console access | **No** | All of Course 3 |
 
-Items 2, 3 and 4 are routine and safe. Item 1 cannot be scripted at all and
-needs an AppArmor specialist.
+Items 2, 3 and 4 are routine and safe, and the 2026-11-11 image already has them.
+Item 1 no longer needs an AppArmor specialist — the investigation is finished and
+the one change that works is known. It needs someone who can accept an image-wide
+posture change, or decline it and accept the ceilings above.
 Items 5 and 6 need a person with the right accounts — item 6 needs Console
 administration to mint keys and set spend limits.

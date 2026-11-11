@@ -1780,3 +1780,85 @@ unconfined profile with `userns`, but the denial is raised in `unpriv_bwrap`, wh
   says "every credential in the inventory", and the rotation-state representation is
   asymmetric.
 - **Lab 4 smaller:** one line on non-payload permission denials.
+
+---
+
+## Batch 23 — the sandbox question is answered (2026-11-11, operator-run)
+
+**`disable-profile` works. `claude-profile` does not. The investigation is over and
+what remains is a decision.**
+
+The operator ran the attempts by hand, after two test sessions were refused by their own
+tool-permission layers (batch 22.8). Verbatim:
+
+```
+== Reverting every change this script makes
+  [ OK ] removed /etc/apparmor.d/claude-code-sandbox
+  [ OK ] reverted. A reboot guarantees a clean state.
+
+== Before: probe with the sandbox forced on
+      apply-seccomp: write /proc/self/setgroups (nested userns is capability-restricted;
+      caller must provide CAP_SYS_ADMIN): Permission denied
+  result: PROBE_FAIL
+
+== Applying option: disable-profile
+  [ OK ] disabled bwrap-userns-restrict
+  [INFO] this removes the restriction for everything on the image, not just Claude Code
+
+== After: the same probe
+  result: PROBE_PASS
+
+== Verdict
+  [ OK ] option 'disable-profile' WORKS. The sandbox starts.
+
+== Reverting every change this script makes
+  [ OK ] re-enabled bwrap-userns-restrict
+  [ OK ] reverted. A reboot guarantees a clean state.
+```
+
+The first block is the `claude-profile` attempt being reverted —
+`/etc/apparmor.d/claude-code-sandbox` is the file that option writes, so it had been
+applied. **Its own verdict line was not captured**; it was not adopted, and the
+structural reason it cannot work is the one run 2's tester predicted: the denial is
+raised in `unpriv_bwrap`, which `/usr/bin/bwrap` transitions *into*, so confining the
+`claude` binary does not change what its child transitions to. If anyone wants that on
+the record properly, `~/try-claude-profile.txt` on the VM has the verdict line.
+
+**The image is unmodified.** Both attempts were reverted and the final probe state is
+the original one.
+
+### What changed in the repo
+
+`IMAGE-REQUIREMENTS.md` item 1 is rewritten. It no longer asks for "an AppArmor change"
+from "someone who knows AppArmor on Ubuntu 26.04" — that work is done. It now states the
+one change that works, that it is image-wide, and what it costs to decline:
+
+| | With the profile disabled | As the image ships today |
+|---|---|---|
+| Course 4 Lab 3 | 100 | 85 (fallback scoring) |
+| Course 4 Lab 4 config 03 | exercisable | cannot be exercised; 04 is "strongest" |
+| Course 2 Lab 3 | full | fallback added in batch 14 |
+
+Nothing is blocked. Item 1 moved from **blocker** to **ceiling**, and from *Scriptable:
+No* to *Decision*.
+
+`sandbox-apparmor.sh`'s header now records all three outcomes so nobody re-runs a
+settled experiment, and `COURSE-4-RUN.md` section 2 tells the next session the sandbox is
+closed, to take the fallback paths, and to spend none of its run on it.
+
+### The decision, stated plainly for whoever owns the image
+
+> Disable the `bwrap-userns-restrict` AppArmor profile on the classroom image.
+
+It lifts the unprivileged-user-namespace restriction for everything on the machine, not
+just Claude Code. That is a genuine reduction in the image's security posture and it is
+not ours to make. Two things worth weighing: these are short-lived single-purpose
+classroom VMs, and the mechanism being unblocked is the same one the course spends
+Course 4 teaching students to rely on — a sandbox the classroom image cannot run is an
+awkward thing to teach. Against that, "we turned off an AppArmor profile image-wide to
+make a lab score 100 instead of 85" is a thin justification on its own, and the labs
+already run honestly without it.
+
+If the answer is no, nothing further is needed: the fallback scoring is in place, run 2
+confirmed a student reaches 85 with no improvisation, and the labs say so in their own
+text rather than pretending the sandbox worked.

@@ -10,7 +10,7 @@ your lab answers. **The deliverable is the log.**
 **This is the third run.** Run 2 confirmed seven of nine fixes and found that two of my
 own corrections were wrong — both about `allowedMcpServers`, one of which had become a
 new false pass worth 8 points. Batch 22 fixes those. Your job is to confirm batch 22
-holds, check that nothing regressed, and get the AppArmor attempt actually run.
+holds and check that nothing regressed. The sandbox question is closed — see section 2.
 
 Baselines:
 
@@ -21,7 +21,7 @@ Baselines:
 | Lab 2 | 99/100 | 100/100 |
 | Lab 5 | REVIEWED | REVIEWED |
 | Lab 1 | 100/100 | 100/100 |
-| Phase 0 | sandbox FAIL | sandbox FAIL, AppArmor not attempted |
+| Phase 0 | sandbox FAIL | sandbox FAIL; AppArmor settled out-of-band on 2026-11-11 |
 
 ---
 
@@ -63,46 +63,25 @@ Two things earlier runs left open here:
 
 ---
 
-## 2. The AppArmor attempt — do this before the labs
+## 2. The sandbox — settled, do not re-attempt
 
-The sandbox has never started on this image. `local-override` was tried on 2026-11-04
-and cannot work: `unpriv_bwrap` carries `audit deny capability`, and an AppArmor deny
-beats any allow. **Do not retry it.** The two remaining options are untested and you are
-authorised to try them.
+**All three AppArmor options have been tested. Do not run `--try` again.** On
+2026-11-11 the operator ran them by hand:
 
-**Run 2 could not do this and the machine was not the reason.** `sudo` is passwordless
-and the brief authorised the attempt, but the tester's own permission layer refused
-`./sandbox-apparmor.sh --try claude-profile` ("judged this action dangerous") and refused
-`provision-rvc.sh --install` as "Code from External". If yours refuses too, **say so in
-the log and stop** — do not work around it. The operator can run the four commands below
-in a terminal, or grant the session a Bash permission rule for `./sandbox-apparmor.sh`
-and `./provision-rvc.sh`.
+- `local-override` — cannot work (`unpriv_bwrap` carries `audit deny capability`).
+- `claude-profile` — applied and reverted, not adopted. The denial is raised in
+  `unpriv_bwrap`, which `/usr/bin/bwrap` transitions *into*, so confining the `claude`
+  binary changes nothing.
+- `disable-profile` — **works**: `PROBE_FAIL` → `PROBE_PASS`. Reverted immediately.
 
-```bash
-sudo -v
-./sandbox-apparmor.sh --try claude-profile  2>&1 | tee ~/try-claude-profile.txt
-# if the verdict says it did NOT work:
-./sandbox-apparmor.sh --revert
-./sandbox-apparmor.sh --try disable-profile 2>&1 | tee ~/try-disable-profile.txt
-```
+So the image is unchanged and **your run has no working sandbox.** That is expected, it
+is not a finding, and `IMAGE-REQUIREMENTS.md` item 1 now carries the decision for the
+image owner rather than an open question.
 
-The script probes with the sandbox forced on before and after each attempt and decides
-from the Bash **tool result**, not from stdout text — it has given a false pass twice
-before by reading strings, so trust its verdict line and paste it verbatim.
-
-- `claude-profile` is the narrow option and is worth more than IMAGE-REQUIREMENTS
-  suggests: the apt binary at `/usr/bin/claude` is root-owned and **stable**, so the
-  "auto-update moves the path" caveat does not apply to this image.
-- `disable-profile` removes the restriction image-wide. A PASS there is **evidence for a
-  change request, not a fix to keep.**
-
-**When you are finished either way, run `./sandbox-apparmor.sh --revert` and confirm
-with a final `--try`-free probe that the image is back as you found it.** Record what you
-applied, what the verdict was, and that you reverted. If one of them works, paste the
-exact change the script prints for the image team.
-
-Then say in `00-setup.md` whether the rest of your run had a working sandbox or not. It
-changes what Lab 3 and Lab 4 can show.
+What this means for you: take the fallback paths everywhere, exactly as a student on this
+image would. Lab 3's ceiling is 85 and Lab 4's config 03 cannot be exercised. Record the
+probe's `PROBE_FAIL` in `00-setup.md` as confirmation, and move on — **do not spend any
+of this run on the sandbox.**
 
 ---
 
@@ -238,7 +217,7 @@ organization — say which you took. Course 4 needs no Anthropic API key; if
 - **Never raise a spend cap.** If a lab stops because it hit one, that is a result.
 - **Never push to any remote.** No `git push`, no PR, no remote of any kind.
 - **Never write a credential into a result file** — replace it with `REDACTED`.
-- **Section 2 is the only place you may change this machine**, and you revert it.
+- **Do not change this machine.** Section 2 is settled; there is nothing to apply or revert in this run.
 - **Do not loop on a failing command.** A clear blocker is a useful result; a fabricated
   pass is worse than no result.
 

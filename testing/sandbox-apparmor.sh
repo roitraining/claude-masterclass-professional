@@ -3,9 +3,14 @@
 # Ubuntu 26.04, and prove it with a real before/after probe.
 #
 #   ./sandbox-apparmor.sh --diagnose            read-only, changes nothing
-#   ./sandbox-apparmor.sh --try local-override  least invasive, try first
-#   ./sandbox-apparmor.sh --try claude-profile  profile for the claude binary
-#   ./sandbox-apparmor.sh --try disable-profile most invasive, last resort
+#   ./sandbox-apparmor.sh --try local-override  TRIED 2026-11-04, cannot work
+#   ./sandbox-apparmor.sh --try claude-profile  TRIED 2026-11-11, not adopted
+#   ./sandbox-apparmor.sh --try disable-profile TRIED 2026-11-11, WORKS (image-wide)
+#
+# All three have been tested on the RVC image. Only disable-profile makes the probe
+# pass, because the denial is raised in unpriv_bwrap, which /usr/bin/bwrap transitions
+# into - confining the caller does not change the child's transition. Re-run them only
+# to re-confirm on a new image; the answer on this one is known.
 #   ./sandbox-apparmor.sh --revert              undo everything this script did
 #
 # WHY THIS EXISTS
