@@ -16,7 +16,9 @@
 - [ ] `$FILES` from your instructor: `autopsy-plugin/`, `AUTOPSY-WORKSHEET.md`, `gauntlet/` (`gauntlet.py`, `scorecard.md`, `SECURITY-CHECKLIST.md`, `adversarial/ADVERSARIAL-PACK.md`), `templates/`
 - [ ] `scorecard.md` read before you begin
 
-> **Token cost.** The full Gauntlet is a paid run. It caps spend at 5 dollars and uses 2 runs per case by default. Iterate with `--only` on a single group rather than re-running everything, and re-check free items with `--static-only`.
+> **Token cost.** The full Gauntlet is about 40 agent runs plus judge calls, and it caps spend at 5 dollars with 2 runs per case by default. On a subscription sign-in that cap measures **usage, not money**: you are not billed, but a full run does draw on your plan's limits.
+>
+> **If you have taken Course 3, check this before you run.** `ANTHROPIC_API_KEY` outranks your subscription sign-in, so a key still exported in this shell would be **billed for every one of those runs**. Run `echo $ANTHROPIC_API_KEY` first; if it prints anything, open a new terminal or run `unset ANTHROPIC_API_KEY`. Iterate with `--only` on a single group rather than re-running everything, and re-check free items with `--static-only`.
 
 ---
 

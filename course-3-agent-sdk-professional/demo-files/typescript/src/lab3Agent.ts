@@ -30,8 +30,13 @@ const RETURNS_ANALYST = {
 export const MAX_TURNS = 3;
 export const BUDGET_USD = 5.0;
 // TODO 4: choose depth and concurrency limits for subagents. Both are passed as environment variables.
-const SUBAGENT_DEPTH: string | null = null; // example: "1"
-const SUBAGENT_CONCURRENCY: string | null = null; // example: "2"
+export const SUBAGENT_DEPTH: string | null = null; // example: "1"
+export const SUBAGENT_CONCURRENCY: string | null = null; // example: "2"
+// TODO 5: bound the loop subagent's own turns. maxTurns above limits the PARENT's
+// turns, not the tool calls a subagent makes inside one of them, so on its own it
+// cannot stop the runaway. The subagent is defined in the fixture, which you must
+// not edit, so set the limit here and it is applied for you.
+export const LOOP_SUBAGENT_MAX_TURNS: number | null = null; // example: 4
 
 function subagentEnv() {
   const env: Record<string, string> = {};
@@ -49,7 +54,7 @@ export function buildOptions(mode: "digest" | "loop" = "digest"): any {
       allowedTools: [...loop.ALLOWED, "Agent"],
       disallowedTools: BUILTIN_TOOLS,
       tools: null,
-      agents: { "manifest-watcher": loop.LOOP_SUBAGENT },
+      agents: { "manifest-watcher": loop.loopSubagent(LOOP_SUBAGENT_MAX_TURNS) },
       env: subagentEnv(),
       maxTurns: MAX_TURNS,
       maxBudgetUsd: BUDGET_USD,

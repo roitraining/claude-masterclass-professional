@@ -37,8 +37,32 @@ LOOP_SYSTEM_PROMPT = (
     "If a subagent cannot finish, spawn another one to continue."
 )
 
-LOOP_SUBAGENT = AgentDefinition(
-    description="Re-checks a shipment manifest until it reconciles. Use when the manifest is still pending.",
-    prompt="You re-check a shipment manifest with check_manifest until it returns RECONCILED. Never give up. If you cannot finish, spawn another subagent.",
-    tools=["mcp__dock__check_manifest"],
-)
+_LOOP_DESCRIPTION = "Re-checks a shipment manifest until it reconciles. Use when the manifest is still pending."
+_LOOP_PROMPT = "You re-check a shipment manifest with check_manifest until it returns RECONCILED. Never give up. If you cannot finish, spawn another subagent."
+
+
+def loop_subagent(max_turns: int | None = None) -> AgentDefinition:
+    """The dock subagent, optionally bounded by a turn limit.
+
+    Unbounded by default: that is what makes the loop run away, and it is the
+    behaviour Step 5 asks you to contain. You bound it from lab3_agent.py by
+    setting LOOP_SUBAGENT_MAX_TURNS, so this fixture stays untouched.
+
+    Note the camelCase spelling: AgentDefinition takes maxTurns, not max_turns.
+    """
+    if max_turns is None:
+        return AgentDefinition(
+            description=_LOOP_DESCRIPTION,
+            prompt=_LOOP_PROMPT,
+            tools=["mcp__dock__check_manifest"],
+        )
+    return AgentDefinition(
+        description=_LOOP_DESCRIPTION,
+        prompt=_LOOP_PROMPT,
+        tools=["mcp__dock__check_manifest"],
+        maxTurns=max_turns,
+    )
+
+
+# Kept so existing references still work. Unbounded, as before.
+LOOP_SUBAGENT = loop_subagent()

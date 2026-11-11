@@ -76,9 +76,11 @@ The parent plans, fetches the five orders with its tools, delegates the eligibil
 
 ### Step 5: Cap the Loop Without Editing the Fixture
 
-**Acceptance criteria:** `python3 lab3_agent.py loop` ends with `error_max_turns` or `error_max_budget_usd`, or ends with a success result whose answer honestly says the manifest did not reconcile. The `check_manifest` count stays at or under 15 and the spend stays within the spend cap plus 50 percent headroom.
+**Acceptance criteria:** `python3 lab3_agent.py loop` ends with `error_max_turns` or `error_max_budget_usd`, or ends with a success result whose answer honestly says the manifest did not reconcile. The `check_manifest` count stays at or under 15 and the spend stays within the spend cap plus 50 percent headroom. `lab3_check.py` also checks that you set the limits, not only that the run came out well: a model that happens to stop on its own does not count as containment.
 
-> **Hint:** set `max_turns` and `max_budget_usd`. Limit subagent depth with `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` and concurrency with `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`, both through the `env` option.
+> **Hint:** set `max_turns` and `max_budget_usd`. Limit subagent depth with `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` and concurrency with `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`, both through the `env` option. Then set `LOOP_SUBAGENT_MAX_TURNS` (TODO 5).
+>
+> Work out what each limit can and cannot reach before you pick values. `max_turns` bounds the **parent's** turns, not the tool calls a subagent makes inside one of them. Depth and concurrency bound how subagents **spawn**, not how long each one runs. So one subagent can still call `check_manifest` indefinitely until you give the subagent its own turn limit.
 
 > **Common Pitfall:** do not edit the fixture to remove the loop. The point is containing it from outside.
 
@@ -147,6 +149,8 @@ python3 lab3_check.py
 | Subagent returns nonsense | Answer unrelated to the data | It only saw the prompt string. Put the data in it |
 | TypeScript auth breaks after adding env vars | Authentication error, or a binary cannot be found | The TypeScript SDK replaces the subprocess environment with `env`. Spread `process.env` into it. Python merges |
 | Digest dies immediately | `error_max_turns` on the starter | That is the planted `MAX_TURNS = 3` |
+| Loop still runs away with every limit set | `check_manifest` count in the dozens or hundreds | `LOOP_SUBAGENT_MAX_TURNS` is still `None`. The parent's `max_turns` cannot bound a subagent's own turns |
+| Loop stops cleanly but checks still fail | `config:` lines marked FAIL | The run came out well without you setting the limits. Set TODO 4 and TODO 5 and lower `BUDGET_USD` |
 | Cost exceeds the cap | Reported cost above your `max_budget_usd` | The cap is a client-side estimate. Leave headroom |
 
 ---
@@ -158,7 +162,7 @@ python3 lab3_check.py
 | Digest completes with `success`, 3 returnable orders, total 403 | 20 |
 | Subagent: a specific description, a prompt that says what the subagent returns, tools limited to what it needs, `Agent` tool_use present | 20 |
 | Parent prompt expresses plan, delegate, incorporate, and the parent checks the arithmetic of the subagent | 10 |
-| Loop stopped by a cap or honest report, within the call bound and the spend bound | 20 |
+| Loop stopped by a cap or honest report, within the call bound and the spend bound, with a turn limit set on the loop subagent | 20 |
 | Depth and concurrency limits set through `env`, with a reason for each value | 10 |
 | Limits tuned against measurements (the digest still succeeds) | 10 |
 | Capped-result note: what the user sees and who is alerted | 10 |
@@ -185,7 +189,7 @@ Lab 4, Build an Evaluation Harness, replaces your own judgment of these runs wit
 
 ## Facilitator Notes
 
-*Where the traps are planted.* (1) `lab3_agent.py` and `lab3Agent.ts` ship `MAX_TURNS = 3` (too low for the digest, which needs several lookups) and `BUDGET_USD = 5.00` (far too high to protect anything). (2) `RETURNS_ANALYST` has the description "Helper." (3) `loop_fixture.py` and `loopFixture.ts`: `check_manifest` never reconciles, and `LOOP_SYSTEM_PROMPT` says never to stop and to spawn another subagent if one gives up. (4) Python `AgentDefinition` camelCase fields. (5) TypeScript: any `env` you pass replaces the whole environment, so adding the depth variable without `...process.env` breaks authentication.
+*Where the traps are planted.* (1) `lab3_agent.py` and `lab3Agent.ts` ship `MAX_TURNS = 3` (too low for the digest, which needs several lookups) and `BUDGET_USD = 5.00` (far too high to protect anything), and `LOOP_SUBAGENT_MAX_TURNS = None`, which leaves the loop subagent unbounded. **The spend cap cannot contain this fixture at any value:** the loop costs about $0.0025 a call, so roughly 200 calls to reach $0.50 against a bound of 15. Turn limits are the only lever that works, and the subagent's own limit is the only one that reaches inside a subagent. Students who set everything except TODO 5 will see the runaway continue on a model that does not self-terminate. (2) `RETURNS_ANALYST` has the description "Helper." (3) `loop_fixture.py` and `loopFixture.ts`: `check_manifest` never reconciles, and `LOOP_SYSTEM_PROMPT` says never to stop and to spawn another subagent if one gives up. (4) Python `AgentDefinition` camelCase fields. (5) TypeScript: any `env` you pass replaces the whole environment, so adding the depth variable without `...process.env` breaks authentication.
 
 *Answer key for the digest* (as of 2026-10-19, window 30 days):
 
@@ -201,7 +205,7 @@ Returnable count 3, total refund 403.00. For the loop, any of `error_max_turns`,
 
 *What good looks like.* Limits such as 10 to 15 parent turns, a spend cap a few times the measured digest cost, depth 1 and concurrency 2 or lower, with the reasons given. Ask the student: what happens to the real task if the order list of a customer is ten times longer?
 
-*Rehearse before the day, and flag as unconfirmed.* The `AgentDefinition` fields and their Python casing, the depth and concurrency variables and their defaults, the spend cap behavior and the `error_max_budget_usd` subtype, and the `env` difference between SDKs are confirmed in the subagents guide. **Needs rehearsal:** (1) whether an in-process SDK tool name such as `mcp__shop__order_lookup` is honored in the `tools` list of a subagent (the starter does not restrict the tools of the subagent, so a subagent that cannot reach the tools will answer from the prompt only; the solution passes data in the prompt for that reason); (2) the exact subtype and result text when `max_turns` is reached, since the Python reference lists `error_max_turns` only in a comment; (3) whether a model that tends to loop does so with your model choice, so run the loop fixture before the day and keep a transcript; (4) the in-process `CALLS` counter includes calls made inside subagents only if they run in the same process, which is expected and unconfirmed; (5) subagents run in the background by default, so timing in the stream needs a rehearsal run; (6) behavior at the depth limit is described in the docs as leaving the bottom subagent unable to spawn, which students should not be told is an error.
+*Rehearse before the day, and flag as unconfirmed.* The `AgentDefinition` fields and their Python casing, the depth and concurrency variables and their defaults, the spend cap behavior and the `error_max_budget_usd` subtype, and the `env` difference between SDKs are confirmed in the subagents guide. **Needs rehearsal:** (1) whether an in-process SDK tool name such as `mcp__shop__order_lookup` is honored in the `tools` list of a subagent (the starter does not restrict the tools of the subagent, so a subagent that cannot reach the tools will answer from the prompt only; the solution passes data in the prompt for that reason); (2) the exact subtype and result text when `max_turns` is reached, since the Python reference lists `error_max_turns` only in a comment; (3) **ANSWERED 2026-11-05 - the model decides this lab's outcome.** With the planted limits, Sonnet and Haiku broke the 15-call bound in 6 of 6 runs (57 to 186 `check_manifest` calls). Opus stopped on its own, so `lab3_check.py` reported 7/7 even though the bound was never defended. Run the loop fixture on **the model your class keys actually use** before the day, and treat a pass on Opus as unproven. Two linked gaps found in the same run: `SendMessage` was not in `BUILTIN_TOOLS`, so a contained agent could resume its own stopped subagents (now fixed); and subagent `maxTurns` is unset, which is the student's job but is not named in Step 5's hint; (4) the in-process `CALLS` counter includes calls made inside subagents only if they run in the same process, which is expected and unconfirmed; (5) subagents run in the background by default, so timing in the stream needs a rehearsal run; (6) behavior at the depth limit is described in the docs as leaving the bottom subagent unable to spawn, which students should not be told is an error.
 
 ---
 

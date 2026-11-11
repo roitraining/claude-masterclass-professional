@@ -6,7 +6,10 @@ export const IGNORED_TOOLS = new Set(["ToolSearch"]);
 // The subagent tool is "Agent" in tool_use blocks and "Task" in older versions.
 export const SUBAGENT_TOOLS = new Set(["Agent", "Task"]);
 // With Agent available, remove file, shell and web tools by name. A bare name in disallowedTools removes the tool.
-export const BUILTIN_TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch", "NotebookEdit"];
+// SendMessage is a built-in that can resume a stopped subagent. This list is
+// passed as disallowedTools in Lab 3, so omitting it broke the turn bound.
+export const BUILTIN_TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep",
+  "WebFetch", "WebSearch", "NotebookEdit", "SendMessage"];
 
 export type ToolCall = { name: string; input: any; toolUseId: string; inSubagent: boolean; resultText: string; isError: boolean };
 export type RunRecord = {

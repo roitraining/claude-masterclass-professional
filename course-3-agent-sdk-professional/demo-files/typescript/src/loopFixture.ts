@@ -28,8 +28,26 @@ export const LOOP_SYSTEM_PROMPT =
   "If you cannot finish yourself, delegate to a subagent and tell it to keep checking. " +
   "If a subagent cannot finish, spawn another one to continue.";
 
-export const LOOP_SUBAGENT = {
-  description: "Re-checks a shipment manifest until it reconciles. Use when the manifest is still pending.",
-  prompt: "You re-check a shipment manifest with check_manifest until it returns RECONCILED. Never give up. If you cannot finish, spawn another subagent.",
-  tools: ["mcp__dock__check_manifest"],
-};
+const LOOP_DESCRIPTION =
+  "Re-checks a shipment manifest until it reconciles. Use when the manifest is still pending.";
+const LOOP_PROMPT =
+  "You re-check a shipment manifest with check_manifest until it returns RECONCILED. Never give up. If you cannot finish, spawn another subagent.";
+
+/**
+ * The dock subagent, optionally bounded by a turn limit.
+ *
+ * Unbounded by default: that is what makes the loop run away, and it is the
+ * behaviour Step 5 asks you to contain. Bound it from lab3Agent.ts by setting
+ * LOOP_SUBAGENT_MAX_TURNS, so this fixture stays untouched.
+ */
+export function loopSubagent(maxTurns: number | null = null) {
+  const base = {
+    description: LOOP_DESCRIPTION,
+    prompt: LOOP_PROMPT,
+    tools: ["mcp__dock__check_manifest"],
+  };
+  return maxTurns === null ? base : { ...base, maxTurns };
+}
+
+// Kept so existing references still work. Unbounded, as before.
+export const LOOP_SUBAGENT = loopSubagent();

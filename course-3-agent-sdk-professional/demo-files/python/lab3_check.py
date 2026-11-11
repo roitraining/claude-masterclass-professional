@@ -49,6 +49,25 @@ async def main() -> None:
     results.append(("loop: check_manifest calls within bound", calls <= lp["max_check_manifest_calls"], f"{calls} call(s)"))
     results.append(("loop: cost within budget plus headroom", (rec2.cost_usd or 0) <= lab3_agent.BUDGET_USD * HEADROOM, f"{rec2.cost_usd}"))
 
+    # Configuration. The checks above describe what the run DID; these describe
+    # what you set. Both are needed, because a model that stops of its own accord
+    # can satisfy every outcome check while nothing was actually contained.
+    results.append((
+        "config: loop subagent given a turn limit (TODO 5)",
+        lab3_agent.LOOP_SUBAGENT_MAX_TURNS is not None,
+        f"LOOP_SUBAGENT_MAX_TURNS={lab3_agent.LOOP_SUBAGENT_MAX_TURNS}",
+    ))
+    results.append((
+        "config: spend cap lowered from the planted 5.00",
+        lab3_agent.BUDGET_USD < 5.00,
+        f"BUDGET_USD={lab3_agent.BUDGET_USD}",
+    ))
+    results.append((
+        "config: subagent depth and concurrency both set (TODO 4)",
+        lab3_agent.SUBAGENT_DEPTH is not None and lab3_agent.SUBAGENT_CONCURRENCY is not None,
+        f"depth={lab3_agent.SUBAGENT_DEPTH} concurrency={lab3_agent.SUBAGENT_CONCURRENCY}",
+    ))
+
     print("\n=== Lab 3 checks ===")
     for label, passed, detail in results:
         print(f"[{'PASS' if passed else 'FAIL'}] {label}  ({detail})")

@@ -45,6 +45,11 @@ BUDGET_USD = 5.00
 # TODO 4: choose depth and concurrency limits for subagents. Both are passed as environment variables.
 SUBAGENT_DEPTH = None  # example: "1"
 SUBAGENT_CONCURRENCY = None  # example: "2"
+# TODO 5: bound the loop subagent's own turns. max_turns above limits the PARENT's
+# turns, not the tool calls a subagent makes inside one of them, so on its own it
+# cannot stop the runaway. The subagent is defined in the fixture, which you must
+# not edit, so set the limit here and it is applied for you.
+LOOP_SUBAGENT_MAX_TURNS = None  # example: 4
 
 
 def _env() -> dict[str, str]:
@@ -65,7 +70,7 @@ def build_options(mode: str = "digest"):
             allowed_tools=[*loop_fixture.ALLOWED, "Agent"],
             disallowed_tools=BUILTIN_TOOLS,
             tools=None,
-            agents={"manifest-watcher": loop_fixture.LOOP_SUBAGENT},
+            agents={"manifest-watcher": loop_fixture.loop_subagent(LOOP_SUBAGENT_MAX_TURNS)},
             env=_env(),
             max_turns=MAX_TURNS,
             max_budget_usd=BUDGET_USD,

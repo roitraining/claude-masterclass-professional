@@ -25,7 +25,11 @@ IGNORED_TOOLS = {"ToolSearch"}
 # The subagent tool is named "Agent" in tool_use blocks and "Task" in older versions and in the init tool list.
 SUBAGENT_TOOLS = {"Agent", "Task"}
 # Used when you want Agent available but no file, shell or web tools. A bare name in disallowed_tools removes the tool.
-BUILTIN_TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebFetch", "WebSearch", "NotebookEdit"]
+# SendMessage is listed because it is a built-in that can resume a stopped
+# subagent. Lab 3 passes this list as disallowed_tools, so leaving it out let a
+# contained agent restart its own subagents and break the turn bound.
+BUILTIN_TOOLS = ["Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebFetch",
+                 "WebSearch", "NotebookEdit", "SendMessage"]
 
 _UNSET = object()
 
