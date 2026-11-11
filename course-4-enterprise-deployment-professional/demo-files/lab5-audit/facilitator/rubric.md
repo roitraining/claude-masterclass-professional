@@ -27,7 +27,7 @@ Instructor use. Hold back until the audit is submitted.
 > note the merge; the lab now warns against it explicitly.
 
 | Findings are prioritized with a stated reason (suggested order: C4, C3, C1, C2, C5, because C4 is a live credential tied to a former employee and C3 has the widest reach) | 10 |
-| Rotation and ownership plan covers every credential involved | 10 |
+| Rotation and ownership plan covers every credential in the inventory, not only the ones that are findings (this matches the Checkpoint and the template; `cred-103` needs a row) | 10 |
 
 ## Notes
 

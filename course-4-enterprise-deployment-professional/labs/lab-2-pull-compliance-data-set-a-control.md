@@ -110,7 +110,15 @@ Facts you need, from the course's verified set:
 
 **Acceptance criteria:** it names the macOS preference domain, the Windows precedence between machine and user level, the delivery method and installer for each platform, the three policy areas, and what happens to the in-app extension allowlist.
 
-> **Common Pitfall:** key names are not supplied for Track B. Use placeholders that start with `UNVERIFIED:` and do not invent any. Writing key names you half-remember loses the points for that row.
+**Facts you need for Track B, from the course's verified set:**
+
+- The macOS configuration-profile preference domain is `com.anthropic.claudefordesktop` (see Demo 4).
+- On Windows, Group Policy or Intune sets machine-wide (HKLM) or per-user (HKCU) values, and **the machine level takes priority**.
+- Installers: `.pkg` on macOS, `.msix` on Windows.
+- The three policy areas are auto-update, desktop extensions, and local development MCP.
+- User-machine policy overrides the in-app extension allowlist.
+
+> **Common Pitfall:** the *individual key names* under that domain are not supplied. The domain above is given; the keys are not. Use placeholders that start with `UNVERIFIED:` for any key name and do not invent one. Writing key names you half-remember loses the points for that row.
 
 ### Step 7: Score Yourself
 

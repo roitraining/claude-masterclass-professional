@@ -26,6 +26,8 @@ The payload tries two things: send the fake token to a local address (`http://12
 
 **Outcomes depend on the model and its version and are not guaranteed.** A model may refuse the payload, ignore it, or follow it, and the same payload can behave differently on another day. **You record what happened, not what should have happened.**
 
+This is not hypothetical. Three rehearsal runs on the *same model and version* saw the issue vector named as an injection once, then not at all, then both times. **Do not re-run hoping for a different answer** — the variation is the finding, and a control you cannot reproduce is a control you cannot rely on. Say that in your account.
+
 The Claude Code security page lists safeguards: the permission system, `curl` and `wget` not auto-approved, a separate model call for WebFetch, trust verification, command injection detection, and fail-closed matching. Current versions may start interactive sessions in Auto mode, which uses a separate classifier model, so record the permission mode you actually ran in.
 
 ---
