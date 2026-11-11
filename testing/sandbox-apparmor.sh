@@ -136,7 +136,22 @@ if [ "$MODE" = "revert" ]; then
   hdr "Reverting every change this script makes"
   [ -f "$BACKUP_DIR/local-override.created" ] && { $SUDO rm -f "$LOCAL_OVERRIDE"; ok "removed $LOCAL_OVERRIDE"; }
   [ -f "$BACKUP_DIR/local-override.bak" ] && { $SUDO cp "$BACKUP_DIR/local-override.bak" "$LOCAL_OVERRIDE"; ok "restored $LOCAL_OVERRIDE"; }
-  [ -f "$BACKUP_DIR/claude-profile.created" ] && { $SUDO rm -f "$CLAUDE_PROFILE"; ok "removed $CLAUDE_PROFILE"; }
+  if [ -f "$BACKUP_DIR/claude-profile.created" ]; then
+    # Unload FIRST, then delete. Deleting the file and reloading AppArmor does not
+    # unload a profile whose file is gone: it stays in the kernel and attaches to every
+    # new claude process until reboot. Run 3 found this VM still carrying
+    # claude-code-sandbox (unconfined) hours after a --revert that said it had reverted.
+    $SUDO apparmor_parser -R "$CLAUDE_PROFILE" 2>/dev/null       || echo -n "$(basename "$CLAUDE_PROFILE")" | $SUDO tee /sys/kernel/security/apparmor/.remove >/dev/null 2>&1
+    $SUDO rm -f "$CLAUDE_PROFILE"
+    if $SUDO aa-status 2>/dev/null | grep -q "$(basename "$CLAUDE_PROFILE")"; then
+      bad "$(basename "$CLAUDE_PROFILE") is STILL LOADED in the kernel"
+      echo "        remove it with:"
+      echo "          echo -n $(basename "$CLAUDE_PROFILE") | sudo tee /sys/kernel/security/apparmor/.remove"
+      echo "        or reboot. Until then it attaches to every new $(command -v claude 2>/dev/null || echo claude)."
+    else
+      ok "removed and unloaded $CLAUDE_PROFILE"
+    fi
+  fi
   if [ -f "$BACKUP_DIR/profile-disabled" ]; then
     $SUDO rm -f "/etc/apparmor.d/disable/$(basename "$PROFILE")"
     $SUDO apparmor_parser -r "$PROFILE" 2>/dev/null && ok "re-enabled $(basename "$PROFILE")"
@@ -149,7 +164,11 @@ if [ "$MODE" = "revert" ]; then
   }
   $SUDO systemctl reload apparmor 2>/dev/null || $SUDO service apparmor reload 2>/dev/null
   $SUDO rm -rf "$BACKUP_DIR"
-  ok "reverted. A reboot guarantees a clean state."
+  if $SUDO aa-status 2>/dev/null | grep -qE "$(basename "$CLAUDE_PROFILE")"; then
+    bad "revert INCOMPLETE - see the removal command above. A reboot also clears it."
+  else
+    ok "reverted. A reboot guarantees a clean state."
+  fi
   exit 0
 fi
 

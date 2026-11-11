@@ -1944,3 +1944,125 @@ One real risk: both previous runs had their own tool-permission layer refuse thi
 command. The brief tells run 3 to log the refusal and fall back rather than work around
 it, because "a session cannot reach the student path" is itself something the operator
 needs to know — a student with a terminal is not a session with a permission layer.
+
+---
+
+## Batch 25 — Course 4 run 3 (2026-11-11, at 43a70ab): batch 22 held, verified at runtime
+
+**Lab 3 PASS WITH NOTES 85/85, Lab 2 100, Lab 1 100, Lab 4 pass with notes, Lab 5
+reviewed.** Run 3 tested at `43a70ab`, so it predates batches 23 and 24 — the student
+sandbox script has still never been run on the VM.
+
+Every batch 22 fix held, and this run checked them **at runtime** rather than only in the
+checker, which is what the previous two could not do:
+
+| Shape | Checker | Runtime |
+|---|---|---|
+| `allowedMcpServers` as objects, `shadow-sync` still declared | 60/60 | `shadow-sync` blocked, approved two connected |
+| `allowedMcpServers` as bare strings | 52/60, shape explained | `mcp_servers: []` — every server blocked |
+| pre-approval only, `shadow-sync` declared | 55/60 | `shadow-sync` connects, so the 5 lost points are deserved |
+| unhardened starter | 0/60 | all four predictions "will succeed" |
+
+The tester also checked the Step 3 table against the raw `settings-reference.md`:
+*"wherever it's defined" and the one-key-object type are there. The batch 21.1 sentence
+appears 0 times.* That independently confirms batch 22.1.
+
+### 25.1 MY BUG, on the operator's machine: `--revert` reported a revert it had not done
+
+The worst finding in the run, because it left state behind on a live VM.
+`sandbox-apparmor.sh --revert` deleted `/etc/apparmor.d/claude-code-sandbox` and reloaded
+AppArmor — but **a reload does not unload a profile whose file is already gone.**
+`claude-code-sandbox (unconfined)` stayed loaded in the kernel and attached to every new
+`/usr/bin/claude` for hours after the script printed `[ OK ] reverted`.
+
+Operator fix, given to the user immediately:
+
+```bash
+echo -n claude-code-sandbox | sudo tee /sys/kernel/security/apparmor/.remove
+```
+
+Script fix: the revert branch now unloads with `apparmor_parser -R` **before** `rm -f`,
+falls back to the `.remove` interface, then checks `aa-status` and says
+`revert INCOMPLETE` with the removal command if the profile is still there. A script that
+reports success it has not verified is the same failure mode as a grader that passes a
+configuration it has not checked.
+
+Also confirmed by the operator's own run, with the verdict lines run 2's output lacked:
+**`claude-profile`: FAIL** — the denial is still raised in `profile="unpriv_bwrap"`,
+exactly as predicted. **`disable-profile`: PASS.**
+
+### 25.2 FIXED: the attack script told an unhardened student they had 15/25
+
+Batch 22.5's fallback line hard-coded *"attacks 1-3 predicted 5 each = 15"* and called it
+"the expected result". But attacks 1–3 score 5 each **only where `check_settings.py`
+predicts them blocked**, which for an unhardened config is none of them. So the
+unhardened starter printed `15 / 25` next to a Part A of 0/60.
+
+I fixed a line that under-reported by adding one that over-reports. The script no longer
+computes a total: it states what the fallback is, prints attack 4's live score, and tells
+the student to read the checker's PREDICTED block and add them up — *"do not assume 15."*
+
+### 25.3 FIXED: the lab still demanded "no longer declared" where the checker said "cannot start"
+
+Batch 22 taught the checker that a blocking allowlist is enforcement, but three places
+still told students the unapproved server must be **removed from `.mcp.json`**: Step 3's
+acceptance criterion, the Checkpoint, and the Troubleshooting row (which also omitted
+`allowedMcpServers` from the list of things that stop a server). A student using a correct
+allowlist scored 60/60 while the lab text said they had not met the criterion.
+
+All three now say the server **cannot start** — removed, rejected, or shut out by an
+allowlist — and Step 3's prose no longer claims only one key blocks.
+
+### 25.4 FIXED: the malformed-shape message was wrong for two of three shapes
+
+It printed "blocks EVERY server, approved included" for any malformed entry. True for an
+allowlist made only of strings. **False** for `deniedMcpServers` as strings, which matches
+nothing and so blocks nothing — run 3 confirmed `shadow-sync` still connects — and false
+for a mixed allowlist, where only the string entry is ignored. The scores were right; the
+explanation was wrong. The message is now per-list and says what each shape actually does.
+
+That also retires the `still running` line properly: it now prints only when it is true,
+instead of alongside `MALFORMED`.
+
+### 25.5 FIXED: C4 rested on "never rotated" with no policy to measure against
+
+Batch 22.4 reframed C4 as ownership and rotation. But nothing in the tree said what the
+rotation expectation was, so "never rotated" was an assertion a student could not check.
+
+`harbor-org/README.md` now carries Harbor's credential policy: named owner, re-issue to a
+team when the owner leaves, rotate at least every **180 days**, CI secrets scoped to one
+repository.
+
+180 is deliberate. Against the 2026-10-12 audit date, `cred-101` is 252 days since
+creation and never rotated — the only breach, which is exactly C4. `cred-102` is 53 days
+and `cred-103` is 163, both compliant. **A 90-day policy would have made `cred-103` a real
+finding and destroyed it as a decoy**, which is the kind of second-order damage this
+sequence of batches keeps producing. The arithmetic is recorded in the rubric so the next
+person changing a date can see what it would break.
+
+Smaller, same area: the rubric no longer quotes the superseded Checkpoint wording, and the
+student-facing callout says "whether anyone rotates it" rather than "whether it expires".
+
+### 25.6 Smaller
+
+- Lab 3's Facilitator "Needs rehearsal" list still named the MCP setting names as
+  unconfirmed. They are confirmed and runtime-verified now; the list says so and keeps
+  only what is genuinely unrehearsed (live sandbox behaviour, `sandbox.filesystem`
+  nesting, deny-rule syntax, loopback for attack 2).
+- The run brief named result files `-run2.md`; it now says `-run<N>.md`.
+
+### 25.7 Still open
+
+- **The sandbox.** `disable-profile` is the only thing that works. Batch 24 lets students
+  do it themselves; **that script has still never been run on the VM** and is run 4's
+  first job.
+- **Student packs** and **Lab 2 Track B's `com.anthropic.claudefordesktop`** (carried from
+  21.9, now three runs old). Both need a decision, not a test.
+- **Lab 2:** the "ids must show the pattern" sentence is guidance the checker does not
+  enforce; A4's sequence is still undefined in the Facilitator Notes.
+- **Lab 4:** no rule for whether "[passage omitted]" counts as `model_flagged`. Run 3 saw
+  both issue-vector runs name the injection where run 1 saw one and run 2 saw none — on
+  the same model and version. Flagging is not stable across runs, which is worth saying
+  in the lab rather than leaving students to wonder.
+- **Lab 5:** "every credential involved" vs "every credential in the inventory" is still
+  unresolved between rubric and Checkpoint.

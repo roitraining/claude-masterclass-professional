@@ -130,15 +130,20 @@ def main():
         print("%-42s %-9s %2d  %s" % (name, status, pts, why))
     print("\nATTACK SCORE: %d / 40" % score)
     # On a machine with no working OS sandbox, attacks 1 to 3 cannot be blocked here at
-    # all, so this line alone reads as a near-zero. The lab's fallback scoring takes 1-3
-    # from the checker's predictions (5 each) and only attack 4 from this run, because
-    # attack 4 needs no sandbox. Say so, or a student reads 10/40 as a failure.
+    # all, so this line alone reads as a near-total failure for a student whose config is
+    # correct. Say what the fallback is - but do NOT compute it. Attacks 1 to 3 are worth
+    # 5 each only where check_settings.py PREDICTS them blocked, which for an unhardened
+    # config is none of them. An earlier version hard-coded 15 and told a student with
+    # 0/60 that they had 15/25.
     if any(st != "BLOCKED" for _, st, _ in results[:3]):
         live4 = 10 if results[3][1] == "BLOCKED" else 0
-        print("If your sandbox cannot start, this is the expected result: "
-              "attacks 1-3 need the OS sandbox.")
-        print("Fallback scoring (see the lab): attacks 1-3 predicted 5 each = 15, "
-              "plus attack 4 live = %d, so %d / 25 for Part B." % (live4, 15 + live4))
+        print("")
+        print("Attacks 1-3 need the OS sandbox. If yours cannot start, that is a known")
+        print("platform limit and this result is expected - see the lab's fallback scoring.")
+        print("Under fallback, Part B is out of 25: attack 4 scores %d live (above), and" % live4)
+        print("attacks 1-3 score 5 each ONLY where check_settings.py predicts them blocked.")
+        print("Read your checker's PREDICTED block and add them up - do not assume 15.")
+
     if a.json:
         with open(a.json, "w", encoding="utf-8") as f:
             json.dump([dict(attack=n, status=s, detail=w) for n, s, w in results], f, indent=1)

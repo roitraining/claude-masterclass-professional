@@ -179,13 +179,25 @@ def main():
         blocked |= unapproved
     left_running = unapproved - blocked
 
-    enforcement_detail = "enableAllProjectMcpServers=%r; declared in .mcp.json=%r; still running=%r" % (
-        cfg.get("enableAllProjectMcpServers"), sorted(declared), sorted(left_running))
+    enforcement_detail = "enableAllProjectMcpServers=%r; declared in .mcp.json=%r" % (
+        cfg.get("enableAllProjectMcpServers"), sorted(declared))
     if allow_bad or deny_bad:
+        # Be specific about what the malformed shape actually does: a bad entry in an
+        # ALLOWlist matches nothing, so nothing satisfies the allowlist; a bad entry in a
+        # DENYlist simply never matches, so it blocks nothing at all. Saying "blocks every
+        # server" for both was wrong for deniedMcpServers and for a mixed allowlist.
         enforcement_detail += ("; MALFORMED entries %r - allowedMcpServers and deniedMcpServers take "
-                               "objects with one key, e.g. {\"serverName\": \"docs-search\"}. A list of "
-                               "bare strings matches nothing and blocks EVERY server, approved included"
+                               "objects with one key, e.g. {\"serverName\": \"docs-search\"}"
                                % (allow_bad + deny_bad))
+        if allow_bad:
+            enforcement_detail += ("; a string in allowedMcpServers matches no server, so it protects "
+                                   "nothing and every entry spelled that way is ignored - an allowlist "
+                                   "made only of strings blocks every server, approved ones included")
+        if deny_bad:
+            enforcement_detail += ("; a string in deniedMcpServers matches no server either, so that "
+                                   "entry blocks nothing")
+    else:
+        enforcement_detail += "; still running=%r" % sorted(left_running)
     check("MCP: enable-all is off, and no unapproved server is left running", 5,
           cfg.get("enableAllProjectMcpServers") is not True and not left_running
           and not allow_bad and not deny_bad,

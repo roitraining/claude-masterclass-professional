@@ -71,7 +71,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 > departed owner's unrotated credential are **separate findings**, scored
 > separately, even though they involve the same credential in the inventory.
 > One is about **scope** — a secret used by more than one repository — and the
-> other is about **ownership and lifecycle** — who holds it, whether it expires,
+> other is about **ownership and lifecycle** — who holds it, whether anyone rotates it,
 > whether it was rotated, and whether it was used after they left. Merging them
 > into a single row loses the points for the one you did not state.
 

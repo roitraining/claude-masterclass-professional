@@ -238,7 +238,7 @@ organization — say which you took. Course 4 needs no Anthropic API key; if
 ## 6. How to log
 
 Copy `testing/results/_TEMPLATE.md` to
-`testing/results/course-4-enterprise-deployment-professional-<lab-file-slug>-run2.md`.
+`testing/results/course-4-enterprise-deployment-professional-<lab-file-slug>-run<N>.md`, where <N> is this run's number.
 
 Verdicts, and only these: `PASS`, `PASS WITH NOTES`, `FAIL`, `BLOCKED`, `REVIEWED`,
 `NOT TESTED`.
@@ -252,15 +252,15 @@ exercised. Also record:
   time, not student time, if that is what it is.
 - **Anything a student would ask that the lab does not answer.**
 
-**Save after each lab, not at the end.** Keep `testing/results/00-INDEX-run2.md` current:
+**Save after each lab, not at the end.** Keep `testing/results/00-INDEX-run<N>.md` current:
 
 ```markdown
 | Lab | Run 1 | Run 2 | Tested | Result file |
 |---|---|---|---|---|
-| Course 4 Lab 3 | FAIL | PASS WITH NOTES | 2026-11-11 18:40 | ...-lab-3-...-run2.md |
+| Course 4 Lab 3 | FAIL | PASS WITH NOTES | 2026-11-11 18:40 | ...-lab-3-...-run<N>.md |
 ```
 
-Finish with `testing/results/99-summary-run2.md`: the verdict table, which fixes held and
+Finish with `testing/results/99-summary-run<N>.md`: the verdict table, which fixes held and
 which did not, the AppArmor outcome, the blockers in the order they should be fixed, and
 anything about this image the setup guide should say and does not.
 

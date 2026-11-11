@@ -99,7 +99,7 @@ Follow the copy steps in `lab3_brief.md`, then read the approved lists.
 **Acceptance criteria:**
 
 - Permission deny rules cover the secrets file, `.env`, and common network commands. No blanket Bash allow remains.
-- The blanket approval is off, and the unapproved server is no longer declared.
+- The blanket approval is off, and the unapproved server **cannot start** — removed from `.mcp.json`, rejected, or shut out by an allowlist.
 - A setting names the approved servers, or rejects the unapproved one.
 
 > **Hint:** a deny rule matches the command as written. Ask what a different command spelling would do.
@@ -115,8 +115,8 @@ These are the keys that bear on it:
 | `disabledMcpjsonServers` | Rejects the servers you name from `.mcp.json` | names: `["shadow-sync"]` |
 | `allowedMcpServers` | Blocks any server that does not match an entry, **wherever it is defined** | one-key objects: `[{"serverName": "docs-search"}]` |
 
-**The question to answer is which of these is a control.** Two of them only approve
-servers that are already declared; one of them blocks. Compare the approved list against
+**The question to answer is which of these is a control.** One only approves what is
+already declared; two of them can actually stop a server, by different means. Compare the approved list against
 what `.mcp.json` declares, decide what has to change in each file, and be ready to say
 in Step 7 why naming the two approved servers does not, on its own, stop the third.
 
@@ -202,7 +202,7 @@ Write `lab3_notes.md` as the brief describes.
 - [ ] The project configuration cannot be rewritten
 - [ ] Deny rules cover the secrets file, `.env`, and common network commands
 - [ ] No blanket `Bash(*)` allow remains
-- [ ] The blanket approval is off and the unapproved server is no longer declared in `.mcp.json`
+- [ ] The blanket approval is off and the unapproved server **cannot start** — whether you removed it, rejected it, or shut it out with an allowlist
 - [ ] A setting names the approved servers, or rejects the unapproved one
 - [ ] `app.py` validates the name and avoids a shell
 - [ ] Part A of `check_settings.py` passes
@@ -220,7 +220,7 @@ Write `lab3_notes.md` as the brief describes.
 | Sandbox will not start | Session warns and runs unsandboxed, or every command fails with `apply-seccomp` | On Linux, run `classroom-sandbox.sh --check` — an active `bwrap-userns-restrict` profile is the usual cause and Step 0 can switch it off. On native Windows or WSL1 the primitives are missing and fallback scoring applies. Either way this is a known limit, not a failure |
 | Attack 1 still succeeds | A write lands outside the project | Check `allowWrite` for a home folder entry. The project parent is usually under it |
 | Attack 4 succeeds despite a perfect sandbox | Injection still works | The command never leaves the project. Fix `app.py`: validate the name and avoid a shell |
-| MCP rule ignored | Unapproved server still runs | Naming the approved servers only *approves* them. It does not remove the unapproved one, which stays declared in `.mcp.json` until you delete it or reject it with `disabledMcpjsonServers`. See the table in Step 3 |
+| MCP rule ignored | Unapproved server still runs | Naming the approved servers only *approves* them; it does not stop the one you did not name. Three things do stop it: delete it from `.mcp.json`, reject it with `disabledMcpjsonServers`, or shut it out with `allowedMcpServers`. See the table in Step 3 |
 | Attack 2 reports a connection | Network block appears not to work | Loopback handling under the sandbox proxy is UNVERIFIED. Ask your instructor for the rehearsed destination and pass it with `--net-target` |
 
 ---
@@ -260,7 +260,9 @@ Traps in the starter: `sandbox.enabled` false; `allowUnsandboxedCommands` true; 
 
 Attack 4 can only be fixed in `app.py`: a regular-expression check of the name and `subprocess.run` with a list argument. Teach the point that a sandbox does not stop an in-project command. The planted secret is `FAKE-TOKEN-DO-NOT-USE`.
 
-**Needs rehearsal:** the live sandbox behavior on the class machines, the parent object of `allowUnsandboxedCommands`, the nesting of the filesystem lists under `sandbox.filesystem`, the MCP allowlist setting names, the deny rule syntax, and loopback handling for attack 2. The static checker is the part that works everywhere. Do not promise live results on any specific machine.
+**Settled, 2026-11-11:** `allowUnsandboxedCommands` is a child of `sandbox`; the MCP setting names and their value shapes are confirmed against the settings reference and verified at runtime on the RVC VM (an allowlist of one-key objects blocks the unapproved server and lets the approved two connect; a list of bare strings blocks every server, approved ones included).
+
+**Needs rehearsal:** the live sandbox behavior on the class machines, the nesting of the filesystem lists under `sandbox.filesystem`, the deny rule syntax, and loopback handling for attack 2. The static checker is the part that works everywhere. Do not promise live results on any specific machine.
 
 ---
 
