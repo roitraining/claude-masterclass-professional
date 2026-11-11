@@ -10,7 +10,8 @@ your lab answers. **The deliverable is the log.**
 **This is the third run.** Run 2 confirmed seven of nine fixes and found that two of my
 own corrections were wrong — both about `allowedMcpServers`, one of which had become a
 new false pass worth 8 points. Batch 22 fixes those. Your job is to confirm batch 22
-holds and check that nothing regressed. The sandbox question is closed — see section 2.
+holds, check that nothing regressed, and be the first run to exercise Lab 3 with a
+working sandbox — see section 2.
 
 Baselines:
 
@@ -63,25 +64,36 @@ Two things earlier runs left open here:
 
 ---
 
-## 2. The sandbox — settled, do not re-attempt
+## 2. The sandbox — settled, and now a lab step
 
-**All three AppArmor options have been tested. Do not run `--try` again.** On
-2026-11-11 the operator ran them by hand:
+**Do not run `sandbox-apparmor.sh --try` again.** All three AppArmor options were tested
+by the operator on 2026-11-11: `local-override` cannot work, `claude-profile` was applied
+and not adopted, and `disable-profile` works (`PROBE_FAIL` → `PROBE_PASS`). Both attempts
+were reverted, so the image is unchanged and your `provision-rvc.sh --check` will still
+report the sandbox as blocked. That is expected and is not a finding.
 
-- `local-override` — cannot work (`unpriv_bwrap` carries `audit deny capability`).
-- `claude-profile` — applied and reverted, not adopted. The denial is raised in
-  `unpriv_bwrap`, which `/usr/bin/bwrap` transitions *into*, so confining the `claude`
-  binary changes nothing.
-- `disable-profile` — **works**: `PROBE_FAIL` → `PROBE_PASS`. Reverted immediately.
+**What is new:** students can now switch the sandbox on themselves, and Lab 3 Step 0
+tells them how. `demo-files/lab3-harden/classroom-sandbox.sh` takes `--check`, `--on` and
+`--off`. This run must exercise it, because it is new and untested on the VM:
 
-So the image is unchanged and **your run has no working sandbox.** That is expected, it
-is not a finding, and `IMAGE-REQUIREMENTS.md` item 1 now carries the decision for the
-image owner rather than an open question.
+```bash
+bash $FILES/lab3-harden/classroom-sandbox.sh --check   # expect: ACTIVE, sandbox blocked
+bash $FILES/lab3-harden/classroom-sandbox.sh --on
+./provision-rvc.sh --check                             # expect: the probe now PASSES
+```
 
-What this means for you: take the fallback paths everywhere, exactly as a student on this
-image would. Lab 3's ceiling is 85 and Lab 4's config 03 cannot be exercised. Record the
-probe's `PROBE_FAIL` in `00-setup.md` as confirmation, and move on — **do not spend any
-of this run on the sandbox.**
+Then **run Lab 3 and Lab 4 with the sandbox up**, which no run has done yet, and put the
+machine back when you finish:
+
+```bash
+bash $FILES/lab3-harden/classroom-sandbox.sh --off
+bash $FILES/lab3-harden/classroom-sandbox.sh --check   # expect: ACTIVE again
+```
+
+Record `--check` before, after `--on`, and after `--off`. If your own permission layer
+refuses `--on`, **say so in the log and run the labs on the fallback path** — do not work
+around the refusal. Runs 1 and 2 were both refused at this point, so this is a real risk;
+if it happens, the operator needs to know the student path is unreachable from a session.
 
 ---
 
@@ -217,7 +229,7 @@ organization — say which you took. Course 4 needs no Anthropic API key; if
 - **Never raise a spend cap.** If a lab stops because it hit one, that is a result.
 - **Never push to any remote.** No `git push`, no PR, no remote of any kind.
 - **Never write a credential into a result file** — replace it with `REDACTED`.
-- **Do not change this machine.** Section 2 is settled; there is nothing to apply or revert in this run.
+- **The only change you may make to this machine is Lab 3 Step 0's `classroom-sandbox.sh --on`**, and you run `--off` before you finish. Nothing else.
 - **Do not loop on a failing command.** A clear blocker is a useful result; a fabricated
   pass is worse than no result.
 

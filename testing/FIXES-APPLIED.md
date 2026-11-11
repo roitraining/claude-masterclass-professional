@@ -1862,3 +1862,85 @@ already run honestly without it.
 If the answer is no, nothing further is needed: the fallback scoring is in place, run 2
 confirmed a student reaches 85 with no improvisation, and the labs say so in their own
 text rather than pretending the sandbox worked.
+
+---
+
+## Batch 24 — students switch the sandbox on themselves, so the image change is optional
+
+Batch 23 settled that disabling `bwrap-userns-restrict` is the only thing that works, and
+left it as a decision for whoever owns the image. That left Lab 3 capped at 85 and Lab 4's
+configuration 03 unexercisable for however long the decision took.
+
+It does not need to wait. The students have passwordless `sudo` on the VM, so they can
+make the change themselves for the length of the lab and put it back afterwards.
+
+### `demo-files/lab3-harden/classroom-sandbox.sh`
+
+```
+./classroom-sandbox.sh --check     is the sandbox blocked? (changes nothing, no sudo)
+./classroom-sandbox.sh --on        let the sandbox start (needs sudo)
+./classroom-sandbox.sh --off       put the machine back as you found it
+```
+
+It mirrors exactly what the operator ran: symlink the profile into
+`/etc/apparmor.d/disable/`, `apparmor_parser -R` to unload it, and the reverse to restore
+it. If `apparmor_parser` refuses, it removes the symlink again so the machine is never
+left half-changed. It declines politely on macOS (Seatbelt needs no change) and on a
+machine where the profile is absent, and `--on` / `--off` are both idempotent.
+
+### Teaching the trade rather than hiding it
+
+The obvious way to ship this is a one-line "run this to fix the sandbox". That would be a
+bad lesson in a course about enterprise security controls, because the command is not a
+fix — it is a trade, and a bad one outside a classroom.
+
+So Lab 3 gains a **Step 0** that puts the decision in front of the student before they
+run anything. It says plainly that `--on` does *not* grant the permission to Claude Code:
+the profile is machine-wide, so every process on the VM gains what it lifts. It says the
+narrower options were tried and cannot work, and why — the denial is raised inside
+`unpriv_bwrap`, which `/usr/bin/bwrap` transitions into, so confining the caller changes
+nothing about its child. It offers doing nothing as a legitimate choice with the 85
+ceiling attached. And Step 7 now asks a student who ran `--on` to write one line on what
+they would have needed before doing that on a machine that mattered.
+
+That turns the image's limitation into the lab's first real security decision, which is
+closer to the point of Course 4 than a clean sandbox would have been.
+
+Lab 4's configuration 03 note points at the same script, and asks students to record
+which path they took — "the control was not exercised" and "the control held" are
+different results and should not be logged the same way.
+
+### What this changes about the image ask
+
+`IMAGE-REQUIREMENTS.md` item 1 moves from **Decision** to **Optional**:
+
+| | Image disables it | Student runs `--on` | Nobody does anything |
+|---|---|---|---|
+| Course 4 Lab 3 | 100 | 100 | 85 (fallback) |
+| Course 4 Lab 4 config 03 | exercisable | exercisable | not exercisable |
+| Course 2 Lab 3 | full | full | fallback from batch 14 |
+
+The middle column depends on `sudo`, which the current image grants passwordless. **If a
+future image removes `sudo`, the student route closes** and the image change becomes the
+only way to reach 100. That dependency is recorded in item 1.
+
+### Untested, and it is the next run's first job
+
+The script has been syntax-checked and its usage and non-Linux paths exercised, but
+**nothing has run `--on` on the VM**. `sandbox-apparmor.sh --try disable-profile` did the
+equivalent by hand and worked, and this script performs the same operations, but that is
+reasoning rather than evidence.
+
+Run 3's brief now opens on it: `--check`, `--on`, confirm the probe flips to PASS, run
+Lab 3 and Lab 4 **with a working sandbox for the first time**, then `--off` and confirm
+the machine is back. Two things that run should settle and no run has yet:
+
+- Whether `sandbox.allowUnsandboxedCommands: false` stops a retry on a sandbox that
+  actually works. Run 2 settled it only for a sandbox that fails at runtime.
+- Whether Lab 3 scores 100 cleanly, and whether attacks 1–3 are genuinely blocked rather
+  than merely predicted blocked.
+
+One real risk: both previous runs had their own tool-permission layer refuse this class of
+command. The brief tells run 3 to log the refusal and fall back rather than work around
+it, because "a session cannot reach the student path" is itself something the operator
+needs to know — a student with a terminal is not a session with a permission layer.

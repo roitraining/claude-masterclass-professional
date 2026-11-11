@@ -106,9 +106,19 @@ Work through all four configurations from the reference section. Restart the ses
 Run the issue vector and the tool-result vector under the default configuration, and under the one defense you believe is strongest.
 
 > **If the sandbox cannot start on your machine,** configuration 03 cannot be exercised:
-> the session starts anyway, and the sandbox only fails when a command runs. Pick
-> `04_narrowed_tools` as your strongest defense, and say in your account that 03 was not
-> testable here and why. See Lab 3 for the same platform limit.
+> the session starts anyway, and the sandbox only fails when a command runs.
+>
+> On a Linux classroom VM you can switch it on — Lab 3's Step 0 explains the trade, and
+> the same script does it:
+>
+> ```
+> bash $FILES/lab3-harden/classroom-sandbox.sh --check
+> bash $FILES/lab3-harden/classroom-sandbox.sh --on     # then --off when you finish
+> ```
+>
+> If you leave it off, pick `04_narrowed_tools` as your strongest defense and say in your
+> account that 03 was not testable here and why. Either way, record which you did: "the
+> control was not exercised" and "the control held" are different results.
 
 **Acceptance criteria:** four more runs recorded the same way, giving at least eight rows in total.
 

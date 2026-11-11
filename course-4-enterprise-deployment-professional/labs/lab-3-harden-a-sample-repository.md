@@ -14,9 +14,11 @@
 - [ ] `socat` installed if you need the network proxy
 - [ ] Python 3.11 or later
 - [ ] `claude` signed in
-- [ ] `$FILES/lab3-harden` from your instructor: `lab3_brief.md`, `check_settings.py`, and the project `vuln-app/` (`app.py`, `attack_simulation.py`, `tools/checksum.py`, `reports/q3.txt`, `config/secrets.env` with fake placeholders, `CLAUDE.md`, `.mcp.json`, `tools/mcp_stub.py`, `.claude/settings.json` starter)
+- [ ] `$FILES/lab3-harden` from your instructor: `lab3_brief.md`, `check_settings.py`, and the project `vuln-app/` (`app.py`, `attack_simulation.py`, `tools/checksum.py`, `reports/q3.txt`, `config/secrets.env` with fake placeholders, `CLAUDE.md`, `.mcp.json`, `tools/mcp_stub.py`, `classroom-sandbox.sh`, `.claude/settings.json` starter)
 
 > **Note:** if the sandbox cannot start on your machine, that is a known platform limit, not a failure. The static checker works everywhere, and fallback scoring applies.
+>
+> **On a Linux classroom VM you can switch it on yourself** — see Step 0 below. Do that and the lab scores out of 100 instead of 85.
 
 ---
 
@@ -31,6 +33,43 @@ The sandboxed Bash tool uses Seatbelt on macOS and bubblewrap on Linux and WSL2 
 ---
 
 ## Part 1: Set Up and Read the Approved Lists
+
+### Step 0: Check Whether the Sandbox Can Start (Linux, optional)
+
+```
+bash $FILES/lab3-harden/classroom-sandbox.sh --check
+```
+
+If it says the sandbox **can** start, skip to Step 1 — you will score out of 100.
+
+If it says `bwrap-userns-restrict is ACTIVE`, the OS is blocking the sandbox and Part B's
+attacks 1 to 3 cannot be blocked on this machine. You have two choices:
+
+1. **Do nothing.** Fallback scoring applies, the maximum is 85, and nothing in the lab
+   breaks. Attack 4 still runs live.
+2. **Switch it on for this VM** (needs `sudo`), then put it back when you finish:
+
+   ```
+   bash $FILES/lab3-harden/classroom-sandbox.sh --on
+   # ... do the lab ...
+   bash $FILES/lab3-harden/classroom-sandbox.sh --off
+   ```
+
+> **Read this before you run `--on`, because it is the lab's first real security
+> decision.** That command disables an AppArmor profile, and it does **not** grant the
+> permission to Claude Code alone — the profile is machine-wide, so every process on the
+> VM gains the ability it lifts. You are weakening a host control in order to switch on an
+> application sandbox. That is a genuine trade, and on a production fleet or a developer's
+> laptop the answer is usually no. It is defensible here only because this is a
+> disposable classroom VM holding nothing but fake credentials.
+>
+> Narrower options exist in principle and were tried on this image: a profile naming the
+> `claude` binary does not work, because the denial is raised inside `unpriv_bwrap`, the
+> profile that `/usr/bin/bwrap` transitions *into*. Confining the caller does not change
+> what its child transitions to. Be ready to say in Step 7 which choice you made and why.
+
+**Expected result:** you know whether your attack table will be live or predicted, and
+you can say what `--on` costs.
 
 ### Step 1: Copy the Project and Read the Brief
 
@@ -146,6 +185,8 @@ Write `lab3_notes.md` as the brief describes.
 
 **Acceptance criteria:** your notes name at least one thing your configuration does not stop.
 
+> **Also note, if you ran Step 0's `--on`:** you turned off a host control to turn on an application sandbox. Say in one line what you would have needed before doing that on a machine that mattered.
+
 ---
 
 ## Part 6: Checkpoint
@@ -176,7 +217,7 @@ Write `lab3_notes.md` as the brief describes.
 | Issue | Symptom | Solution |
 |---|---|---|
 | Sandbox will not start | `apply-seccomp: write /proc/self/setgroups ... Permission denied`, or kernel `apparmor="DENIED" ... profile="unpriv_bwrap"` | On Ubuntu 24.04 and later, AppArmor's `bwrap-userns-restrict` profile blocks the nested user namespace the sandbox needs. Relaxing `kernel.apparmor_restrict_unprivileged_userns` does **not** help, because the profile carries an explicit deny. This is a machine configuration problem, not a settings problem: record the attacks you could not verify and move on |
-| Sandbox will not start | Session warns and runs unsandboxed | You may be on native Windows, WSL1, or a machine missing the Linux primitives. Use the static checker and the fallback scoring. This is a known limit, not a failure |
+| Sandbox will not start | Session warns and runs unsandboxed, or every command fails with `apply-seccomp` | On Linux, run `classroom-sandbox.sh --check` — an active `bwrap-userns-restrict` profile is the usual cause and Step 0 can switch it off. On native Windows or WSL1 the primitives are missing and fallback scoring applies. Either way this is a known limit, not a failure |
 | Attack 1 still succeeds | A write lands outside the project | Check `allowWrite` for a home folder entry. The project parent is usually under it |
 | Attack 4 succeeds despite a perfect sandbox | Injection still works | The command never leaves the project. Fix `app.py`: validate the name and avoid a shell |
 | MCP rule ignored | Unapproved server still runs | Naming the approved servers only *approves* them. It does not remove the unapproved one, which stays declared in `.mcp.json` until you delete it or reject it with `disabledMcpjsonServers`. See the table in Step 3 |
@@ -191,7 +232,7 @@ Write `lab3_notes.md` as the brief describes.
 | Part A: static checklist (sandbox on 7, fail closed 7, no unsandboxed opt-out 7, allowed domains 7, allowWrite 5, denyRead 5, denyWrite 3, deny rules for secrets 4, deny rules for curl and wget 3, no blanket allow 4, MCP enforcement 5, MCP setting 3) | 60 |
 | Part B: attack script, 10 for each blocked attack | 40 |
 
-**Fallback scoring (no OS sandbox):** Part B attacks 1 to 3 are scored 5 each from the PREDICTED outcomes of the checker. Attack 4 is always scored live because it needs no sandbox — run `python3 attack_simulation.py` in your own terminal, since a correctly hardened session refuses every command when the sandbox cannot start (Step 6). The maximum is 85. Your instructor will say so before the lab begins.
+**Fallback scoring (no OS sandbox):** Part B attacks 1 to 3 are scored 5 each from the PREDICTED outcomes of the checker. Attack 4 is always scored live because it needs no sandbox — run `python3 attack_simulation.py` in your own terminal, since a correctly hardened session refuses every command when the sandbox cannot start (Step 6). The maximum is 85. Your instructor will say so before the lab begins. **On a Linux classroom VM, Step 0 can switch the sandbox on and put the lab back to the full 100.**
 
 ---
 

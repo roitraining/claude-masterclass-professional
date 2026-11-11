@@ -115,9 +115,23 @@ and the other two cannot.** Verbatim:
 The change was **reverted immediately** (`[ OK ] re-enabled bwrap-userns-restrict`),
 so the image is unmodified. Nothing is deployed.
 
-**The ask is now a decision, not an investigation:**
+### Students can now do this themselves, so the image change is optional
 
-> Disable the `bwrap-userns-restrict` AppArmor profile on the classroom image.
+`demo-files/lab3-harden/classroom-sandbox.sh` gives students `--check`, `--on` and
+`--off`. Lab 3's Step 0 walks them through it and makes the trade explicit: disabling the
+profile is machine-wide, it is defensible only because the VM is disposable, and they
+have to say in Step 7 what they would have needed before doing it somewhere real. Lab 4
+points at the same script for configuration 03.
+
+So **the labs now reach 100 without any image change**, provided students have `sudo` on
+the VM — they do on the current image. Teaching the trade turned out to be better than
+hiding it: the decision is the subject of the course.
+
+**What is left for the image team is therefore optional, and a decision rather than an
+investigation:**
+
+> Disable the `bwrap-userns-restrict` AppArmor profile on the classroom image,
+> if you would rather students did not have to.
 
 This is image-wide: it lifts the unprivileged-user-namespace restriction for
 everything on the machine, not only Claude Code. That is a real reduction in the
@@ -142,12 +156,16 @@ no" below.
 
 Nothing is blocked outright. What changes is the ceiling:
 
-| | With the profile disabled | As the image ships today |
-|---|---|---|
-| Course 4 Lab 3 | 100 | 85 (fallback scoring) |
-| Course 4 Lab 4 config 03 | exercisable | cannot be exercised; students use 04 as "strongest" |
-| Course 2 Lab 3 | full | fallback added in batch 14 |
-| Course 1 Gauntlet | unaffected | unaffected |
+| | Image disables it | Student runs `--on` | Nobody does anything |
+|---|---|---|---|
+| Course 4 Lab 3 | 100 | 100 | 85 (fallback scoring) |
+| Course 4 Lab 4 config 03 | exercisable | exercisable | not exercisable; 04 is "strongest" |
+| Course 2 Lab 3 | full | full | fallback added in batch 14 |
+| Course 1 Gauntlet | unaffected | unaffected | unaffected |
+
+The middle column needs `sudo`, which the current image grants passwordless. If a future
+image removes `sudo`, the student route closes and the left column becomes the only way
+to reach 100.
 
 The older note below is kept because the denial text is still the evidence:
 which names the profile (`unpriv_bwrap`), the operation (`capable`) and the
@@ -327,7 +345,7 @@ Code's credential precedence, so a globally exported key makes Courses 1, 2 and
 
 | # | Item | Scriptable | Unblocks |
 |---|---|---|---|
-| 1 | Sandbox — **disable `bwrap-userns-restrict`**; all three options now tested | **Decision** | Raises Lab 3's ceiling 85 → 100 and makes Lab 4 config 03 exercisable. Blocks nothing |
+| 1 | Sandbox — **disable `bwrap-userns-restrict`**; all three options tested | **Optional** | Students can do it themselves via Lab 3 Step 0 while they have `sudo`. Blocks nothing |
 | 2 | `python-is-python3`, venvs | Yes | Nearly every lab |
 | 3 | Node + `@anthropic-ai/mcpb` | Yes | Course 1 packaging (has a fallback) |
 | 4 | Git identity | Yes | 16 labs |
