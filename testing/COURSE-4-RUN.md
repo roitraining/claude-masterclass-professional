@@ -1,4 +1,4 @@
-# Course 4 Test Run — RVC new image, run 2 (retest, 2026-11-11)
+# Course 4 Test Run — RVC new image, run 3 (retest, 2026-11-11)
 
 **This is your brief. You are a Claude Code session inside the ROI Virtual Classroom
 (RVC) VM.**
@@ -7,10 +7,21 @@ Your job is to test the **Course 4** labs as a student would, and write down wha
 actually happens. You are testing the labs, not completing a course — nobody is grading
 your lab answers. **The deliverable is the log.**
 
-**This is a retest.** Run 1 happened earlier today and found nine defects; eight are
-fixed on this branch. Your job is to confirm the fixes hold, catch anything they broke,
-and settle the two open questions in section 2. Run 1's results are the baseline:
-Lab 1 100/100, Lab 2 99/100, Lab 3 **FAIL**, Lab 4 pass with notes, Lab 5 reviewed.
+**This is the third run.** Run 2 confirmed seven of nine fixes and found that two of my
+own corrections were wrong — both about `allowedMcpServers`, one of which had become a
+new false pass worth 8 points. Batch 22 fixes those. Your job is to confirm batch 22
+holds, check that nothing regressed, and get the AppArmor attempt actually run.
+
+Baselines:
+
+| Lab | Run 1 | Run 2 |
+|---|---|---|
+| Lab 3 | FAIL | PASS WITH NOTES (85/85 fallback, no deviation) |
+| Lab 4 | PASS WITH NOTES | PASS WITH NOTES (65/65 mechanical) |
+| Lab 2 | 99/100 | 100/100 |
+| Lab 5 | REVIEWED | REVIEWED |
+| Lab 1 | 100/100 | 100/100 |
+| Phase 0 | sandbox FAIL | sandbox FAIL, AppArmor not attempted |
 
 ---
 
@@ -19,8 +30,8 @@ Lab 1 100/100, Lab 2 99/100, Lab 3 **FAIL**, Lab 4 pass with notes, Lab 5 review
 - **[`HANDOFF.md`](HANDOFF.md)** — the rules for this run. Read all of it. It governs
   everything below.
 - **[`IMAGE-REQUIREMENTS.md`](IMAGE-REQUIREMENTS.md)** — what the image is still missing.
-- **[`FIXES-APPLIED.md`](FIXES-APPLIED.md) batch 21** — exactly what changed since run 1
-  and why. Read this before you touch Lab 3 or Lab 5; the scenario data moved.
+- **[`FIXES-APPLIED.md`](FIXES-APPLIED.md) batches 21 and 22** — what changed and why.
+  Batch 22 is this run's target; read it before you touch Lab 3 or Lab 5.
 - **[`../course-4-enterprise-deployment-professional/labs/README.md`](../course-4-enterprise-deployment-professional/labs/README.md)**
   — the course preamble.
 
@@ -41,15 +52,14 @@ cd testing
 `claude --version`, `claude auth status` (which tier?), whether you have `sudo`, the
 section 10 version block from `after.txt`, and the sandbox probe's verdict verbatim.
 
-Two things run 1 left open here:
+Two things earlier runs left open here:
 
-- **`--install` was never run** — the tester's tool-permission layer refused it. If yours
-  refuses too, **say so in the log rather than skipping it silently**, and record what
-  `--check` says is still missing.
-- **The `$HOME/.local/bin` FAIL was ours, not the image's.** This image ships the apt
-  package at `/usr/bin/claude`. The check was rewritten to assert that `claude` resolves
-  at all. Confirm it no longer reports a false FAIL. Run 1 saw `OK 20 FAIL 5`; three of
-  those five were real (all sandbox), one was the API key (expected), one was ours.
+- **`--install` has never run** — refused by the tester's own tool-permission layer in
+  both runs ("Code from External"). If yours refuses too, **say so in the log rather than
+  skipping it silently**, and record what `--check` says is still missing.
+- **The `$HOME/.local/bin` FAIL was ours.** Fixed in batch 21.7 and confirmed in run 2:
+  `[ OK ] claude resolves on PATH at /usr/bin/claude`, `OK 21 FAIL 4`, all four expected
+  (three sandbox, one API key). Confirm it still reads that way.
 
 ---
 
@@ -59,6 +69,14 @@ The sandbox has never started on this image. `local-override` was tried on 2026-
 and cannot work: `unpriv_bwrap` carries `audit deny capability`, and an AppArmor deny
 beats any allow. **Do not retry it.** The two remaining options are untested and you are
 authorised to try them.
+
+**Run 2 could not do this and the machine was not the reason.** `sudo` is passwordless
+and the brief authorised the attempt, but the tester's own permission layer refused
+`./sandbox-apparmor.sh --try claude-profile` ("judged this action dangerous") and refused
+`provision-rvc.sh --install` as "Code from External". If yours refuses too, **say so in
+the log and stop** — do not work around it. The operator can run the four commands below
+in a terminal, or grant the session a Bash permission rule for `./sandbox-apparmor.sh`
+and `./provision-rvc.sh`.
 
 ```bash
 sudo -v
@@ -90,16 +108,17 @@ changes what Lab 3 and Lab 4 can show.
 
 ## 3. Test order
 
-| # | Lab | Stated | Run 1 |
+| # | Lab | Stated | Run 2 |
 |---|---|---|---|
-| 1 | **Lab 3** — Harden a Sample Repository | 90 min | FAIL |
-| 2 | **Lab 4** — Prompt Injection Detection | 75 min | pass with notes |
-| 3 | **Lab 2** — Pull Compliance Data, Set a Control | 90 min | 99/100 |
-| 4 | **Lab 5** — Credential Audit (take-home) | 60 min | reviewed |
+| 1 | **Lab 3** — Harden a Sample Repository | 90 min | PASS WITH NOTES |
+| 2 | **Lab 5** — Credential Audit (take-home) | 60 min | reviewed |
+| 3 | **Lab 4** — Prompt Injection Detection | 75 min | pass with notes |
+| 4 | **Lab 2** — Pull Compliance Data, Set a Control | 90 min | 100/100 |
 | 5 | **Lab 1** — Configure Identity and Access | 90 min | 100/100 |
 
-Lab 3 first because it was the FAIL and it took the largest change. Lab 1 last because
-nothing in it changed — re-run it only to confirm it still scores 100/100.
+Lab 3 first because every batch 22 fix but one is in it. Lab 5 second because its C4 was
+reframed. Labs 4, 2 and 1 are regression checks — nothing in them changed since run 2, so
+confirm the run 2 scores still stand and keep those result files short.
 
 Each lab opens with `## Prerequisites` and ends with a `## Part N: Checkpoint`. Those two
 sections are your test plan.
@@ -108,33 +127,52 @@ sections are your test plan.
 
 ## 4. What changed, and what to check
 
-### Lab 3 — rewritten Step 3 and Step 6
+Batch 22 of `FIXES-APPLIED.md` is this run's target. Read it first.
 
-**Step 3 no longer asks you to guess a key name.** It now gives a table of the four
-relevant MCP settings and asks which of them is a control. The 8 MCP points split into
-5 for the enforcement (blanket approval off, no unapproved server left running) and 3 for
-naming the approved servers with any documented key. Check:
+### Lab 3 — the MCP table and checker were wrong, twice
 
-- Does the table match the current settings reference?
-- Is it now clear from the lab alone which key is a control and which is pre-approval?
-  That was the thing a student could get wrong while reasoning correctly.
-- Does `check_settings.py` still score the **unhardened starter 0 of 60**, with every
-  planted trap detected and all four predictions reading "will succeed"?
-- Harden it properly and confirm **60/60**. Then try the wrong mental model on purpose —
-  name the approved servers but leave `shadow-sync` declared — and confirm it loses the
-  5 enforcement points and keeps the 3.
+Two earlier batches got `allowedMcpServers` wrong in opposite directions: 20.4 deleted it
+as a key that "does not exist", and 21.1 restored it while asserting it "does not restrict
+servers declared in a project `.mcp.json`" and takes an array of strings. **Both of those
+assertions were fabricated** — neither is on the settings reference page. What the page
+says is that Claude Code blocks any server that does not match an entry **wherever it is
+defined**, and the type is an array of **single-key objects**, `{"serverName": "github"}`.
 
-**Step 6 now has a documented fallback.** Run 1's FAIL was that a correctly hardened
-config refuses *every* Bash call on this image, so attack 4 could not be scored live from
-inside a session, and the lab never said where else to run it. Step 6 now says to run
-`python3 attack_simulation.py` in your own terminal and explains that this means your
-config is right. Confirm a student following the lab as written can now produce the full
-attack table and reach the 85 ceiling — **without any deviation of their own.**
+Check all of this against the page itself, not a summary of it:
 
-Also still open from run 1: **if the sandbox starts** after section 2, does
-`sandbox.allowUnsandboxedCommands: false` actually stop an unsandboxed retry? Run 1 got
-partial evidence only (the model declined to retry when the sandbox failed at runtime).
-Isolating this is worth the run.
+- Does Step 3's table match the reference, including the value-shape column?
+- `check_settings.py` must score the **unhardened starter 0 of 60**, with every planted
+  trap detected and all four predictions reading "will succeed".
+- Harden it properly → **60/60**.
+- `allowedMcpServers` as **objects**, with `shadow-sync` still declared → should be
+  **60/60**, because the allowlist blocks it. Confirm at runtime that `shadow-sync` does
+  not connect while the two approved servers do.
+- `allowedMcpServers` as **bare strings** → must **not** pass. The checker should say the
+  shape is wrong. Confirm at runtime that this shape starts a session with
+  `mcp_servers: []` — every server blocked, approved ones included. This was scored 8/8
+  before batch 22 and is the single most important thing to re-check.
+- Pre-approval only (`enabledMcpjsonServers`, `shadow-sync` still declared) → **55/60**,
+  losing exactly the 5 enforcement points.
+
+**Step 6 and the attack script.** Run 2 confirmed the terminal fallback works with no
+deviation. New in batch 22: the script now prints the fallback total out of 25 when the
+sandbox is down, instead of a bare `ATTACK SCORE: 10 / 40` that reads as failure. Confirm
+the number it prints matches what the lab's fallback scoring says.
+
+**Still open:** if the sandbox starts after section 2, does
+`sandbox.allowUnsandboxedCommands: false` stop the retry *on a working sandbox*? Run 2
+settled it as far as is possible without one — with `true` the retry left the sandbox and
+hit the permission layer, with `false` it was kept inside — but not on a machine where
+the sandbox works.
+
+### Lab 5 — C4 reframed
+
+Batch 21.4 gave `cred-101` a one-year lifetime, which collided with the Checkpoint: the
+clean `cred-102` has the same lifetime, so "replace the long-lived token" became the very
+thing the Checkpoint forbids. C4 is now about **ownership and rotation**. Check that C1–C5
+are all still findable, that C4 reads as a real defect on those grounds, that
+`payments-gateway` is still genuinely clean, and that the rubric, the Checkpoint and the
+lab text agree on what a good replacement looks like.
 
 ### Lab 4 — three notes added
 
