@@ -2066,3 +2066,71 @@ student-facing callout says "whether anyone rotates it" rather than "whether it 
   in the lab rather than leaving students to wonder.
 - **Lab 5:** "every credential involved" vs "every credential in the inventory" is still
   unresolved between rubric and Checkpoint.
+
+---
+
+## Batch 26 — four decisions taken (2026-11-11)
+
+Four items had been carried for up to three runs because they needed a person, not a
+test. Taken now, with the reasoning, so they stop reappearing as findings.
+
+### 26.1 `check_record.py` is a student file
+
+`demo-files/README.md` said it "names planted items" and must be withheld, while Lab 4
+Part 4 told students to run it. The README was simply wrong about that file: it scores
+completeness (25), consistency (15) and evidence fields (25) — filled columns, legal
+values, a defense named where `stopped_by` requires one. It contains no planted item and
+there is no right answer for it to leak, because the result is whatever the model did.
+
+The withheld list is now explicit and justified per file:
+
+| Withheld | Why |
+|---|---|
+| `lab1-identity/check_lab1.py` | names all five planted defects |
+| `lab2-compliance/check_lab2.py` | names the four anomalies and their event ids |
+| `lab1-identity/facilitator/`, `lab2-compliance/facilitator/`, `lab5-audit/facilitator/` | scorecard, export generator, C1–C5 rubric |
+
+| Shipped | Why |
+|---|---|
+| `lab3-harden/check_settings.py` | scores a configuration against stated criteria; Step 5 says to run it repeatedly |
+| `lab3-harden/classroom-sandbox.sh` | Lab 3 Step 0 |
+| `lab4-injection/check_record.py` | completeness and consistency only |
+
+`demo-files/make-student-pack.sh` builds the pack: `--list` shows what would go, and a
+build refuses to finish if anything named `check_lab*.py` or `facilitator` survives the
+prune. A file not on the withheld list ships, so the failsafe catches the case where
+someone adds a checker and forgets the list. Tested: exactly the three intended student
+files remain.
+
+### 26.2 `model_flagged` requires the model to NAME the injection
+
+Run 3 saw the model elide the payload as "[passage omitted]" without saying why. All
+three testers recorded that as `no` on their own judgement; the lab never said.
+
+It is `no`. Silently doing the right thing is not flagging, and an unexplained elision
+shows the model noticed something while giving the student nothing a control could be
+built on. The lab now says this, and says why it matters: "the model refused" and "the
+model said nothing" call for different responses.
+
+The column keeps two values. A third (`elided`) would be more faithful but changes
+`record_sheet.csv` and `check_record.py`'s consistency rules for a distinction the
+written account already carries.
+
+### 26.3 Lab 1 and Lab 5 keep their durations until a real pilot
+
+Every run has called 90 minutes for Lab 1's offline path and 60 for Lab 5 generous, on
+the strength of finishing them in about three minutes. That is agent time and it is a
+poor proxy: the sessions skip the reading, the deliberation and the writing that are most
+of a student's work. Flagged for the first pilot to measure with a stopwatch and a human.
+No change.
+
+### 26.4 The operator switches the sandbox on; the session uses it
+
+Three runs in a row had their own tool-permission layer refuse `--try`, `--install` or
+`--on`. Rather than fight it a fourth time, Lab 3's Step 0 is run by the operator before
+the session starts and reverted after. The brief's section 2 now tells the session to
+*detect* which state it is in and report it, and forbids it from changing the machine.
+
+This also means the student path in `classroom-sandbox.sh` still has not been exercised
+by a session — only by a person, which is who it is for. Worth remembering if that script
+is ever expected to work from inside an agent.

@@ -10,8 +10,8 @@ your lab answers. **The deliverable is the log.**
 **This is the third run.** Run 2 confirmed seven of nine fixes and found that two of my
 own corrections were wrong — both about `allowedMcpServers`, one of which had become a
 new false pass worth 8 points. Batch 22 fixes those. Your job is to confirm batch 22
-holds, check that nothing regressed, and be the first run to exercise Lab 3 with a
-working sandbox — see section 2.
+holds, check that nothing regressed, and — if the operator switched the sandbox on —
+be the first run to score Lab 3 with it working. See section 2.
 
 Baselines:
 
@@ -64,36 +64,39 @@ Two things earlier runs left open here:
 
 ---
 
-## 2. The sandbox — settled, and now a lab step
+## 2. The sandbox — the operator switches it on, you use it
 
-**Do not run `sandbox-apparmor.sh --try` again.** All three AppArmor options were tested
-by the operator on 2026-11-11: `local-override` cannot work, `claude-profile` was applied
-and not adopted, and `disable-profile` works (`PROBE_FAIL` → `PROBE_PASS`). Both attempts
-were reverted, so the image is unchanged and your `provision-rvc.sh --check` will still
-report the sandbox as blocked. That is expected and is not a finding.
-
-**What is new:** students can now switch the sandbox on themselves, and Lab 3 Step 0
-tells them how. `demo-files/lab3-harden/classroom-sandbox.sh` takes `--check`, `--on` and
-`--off`. This run must exercise it, because it is new and untested on the VM:
+**Do not run `sandbox-apparmor.sh` or `classroom-sandbox.sh --on` yourself.** All three
+AppArmor options were tested on 2026-11-11: `local-override` cannot work,
+`claude-profile` FAILS (the denial is raised in `unpriv_bwrap`, which `/usr/bin/bwrap`
+transitions into), and `disable-profile` PASSES. Every previous run had its own
+permission layer refuse this class of command, so the operator now runs Lab 3's Step 0 by
+hand before launching you:
 
 ```bash
-bash $FILES/lab3-harden/classroom-sandbox.sh --check   # expect: ACTIVE, sandbox blocked
-bash $FILES/lab3-harden/classroom-sandbox.sh --on
-./provision-rvc.sh --check                             # expect: the probe now PASSES
+bash $FILES/lab3-harden/classroom-sandbox.sh --on     # operator, before this session
+# ... this run happens ...
+bash $FILES/lab3-harden/classroom-sandbox.sh --off    # operator, after
 ```
 
-Then **run Lab 3 and Lab 4 with the sandbox up**, which no run has done yet, and put the
-machine back when you finish:
+**Your first job is to find out which state you are in**, and to say so in
+`00-setup.md` before anything else:
 
 ```bash
-bash $FILES/lab3-harden/classroom-sandbox.sh --off
-bash $FILES/lab3-harden/classroom-sandbox.sh --check   # expect: ACTIVE again
+bash $FILES/lab3-harden/classroom-sandbox.sh --check
+./provision-rvc.sh --check | sed -n '/Sandbox/,/^$/p'
 ```
 
-Record `--check` before, after `--on`, and after `--off`. If your own permission layer
-refuses `--on`, **say so in the log and run the labs on the fallback path** — do not work
-around the refusal. Runs 1 and 2 were both refused at this point, so this is a real risk;
-if it happens, the operator needs to know the student path is unreachable from a session.
+- **Probe PASSES** — you are the first run ever to have a working sandbox. Run Lab 3 and
+  Lab 4 against it and report full scores, not fallback ones. Two things no run has
+  settled: whether Lab 3 reaches a clean **100** with attacks 1–3 *genuinely* blocked
+  rather than predicted blocked, and whether
+  `sandbox.allowUnsandboxedCommands: false` stops a retry on a sandbox that works (run 2
+  only settled it for a sandbox that fails at runtime).
+- **Probe FAILS** — the operator did not run `--on`, or it did not take. Say so plainly,
+  take the fallback paths, and expect Lab 3 at 85. Do not try to switch it on yourself.
+
+Either way, record the `--check` output verbatim. **You may not change this machine.**
 
 ---
 
@@ -229,7 +232,7 @@ organization — say which you took. Course 4 needs no Anthropic API key; if
 - **Never raise a spend cap.** If a lab stops because it hit one, that is a result.
 - **Never push to any remote.** No `git push`, no PR, no remote of any kind.
 - **Never write a credential into a result file** — replace it with `REDACTED`.
-- **The only change you may make to this machine is Lab 3 Step 0's `classroom-sandbox.sh --on`**, and you run `--off` before you finish. Nothing else.
+- **Do not change this machine.** The operator handles the sandbox before and after this run; see section 2.
 - **Do not loop on a failing command.** A clear blocker is a useful result; a fabricated
   pass is worse than no result.
 
