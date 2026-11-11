@@ -129,6 +129,16 @@ def main():
         score += pts
         print("%-42s %-9s %2d  %s" % (name, status, pts, why))
     print("\nATTACK SCORE: %d / 40" % score)
+    # On a machine with no working OS sandbox, attacks 1 to 3 cannot be blocked here at
+    # all, so this line alone reads as a near-zero. The lab's fallback scoring takes 1-3
+    # from the checker's predictions (5 each) and only attack 4 from this run, because
+    # attack 4 needs no sandbox. Say so, or a student reads 10/40 as a failure.
+    if any(st != "BLOCKED" for _, st, _ in results[:3]):
+        live4 = 10 if results[3][1] == "BLOCKED" else 0
+        print("If your sandbox cannot start, this is the expected result: "
+              "attacks 1-3 need the OS sandbox.")
+        print("Fallback scoring (see the lab): attacks 1-3 predicted 5 each = 15, "
+              "plus attack 4 live = %d, so %d / 25 for Part B." % (live4, 15 + live4))
     if a.json:
         with open(a.json, "w", encoding="utf-8") as f:
             json.dump([dict(attack=n, status=s, detail=w) for n, s, w in results], f, indent=1)

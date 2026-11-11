@@ -14,7 +14,7 @@
 - [ ] `socat` installed if you need the network proxy
 - [ ] Python 3.11 or later
 - [ ] `claude` signed in
-- [ ] `$FILES/lab3-harden` from your instructor: `lab3_brief.md`, `check_settings.py`, and the project `vuln-app/` (`app.py`, `attack_simulation.py`, `tools/checksum.py`, `reports/q3.txt`, `config/secrets.env` with fake placeholders, `CLAUDE.md`, `.mcp.json`, `.claude/settings.json` starter)
+- [ ] `$FILES/lab3-harden` from your instructor: `lab3_brief.md`, `check_settings.py`, and the project `vuln-app/` (`app.py`, `attack_simulation.py`, `tools/checksum.py`, `reports/q3.txt`, `config/secrets.env` with fake placeholders, `CLAUDE.md`, `.mcp.json`, `tools/mcp_stub.py`, `.claude/settings.json` starter)
 
 > **Note:** if the sandbox cannot start on your machine, that is a known platform limit, not a failure. The static checker works everywhere, and fallback scoring applies.
 
@@ -69,21 +69,26 @@ Follow the copy steps in `lab3_brief.md`, then read the approved lists.
 `enableAllProjectMcpServers: true`, which approves every server `.mcp.json` declares.
 These are the keys that bear on it:
 
-| Key | What it does |
-|---|---|
-| `enableAllProjectMcpServers` | Approves every server `.mcp.json` declares, with no prompt |
-| `enabledMcpjsonServers` | Approves the servers you name from `.mcp.json` |
-| `disabledMcpjsonServers` | Rejects the servers you name from `.mcp.json` |
-| `allowedMcpServers` | Allowlists which servers a user may *add* — it does **not** restrict `.mcp.json` |
+| Key | What it does | Value shape |
+|---|---|---|
+| `enableAllProjectMcpServers` | Approves every server `.mcp.json` declares, with no prompt | `true` / `false` |
+| `enabledMcpjsonServers` | Approves the servers you name from `.mcp.json` | names: `["docs-search"]` |
+| `disabledMcpjsonServers` | Rejects the servers you name from `.mcp.json` | names: `["shadow-sync"]` |
+| `allowedMcpServers` | Blocks any server that does not match an entry, **wherever it is defined** | one-key objects: `[{"serverName": "docs-search"}]` |
 
-**The question to answer is which of these is a control.** One of them approves, one
-rejects, and one governs a different thing entirely. Compare the approved list against
+**The question to answer is which of these is a control.** Two of them only approve
+servers that are already declared; one of them blocks. Compare the approved list against
 what `.mcp.json` declares, decide what has to change in each file, and be ready to say
 in Step 7 why naming the two approved servers does not, on its own, stop the third.
 
 > **Key Insight:** approving is not the same as allowlisting. A server you never
-> approved can still be declared, and a list that only names what you trust does not
-> remove what you do not.
+> approved can still be declared and still run, so approving only what you trust does
+> not remove what you do not.
+
+> **Common Pitfall:** `allowedMcpServers` takes **objects with one key**, not bare
+> strings. A list of strings matches nothing, which blocks every server including the
+> ones you approved — your session starts with no MCP servers at all. If that happens,
+> check the shape before you change the rule.
 
 ---
 

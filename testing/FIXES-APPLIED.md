@@ -1483,6 +1483,10 @@ different jobs:
 | `allowedMcpServers` | allowlist what a user may **add**; explicitly not `.mcp.json` |
 | `deniedMcpServers` | block by URL, command or name |
 
+**[SUPERSEDED 2026-11-11 by batch 22.1 — the paragraph below is wrong. The quoted
+sentence is not in the settings reference, the documented type is an array of
+single-key objects, and the tester's variant B was right.]**
+
 **One correction to the tester, too.** Their variant B concluded that
 `allowedMcpServers` is "the key that actually blocks an unapproved server" in a
 project `.mcp.json`. The reference says the opposite in as many words: "This key
@@ -1616,3 +1620,163 @@ supplies it or list it under "Facts you need".
 
 **Durations.** Labs 1 and 5 look generous at 90 and 60 minutes for the offline path.
 Not a defect; worth a rehearsal with a real student before it is changed.
+
+---
+
+## Batch 22 — Course 4 run 2 (2026-11-11, at 95af615): the fixes held, and I was wrong twice about the same key
+
+**Result: Lab 3 FAIL → PASS WITH NOTES (85/85 fallback, no deviation), Lab 2 99 → 100,
+Lab 1 100, Lab 4 pass with notes, Lab 5 reviewed.** Seven of the nine batch 21 fixes
+held. The two that did not are both mine, and both are the same key.
+
+### 22.1 MY BUG, twice, and the second time I invented the evidence
+
+Batch 20.4 deleted `allowedMcpServers`, saying it does not exist. Batch 21.1 restored it
+but asserted two things about it:
+
+> "This key doesn't restrict servers declared in a project `.mcp.json` file; use
+> `disabledMcpjsonServers` for that."
+>
+> "its type is an array of strings"
+
+**Neither sentence is in the documentation.** I checked the page itself this time,
+in the browser, rather than a summary of it:
+
+```
+hasDoesntRestrict : false
+typeLine          : "**Type**: array of objects, each with exactly one key.
+                     Use `serverName`, a string limited to letters, numbers,
+                     hyphens, and underscores; `serverCommand`, an arr…"
+example           : { "serverName": "github" }
+```
+
+What the reference actually says: *"Allowlist the MCP servers people can add. Claude
+Code blocks any server that doesn't match an entry **wherever it's defined**, including
+plugin servers, servers a user passes with `--mcp-config`, and servers from claude.ai."*
+Built-in, CLI-configured and Claude Tag servers are exempt; in-process `type: "sdk"`
+servers are exempt from both lists.
+
+So `allowedMcpServers` **does** block an unapproved server declared in `.mcp.json`.
+**Run 1's variant B was right, and batch 21.1's correction of it was wrong.** I told a
+tester their measurement had a confound, on the strength of a quotation that does not
+exist, and wrote that into the lab, the checker docstring and the run brief.
+
+The mechanism worth remembering: batch 20.4 read the docs through a summarising fetch
+and got a key deleted; batch 21.1 read them the same way and got a fabricated sentence
+plus a wrong type. Twice is a pattern. **Settle a key name or a value shape by looking
+at the page, not at something that read the page for you.** Run 2's tester checked both
+and caught it; the run 1 tester had the behaviour right from a live run on the first
+pass.
+
+### 22.2 FIXED: that error had already become a new false pass worth 8 points
+
+Because batch 21 believed the type was strings, the checker accepted
+`allowedMcpServers: ["docs-search", "ticket-bridge"]` and scored it **8/8, 60/60**. At
+runtime that shape matches nothing, so it blocks **every** MCP server including the two
+approved ones — the tester's session started with `mcp_servers: []`. A student could
+score full marks on a configuration that silently broke their whole toolchain.
+
+The checker now takes the documented shapes:
+
+- `allowedMcpServers` / `deniedMcpServers` — arrays of single-key objects. A bare string
+  is rejected with the reason spelled out, rather than scored.
+- `enabledMcpjsonServers` / `disabledMcpjsonServers` — plain names.
+- A well-formed allowlist naming only approved servers now **counts as enforcement**,
+  so leaving `shadow-sync` declared behind a correct allowlist scores 60/60. That also
+  retires the misleading `still running` message run 2 flagged: the server is blocked,
+  and the checker no longer says otherwise.
+
+Tested across every shape. Objects + still declared 60/60; `disabledMcpjsonServers`
+60/60; delete-from-`.mcp.json` 60/60; **strings 52/60 with the shape explained**;
+pre-approval with the server declared 55/60; blanket left on 55/60; unhardened starter
+still **0/60**.
+
+### 22.3 FIXED: Step 3's table carried the same wrong claim
+
+Row 4 said `allowedMcpServers` "does **not** restrict `.mcp.json`". It now says it
+blocks any non-matching server wherever it is defined, the table gained a **value shape**
+column so the object form is visible before a student writes it, and there is a pitfall
+note for the failure that is otherwise invisible — a string list that starts a session
+with no MCP servers at all.
+
+### 22.4 FIXED: Lab 5's C4 collided with its own Checkpoint
+
+Batch 21.4 gave `cred-101` a real one-year lifetime. But the clean `cred-102` has the
+same one-year lifetime, so "replace the long-lived token" became "replace a long-lived
+token with another long-lived token" — which the Checkpoint explicitly forbids. The
+rubric also said "an expiry fourteen months out … owner left four months ago"; measured
+from the 2026-10-12 audit date it is about **3.7 months** and **3.5 months**. I had
+computed from the creation date.
+
+C4 is now framed as **ownership and rotation**, which is what actually separates it from
+the clean credential: nobody owns `cred-101` and nobody has ever rotated it. The pitfall
+and Checkpoint rows now say a replacement with the same lifetime is fine when it names
+an owner and a rotation date, and the lab says outright that the clean credential shares
+the lifetime so lifetime is not the tell.
+
+### 22.5 FIXED: the attack script read as a failure under fallback scoring
+
+With no sandbox the script printed `ATTACK SCORE: 10 / 40` and stopped, which looks like
+a near-total failure for a student whose configuration is correct. It now adds, when
+attacks 1–3 were not blocked, that this is the expected result on a machine without the
+sandbox and prints the fallback total out of 25. `tools/mcp_stub.py`, which `.mcp.json`
+points at, was missing from the Prerequisites list and is now there.
+
+### 22.6 What held
+
+| Fix | Held |
+|---|---|
+| 21.3 Lab 3 Step 6 terminal fallback | **Yes** — attack table produced with no deviation; 60 + 15 + 10 = 85 |
+| 21.2 Step 3 scoring split | **Yes in the checker** — wrong model 55/60, starter 0/60, hardened 60/60 |
+| 21.6 Lab 4 `--allowedTools`, 04-as-strongest, `tool_result`, trust hint | **Yes, all four** |
+| 21.5 Lab 2 separator normalisation | **Yes** — `api_key` / `oauth_token` → 100/100 |
+| 21.5 Lab 2 "at least three" | **Yes** — lab and checker agree |
+| 21.4 Lab 5 scenario data | **Yes**, with the C4 side effect above |
+| 21.7 `provision-rvc.sh` PATH check | **Yes** — `[ OK ] claude resolves on PATH at /usr/bin/claude`, OK 21 FAIL 4, all four expected |
+
+### 22.7 Settled: `allowUnsandboxedCommands` does stop the retry
+
+Run 1 could not isolate this. Run 2 did, as far as is possible without a working sandbox:
+with `true`, the model's `dangerouslyDisableSandbox: true` retry left the sandbox and
+reached the permission layer (`Error: Run outside of the sandbox`); with `false`, the
+same retry was kept inside and failed with the same seccomp error. Not yet tested on a
+machine where the sandbox works.
+
+### 22.8 The AppArmor attempt did not happen, and not because of the machine
+
+`sudo` is passwordless and the brief authorised it, but the tester's own permission layer
+refused `./sandbox-apparmor.sh --try claude-profile` ("judged this action dangerous") and
+refused `provision-rvc.sh --install` as "Code from External". The tester did not work
+around either refusal and recorded the pre-state, so nothing needs reverting.
+
+**This needs a human at a terminal**, or a session granted a Bash permission rule for
+`./sandbox-apparmor.sh`:
+
+```bash
+cd testing
+./sandbox-apparmor.sh --try claude-profile  2>&1 | tee ~/try-claude-profile.txt
+./sandbox-apparmor.sh --revert
+./sandbox-apparmor.sh --try disable-profile 2>&1 | tee ~/try-disable-profile.txt
+./sandbox-apparmor.sh --revert
+```
+
+The tester's prediction, unverified: `claude-profile` puts the `claude` binary in an
+unconfined profile with `userns`, but the denial is raised in `unpriv_bwrap`, which
+`/usr/bin/bwrap` transitions into — so the child may still transition and only
+`disable-profile` will pass. That matches what batch 10.6 found for `local-override`.
+
+### 22.9 Still open after run 2
+
+- **The sandbox.** Unchanged, and now the only item on the critical path for a Lab 3
+  score above 85.
+- **Student packs** (carried from 21.9). Lab 4 tells students to run `check_record.py`
+  while `demo-files/README.md` says to strip it. Needs a `make-student-pack` step and a
+  decision.
+- **Lab 2 Track B's `com.anthropic.claudefordesktop`** (carried). Confirm the deck
+  supplies it.
+- **Lab 2 smaller:** the new "ids must show the pattern" sentence is guidance, not
+  enforced by the checker, and A4's sequence is still undefined in the Facilitator Notes.
+- **Lab 5 smaller:** the rubric says "every credential involved" where the Checkpoint
+  says "every credential in the inventory", and the rotation-state representation is
+  asymmetric.
+- **Lab 4 smaller:** one line on non-payload permission denials.

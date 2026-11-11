@@ -15,22 +15,34 @@ Key names CONFIRMED 2026-11-06 against the Claude Code settings reference
     script no longer accepts one: it would have given 7 points for a key Claude Code
     ignores. Corroborated on the RVC VM, where forcing sandbox.failIfUnavailable true
     made the run fail closed (apply-seccomp denial) where no settings ran unsandboxed.
-  - The MCP keys, CORRECTED 2026-11-11 after a tester found this script scoring a real
-    answer 0. An earlier version of this docstring said allowedMcpServers does not
-    exist. It does: the reference lists it as "Allowlist which MCP servers users can
-    add", scope Any file. What it does NOT do is restrict servers declared in a project
-    .mcp.json -- the reference says to use disabledMcpjsonServers for that. So all five
-    of these are real keys and they do different jobs:
-      enableAllProjectMcpServers  approve every server .mcp.json declares (the blanket)
-      enabledMcpjsonServers       approve named servers from .mcp.json (pre-approval)
-      disabledMcpjsonServers      reject named servers from .mcp.json (enforcement)
-      allowedMcpServers           allowlist what a user may ADD; not .mcp.json
-      deniedMcpServers            block by URL, command or name
-    Confirmed on the RVC VM: with enabledMcpjsonServers set and an unapproved server
-    still declared, all three servers connected. Pre-approval is not an allowlist.
-    This script therefore scores the DECISION (no unapproved server left declared, and
-    the blanket off) separately from the key, and accepts any of the three defensible
-    keys for the smaller item, so no student who got the security right scores zero.
+  - The MCP keys, CORRECTED TWICE. Read this before changing anything here.
+    2026-11-06 I removed allowedMcpServers, writing that it does not exist. It does.
+    2026-11-11 I restored it but wrote that it "does not restrict servers declared in a
+    project .mcp.json", quoting a sentence that is NOT in the settings reference, and
+    gave its type as an array of strings, which is also wrong. Both came from a summary
+    of the page rather than the page. Checked in the page itself on 2026-11-11:
+      allowedMcpServers  "Allowlist the MCP servers people can add. Claude Code blocks
+                         any server that doesn't match an entry WHEREVER IT'S DEFINED,
+                         including plugin servers, servers a user passes with
+                         --mcp-config, and servers from claude.ai." Built-in, CLI-
+                         configured and Claude Tag servers are exempt; in-process
+                         type: "sdk" servers are exempt from both lists.
+                         Type: array of objects, each with EXACTLY ONE KEY, such as
+                         {"serverName": "github"}. The string "array of strings" does
+                         not appear in that section.
+      deniedMcpServers   same single-key object shape; a denied server is blocked even
+                         if the allowlist permits it.
+      enabledMcpjsonServers / disabledMcpjsonServers  approve / reject named servers
+                         from a project .mcp.json. Plain names.
+      enableAllProjectMcpServers  approve every server .mcp.json declares (the blanket).
+    So a well-formed allowlist naming only approved servers DOES stop an unapproved
+    server declared in .mcp.json, and the tester who reported that in run 1 was right.
+    What does not work is a list of BARE STRINGS: it matches nothing, so it blocks every
+    server including the approved ones. Confirmed on the VM, where that shape started a
+    session with mcp_servers: []. This script therefore refuses the string shape rather
+    than scoring it 8/8, which is what it did for most of 2026-11-11.
+    The scoring splits the DECISION (blanket off, no unapproved server left running)
+    from the key, so no student who got the security right scores zero.
 
 STILL UNVERIFIED (confirm before delivery):
   - Permission rule syntax such as Read(./config/secrets.env) follows the Associate
@@ -127,28 +139,61 @@ def main():
         declared = set()
     unapproved = declared - APPROVED_SERVERS
 
-    def server_names(value):
-        out = set()
+    def entry_names(value, objects_only):
+        """Server names from an allow/deny list. objects_only reflects the documented
+        shape of allowedMcpServers / deniedMcpServers: an array of objects, each with
+        exactly one key, e.g. {"serverName": "github"}. A bare string there is NOT a
+        valid entry, and a list of them matches nothing - which blocks every server,
+        approved ones included. Confirmed on the RVC VM 2026-11-11: with strings, the
+        session started with mcp_servers: [].
+        """
+        names, malformed = set(), []
         for item in value or []:
-            out.add(low(item.get("serverName", "")) if isinstance(item, dict) else low(item))
-        return {x for x in out if x}
+            if isinstance(item, dict):
+                n = low(item.get("serverName", ""))
+                if n:
+                    names.add(n)
+                    continue
+                malformed.append(item)
+            elif objects_only:
+                malformed.append(item)
+            else:
+                if low(item):
+                    names.add(low(item))
+        return names, malformed
 
-    # Any of the documented keys is accepted, because each is a defensible answer to
-    # "only the approved servers run": name the approved ones (enabledMcpjsonServers),
-    # reject the unapproved one (disabledMcpjsonServers), or allowlist what may be added
-    # at all (allowedMcpServers).
-    approve = server_names(cfg.get("enabledMcpjsonServers")) | server_names(cfg.get("allowedMcpServers"))
-    reject = server_names(cfg.get("disabledMcpjsonServers")) | server_names(cfg.get("deniedMcpServers"))
+    # enabledMcpjsonServers / disabledMcpjsonServers take plain server names.
+    approve_json, _ = entry_names(cfg.get("enabledMcpjsonServers"), False)
+    reject_json, _ = entry_names(cfg.get("disabledMcpjsonServers"), False)
+    # allowedMcpServers / deniedMcpServers take single-key objects.
+    allowlist, allow_bad = entry_names(cfg.get("allowedMcpServers"), True)
+    denylist, deny_bad = entry_names(cfg.get("deniedMcpServers"), True)
 
-    # The enforcement: the blanket approval is off, and every unapproved server is either
-    # gone from .mcp.json or explicitly rejected. Naming only what you trust is neither.
-    left_running = unapproved - reject
+    # allowedMcpServers blocks any server that does not match an entry "wherever it's
+    # defined", so a well-formed allowlist naming only approved servers DOES stop an
+    # unapproved server declared in .mcp.json. That is enforcement, not pre-approval.
+    blocked = set(reject_json) | set(denylist)
+    allowlist_set = bool(cfg.get("allowedMcpServers"))
+    allowlist_ok = allowlist_set and not allow_bad and allowlist <= APPROVED_SERVERS
+    if allowlist_ok:
+        blocked |= unapproved
+    left_running = unapproved - blocked
+
+    enforcement_detail = "enableAllProjectMcpServers=%r; declared in .mcp.json=%r; still running=%r" % (
+        cfg.get("enableAllProjectMcpServers"), sorted(declared), sorted(left_running))
+    if allow_bad or deny_bad:
+        enforcement_detail += ("; MALFORMED entries %r - allowedMcpServers and deniedMcpServers take "
+                               "objects with one key, e.g. {\"serverName\": \"docs-search\"}. A list of "
+                               "bare strings matches nothing and blocks EVERY server, approved included"
+                               % (allow_bad + deny_bad))
     check("MCP: enable-all is off, and no unapproved server is left running", 5,
-          cfg.get("enableAllProjectMcpServers") is not True and not left_running,
-          "enableAllProjectMcpServers=%r; declared in .mcp.json=%r; unapproved and not rejected=%r" % (
-              cfg.get("enableAllProjectMcpServers"), sorted(declared), sorted(left_running)))
+          cfg.get("enableAllProjectMcpServers") is not True and not left_running
+          and not allow_bad and not deny_bad,
+          enforcement_detail)
 
-    named_ok = (bool(approve) and approve <= APPROVED_SERVERS) or bool(reject - APPROVED_SERVERS)
+    approve = approve_json | allowlist
+    reject = reject_json | denylist
+    named_ok = ((bool(approve) and approve <= APPROVED_SERVERS) or bool(reject - APPROVED_SERVERS))         and not allow_bad and not deny_bad
     check("MCP: a setting names the approved servers, or rejects the unapproved one", 3, named_ok,
           "approves=%r; rejects=%r (approved servers are %r)" % (
               sorted(approve), sorted(reject), sorted(APPROVED_SERVERS)))

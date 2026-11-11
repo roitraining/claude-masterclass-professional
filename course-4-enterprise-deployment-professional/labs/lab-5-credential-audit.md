@@ -68,7 +68,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 ---
 
 > **Two findings can share one credential.** The shared CI secret and the
-> departed owner's long-lived credential are **separate findings**, scored
+> departed owner's unrotated credential are **separate findings**, scored
 > separately, even though they involve the same credential in the inventory.
 > One is about **scope** — a secret used by more than one repository — and the
 > other is about **ownership and lifecycle** — who holds it, whether it expires,
@@ -83,7 +83,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 
 > **Common Pitfall:** do not fix a hard-coded key by moving it to another file in the same repository. That changes the path, not the exposure.
 
-> **Common Pitfall:** do not recommend a long-lived token as the replacement for a long-lived token.
+> **Common Pitfall:** do not recommend an unowned, unrotated token as the replacement for one. A replacement with the same lifetime is fine if it names an owner and a rotation date; a replacement that repeats the original's lack of both is not a fix.
 
 ### Step 6: List What Is Not a Finding, and Prioritize
 
@@ -111,7 +111,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 - [ ] Every finding gives a fix
 - [ ] Every credential-related finding includes a rotation step
 - [ ] No fix merely relocates a secret within the same repository
-- [ ] No fix replaces a long-lived token with another long-lived token
+- [ ] No fix replaces an unowned, never-rotated token with another one — every replacement names an owner and a rotation date
 - [ ] No placeholder value is reported as a real secret — the pattern is reported, not the value
 - [ ] The clean repository appears under "Not a finding", not as a defect
 - [ ] Findings are ordered by priority, each with a stated reason
@@ -126,7 +126,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 |---|---|---|
 | Placeholder reported as a breach | A finding quotes a `FAKE-KEY-DO-NOT-USE` value | Every secret here is fabricated. Report the pattern and the exposure, not the value |
 | Fix does not reduce exposure | A key moved from settings into another tracked file | The repository is the exposure. Move it out of the repository and rotate it |
-| Replacement is no better | A long-lived token recommended to replace a long-lived token | Choose a credential with a bounded lifetime, or a scoped CI credential |
+| Replacement is no better | The replacement repeats the original's problem | Name an owner and a rotation date, and scope the CI secret to one repository |
 | Clean repository flagged | Points lost for reporting a repository that has nothing wrong | One of the three repositories is clean. Judge each on its own evidence: owner, expiry, rotation date, scope, and whether a key sits in a settings file. List the clean one under "Not a finding" with your reason |
 | Rotation forgotten | Findings end at "remove the key" | A credential that has been committed or shared is compromised. Deleting it is not rotating it |
 
@@ -168,7 +168,7 @@ The tree and `lab5-audit/facilitator/rubric.md` are built. Planted issues:
 1. A key in a settings file — `billing-service/.claude/settings.json` sets an API key variable in `env`.
 2. An `apiKeyHelper` script that only echoes a static key — `inventory-service/.claude/settings.json` points to `.claude/get_key.sh`.
 3. A CI secret shared across repositories — the same secret name in the workflow files of `billing-service` and `inventory-service`, listed against both in a CI secrets inventory.
-4. A long-lived OAuth token (from `claude setup-token`) owned by a person who has left, shown in a credentials inventory as never rotated and with a last-used date after the departure date in the HR list.
+4. An OAuth token (from `claude setup-token`) owned by a person who has left, shown in a credentials inventory as never rotated and with a last-used date after the departure date in the HR list. The clean repository's credential has the same one-year lifetime, so the defect is **ownership and rotation**, not the lifetime.
 5. Missing deny rules for `.env` — `inventory-service` has a `.env` and no `permissions.deny`.
 
 Decoy: `payments-gateway` is clean (deny rules, a repository-scoped CI secret, no key in settings, a team-owned credential inside its lifetime, and the correct `CLAUDE_CODE_OAUTH_TOKEN` variable for a setup-token credential). All values are `FAKE-KEY-DO-NOT-USE-NNNN`.
