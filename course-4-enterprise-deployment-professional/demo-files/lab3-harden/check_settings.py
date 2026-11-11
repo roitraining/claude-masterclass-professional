@@ -8,11 +8,20 @@ Scores 60 points (part A). Part B is the live attack script (40 points). It also
 the attack outcomes the configuration PREDICTS, for machines with no OS sandbox support.
 A prediction is not an observation: live sandbox behavior needs rehearsal.
 
-UNVERIFIED items (confirm against current documentation before delivery):
-  - The parent object of allowUnsandboxedCommands (this script accepts sandbox.* or top level)
-  - The settings key names for an MCP server allowlist. Accepted here: enabledMcpjsonServers
-    or allowedMcpServers. They come from the Claude Code settings reference, not the course facts.
-  - Permission rule syntax such as Read(./config/secrets.env) follows the Associate courses.
+Key names CONFIRMED 2026-11-06 against the Claude Code settings reference
+(code.claude.com/docs/en/settings-reference):
+  - sandbox.enabled, sandbox.failIfUnavailable and sandbox.allowUnsandboxedCommands
+    are all children of the sandbox object. There is no top-level spelling, so this
+    script no longer accepts one: it would have given 7 points for a key Claude Code
+    ignores. Corroborated on the RVC VM, where forcing sandbox.failIfUnavailable true
+    made the run fail closed (apply-seccomp denial) where no settings ran unsandboxed.
+  - The .mcp.json approval keys are enabledMcpjsonServers, disabledMcpjsonServers and
+    enableAllProjectMcpServers. There is NO allowedMcpServers key, so this script no
+    longer accepts one: it would have given 8 points for a list that does nothing.
+
+STILL UNVERIFIED (confirm before delivery):
+  - Permission rule syntax such as Read(./config/secrets.env) follows the Associate
+    courses.
 """
 import json
 import os
@@ -68,8 +77,6 @@ def main():
     check("sandbox.failIfUnavailable is true", 7, sb.get("failIfUnavailable") is True,
           "failIfUnavailable = %r (default is to warn and run unsandboxed)" % sb.get("failIfUnavailable"))
     unsb = find(sb, "allowUnsandboxedCommands")
-    if unsb is None:
-        unsb = cfg.get("allowUnsandboxedCommands")
     check("allowUnsandboxedCommands is false", 7, unsb is False, "allowUnsandboxedCommands = %r" % unsb)
 
     domains = find(sb, "allowedDomains")
@@ -100,7 +107,7 @@ def main():
     blanket = [x for x in allow if x in ("bash", "bash(*)", "bash(*:*)", "*")]
     check("permissions.allow has no blanket Bash allow", 4, not blanket, "blanket allow rules: %r" % blanket)
 
-    mcp_allow = cfg.get("enabledMcpjsonServers", cfg.get("allowedMcpServers"))
+    mcp_allow = cfg.get("enabledMcpjsonServers")
     names = set()
     for item in mcp_allow or []:
         names.add(low(item.get("serverName", "")) if isinstance(item, dict) else low(item))

@@ -63,6 +63,8 @@ Follow the copy steps in `lab3_brief.md`, then read the approved lists.
 - Only the approved MCP servers can run, and no unapproved server remains declared.
 
 > **Hint:** a deny rule matches the command as written. Ask what a different command spelling would do.
+>
+> **Hint:** the starter approves *every* server the project declares. Find the setting that approves only the servers you name instead, and turn the blanket one off. The exact key is in the Claude Code settings reference under MCP; spell it exactly, because a key Claude Code does not recognise is skipped silently and your allowlist will do nothing.
 
 ---
 
