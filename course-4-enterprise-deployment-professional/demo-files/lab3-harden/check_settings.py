@@ -15,9 +15,22 @@ Key names CONFIRMED 2026-11-06 against the Claude Code settings reference
     script no longer accepts one: it would have given 7 points for a key Claude Code
     ignores. Corroborated on the RVC VM, where forcing sandbox.failIfUnavailable true
     made the run fail closed (apply-seccomp denial) where no settings ran unsandboxed.
-  - The .mcp.json approval keys are enabledMcpjsonServers, disabledMcpjsonServers and
-    enableAllProjectMcpServers. There is NO allowedMcpServers key, so this script no
-    longer accepts one: it would have given 8 points for a list that does nothing.
+  - The MCP keys, CORRECTED 2026-11-11 after a tester found this script scoring a real
+    answer 0. An earlier version of this docstring said allowedMcpServers does not
+    exist. It does: the reference lists it as "Allowlist which MCP servers users can
+    add", scope Any file. What it does NOT do is restrict servers declared in a project
+    .mcp.json -- the reference says to use disabledMcpjsonServers for that. So all five
+    of these are real keys and they do different jobs:
+      enableAllProjectMcpServers  approve every server .mcp.json declares (the blanket)
+      enabledMcpjsonServers       approve named servers from .mcp.json (pre-approval)
+      disabledMcpjsonServers      reject named servers from .mcp.json (enforcement)
+      allowedMcpServers           allowlist what a user may ADD; not .mcp.json
+      deniedMcpServers            block by URL, command or name
+    Confirmed on the RVC VM: with enabledMcpjsonServers set and an unapproved server
+    still declared, all three servers connected. Pre-approval is not an allowlist.
+    This script therefore scores the DECISION (no unapproved server left declared, and
+    the blanket off) separately from the key, and accepts any of the three defensible
+    keys for the smaller item, so no student who got the security right scores zero.
 
 STILL UNVERIFIED (confirm before delivery):
   - Permission rule syntax such as Read(./config/secrets.env) follows the Associate
@@ -107,20 +120,38 @@ def main():
     blanket = [x for x in allow if x in ("bash", "bash(*)", "bash(*:*)", "*")]
     check("permissions.allow has no blanket Bash allow", 4, not blanket, "blanket allow rules: %r" % blanket)
 
-    mcp_allow = cfg.get("enabledMcpjsonServers")
-    names = set()
-    for item in mcp_allow or []:
-        names.add(low(item.get("serverName", "")) if isinstance(item, dict) else low(item))
     try:
         with open(os.path.join(root, ".mcp.json"), encoding="utf-8") as f:
             declared = set(json.load(f).get("mcpServers", {}).keys())
     except (OSError, ValueError):
         declared = set()
-    mcp_ok = (cfg.get("enableAllProjectMcpServers") is not True and bool(names) and names <= APPROVED_SERVERS
-              and not (declared - APPROVED_SERVERS))
-    check("MCP: no enable-all, an allowlist of approved servers, no unapproved server declared", 8, mcp_ok,
-          "enableAllProjectMcpServers=%r; allowlist=%r; declared in .mcp.json=%r" % (
-              cfg.get("enableAllProjectMcpServers"), sorted(names), sorted(declared)))
+    unapproved = declared - APPROVED_SERVERS
+
+    def server_names(value):
+        out = set()
+        for item in value or []:
+            out.add(low(item.get("serverName", "")) if isinstance(item, dict) else low(item))
+        return {x for x in out if x}
+
+    # Any of the documented keys is accepted, because each is a defensible answer to
+    # "only the approved servers run": name the approved ones (enabledMcpjsonServers),
+    # reject the unapproved one (disabledMcpjsonServers), or allowlist what may be added
+    # at all (allowedMcpServers).
+    approve = server_names(cfg.get("enabledMcpjsonServers")) | server_names(cfg.get("allowedMcpServers"))
+    reject = server_names(cfg.get("disabledMcpjsonServers")) | server_names(cfg.get("deniedMcpServers"))
+
+    # The enforcement: the blanket approval is off, and every unapproved server is either
+    # gone from .mcp.json or explicitly rejected. Naming only what you trust is neither.
+    left_running = unapproved - reject
+    check("MCP: enable-all is off, and no unapproved server is left running", 5,
+          cfg.get("enableAllProjectMcpServers") is not True and not left_running,
+          "enableAllProjectMcpServers=%r; declared in .mcp.json=%r; unapproved and not rejected=%r" % (
+              cfg.get("enableAllProjectMcpServers"), sorted(declared), sorted(left_running)))
+
+    named_ok = (bool(approve) and approve <= APPROVED_SERVERS) or bool(reject - APPROVED_SERVERS)
+    check("MCP: a setting names the approved servers, or rejects the unapproved one", 3, named_ok,
+          "approves=%r; rejects=%r (approved servers are %r)" % (
+              sorted(approve), sorted(reject), sorted(APPROVED_SERVERS)))
 
     total = 0
     print("PART A: static checklist")

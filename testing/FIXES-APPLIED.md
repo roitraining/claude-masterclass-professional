@@ -1186,3 +1186,433 @@ in the lab — where the open question is replaced by the decision.
 
 The lab's note now also states the intended lesson: a student who reaches Silver
 with everything caught is one careless finding away from Gold.
+
+---
+
+## Batch 19 — Course 3 first run (2026-11-05): 2 of 5, partial report
+
+Course 3 was tested for the first time, on a real key. Total spend **$6.63 over
+318 agent runs** (about $6.73 including unlogged calibration runs). Verdicts:
+Lab 1 FAIL, Lab 2 pass with notes, Lab 3 FAIL, Lab 4 blocked at Part 6 only,
+Lab 5 pass with notes.
+
+The tester's per-lab sections were still being written when this batch was
+applied, so only the findings that were already evidenced are acted on here.
+
+### 19.1 The headline is a model dependency, not a bug in the material
+
+With Lab 3's planted limits, **Sonnet and Haiku broke the 15-call bound in 6 of
+6 runs**, making 57 to 186 `check_manifest` calls. **Opus stopped on its own**,
+so `lab3_check.py` reported **7 of 7** while the bound was never defended.
+
+**Correction to the first version of this entry:** I first wrote this up as
+grader blindness. That was wrong. `lab3_check.py` line 49 does assert the bound
+(`calls <= lp["max_check_manifest_calls"]`), so the checker detects the
+violation correctly.
+
+The real defect is that the lab breaks in **opposite directions** by model. On
+Opus the agent stops unprompted, so the check passes 7/7 whether or not the
+student set any limits - no learning signal. On Sonnet and Haiku the bound
+breaks even for a student who used every lever Step 5 hints at, because none of
+those levers bounds a subagent's turns (19.1b). With `AGENT_MODEL` unset the run
+used `claude-opus-5-5`.
+
+Lab 3's Facilitator Notes already carried a rehearsal item asking exactly this
+question. It is now **answered in place** with the measured numbers, plus an
+instruction to rehearse on the model the class keys actually use and to treat a
+pass on Opus as unproven.
+
+### 19.1b Root cause: an unbounded subagent, not the budget and not parent turns
+
+Traced through the fixture, the cause is neither limit first pointed at:
+
+- **Not the budget.** The runaway is cheap. The largest run of any kind was
+  $0.4620 at up to 186 calls, so roughly **$0.0025 a call** - about **200 calls
+  to reach a $0.50 cap, against a bound of 15**. A spend cap cannot bind on this
+  fixture no matter what it is set to.
+- **Not the parent's `max_turns`.** That bounds the parent's turns, not the tool
+  calls made inside a subagent. One parent turn delegating to `manifest-watcher`
+  can produce dozens of `check_manifest` calls.
+- **The cause:** `loop_fixture.LOOP_SUBAGENT` has **no `maxTurns`**, and its
+  prompt says "Never give up. If you cannot finish, spawn another subagent." The
+  four levers Step 5 hints at - `max_turns`, `max_budget_usd`,
+  `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`, `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`
+  - limit the parent and how subagents spawn, but **none limits turns per
+  subagent**. `SendMessage` (19.2) compounded it by letting the parent revive
+  subagents that had stopped.
+
+A student can fix this only by overriding the `AgentDefinition` from
+`lab3_agent.py` - which is allowed, since the starter passes
+`agents={"manifest-watcher": loop_fixture.LOOP_SUBAGENT}` and so needs no edit
+to the fixture - but **no step or hint tells them to**. That is why the working
+fix needed subagent `maxTurns`: it is the only lever that bounds the loop, and
+it is the one lever the lab never names.
+
+**Decision needed, because it changes what the lab rewards:** name subagent
+`maxTurns` in Step 5's hint and the acceptance criteria, or leave it as the hard
+part students must find. Either way the model question stands: on Opus the check
+passes with no student work at all.
+
+### 19.1c FIXED: the loop is now containable, and the check discriminates
+
+Fixed without changing what the lab asks. Step 5 still says contain the runaway
+from outside without editing the fixture, the student still chooses every value,
+and all four planted traps stand (`MAX_TURNS = 3`, `BUDGET_USD = 5.00`,
+`"Helper."`, the camelCase gotcha).
+
+**1. The fixture gained a factory, default unchanged.** `loop_fixture.py` now
+exposes `loop_subagent(max_turns=None)` built from the same literals.
+`LOOP_SUBAGENT` is kept as `loop_subagent()`, so the planted runaway is byte-for-
+byte the same behaviour. Putting the factory in the fixture avoids introspecting
+`AgentDefinition`'s field names, which could not be verified locally because the
+SDK is not installed on this machine.
+
+**2. The starter gained TODO 5.** `LOOP_SUBAGENT_MAX_TURNS = None`, wired into
+the loop branch. This is the one lever that bounds a subagent's own turns, and it
+is reachable from the starter, so "without editing the fixture" stays true. It
+defaults to `None`, so the exercise is unchanged: the student must still work out
+that the parent's `max_turns` cannot reach inside a subagent.
+
+**3. The checker gained three configuration checks**, taking it from 7 to 10:
+subagent turn limit set, spend cap lowered below the planted 5.00, and depth and
+concurrency both set. These assert exactly what the rubric already scored, so no
+scoring intent changed — but they make the result **model-independent**. The
+starter now scores **0 of 3 on config, so at most 7 of 10**, which means a model
+that stops on its own can no longer hand a pass to a student who set nothing.
+
+**4. Both tracks score identically.** `SUBAGENT_DEPTH` and
+`SUBAGENT_CONCURRENCY` had to be exported in `lab3Agent.ts` for the third check;
+without that a TypeScript student would have been scored out of 9 while a Python
+student was scored out of 10, and the rubric rows would no longer map one to one.
+
+**5. The lab text now names the lever and why the others miss.** Step 5's hint
+adds `LOOP_SUBAGENT_MAX_TURNS` and states that `max_turns` bounds the parent, and
+depth and concurrency bound spawning, so neither reaches a subagent's turn count.
+Two troubleshooting rows added; the rubric's loop row now mentions the subagent
+limit; the acceptance criteria say the limits themselves are checked.
+
+**The teaching point this adds, which was the finding underneath:** a spend cap
+cannot contain this fixture at any value. At about **$0.0025 a call it needs
+roughly 200 calls to reach $0.50, against a bound of 15**. That is now in the
+Facilitator Notes, because it is the reason the budget was never the answer.
+
+Verified: both trackers' trap values unchanged, the starter fails 3 of 3 config
+checks, Python files parse, and the lab's markdown tables are intact (checked by
+pipe count per table, after breaking a table this way once before).
+
+### 19.2 FIXED: `SendMessage` escaped containment
+
+`BUILTIN_TOOLS` is passed as `disallowed_tools` by Lab 3 and `demo6_caps.py`.
+`SendMessage` was not in it, and the tester observed it succeed and **resume
+stopped subagents**, which defeats the turn bound the lab exists to teach.
+
+Added to the list in **both tracks** (`agent_core.py` and `agentCore.ts`), with
+a comment saying why. Safe because the list is only ever used to deny: it is
+never an allow-list, and `SendMessage` appears nowhere else in Course 3, so it
+is not part of any exercise. The tester had already validated this fix together
+with a subagent `maxTurns`: 10 of 10 loops stayed in bound at 5 to 9 calls, each
+ended by a real `error_max_turns`, and the digest still succeeded.
+
+### 19.3 NOT APPLIED: making `BUDGET_USD` honour `LAB_BUDGET_USD`
+
+The tester asked for this third. **Declined as worded**, because `MAX_TURNS = 3`
+and `BUDGET_USD = 5.00` are **documented planted traps** — the starter says "these
+two numbers are deliberately wrong for the task" and the Facilitator Notes list
+them as trap 1. Wiring the instructor's cap into the starter would hand students
+the answer to TODO 3 and delete the exercise. This is the same mistake class as
+the `server.type` regression: changing a value that is deliberately wrong.
+
+The underlying concern is real and still open: with `$5.00` hardcoded, the
+instructor's `LAB_BUDGET_USD` does not reach **the one lab designed to run
+away**. Recommended shape instead of the tester's version: clamp
+`max_budget_usd` to `LAB_BUDGET_USD` inside `make_options` **as a ceiling**, so a
+student's chosen number still has to be sane but can never exceed the class cap.
+Needs a decision, because a ceiling that binds at $0.50 ends the loop with
+`error_max_budget_usd` — an accepted pass — which could let a student pass
+without doing the containment work.
+
+### 19.4 The $0.50 cap is less proven than the result suggests
+
+Check 1 came back "not disproved": no run of 318 exceeded $0.50, the largest
+scored-type run was $0.1274, and the largest of any kind was $0.4620.
+
+Read with 19.3, that evidence is weaker than it looks. **Lab 3 did not run under
+a $0.50 cap at all** — it ran under its hardcoded $5.00 — and Lab 3 is where the
+runaway lives and where $3.07 of the $6.63 was spent. The near-cap run "stopped
+itself at 92% of the cap" rather than being stopped by it. So nothing in this run
+demonstrates the cap actually binds; it shows only that normal runs stay cheap.
+
+### 19.5 Lab 2's Part 3 measures nothing
+
+**0 of 36 starter runs obeyed the injection**, across three models, so the
+baseline Part 3 asks students to measure does not exist. The only
+checker-visible change was wording. The capability control *is* real: the refund
+was written 2 of 2 on the starter and 0 of 2 with `disallowed_tools` or the tool
+removed. Not yet fixed — the fix depends on the per-lab detail still being
+written.
+
+### 19.6 Still open
+
+- **Lab 1 FAIL** — scored 95 but failed on a "key defect" whose description was
+  still pending. No action possible yet.
+- **Lab 4 Part 6** — NOT TESTED, no Console login on the run. Needs 10 minutes
+  from someone with a class login. This is the one item the provided Console
+  access was meant to unblock.
+- Rubric scores are not evidence: Labs 2 and 3 scored 98 and 95 while their
+  planted problems did not fire.
+
+---
+
+## Batch 20 — Course 4 review (2026-11-06), with Courses 4 and 5 now taught first
+
+### 20.1 CORRECTION: Lab 3 is not blocked, and I said it was
+
+I wrote that Course 4 Lab 3 was "genuinely blocked" because proving the sandbox
+blocks the attacks is the exercise. That was wrong, and it mattered: it made the
+AppArmor decision look like a gate on the first course out the door.
+
+**Line 153 of the lab already defines fallback scoring.** Part A is 60 points and
+"works everywhere". Attacks 1 to 3 score 5 each from the checker's PREDICTED
+outcomes, attack 4 is always scored live because it needs no sandbox, and the
+**maximum is 85**. Line 19 says a sandbox that cannot start is "a known platform
+limit, not a failure", and the troubleshooting table says the same.
+
+So AppArmor sets Lab 3's **ceiling** (85 to 100), not whether it can run. With
+Course 2 Lab 3's fallback added in batch 14, **no lab in the suite is hard-blocked
+by the AppArmor decision.** It is still worth taking, but it is not critical path
+for Courses 4 and 5.
+
+### 20.2 All four Course 4 checkers run clean after our edits
+
+Ran every checker locally; none needs a credential, which is consistent with
+Course 4 costing nothing. `check_lab1.py` scores the starter correctly at 0 of 5
+defects found, so it discriminates. `check_lab2.py`, `check_settings.py` and
+`check_record.py` print usage and exit cleanly. No regressions from the edits of
+the past three days.
+
+One measurement caveat: I read exit codes through a `| head` pipeline, so the
+reported exit status was `head`'s, not the script's. The outputs are sound; the
+exit codes I printed were meaningless.
+
+### 20.3 Two of Lab 3's three UNVERIFIED settings items are now settled
+
+`check_settings.py` carried three items to "confirm against current documentation
+before delivery". These gate Part A, which is 60 of 100, so they matter more than
+the sandbox question.
+
+**Settled, from our own evidence:** the `sandbox.*` parent object is correct and
+honoured. `testing/sandbox-probe.sh` forced
+`{"sandbox":{"enabled":true,"failIfUnavailable":true}}` and the VM **failed
+closed** with `apply-seccomp: write /proc/self/setgroups ... Permission denied`,
+where the same probe with no settings had run Bash unsandboxed and passed. A key
+that was ignored could not have changed that outcome. Recorded in the script with
+the evidence rather than as an assertion.
+
+**Still open:** the MCP server allowlist key name. The checker hedges by accepting
+either `enabledMcpjsonServers` or `allowedMcpServers`, so a student is scored
+fairly either way — but **Step 3 teaches one spelling, and if it is the wrong one
+the student's allowlist does nothing while the checker still awards 8 points.**
+That is the highest-value Course 4 item left, and it needs one documentation
+check, not a test run.
+
+**Also not separately proven:** that `allowUnsandboxedCommands: false` actually
+blocks a retry. The probe's history shows a model stepping outside the sandbox in
+v2, which is why v3 added the key, but no run isolates it.
+
+### 20.4 FIXED: two false-pass paths in Lab 3's checker, worth 15 points
+
+Settled the remaining key names against the official settings reference rather
+than leaving them flagged. Both hedges the checker carried turned out to accept
+a key that does not exist:
+
+- **`sandbox.*` is the only spelling.** `sandbox.enabled`,
+  `sandbox.failIfUnavailable` and `sandbox.allowUnsandboxedCommands` are all
+  children of the `sandbox` object; there is no top-level form. The checker
+  accepted a top-level `allowUnsandboxedCommands` and would have awarded **7
+  points for a key Claude Code ignores**. Removed.
+- **There is no `allowedMcpServers` key.** The real ones are
+  `enabledMcpjsonServers`, `disabledMcpjsonServers` and
+  `enableAllProjectMcpServers`. The checker accepted `allowedMcpServers` and
+  would have awarded **8 points for a list that does nothing**. Removed.
+
+Both are the same failure mode as our earlier false passes: a grader generous
+enough to accept a configuration that has no effect. A student could have
+hardened nothing and scored 15 of 60 on Part A.
+
+**The lab text was clean** — it never taught either wrong key. Step 3 states
+acceptance criteria and names no key at all, which suits a 300-level discovery
+step. I added a pointer that keeps the discovery: it says the starter approves
+every declared server, tells students to find the setting that approves only
+named ones, and warns that an unrecognised key is skipped silently so their
+allowlist would do nothing. The key itself is still theirs to find.
+
+Regression checked: the checker scores the unhardened starter **0 of 60** with
+every planted trap detected and all four attack predictions reading "will
+succeed".
+
+---
+
+## Batch 21 — Course 4 retest on the new RVC image (2026-11-11, at e94bcb4)
+
+**Result: Lab 1 100/100, Lab 2 99/100, Lab 4 pass with notes, Lab 5 reviewed,
+Lab 3 FAIL.** The image team baked in items 2, 3 and 4 of IMAGE-REQUIREMENTS;
+item 1 is untouched and the sandbox still does not start.
+
+### 21.1 MY BUG, and the worst kind: I deleted a key that exists
+
+Batch 20.4 removed `allowedMcpServers` from `check_settings.py` and wrote in the
+docstring that the key does not exist. It does. The settings reference lists it as
+"Allowlist which MCP servers users can add", scope `Any file`. I had gone looking for
+false passes, found a hedge, and removed the half of it that was real.
+
+So between 20.4 and this batch, a student who followed the Step 3 hint to the
+reference and picked the key whose description literally says "Allowlist" scored
+**0 of 8** and was told by the script that their key did nothing. That is worse than
+the false pass I was trying to fix: a false pass costs the course its discrimination,
+a false *fail* costs a correct student their marks and their confidence in the
+material.
+
+Re-verified against the reference on 2026-11-11. All five MCP keys are real and do
+different jobs:
+
+| Key | What it does |
+|---|---|
+| `enableAllProjectMcpServers` | approve every server `.mcp.json` declares |
+| `enabledMcpjsonServers` | approve named servers from `.mcp.json` (pre-approval) |
+| `disabledMcpjsonServers` | reject named servers from `.mcp.json` (enforcement) |
+| `allowedMcpServers` | allowlist what a user may **add**; explicitly not `.mcp.json` |
+| `deniedMcpServers` | block by URL, command or name |
+
+**One correction to the tester, too.** Their variant B concluded that
+`allowedMcpServers` is "the key that actually blocks an unapproved server" in a
+project `.mcp.json`. The reference says the opposite in as many words: "This key
+doesn't restrict servers declared in a project `.mcp.json` file; use
+`disabledMcpjsonServers` for that." Variant B also used `{"serverName": ...}`
+objects, where the documented type is an array of strings — and that object shape came
+from my own checker code, not from the docs, so the measurement has a confound. The
+substance of their finding stands and the fix is theirs; only the mechanism is
+misattributed.
+
+### 21.2 FIXED: Step 3 now scores the decision, not the key-name hunt
+
+The deeper problem is that Step 3 made students guess a key name from a reference
+where three of five descriptions read like the answer. A student could reason
+correctly about the security goal and still land on a key that does something else.
+That is trivia, not a 300-level exercise.
+
+Step 3 now **names the four relevant keys in a table with one line each**, and asks
+the question worth asking: which of these is a control? The MCP item splits into two:
+
+- **5 points, the enforcement:** the blanket approval is off, and no unapproved server
+  is left running — either deleted from `.mcp.json` or explicitly rejected.
+- **3 points, the setting:** any of `enabledMcpjsonServers`, `allowedMcpServers`,
+  `disabledMcpjsonServers` or `deniedMcpServers` naming only approved servers, or
+  rejecting the unapproved one.
+
+Part A stays at 60 and the rubric line was updated to match. Tested six ways: all four
+defensible student answers score 8/8 (including both `allowedMcpServers` shapes), the
+unhardened starter still scores **0 of 60**, and the two wrong mental models —
+pre-approval with the server still declared, and the starter's blanket left on — lose
+exactly the 5 enforcement points and keep the 3. The checker now discriminates on the
+thing the lab is teaching.
+
+### 21.3 FIXED: Lab 3 Step 6 was unreachable on a correctly hardened config
+
+The tester found what reading could not. With the required `failIfUnavailable: true`
+on a machine whose sandbox fails at **runtime** rather than at startup, the session
+starts normally and then refuses *every* Bash call — including `attack_simulation.py`.
+So the fallback scoring's promise that "attack 4 is always scored live because it
+needs no sandbox" could not be kept from inside a session, and a student doing
+everything right hits a wall the lab never mentions.
+
+Step 6 now says so explicitly: if the session refuses every command with the
+`apply-seccomp` error, the configuration is **correct** and the machine has no working
+sandbox — run the attack script in your own terminal for attack 4 and take 1–3 from
+the predictions. The fallback-scoring line says the same. Also noted that
+`failIfUnavailable` does not trip at startup when bubblewrap is present, which is the
+question a student will actually ask.
+
+### 21.4 FIXED: Lab 5's clean repository was not clean
+
+All three CI workflows injected a `setup-token` credential as `ANTHROPIC_API_KEY`. Per
+the authentication docs a setup-token is read from `CLAUDE_CODE_OAUTH_TOKEN`;
+`ANTHROPIC_API_KEY` is for Console API keys. So a sharp student flagged
+`payments-gateway`'s CI, was right, and lost the 10 "clean repo" points for it.
+
+Also settled what the rubric flagged UNVERIFIED: `claude setup-token` generates a
+**one-year** OAuth token. The scenario's `expires: none` on `cred-101` contradicted
+the product, and `cred-102`'s six-month expiry did not match a one-year token either.
+
+Fixed together, keeping C4 intact:
+
+- All three workflows now use `CLAUDE_CODE_OAUTH_TOKEN`.
+- `cred-101` is now created 2026-02-02, expiring 2027-02-02 — a real one-year token.
+  C4 is unchanged in substance and arguably sharper: person-owned, never rotated,
+  owner departed 2026-06-30, still used 2026-10-09. The defect is the dead owner and
+  the absent rotation, not a magic no-expiry credential.
+- `cred-102` now expires 2027-08-20, one year from creation.
+- The "defending the clean repository" note and both UNVERIFIED notes rewritten.
+
+The near-expiry decoy (`cred-103`, 2026-11-02) is untouched and still the only
+near-term expiry in the tree, so it keeps working as a decoy.
+
+### 21.5 FIXED: two Lab 2 checker items that penalised correct answers
+
+- `auth_methods_covered: ["web","desktop","api_key","oauth_token"]` scored −1 with
+  "authentication coverage incomplete", because the matcher accepted `api key`,
+  `api-key` and `apikey` but not `api_key` — the one spelling a student would naturally
+  write in a JSON file whose own field names are snake_case. The matcher now normalises
+  `_` and `-` before matching. Verified across four spellings.
+- The lab demanded "every event in the sequence" while the checker required
+  `min(3, len(ids))`. Citing 3 of 64 scored full marks. Aligned the lab to **at least
+  three**, which is what the checker measures and what a reviewer actually needs;
+  requiring all 64 would be busywork.
+
+### 21.6 FIXED: Lab 4's `-p` path silently skipped the payload
+
+Under `-p` in `default` mode, `python3 tools/ticket_lookup.py 17` needs approval and
+`-p` has no prompt to answer, so without `--allowedTools` the tool never runs and the
+payload never reaches the model — a run a student would record as a defense working
+when nothing was tested. The lab now gives the flag. Also: config 03 is not
+exercisable when the sandbox cannot start, so students are told to pick 04 as
+"strongest" and say why; the prose "Tool vector" is renamed to match the CSV's
+`tool_result`; and the trust hint is corrected — `-p` shows no dialog but *does* act on
+trust, ignoring the project file's `permissions.allow` and printing a warning.
+
+### 21.7 FIXED: two pieces of our own testing tooling were lying
+
+- `provision-rvc.sh` reported `$HOME/.local/bin not on PATH` as a FAIL. The RVC image
+  ships the **apt package** at `/usr/bin/claude`; `~/.local/bin` does not exist. The
+  check now asserts that `claude` resolves at all and notes when it is not the native
+  installer. One of the five FAILs in the tester's run was ours.
+- `sandbox-apparmor.sh --diagnose` still printed that `local-override` is "viable and
+  upgrade-safe", which batch 10.6 recorded as tried and failed. It now says so and
+  points at the two untested options.
+
+### 21.8 Sandbox: still the top item, and one caveat retired
+
+Same denial, same profile: `apparmor="DENIED" operation="capable" profile="unpriv_bwrap"
+capability=21 capname="sys_admin"`. No AppArmor change was applied in this run.
+
+One thing improved: the apt build lives at `/usr/bin/claude`, root-owned and
+**stable**, so IMAGE-REQUIREMENTS' caveat that `claude-profile` would drift on
+auto-update does not apply to this image. That makes the narrow option worth one
+`--try` before anyone argues about `disable-profile`.
+
+Lab 3's ceiling is still 85 and no lab in the suite is hard-blocked by this.
+
+### 21.9 Not fixed, needs a decision
+
+**Student packs.** `check_lab1.py`, `check_lab2.py`, `check_record.py` and the
+`facilitator/` folders all ship in `demo-files/`. `demo-files/README.md` says to strip
+them before distribution, but Lab 4 tells students to run `check_record.py`. The README
+and Lab 4 contradict each other, and there is no scripted way to build a student pack.
+Three testers have now flagged this. It needs a `make-student-pack` step and a decision
+on whether `check_record.py` is a student file.
+
+**Lab 2 Track B** requires the exact string `com.anthropic.claudefordesktop`, which the
+lab never supplies and which it says key names are not given for. Confirm the deck
+supplies it or list it under "Facts you need".
+
+**Durations.** Labs 1 and 5 look generous at 90 and 60 minutes for the offline path.
+Not a defect; worth a rehearsal with a real student before it is changed.

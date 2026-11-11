@@ -123,11 +123,21 @@ else
   fi
 fi
 
-# PATH check: the native installer puts the launcher in ~/.local/bin
-case ":$PATH:" in
-  *":$HOME/.local/bin:"*) c_ok "\$HOME/.local/bin on PATH" ;;
-  *) c_bad "\$HOME/.local/bin not on PATH — add: echo 'export PATH=\"\$HOME/.local/bin:\$PATH\"' >> ~/.bashrc" ;;
-esac
+# PATH check. What matters is that `claude` resolves, not where it lives: the native
+# installer puts it in ~/.local/bin, but the RVC image ships the apt package at
+# /usr/bin/claude. Checking for ~/.local/bin alone reported a false FAIL on 2026-11-11.
+if CLAUDE_PATH="$(command -v claude 2>/dev/null)" && [ -n "$CLAUDE_PATH" ]; then
+  c_ok "claude resolves on PATH at $CLAUDE_PATH"
+  case "$CLAUDE_PATH" in
+    "$HOME/.local/bin/"*) : ;;
+    *) note "not the native installer location; this build does not self-update the same way" ;;
+  esac
+else
+  case ":$PATH:" in
+    *":$HOME/.local/bin:"*) c_bad "\$HOME/.local/bin is on PATH but claude is not installed in it" ;;
+    *) c_bad "claude does not resolve — add: echo 'export PATH=\"\$HOME/.local/bin:\$PATH\"' >> ~/.bashrc" ;;
+  esac
+fi
 
 hdr "4. Class API key for the Agent SDK (Course 3)"
 # Course 3 REQUIRES an API key. This is taught content, not an accident:

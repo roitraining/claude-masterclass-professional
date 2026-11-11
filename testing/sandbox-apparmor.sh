@@ -85,7 +85,9 @@ if [ "$MODE" = "diagnose" ]; then
 
   hdr "2. Can the shipped profile be extended without editing it"
   if [ -e "$PROFILE" ] && grep -q 'include if exists <local/' "$PROFILE" 2>/dev/null; then
-    ok "the profile has a local include — option 'local-override' is viable and upgrade-safe"
+    info "the profile has a local include, but 'local-override' was TRIED 2026-11-04 AND FAILED:"
+    info "unpriv_bwrap carries 'audit deny capability', and an AppArmor deny beats any allow."
+    info "Do not retry it. Try 'claude-profile', then 'disable-profile'."
     grep -o 'include if exists <local/[^>]*>' "$PROFILE" | sed 's/^/        /'
   else
     info "no local include found; option 'local-override' may not apply. Try 'claude-profile' instead."

@@ -93,10 +93,13 @@ Three specific things to answer:
 
 - Does `check_settings.py` still score the *unhardened* starter **0 of 60**, with every
   planted trap detected and all four attack predictions reading "will succeed"?
-- Step 3 asks you to find the MCP-server allowlist setting yourself. Confirm a student can
-  actually find it in the Claude Code settings reference, and that the key they land on
-  takes effect. (`enabledMcpjsonServers` is the real key; `allowedMcpServers` does not
-  exist. The lab text deliberately does not name it — the hint points at the reference.)
+- Step 3 was rewritten on 2026-11-11. It now names the four relevant MCP keys in a table
+  and scores the *decision* — the blanket approval off and no unapproved server left
+  running — separately from which key the student picks. Confirm the table matches the
+  current settings reference, and that a student can tell from the lab which of the keys
+  is a control. (An earlier version of this brief said `allowedMcpServers` does not exist.
+  It does. What it does not do is restrict servers declared in a project `.mcp.json`;
+  `disabledMcpjsonServers` is the documented key for that.)
 - **If the sandbox starts on this image:** does `sandbox.allowUnsandboxedCommands: false`
   actually stop an unsandboxed retry? This has never been isolated in a run. If you can
   prove it either way, that is a result worth having.

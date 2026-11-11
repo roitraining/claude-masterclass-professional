@@ -51,20 +51,39 @@ Follow the copy steps in `lab3_brief.md`, then read the approved lists.
 - Writes are limited to what the project needs, with no broad path such as a home folder.
 - The secrets file and `~/.ssh` cannot be read, and the project configuration cannot be rewritten.
 
-> **Hint:** setting names are `sandbox.enabled`, `sandbox.failIfUnavailable`, `allowUnsandboxedCommands`, `sandbox.network.allowedDomains`, and the filesystem lists `allowWrite`, `denyRead`, `denyWrite`.
+> **Hint:** setting names are `sandbox.enabled`, `sandbox.failIfUnavailable`, `sandbox.allowUnsandboxedCommands`, `sandbox.network.allowedDomains`, and the filesystem lists `allowWrite`, `denyRead`, `denyWrite`.
 
 > **Common Pitfall:** if attack 1 still succeeds, check `allowWrite` for a home folder entry. The parent folder of the project usually sits under it.
 
-### Step 3: Write the Deny Rules and the MCP Allowlist
+### Step 3: Write the Deny Rules and Control the MCP Servers
 
 **Acceptance criteria:**
 
 - Permission deny rules cover the secrets file, `.env`, and common network commands. No blanket Bash allow remains.
-- Only the approved MCP servers can run, and no unapproved server remains declared.
+- The blanket approval is off, and the unapproved server is no longer declared.
+- A setting names the approved servers, or rejects the unapproved one.
 
 > **Hint:** a deny rule matches the command as written. Ask what a different command spelling would do.
->
-> **Hint:** the starter approves *every* server the project declares. Find the setting that approves only the servers you name instead, and turn the blanket one off. The exact key is in the Claude Code settings reference under MCP; spell it exactly, because a key Claude Code does not recognise is skipped silently and your allowlist will do nothing.
+
+**The MCP settings, so you are deciding and not guessing.** The starter sets
+`enableAllProjectMcpServers: true`, which approves every server `.mcp.json` declares.
+These are the keys that bear on it:
+
+| Key | What it does |
+|---|---|
+| `enableAllProjectMcpServers` | Approves every server `.mcp.json` declares, with no prompt |
+| `enabledMcpjsonServers` | Approves the servers you name from `.mcp.json` |
+| `disabledMcpjsonServers` | Rejects the servers you name from `.mcp.json` |
+| `allowedMcpServers` | Allowlists which servers a user may *add* — it does **not** restrict `.mcp.json` |
+
+**The question to answer is which of these is a control.** One of them approves, one
+rejects, and one governs a different thing entirely. Compare the approved list against
+what `.mcp.json` declares, decide what has to change in each file, and be ready to say
+in Step 7 why naming the two approved servers does not, on its own, stop the third.
+
+> **Key Insight:** approving is not the same as allowlisting. A server you never
+> approved can still be declared, and a list that only names what you trust does not
+> remove what you do not.
 
 ---
 
@@ -96,7 +115,21 @@ Start Claude Code in `~/work/vuln-app` and run `python3 attack_simulation.py` th
 
 **Acceptance criteria:** the attack table shows the attacks blocked.
 
+> **If the session refuses every command,** including the attack script, with
+> `apply-seccomp: ... Permission denied` — your configuration is correct and your machine
+> has no working OS sandbox. `failIfUnavailable: true` is doing its job: the sandbox
+> cannot start, so nothing runs. You cannot produce the table from inside the session.
+> Run `python3 attack_simulation.py` in your own terminal instead, record attack 4's
+> live outcome from that, and take attacks 1 to 3 from the checker's predictions. That is
+> the fallback scoring below, and it is the expected path on a machine without the
+> sandbox — not a mistake on your part.
+
 > **Troubleshooting:** if attack 2 still reports a connection, loopback handling under the sandbox proxy is UNVERIFIED. Ask your instructor for the rehearsed destination and pass it with `--net-target`.
+
+> **Note:** start `claude` interactively in `~/work/vuln-app` once and accept the trust
+> dialog before you run anything with `-p`. In a workspace that has not been trusted,
+> `claude -p` ignores `permissions.allow` and the `.mcp.json` approval settings from the
+> project file, and prints a warning saying so.
 
 ---
 
@@ -123,10 +156,11 @@ Write `lab3_notes.md` as the brief describes.
 - [ ] The project configuration cannot be rewritten
 - [ ] Deny rules cover the secrets file, `.env`, and common network commands
 - [ ] No blanket `Bash(*)` allow remains
-- [ ] Only approved MCP servers can run, and the unapproved server is no longer declared
+- [ ] The blanket approval is off and the unapproved server is no longer declared in `.mcp.json`
+- [ ] A setting names the approved servers, or rejects the unapproved one
 - [ ] `app.py` validates the name and avoids a shell
 - [ ] Part A of `check_settings.py` passes
-- [ ] The attack table is recorded, showing the outcome of all four attacks
+- [ ] The attack table is recorded, showing the outcome of all four attacks (from your own terminal if the session has no working sandbox — see Step 6)
 - [ ] `lab3_notes.md` names at least one thing the configuration does not stop
 - [ ] You can explain why attack 4 needed a code fix rather than a boundary
 
@@ -140,7 +174,7 @@ Write `lab3_notes.md` as the brief describes.
 | Sandbox will not start | Session warns and runs unsandboxed | You may be on native Windows, WSL1, or a machine missing the Linux primitives. Use the static checker and the fallback scoring. This is a known limit, not a failure |
 | Attack 1 still succeeds | A write lands outside the project | Check `allowWrite` for a home folder entry. The project parent is usually under it |
 | Attack 4 succeeds despite a perfect sandbox | Injection still works | The command never leaves the project. Fix `app.py`: validate the name and avoid a shell |
-| MCP rule ignored | Unapproved server still runs | The setting names for an MCP allowlist are UNVERIFIED in this course. Confirm them in the current Claude Code settings documentation |
+| MCP rule ignored | Unapproved server still runs | Naming the approved servers only *approves* them. It does not remove the unapproved one, which stays declared in `.mcp.json` until you delete it or reject it with `disabledMcpjsonServers`. See the table in Step 3 |
 | Attack 2 reports a connection | Network block appears not to work | Loopback handling under the sandbox proxy is UNVERIFIED. Ask your instructor for the rehearsed destination and pass it with `--net-target` |
 
 ---
@@ -149,10 +183,10 @@ Write `lab3_notes.md` as the brief describes.
 
 | Item | Points |
 |------|--------|
-| Part A: static checklist (sandbox on 7, fail closed 7, no unsandboxed opt-out 7, allowed domains 7, allowWrite 5, denyRead 5, denyWrite 3, deny rules for secrets 4, deny rules for curl and wget 3, no blanket allow 4, MCP allowlist 8) | 60 |
+| Part A: static checklist (sandbox on 7, fail closed 7, no unsandboxed opt-out 7, allowed domains 7, allowWrite 5, denyRead 5, denyWrite 3, deny rules for secrets 4, deny rules for curl and wget 3, no blanket allow 4, MCP enforcement 5, MCP setting 3) | 60 |
 | Part B: attack script, 10 for each blocked attack | 40 |
 
-**Fallback scoring (no OS sandbox):** Part B attacks 1 to 3 are scored 5 each from the PREDICTED outcomes of the checker. Attack 4 is always scored live because it needs no sandbox. The maximum is 85. Your instructor will say so before the lab begins.
+**Fallback scoring (no OS sandbox):** Part B attacks 1 to 3 are scored 5 each from the PREDICTED outcomes of the checker. Attack 4 is always scored live because it needs no sandbox — run `python3 attack_simulation.py` in your own terminal, since a correctly hardened session refuses every command when the sandbox cannot start (Step 6). The maximum is 85. Your instructor will say so before the lab begins.
 
 ---
 

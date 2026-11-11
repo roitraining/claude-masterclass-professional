@@ -118,8 +118,11 @@ def score_proxy(c):
         pts += 4
     else:
         notes.append("TLS inspection must be required and the rollout notes must say it has to be turned on")
+    # Normalise separators before matching: a student writing JSON whose own field names
+    # are snake_case will naturally write "api_key", and that is a correct answer.
     auth = low(" ".join(map(str, c.get("auth_methods_covered", []))))
-    groups = [("web", "account", "sso"), ("desktop",), ("api key", "api-key", "apikey"), ("oauth",)]
+    auth = auth.replace("_", " ").replace("-", " ")
+    groups = [("web", "account", "sso"), ("desktop",), ("api key", "apikey"), ("oauth",)]
     covered = sum(1 for g in groups if any(k in auth for k in g))
     pts += round(5 * covered / 4)
     if covered < 4:

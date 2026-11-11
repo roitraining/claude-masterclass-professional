@@ -7,5 +7,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Review the pull request
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.SHARED_CLAUDE_CI_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.SHARED_CLAUDE_CI_KEY }}
         run: claude -p "Review this pull request for defects" --output-format json

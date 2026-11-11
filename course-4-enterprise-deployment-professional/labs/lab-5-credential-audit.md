@@ -168,14 +168,14 @@ The tree and `lab5-audit/facilitator/rubric.md` are built. Planted issues:
 1. A key in a settings file — `billing-service/.claude/settings.json` sets an API key variable in `env`.
 2. An `apiKeyHelper` script that only echoes a static key — `inventory-service/.claude/settings.json` points to `.claude/get_key.sh`.
 3. A CI secret shared across repositories — the same secret name in the workflow files of `billing-service` and `inventory-service`, listed against both in a CI secrets inventory.
-4. A long-lived OAuth token (from `claude setup-token`) owned by a person who has left, shown in a credentials inventory with no expiry and a last-used date after the departure date in the HR list.
+4. A long-lived OAuth token (from `claude setup-token`) owned by a person who has left, shown in a credentials inventory as never rotated and with a last-used date after the departure date in the HR list.
 5. Missing deny rules for `.env` — `inventory-service` has a `.env` and no `permissions.deny`.
 
-Decoy: `payments-gateway` is clean (deny rules, a repository-scoped CI secret, no key in settings). All values are `FAKE-KEY-DO-NOT-USE-NNNN`.
+Decoy: `payments-gateway` is clean (deny rules, a repository-scoped CI secret, no key in settings, a team-owned credential inside its lifetime, and the correct `CLAUDE_CODE_OAUTH_TOKEN` variable for a setup-token credential). All values are `FAKE-KEY-DO-NOT-USE-NNNN`.
 
 `cred-103` expires on 2026-11-02, three weeks after the 2026-10-12 audit date. That is **not** one of the five planted issues and carries no points either way. A student who raises it as a near-term rotation to schedule is reasoning well: credit it in the rotation plan if they place it there, and do not deduct for leaving it out of the findings.
 
-Instructor note: the lifetime of a `claude setup-token` credential is not in the verified facts (UNVERIFIED). The inventory of the scenario states it as scenario data. Do not teach it as a product fact. The managed settings file in the tree may use `forceLoginOrgUUID` with an obviously fake UUID.
+Instructor note: a `claude setup-token` credential is a **one-year OAuth token**, supplied through `CLAUDE_CODE_OAUTH_TOKEN`; `ANTHROPIC_API_KEY` is for Console API keys. The inventory and all three workflows match that, so the variable is not a planted finding. The managed settings file in the tree may use `forceLoginOrgUUID` with an obviously fake UUID.
 
 ---
 

@@ -54,7 +54,7 @@ Write a short script or query in any language that surfaces activity worth a sec
 
 > **Common Pitfall:** do not report every large download. Ask whether the pattern repeats at the same time on other days, and who the user is.
 
-> **Common Pitfall:** citing only the first event of a sequence is not enough. Cite **every event in the sequence** so a reviewer can reproduce the finding. One anomaly is a single event; for that one, citing it is citing all of it.
+> **Common Pitfall:** citing only the first event of a sequence is not enough. Cite **at least three events from the sequence** — enough that a reviewer can reproduce the finding without taking your word for the pattern. One anomaly is a single event; for that one, citing it is citing all of it. For a long sequence you do not need all of it, but the ids you pick must show the pattern, not just its first moment.
 
 ### Step 3: Record the Findings
 
@@ -133,7 +133,7 @@ deliberate — ask rather than looking for it.
 
 - [ ] Timestamps were treated as UTC throughout
 - [ ] Four anomalies found, each naming the account
-- [ ] Each finding cites every event id in its sequence, not just the first (one anomaly is a single event)
+- [ ] Each finding cites at least three event ids from its sequence, not just the first (one anomaly is a single event, and citing it is enough)
 - [ ] Each finding gives a severity and explains why the pattern matters
 - [ ] No benign account rated medium or high
 - [ ] The analysis script is saved and referenced in `findings_lab2.json`
@@ -152,7 +152,7 @@ deliberate — ask rather than looking for it.
 |---|---|---|
 | Phantom anomalies | Everything looks out of hours | The CSV timestamps are UTC, as is the business-hours definition. Do not convert to local time |
 | Over-reporting downloads | Many large-download findings | Ask whether the pattern repeats at the same time on other days, and who the user is. Recurring business-hours activity is a decoy |
-| Finding not reproducible | A reviewer cannot confirm it | You cited only the first event. Cite every event in the sequence |
+| Finding not reproducible | A reviewer cannot confirm it | You cited only the first event. Cite at least three ids from the sequence |
 | Control value rejected | Track A header value fails the check | The organization list was pasted from a chat message. Check for spaces, a trailing comma, and the retired entry |
 | Invented key names | Track B loses the no-invention points | Do not write key names from memory. Use `UNVERIFIED:` placeholders |
 
