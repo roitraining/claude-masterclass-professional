@@ -39,3 +39,12 @@ Instructor use. Hold back until the audit is submitted.
   creation, never rotated): `cred-102` is 53 days and `cred-103` is 163. 180 was chosen for exactly
   that reason — a 90-day policy would have made `cred-103` a real finding and broken it as a decoy.
 - `billing-service` has correct `.env` deny rules: reporting it for C5 is a false positive.
+- **The tree holds five credentials; the inventory lists three.** The literal in
+  `billing-service/.claude/settings.json` and the one `get_key.sh` echoes appear in no
+  inventory, with no owner, expiry or rotation date. That is deliberate and realistic -
+  the credentials an organization tracks are rarely the ones that leak - but it is **not
+  scored**, and until 2026-11-12 the Checkpoint scoped the rotation plan to "every
+  credential in the inventory", which excluded exactly the two that are provably exposed.
+  The plan now also asks for credentials found in the tree but missing from the
+  inventory. A student who draws this out is reasoning past the rubric; credit it in the
+  plan and raise it in the debrief. `facilitator/model-answer.md` closes on it.

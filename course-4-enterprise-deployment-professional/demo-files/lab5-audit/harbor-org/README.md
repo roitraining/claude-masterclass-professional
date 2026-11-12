@@ -12,6 +12,7 @@ Harbor's credential policy, for reference while you audit:
 - Every credential has a named owner. A credential owned by an individual is re-issued
   to a team when that person changes role or leaves.
 - Every credential is rotated **at least every 180 days**, and on the day an owner leaves.
+  A credential whose `last_rotated` is `never` is measured from its `created` date.
 - CI secrets are scoped to a single repository.
 
 Your task and the findings layout are in `labs/lab-5-credential-audit.md`.

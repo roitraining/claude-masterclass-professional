@@ -10,7 +10,7 @@
 
 ## Prerequisites
 
-- [ ] Labs 1 through 4 completed
+- [ ] Labs 1 through 4 completed — **recommended, not required.** Nothing in this lab consumes their output
 - [ ] `$FILES/lab5-audit/harbor-org`: `README.md`, `org/` (`managed-settings.json`, `credentials_inventory.csv`, `hr_departures.csv`, `ci_secrets_inventory.csv`) and `repos/` (`billing-service`, `inventory-service`, `payments-gateway`, each with `.claude/` and a CI workflow)
 - [ ] `$FILES/lab5-audit/findings-template.md` for your report
 - [ ] No account or organization access needed. This lab produces a document
@@ -24,6 +24,8 @@
 Harbor Example Co runs Claude Code in three repositories (`billing-service`, `inventory-service`, `payments-gateway`) and an organization-level managed settings file.
 
 Useful background: migrating from Console to Enterprise means removing leftover Console credentials — API key variables and `apiKeyHelper` — and moving CI to a `claude setup-token` credential or keeping Console keys for automation. Secure credential storage uses Keychain on macOS and a mode-0600 file on Linux.
+
+> **Where those facts come from**, since the Checkpoint asks you to mark anything you cannot source: all of it is in the Claude Code **authentication** documentation — the credential-storage locations, the `apiKeyHelper` setting, the precedence that puts `ANTHROPIC_API_KEY` above a subscription sign-in, and `claude setup-token` generating a one-year OAuth token supplied through `CLAUDE_CODE_OAUTH_TOKEN`. Verified 2026-11-11. Hold your own findings to the same standard.
 
 The findings template has one block per finding: file and line, what is wrong, risk, severity, fix, rotation step, and owner. It is followed by a "Not a finding" list, a priority order with reasons, and a rotation and ownership plan.
 
@@ -81,6 +83,10 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 
 **Acceptance criteria:** each finding gives the file and line, why it is a risk, the severity, a fix, and a rotation step wherever a credential is involved.
 
+> **Some findings live in more than one file.** A secret shared across repositories is visible in the inventory row *and* in each workflow that uses it. List every location in the one block rather than splitting it into two findings — the scoring treats it as one finding with several locations.
+
+> **Severity, so everyone uses the words the same way.** **High:** the credential is already exposed, or is live and unaccountable. **Medium:** exposure is possible but needs something further to happen, and nothing shows it has. **Low:** hygiene that does not expose a credential on its own.
+
 > **Common Pitfall:** do not fix a hard-coded key by moving it to another file in the same repository. That changes the path, not the exposure.
 
 > **Common Pitfall:** do not recommend an unowned, unrotated token as the replacement for one. A replacement with the same lifetime is fine if it names an owner and a rotation date; a replacement that repeats the original's lack of both is not a fix.
@@ -95,7 +101,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 
 ### Step 7: Write the Rotation and Ownership Plan
 
-**Acceptance criteria:** a plan naming, for each credential involved, who owns it and how it gets rotated.
+**Acceptance criteria:** a plan naming, for each credential involved, who owns it and how it gets rotated. Cover **every credential in `credentials_inventory.csv`**, and also **every credential you found in the tree that is not in it** — if you found one with no owner, say so and say who should own it. An unowned credential is a finding about the inventory, not a gap in your plan.
 
 > **Key Insight:** removing a leaked credential from a file does not make it safe. Anything that was committed or shared must be rotated, not just deleted.
 
@@ -116,6 +122,7 @@ Compare `credentials_inventory.csv` with `hr_departures.csv`, paying attention t
 - [ ] The clean repository appears under "Not a finding", not as a defect
 - [ ] Findings are ordered by priority, each with a stated reason
 - [ ] A rotation and ownership plan names an owner for **every credential in the inventory**, not only the ones you reported as findings — matching `findings-template.md` section 4
+- [ ] Any credential you found in the tree that is **not** in the inventory also appears in the plan, marked as unowned
 - [ ] Anything you could not source is marked unverified rather than asserted
 
 ---
