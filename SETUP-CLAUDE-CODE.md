@@ -61,7 +61,24 @@ Windows.
 
 ## 2. Install on Linux (class default)
 
-Open a terminal and run:
+> **In the ROI Virtual Classroom, Claude Code is already installed — check before
+> you install anything.**
+>
+> ```
+> claude --version
+> which claude
+> ```
+>
+> If that prints a version, **you are done with this section**. Skip to section 3 and
+> sign in. The classroom image installs Claude Code from the apt package, so `which
+> claude` says `/usr/bin/claude`, **not** `~/.local/bin/claude`. That directory does not
+> exist on the image and nothing is wrong if it is missing.
+>
+> Running the installer below on top of an apt install leaves two copies on the machine
+> and a `PATH` that decides which one you get. Do not do it.
+
+On your own machine, or where `claude --version` printed nothing, open a terminal and
+run:
 
 ```
 curl -fsSL https://claude.ai/install.sh | bash
@@ -78,7 +95,8 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 ```
 
 The native installer puts the launcher at `~/.local/bin/claude`, which is why
-that is the directory you add.
+that is the directory you add. An apt install puts it at `/usr/bin/claude` instead, which
+is already on `PATH` and needs none of this.
 
 > Use `~/.zshrc` instead of `~/.bashrc` if your shell is zsh — check with
 > `echo $SHELL`. Opening a brand-new terminal has the same effect as
@@ -285,7 +303,7 @@ On Windows PowerShell, use `$env:ANTHROPIC_API_KEY` for the second check.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| `claude: command not found` | `~/.local/bin` not on `PATH` | Open a new terminal. If it persists: `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc` |
+| `claude: command not found` | `~/.local/bin` not on `PATH`, **after a native install** | Open a new terminal. If it persists: `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc`. On the classroom image the binary is at `/usr/bin/claude` and `~/.local/bin` does not exist — if `which claude` finds it there, this is not your problem |
 | Login opens no browser | Headless or remote session | Run `claude setup-token` instead to create a long-lived token (needs a subscription) |
 | Signed in but billed to the wrong place | `ANTHROPIC_API_KEY` is set | See [section 7](#7-switching-between-the-two) |
 | `claude plugin eval` fails | Git older than 2.31 | Upgrade Git |
